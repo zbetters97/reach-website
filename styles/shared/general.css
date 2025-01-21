@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "ostrich_sansmedium";
+  src: url("../../fonts/ostrich-regular-webfont.woff2") format("woff2"),
+    url("../../fonts/ostrich-regular-webfont.woff") format("woff");
+  font-weight: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.to-top {
+  font-size: 50px;
+  color: white;
+  background: black;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+}

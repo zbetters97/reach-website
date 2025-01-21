@@ -1,0 +1,38 @@
+.hero {
+  background-image: url("../../images/home/banner.png");
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* does not scroll with page */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.hero-text {
+  font-family: "ostrich_sansmedium", Arial, sans-serif;
+  font-size: 220px;
+  letter-spacing: 25px;
+  color: white;
+  text-shadow: 5px 5px 5px #000, 0 0 10px #0000ff, 0 0 5px #003366;
+  height: 220px;
+}
+
+.content h1 {
+  font-family: "Archivo", Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 10px;
+  text-align: center;
+}
+.content h2 {
+  font-family: "Raleway", Arial, sans-serif;
+  text-transform: capitalize;
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: 6px;
+  text-align: center;
+}
