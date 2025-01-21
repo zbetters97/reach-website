@@ -26,13 +26,107 @@
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 10px;
+  margin: 70px;
   text-align: center;
 }
 .content h2 {
   font-family: "Raleway", Arial, sans-serif;
   text-transform: capitalize;
-  font-size: 40px;
+  font-size: 45px;
   font-weight: 500;
   letter-spacing: 6px;
+  margin-bottom: 30px;
   text-align: center;
+}
+
+.home-tour,
+.home-music {
+  border-top: 4px solid black;
+  border-bottom: 2px solid black;
+  padding: 50px;
+}
+.home-tour-container,
+.home-music-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.home-tour-img {
+  border-radius: 6px;
+}
+.home-tour-dates {
+  width: 50%;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.home-tour-entry {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 28px;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-tour-btn,
+.home-music-btn {
+  color: black;
+  background-color: transparent;
+  font-size: 25px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 25px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+.home-music-img {
+  width: 40%;
+  border-radius: 6px;
+}
+.home-music-album {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.home-music-songs {
+  font-size: 30px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+.home-music-album h3 {
+  text-align: center;
+  border-bottom: 2px solid black;
+  font-size: 35px;
+  width: 70%;
+}
+.home-music-btn {
+  width: 40%;
+  text-align: center;
+}
+
+.home-event-container {
+  font-size: 30px;
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-event-img {
+  width: 70%;
+}
+.home-event-info {
+  margin-right: auto;
 }
