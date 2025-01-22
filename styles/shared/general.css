@@ -16,6 +16,16 @@
   text-decoration: none;
 }
 
+h1 {
+  font-family: "Archivo", Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 12px;
+  margin: 70px;
+  text-align: center;
+}
+
 .to-top {
   font-size: 35px;
   color: var(--basic-white);
