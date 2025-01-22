@@ -24,10 +24,11 @@ footer {
 .footer-info {
   font-family: "Libre Baskerville", Arial, sans-serif;
   font-size: 20px;
-  color: white;
+  color: var(--basic-white);
 }
+
 .footer-seperator {
-  border-right: 2px solid white;
+  border-right: 2px solid var(--basic-white);
   height: 40px;
 }
 
@@ -39,5 +40,5 @@ footer {
 }
 .footer-social-icon {
   font-size: 50px;
-  color: white;
+  color: var(--basic-white);
 }

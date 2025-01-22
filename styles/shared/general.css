@@ -5,6 +5,11 @@
   font-weight: normal;
 }
 
+:root {
+  --basic-white: #e2e8f0;
+  --basic-blue: #002c5f;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -12,16 +17,34 @@
 }
 
 .to-top {
-  font-size: 50px;
-  color: white;
-  background: black;
+  font-size: 35px;
+  color: var(--basic-white);
+  background: var(--basic-blue);
+  box-shadow: 2px 2px 6px rgb(0, 0, 0, 0.8);
   border-radius: 100%;
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   padding: 10px;
   display: flex;
   justify-content: center;
   position: fixed;
   right: 40px;
   bottom: 40px;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+.to-top:hover {
+  transform: scale(1.2);
+}
+
+.link {
+  background: linear-gradient(currentColor 0 0) bottom left/
+    var(--underline-width, 0%) 0.12em no-repeat;
+  display: inline-block;
+  padding: 0.2em 0;
+  text-decoration: none;
+  transition: background-size 0.3s;
+}
+.link:hover {
+  --underline-width: 100%;
 }

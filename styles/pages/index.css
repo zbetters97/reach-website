@@ -14,9 +14,10 @@
 .hero-text {
   font-family: "ostrich_sansmedium", Arial, sans-serif;
   font-size: 220px;
-  letter-spacing: 25px;
-  color: white;
-  text-shadow: 5px 5px 5px #000, 0 0 10px #0000ff, 0 0 5px #003366;
+  font-weight: 550;
+  letter-spacing: 20px;
+  color: var(--basic-white);
+  text-shadow: 5px 5px 2px black;
   height: 220px;
 }
 
@@ -25,7 +26,7 @@
   text-transform: uppercase;
   font-size: 60px;
   font-weight: 400;
-  letter-spacing: 10px;
+  letter-spacing: 18px;
   margin: 70px;
   text-align: center;
 }
@@ -39,33 +40,54 @@
   text-align: center;
 }
 
-.home-tour,
-.home-music {
-  border-top: 4px solid black;
-  border-bottom: 2px solid black;
+.home-section {
   padding: 50px;
 }
-.home-tour-container,
-.home-music-container {
-  width: 80%;
+.home-section:nth-child(2n) {
+  background-color: var(--basic-blue);
+  color: var(--basic-white);
+}
+.home-section h3 {
+  font-family: "Archivo";
+  font-weight: 400;
+  letter-spacing: 5px;
+  font-size: 38px;
+  text-align: center;
+}
+.home-section p {
+  font-family: Verdana, Arial, sans-serif;
+}
+.home-btn {
+  background-color: transparent;
+  font-size: 25px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 15px 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.home-tour-container {
+  width: 75%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .home-tour-img {
   border-radius: 6px;
 }
 .home-tour-dates {
   width: 50%;
-  height: 550px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
 }
 .home-tour-entry {
   font-family: Verdana, Arial, sans-serif;
-  font-size: 28px;
+  font-size: 25px;
   text-transform: uppercase;
   font-weight: 500;
   line-height: 45px;
@@ -74,59 +96,118 @@
   justify-content: center;
   align-items: center;
 }
-.home-tour-btn,
-.home-music-btn {
+.home-tour-btn {
+  color: var(--basic-white);
+  border: 2px solid var(--basic-white);
+  transition: color 200ms, background-color 200ms;
+}
+.home-tour-btn:hover {
   color: black;
-  background-color: transparent;
-  font-size: 25px;
-  vertical-align: middle;
-  text-align: center;
-  padding: 25px;
-  border: none;
-  cursor: pointer;
-  border: 2px solid black;
+  background-color: var(--basic-white);
+}
+.home-tour-btn:active {
+  background-color: lightgray;
 }
 
+.home-music-container {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
 .home-music-img {
-  width: 40%;
+  width: 65%;
   border-radius: 6px;
 }
 .home-music-album {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  align-self: stretch;
 }
 .home-music-songs {
-  font-size: 30px;
+  font-size: 25px;
   line-height: 40px;
   text-transform: uppercase;
 }
 .home-music-album h3 {
-  text-align: center;
-  border-bottom: 2px solid black;
-  font-size: 35px;
   width: 70%;
+  border-bottom: 2px solid black;
 }
 .home-music-btn {
-  width: 40%;
-  text-align: center;
+  color: black;
+  border: 2px solid black;
+  transition: color 200ms, background-color 200ms;
+}
+.home-music-btn:hover {
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+}
+.home-music-btn:active {
+  background-color: #061c35;
 }
 
 .home-event-container {
-  font-size: 30px;
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+}
+.home-event-img {
+  width: 40%;
+  border-radius: 8px;
+}
+.home-event-info {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 55%;
+  height: 250px;
+  line-height: 35px;
+}
+.home-event-info a {
+  color: inherit;
+}
+
+.home-store-container {
   width: 80%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+.home-store-img-container {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
-.home-event-img {
-  width: 70%;
+.home-store-img {
+  width: 40%;
+  text-align: center;
 }
-.home-event-info {
-  margin-right: auto;
+.home-store-img img {
+  width: 90%;
+  border-radius: 10px;
+}
+.home-store-btn {
+  color: black;
+  border: 2px solid black;
+  transition: color 200ms, background-color 200ms;
+}
+.home-store-btn:hover {
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+}
+.home-store-btn:active {
+  background-color: #001833;
 }
