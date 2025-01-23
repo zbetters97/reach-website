@@ -1,0 +1,113 @@
+.album-section {
+  padding: 50px;
+}
+.album-section:nth-child(odd) {
+  background-color: var(--basic-white);
+  color: black;
+}
+.album-section:nth-child(even) {
+  background-color: var(--basic-blue);
+  color: var(--basic-white);
+}
+.album-container {
+  align-self: stretch;
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.album-img {
+  width: 70%;
+}
+.album-section:nth-child(odd) .album-img {
+  border: 4px solid black;
+}
+.album-section:nth-child(even) .album-img {
+  border: 4px solid var(--basic-white);
+}
+
+.album-content {
+  width: 90%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.album-title {
+  font-family: "Archivo";
+  font-size: 40px;
+  font-weight: 400;
+  text-align: center;
+  width: 75%;
+  padding: 15px 0 5px 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.album-section:nth-child(odd) .album-title {
+  border-bottom: 2px solid black;
+}
+.album-section:nth-child(even) .album-title {
+  border-bottom: 2px solid var(--basic-white);
+}
+.album-songs {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 28px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 40px;
+  padding-left: 50px;
+  list-style-position: inside;
+}
+.album-services {
+  font-size: 50px;
+  align-self: flex-end;
+  padding: 10px 20px;
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.album-section:nth-child(odd) .album-services {
+  border: 2px solid black;
+}
+.album-section:nth-child(even) .album-services {
+  border: 2px solid var(--basic-white);
+}
+.album-services a {
+  cursor: pointer;
+}
+
+.music-videos-section {
+  background-color: var(--basic-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.music-video-title {
+  font-family: "Raleway", Arial, sans-serif;
+  text-transform: capitalize;
+  font-size: 45px;
+  font-weight: 500;
+  letter-spacing: 6px;
+  margin: 30px;
+  text-align: center;
+}
+.music-video-grid {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  width: 60%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  column-gap: 60px;
+  row-gap: 60px;
+}
+.music-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 5px solid black;
+}

@@ -21,7 +21,7 @@
   height: 220px;
 }
 
-.content h2 {
+h2 {
   font-family: "Raleway", Arial, sans-serif;
   text-transform: capitalize;
   font-size: 45px;
@@ -34,18 +34,22 @@
 .home-section {
   padding: 50px;
 }
-.home-section:nth-child(2n) {
+.home-section:nth-child(odd) {
+  background-color: var(--basic-white);
+  color: black;
+}
+.home-section:nth-child(even) {
   background-color: var(--basic-blue);
   color: var(--basic-white);
 }
-.home-section h3 {
+h3 {
   font-family: "Archivo";
   font-weight: 400;
   letter-spacing: 5px;
   font-size: 38px;
   text-align: center;
 }
-.home-section p {
+p {
   font-family: Verdana, Arial, sans-serif;
 }
 .home-btn {
@@ -125,6 +129,7 @@
   font-size: 25px;
   line-height: 40px;
   text-transform: uppercase;
+  list-style-position: inside;
 }
 .home-music-album h3 {
   width: 70%;
