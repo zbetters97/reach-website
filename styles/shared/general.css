@@ -6,7 +6,7 @@
 }
 
 :root {
-  --basic-white: #e2e8f0;
+  --basic-white: rgb(250, 250, 250);
   --basic-blue: #002c5f;
 }
 
@@ -16,30 +16,34 @@
   text-decoration: none;
 }
 
+body {
+  background-color: var(--basic-white);
+}
+
 h1 {
   font-family: "Archivo", Arial, sans-serif;
   text-transform: uppercase;
-  font-size: 60px;
+  font-size: 4em;
   font-weight: 400;
-  letter-spacing: 12px;
-  margin: 70px;
+  letter-spacing: 0.25em;
+  margin: 0.8em;
   text-align: center;
 }
 
 .to-top {
-  font-size: 35px;
+  font-size: 2.2em;
   color: var(--basic-white);
   background: var(--basic-blue);
   box-shadow: 2px 2px 6px rgb(0, 0, 0, 0.8);
   border-radius: 100%;
-  width: 35px;
-  height: 35px;
-  padding: 10px;
+  width: 1em;
+  height: 1em;
+  padding: 0.3em;
   display: flex;
   justify-content: center;
   position: fixed;
-  right: 40px;
-  bottom: 40px;
+  right: 2%;
+  bottom: 3%;
   opacity: 0;
   transition: opacity 300ms, transform 300ms;
 }

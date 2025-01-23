@@ -9,8 +9,8 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 200px;
-  padding: 15px;
+  height: 80%;
+  padding: 0.2em;
 }
 
 .footer-info-container {
@@ -23,7 +23,7 @@ footer {
 }
 .footer-info {
   font-family: "Libre Baskerville", Arial, sans-serif;
-  font-size: 20px;
+  font-size: 1.2em;
   color: var(--basic-white);
 }
 
@@ -47,8 +47,8 @@ footer {
 }
 
 .footer-seperator {
-  border-right: 2px solid var(--basic-white);
   height: 40px;
+  border-right: 2px solid var(--basic-white);
 }
 
 .footer-social-container {
@@ -59,7 +59,7 @@ footer {
 }
 
 .footer-social-icon {
-  font-size: 50px;
+  font-size: 3.2em;
   color: var(--basic-white);
   transition: transform 150ms linear;
 }

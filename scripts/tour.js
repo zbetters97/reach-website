@@ -30,7 +30,7 @@ function renderTourHTML() {
     tourHTML += `
       <section class="concert-section">
         <div class="concert-container">
-          <h3 class="concert-title">${event.date} @ ${event.time}(EST)</h3>
+          <h3 class="concert-title">${event.date} @ ${event.time} (EST)</h3>
           <h4 class="concert-info">${event.city}, ${event.state}</h4>
           <h4 class="concert-info">${event.venue}</h4>
           <div class="concert-seperator"></div>
