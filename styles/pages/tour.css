@@ -1,8 +1,8 @@
 .concert-section:nth-child(odd) {
-  background-color: var(--basic-white);
+  background-color: var(--basic-blue);
 }
 .concert-section:nth-child(even) {
-  background-color: var(--basic-blue);
+  background-color: var(--basic-white);
 }
 
 .concert-section {
@@ -16,10 +16,10 @@
   height: 250px;
 }
 .concert-section:nth-child(odd) .concert-container {
-  color: black;
+  color: var(--basic-white);
 }
 .concert-section:nth-child(even) .concert-container {
-  color: var(--basic-white);
+  color: black;
 }
 
 .concert-title {
