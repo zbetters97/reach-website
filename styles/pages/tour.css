@@ -1,0 +1,48 @@
+.concert-section:nth-child(odd) {
+  background-color: var(--basic-white);
+}
+.concert-section:nth-child(even) {
+  background-color: var(--basic-blue);
+}
+
+.concert-section {
+  padding: 50px;
+}
+.concert-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 250px;
+}
+.concert-section:nth-child(odd) .concert-container {
+  color: black;
+}
+.concert-section:nth-child(even) .concert-container {
+  color: var(--basic-white);
+}
+
+.concert-title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 35px;
+  font-weight: 400;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.concert-info {
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: 200;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.concert-seperator {
+  width: 30%;
+  height: 1px;
+  border-top: 3px solid;
+}
+.concert-info.link {
+  color: inherit;
+  letter-spacing: 1px;
+  font-weight: 600;
+}

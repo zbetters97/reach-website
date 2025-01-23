@@ -3,7 +3,7 @@ $(document).ready(function () {
     $(".hero").css("opacity", 1 - $(window).scrollTop() / 1000)
   );
 
-  const getOffset = () => $("nav").offset().top;
+  const getOffset = () => $(".navbar").offset().top;
   let contentOffset = getOffset();
   $(window).resize(() => (contentOffset = getOffset()));
 

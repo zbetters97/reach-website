@@ -35,7 +35,7 @@
   justify-content: space-between;
 }
 .album-title {
-  font-family: "Archivo";
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
   font-size: 40px;
   font-weight: 400;
   text-align: center;
