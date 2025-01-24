@@ -44,12 +44,12 @@
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
     <link rel="stylesheet" href="styles/shared/footer.css" />
-    <link rel="stylesheet" href="styles/pages/store.css" />
+    <link rel="stylesheet" href="styles/pages/shop.css" />
     <!-- END STYLESHEETS -->
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer type="module" src="scripts/store.js"></script>
+    <script defer type="module" src="scripts/shop.js"></script>
     <!-- END SCRIPTS -->
   </head>
   <body>
@@ -59,13 +59,41 @@
       <a href="index.html#navbar">
         <img class="navbar-logo" src="images/icons/main-logo.png" />
       </a>
-      <a class="navbar-link" href="store.html active">Store</a>
+      <a class="navbar-link" href="shop.html active">Shop</a>
       <a class="navbar-link" href="about.html">About</a>
     </nav>
     <main>
       <div class="wrapper">
         <h1>Browse Our Store</h1>
-        <section class="store-section"></section>
+        <section class="shop-section">
+          <div class="shop-items-grid" id="js-shop-items-grid">
+            <div class="shop-item">
+              <img src="images/shop/shirt/shirt-modern-white.png" />
+              <h3>RW Modern T-Shirt</h3>
+              <p>$24.99</p>
+            </div>
+            <div class="shop-item">
+              <img src="images/shop/shirt/shirt-classic-black.png" />
+              <h3>RW Classic T-Shirt</h3>
+              <p>$24.99</p>
+            </div>
+            <div class="shop-item">
+              <img src="images/shop/hoodie/hoodie-modern-ash.png" />
+              <h3>RW Modern Pullover</h3>
+              <p>$34.99</p>
+            </div>
+            <div class="shop-item">
+              <img src="images/shop/hoodie/hoodie-classic-black.png" />
+              <h3>RW Classic Pullover</h3>
+              <p>$34.99</p>
+            </div>
+            <div class="shop-item">
+              <img src="images/shop/hat/hat-modern-white.png" />
+              <h3>RW Modern Hat</h3>
+              <p>$14.99</p>
+            </div>
+          </div>
+        </section>
       </div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>

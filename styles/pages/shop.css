@@ -1,0 +1,36 @@
+.shop-items-grid {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 3em;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  row-gap: 4em;
+}
+
+.shop-item {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 200ms;
+}
+.shop-item:hover {
+  transform: scale(1.1);
+}
+.shop-item img {
+  margin-bottom: 1em;
+  width: 100%;
+  border-radius: 15px;
+}
+.shop-item h3 {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
+}
+.shop-item p {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 1.3em;
+}
