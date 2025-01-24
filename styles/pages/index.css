@@ -13,26 +13,16 @@
 }
 .hero-text {
   font-family: "ostrich_sansmedium", Arial, sans-serif;
-  font-size: 220px;
+  font-size: 13em;
   font-weight: 550;
-  letter-spacing: 20px;
+  letter-spacing: 0.1em;
   color: var(--basic-white);
   text-shadow: 5px 5px 2px black;
   height: 220px;
 }
 
-h2 {
-  font-family: "Raleway", Arial, sans-serif;
-  text-transform: capitalize;
-  font-size: 45px;
-  font-weight: 500;
-  letter-spacing: 6px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
 .home-section {
-  padding: 50px;
+  padding: 2.5em;
 }
 .home-section:nth-child(odd) {
   background-color: var(--basic-white);
@@ -42,22 +32,32 @@ h2 {
   background-color: var(--basic-blue);
   color: var(--basic-white);
 }
-h3 {
-  font-family: "Archivo";
-  font-weight: 400;
-  letter-spacing: 5px;
-  font-size: 38px;
+.home-section h2 {
+  font-family: "Raleway", Arial, sans-serif;
+  text-transform: capitalize;
+  font-size: 3em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5em;
   text-align: center;
 }
-p {
+.home-section h3 {
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-size: 2.5em;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+.home-section p {
   font-family: Verdana, Arial, sans-serif;
 }
+
 .home-btn {
   background-color: transparent;
-  font-size: 25px;
+  font-size: 1.5em;
   vertical-align: middle;
   text-align: center;
-  padding: 15px 25px;
+  padding: 0.5em 1em;
   border: none;
   display: inline-block;
   position: relative;
@@ -67,7 +67,7 @@ p {
 .home-btn:after {
   content: "\f178";
   font-family: FontAwesome;
-  font-size: 20px;
+  font-size: 0.8em;
   position: absolute;
   display: flex;
   align-items: center;
@@ -76,12 +76,11 @@ p {
   top: 0;
   opacity: 0;
   height: 100%;
-  width: 20px;
   transition: 200ms;
 }
 .home-btn:hover {
-  padding-right: 40px;
-  padding-left: 10px;
+  padding-right: 1.5em;
+  padding-left: 0.5em;
 }
 .home-btn:hover:after {
   opacity: 1;
@@ -109,10 +108,10 @@ p {
 }
 .home-tour-entry {
   font-family: Verdana, Arial, sans-serif;
-  font-size: 25px;
+  font-size: 1.5em;
   text-transform: uppercase;
   font-weight: 500;
-  line-height: 45px;
+  line-height: 1.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -145,7 +144,7 @@ p {
   align-self: stretch;
 }
 .home-music-songs {
-  font-size: 25px;
+  font-size: 1.6em;
   line-height: 40px;
   text-transform: uppercase;
   list-style-position: inside;
@@ -174,7 +173,7 @@ p {
   border-radius: 8px;
 }
 .home-event-info {
-  font-size: 25px;
+  font-size: 1.6em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
