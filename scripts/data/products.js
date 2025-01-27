@@ -2,8 +2,8 @@ import formatCurrency from "../utils/money.js";
 
 export function getProduct(productId) {
   const product =
-    products[products.findIndex((product) => product.id === productId)] ||
-    products[0];
+    productData[products.findIndex((product) => product.id === productId)] ||
+    productData[0];
 
   return product;
 }
@@ -14,7 +14,7 @@ class Product {
   image;
   priceCents;
   #colors;
-  selectedColor;
+  color;
   edition;
   category;
 
@@ -23,28 +23,67 @@ class Product {
     this.name = productDetails.name;
     this.priceCents = productDetails.priceCents;
     this.#colors = productDetails.colors;
-    this.selectedColor = this.#colors[0];
+    this.color = this.#colors[0];
     this.edition = productDetails.edition;
     this.category = productDetails.category;
-    this.image = `images/shop/${this.category}/${this.category}-${this.edition}-${this.selectedColor}.png`;
+    this.image = `images/shop/${this.category}/${this.category}-${this.edition}-${this.color}.png`;
   }
 
   getPrice() {
     return formatCurrency(this.priceCents);
   }
+
+  getColorHTML() {
+    let colorHTML = ``;
+    this.#colors.forEach((color) => {
+      colorHTML += `<option value="${color}">${color}</option>`;
+    });
+
+    return colorHTML;
+  }
+
+  changeColor(color) {
+    return `images/shop/${this.category}/${this.category}-${this.edition}-${color}.png`;
+  }
+
+  getExtraHTML() {
+    return ``;
+  }
 }
 class Clothing extends Product {
   sizes;
-  selectedSize;
 
   constructor(productDetails) {
     super(productDetails);
     this.sizes = productDetails.sizes;
-    this.selectedSize = this.sizes[0];
+    this.size = this.sizes[0];
   }
 
   changeSize(size) {
-    this.selectedSize = size;
+    this.size = size;
+  }
+
+  getExtraHTML() {
+    const select = "selected";
+
+    let sizeHTML = ``;
+    this.sizes.forEach((size) => {
+      sizeHTML += `
+        <label role="radio" class="size-select">
+          <input type="radio" name="size-radio"/>
+          <p>${size}</p>
+        </label>
+      `;
+    });
+
+    return `
+      <div class="size-container">
+        <p>Size</p>
+        <div class="size-list" data-product-id=${this.id}>
+          ${sizeHTML}
+        </div>
+      </div>
+    `;
   }
 }
 
@@ -56,7 +95,7 @@ const products = [
     colors: ["Ash", "Indigo", "White"],
     edition: "Modern",
     category: "shirt",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c7",
@@ -65,7 +104,7 @@ const products = [
     colors: ["Black", "Navy"],
     edition: "Classic",
     category: "shirt",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
@@ -74,7 +113,7 @@ const products = [
     colors: ["Ash", "Charcoal"],
     edition: "Modern",
     category: "hoodie",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a05",
@@ -83,7 +122,7 @@ const products = [
     colors: ["Black", "Navy"],
     edition: "Classic",
     category: "hoodie",
-    sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
     id: "58b4fc92-e98c-42aa-8c55-b6b79996769a",
