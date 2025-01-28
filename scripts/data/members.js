@@ -1,4 +1,4 @@
-export const members = [
+const members = [
   {
     name: "Tyler Schoenberger",
     image: "images/about/tyler.png",
@@ -46,3 +46,5 @@ export const members = [
       "Engaging in worship for me can be challenging. Since I am sitting in an enclosed space that is far from the congregation, I often feel distant from everyone’s energy. But, I know that playing my instrument to the best of my God-given ability is a beautiful form of worship pleasing to Him. Realizing this allows me to be fully involved in the worship that we bring to God.",
   },
 ];
+
+export default members;

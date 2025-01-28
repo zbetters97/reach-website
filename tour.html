@@ -49,7 +49,9 @@
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAIUGLXRz18q3Y0Joafj_KEpgS-MZYx-g"></script>
     <script defer type="module" src="scripts/tour.js"></script>
+
     <!-- END SCRIPTS -->
   </head>
   <body>
@@ -67,6 +69,11 @@
         <h1>Find Us on Tour</h1>
         <div id="js-events-container">
           <!-- JS INSERTS DATA HERE -->
+        </div>
+
+        <h3 id="map-info"></h3>
+        <div class="google-map" id="js-google-map">
+          <!-- JS INSERTS GOOGLE MAP HERE -->
         </div>
       </div>
       <a class="to-top" href="">

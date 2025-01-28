@@ -1,5 +1,5 @@
 import { handleWindow } from "./utils/window.js";
-import { albums } from "./data/albums.js";
+import albums from "./data/albums.js";
 
 $(document).ready(function () {
   handleWindow();

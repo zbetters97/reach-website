@@ -100,7 +100,7 @@
 .color-container {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 40%;
 }
 .color-container select {
   font-size: 1em;
@@ -163,30 +163,58 @@
   outline: none;
 }
 
-.modal-cart-btn {
+.add-cart-btn {
   font-size: 1em;
   color: var(--basic-white);
   background-color: transparent;
-  padding: 0.6em;
   margin-top: 0.5em;
   width: 70%;
+  height: 70px;
   align-self: center;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   border: 3px solid var(--basic-white);
   border-radius: 10px;
   cursor: pointer;
-  transition: 200ms;
+  position: relative;
+  overflow: hidden;
+  transition: all 200ms;
 }
-.modal-cart-btn:hover {
+.add-cart-btn::before {
+  content: "\f07a";
+  font-family: "FontAwesome";
+  font-size: 1.2em;
+  text-indent: 0.2em;
+  color: var(--basic-blue);
+  background-color: var(--basic-white);
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 50% 50% 0;
+  transform: translate(-20%, 0) scale(0, 1);
+  transform-origin: left center;
+  transition: all 200ms;
+  z-index: 1;
+}
+.add-cart-btn:hover {
+  text-indent: 2.5em;
+}
+.add-cart-btn:hover::before {
+  transform: translate(-20%, 0) scale(1, 1);
+}
+
+/*
+.add-cart-btn:hover {
   color: black;
   background-color: var(--basic-white);
 }
-.modal-cart-btn:active {
+.add-cart-btn:active {
   background-color: rgb(162, 162, 162);
   border: 3px solid rgb(162, 162, 162);
 }
+  */
 
 /* MODAL BACKDROP */
 .overlay {

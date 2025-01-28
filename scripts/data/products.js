@@ -13,7 +13,7 @@ class Product {
   name;
   image;
   priceCents;
-  #colors;
+  colors;
   color;
   edition;
   category;
@@ -22,8 +22,8 @@ class Product {
     this.id = productDetails.id;
     this.name = productDetails.name;
     this.priceCents = productDetails.priceCents;
-    this.#colors = productDetails.colors;
-    this.color = this.#colors[0];
+    this.colors = productDetails.colors;
+    this.color = this.colors[0];
     this.edition = productDetails.edition;
     this.category = productDetails.category;
     this.image = `images/shop/${this.category}/${this.category}-${this.edition}-${this.color}.png`;
@@ -35,7 +35,7 @@ class Product {
 
   getColorHTML() {
     let colorHTML = ``;
-    this.#colors.forEach((color) => {
+    this.colors.forEach((color) => {
       colorHTML += `<option value="${color}">${color}</option>`;
     });
 
@@ -43,6 +43,7 @@ class Product {
   }
 
   changeColor(color) {
+    this.color = color;
     return `images/shop/${this.category}/${this.category}-${this.edition}-${color}.png`;
   }
 
@@ -64,13 +65,14 @@ class Clothing extends Product {
   }
 
   getExtraHTML() {
-    const select = "selected";
+    const select = "checked";
 
     let sizeHTML = ``;
     this.sizes.forEach((size) => {
       sizeHTML += `
         <label role="radio" class="size-select">
-          <input type="radio" name="size-radio"/>
+          <input type="radio" name="size-radio" value="${size}" 
+          ${this.size === size && select} />
           <p>${size}</p>
         </label>
       `;
@@ -91,7 +93,7 @@ const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     name: "RW Modern T-Shirt",
-    priceCents: 2499,
+    priceCents: 2500,
     colors: ["Ash", "Indigo", "White"],
     edition: "Modern",
     category: "shirt",
@@ -100,7 +102,7 @@ const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c7",
     name: "RW Classic T-Shirt",
-    priceCents: 2499,
+    priceCents: 2500,
     colors: ["Black", "Navy"],
     edition: "Classic",
     category: "shirt",
@@ -109,7 +111,7 @@ const products = [
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
     name: "RW Modern Pullover",
-    priceCents: 4499,
+    priceCents: 4500,
     colors: ["Ash", "Charcoal"],
     edition: "Modern",
     category: "hoodie",
@@ -118,7 +120,7 @@ const products = [
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a05",
     name: "RW Classic Pullover",
-    priceCents: 4499,
+    priceCents: 4500,
     colors: ["Black", "Navy"],
     edition: "Classic",
     category: "hoodie",
@@ -127,7 +129,7 @@ const products = [
   {
     id: "58b4fc92-e98c-42aa-8c55-b6b79996769a",
     name: "RW Modern Hat",
-    priceCents: 1499,
+    priceCents: 1500,
     colors: ["Charcoal", "White"],
     edition: "Modern",
     category: "hat",

@@ -1,4 +1,4 @@
-export const concerts = [
+const concerts = [
   {
     date: "FEB 1",
     time: "8:00PM",
@@ -35,3 +35,5 @@ export const concerts = [
     state: "MA",
   },
 ];
+
+export default concerts;

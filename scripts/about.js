@@ -1,5 +1,5 @@
 import { handleWindow } from "./utils/window.js";
-import { members } from "./data/members.js";
+import members from "./data/members.js";
 
 $(document).ready(function () {
   handleWindow();

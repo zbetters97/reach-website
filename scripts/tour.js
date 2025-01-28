@@ -1,5 +1,6 @@
 import { handleWindow } from "./utils/window.js";
-import { concerts } from "./data/concerts.js";
+import { initMap, setMarkers } from "./data/map.js";
+import concerts from "./data/concerts.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -28,4 +29,7 @@ function renderTourHTML() {
   });
 
   $("#js-events-container").html(tourHTML);
+
+  initMap();
+  setMarkers(concerts);
 }

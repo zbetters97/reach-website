@@ -1,4 +1,4 @@
-export const albums = [
+const albums = [
   {
     year: "2017",
     title: "Reach Worship (EP)",
@@ -35,3 +35,5 @@ export const albums = [
     ],
   },
 ];
+
+export default albums;

@@ -71,11 +71,10 @@ function renderModalHTML(productId) {
 
           <div class="quantity-container">
             <p>Quantity</p>
-            <input type="number" value="1" min="1" max="99" />
+            <input id="js-quantity-container" type="number" value="1" min="1" max="99" />
           </div>
 
-          <button class="modal-cart-btn">
-            <i class="fa-solid fa-cart-shopping"></i>
+          <button class="add-cart-btn" id="js-add-cart-btn">            
             Add to Cart
           </button>
         </div>
@@ -86,12 +85,23 @@ function renderModalHTML(productId) {
   modal.html(modalHTML);
 
   $("#js-color-list").change(function () {
-    const newImage = product.changeColor($(this).val());
+    const color = $(this).val() || product.color;
+    const newImage = product.changeColor(color);
     $("#js-modal-img").attr("src", newImage);
   });
 
   $("#js-overlay, #js-close-modal-btn").on("click", () => {
     closeModal(modal);
+  });
+
+  $("#js-add-cart-btn").on("click", () => {
+    const size = $(`input[name="size-radio"]:checked`).val() || "S";
+    product.size = size;
+
+    const quantity = $("#js-quantity-container").val();
+    if (quantity > 99 || quantity < 1) return;
+
+    console.log(`${product.size} ${product.color} ${quantity}`);
   });
 }
 

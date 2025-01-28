@@ -1,6 +1,6 @@
 import { handleWindow } from "./utils/window.js";
-import { concerts } from "./data/concerts.js";
-import { albums } from "./data/albums.js";
+import concerts from "./data/concerts.js";
+import albums from "./data/albums.js";
 
 $(document).ready(function () {
   handleWindow();
