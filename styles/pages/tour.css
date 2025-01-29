@@ -47,9 +47,105 @@
   font-weight: 600;
 }
 
+.map-title {
+  font-family: "Raleway", Arial, sans-serif;
+  text-transform: capitalize;
+  font-size: 3em;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin: 1em;
+  text-align: center;
+}
+
+.map-container {
+  width: 70%;
+  height: 700px;
+  margin: 0 auto 50px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .google-map {
-  width: 500px;
-  height: 500px;
-  margin: 50px auto;
+  width: 60%;
+  height: 70%;
   border: 5px solid black;
+  border-radius: 10px;
+}
+.maps-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 6em;
+}
+.maps-info-body {
+  font-size: 1.2em;
+}
+.maps-info-btn {
+  font-size: 1.1em;
+  background-color: transparent;
+  border: 2px solid var(--basic-blue);
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 150ms;
+}
+.maps-info-btn:hover {
+  background-color: var(--basic-blue);
+  color: var(--basic-white);
+}
+
+.address-form {
+  width: 60%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.map-form-input {
+  display: flex;
+  flex-direction: column;
+}
+.address-form label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2.2em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+.address-form input {
+  font-size: 1.6em;
+  border: 2px solid black;
+  padding: 0.2em;
+  width: 100%;
+}
+
+.map-form-btn {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-self: flex-start;
+}
+.address-form button {
+  width: 180px;
+  min-width: 180px;
+  color: black;
+  font-size: 1.7em;
+  padding: 0.4em 1em;
+  margin-right: 25px;
+  background-color: transparent;
+  border: 2px solid black;
+  transition: all 200ms;
+}
+.address-form .btn-hover,
+.map-submit-btn {
+  cursor: pointer;
+}
+.address-form .btn-hover:hover,
+.map-submit-btn:hover {
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+}
+.address-form .fa-spin {
+  display: none;
 }

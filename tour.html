@@ -71,9 +71,33 @@
           <!-- JS INSERTS DATA HERE -->
         </div>
 
-        <h3 id="map-info"></h3>
-        <div class="google-map" id="js-google-map">
-          <!-- JS INSERTS GOOGLE MAP HERE -->
+        <h2 class="map-title">Tours Near You</h2>
+        <div class="map-container">
+          <div class="google-map" id="js-google-map">
+            <!-- JS INSERTS GOOGLE MAP HERE -->
+          </div>
+          <div class="address-form">
+            <div class="map-form-input">
+              <label for="address">Address</label>
+              <input
+                id="js-map-address"
+                type="text"
+                name="address"
+                placeholder="New York City, NY"
+              />
+            </div>
+            <div class="map-form-btn">
+              <button class="btn-hover" id="js-map-autofill">
+                <i
+                  class="fa fa-refresh fa-spin"
+                  id="js-map-autofill-icon"
+                  spin
+                ></i>
+                <span id="js-map-autofill-text">Autofill</span>
+              </button>
+              <button class="map-submit-btn" id="js-map-submit">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
       <a class="to-top" href="">
