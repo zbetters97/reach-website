@@ -1,10 +1,5 @@
 import { handleWindow } from "./utils/window.js";
-import {
-  findClosestConcert,
-  getCurrentLocation,
-  initMap,
-  setTourMarkers,
-} from "./data/map.js";
+import { findClosestConcert, getCurrentLocation, initMap } from "./data/map.js";
 import concerts from "./data/concerts.js";
 
 $(document).ready(function () {
@@ -14,8 +9,7 @@ $(document).ready(function () {
 
 function loadPage() {
   renderTourHTML();
-  initMap();
-  setTourMarkers(concerts);
+  initMap(concerts);
   handleForm();
 }
 
@@ -43,24 +37,29 @@ function handleForm() {
   const addressInput = $("#js-map-address");
 
   $("#js-map-autofill").on("click", () => {
-    $("#js-map-autofill").removeClass("btn-hover");
-    $("#js-map-autofill-icon").css("display", "inherit");
-    $("#js-map-autofill-text").hide();
+    showLoading("autofill");
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         getCurrentLocation(position);
       });
     } else {
-      alert("Geolocation is not supported by your browser!");
+      console.log("error");
     }
   });
 
   $("#js-map-submit").on("click", () => {
-    if (!addressInput.val()) {
-      alert("error");
-    } else {
+    if (addressInput.val()) {
+      showLoading("submit");
       findClosestConcert(addressInput.val(), concerts);
+    } else {
+      console.log("error");
     }
   });
+}
+
+function showLoading(button) {
+  $(`#js-map-${button}`).removeClass("btn-hover");
+  $(`#js-map-${button}-icon`).css("display", "inherit");
+  $(`#js-map-${button}-text`).hide();
 }
