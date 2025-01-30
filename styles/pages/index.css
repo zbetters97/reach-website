@@ -187,7 +187,7 @@
 
 .home-store-container {
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

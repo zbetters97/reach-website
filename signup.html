@@ -44,25 +44,20 @@
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
     <link rel="stylesheet" href="styles/shared/footer.css" />
-    <link rel="stylesheet" href="styles/pages/index.css" />
+    <link rel="stylesheet" href="styles/pages/signup.css" />
     <!-- END STYLESHEETS -->
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer type="module" src="scripts/index.js"></script>
+    <script defer type="module" src="scripts/signup.js"></script>
     <!-- END SCRIPTS -->
   </head>
   <body>
-    <div class="hero">
-      <span class="hero-text">Come</span>
-      <span class="hero-text">and</span>
-      <span class="hero-text">See</span>
-    </div>
     <nav class="navbar" id="navbar">
       <a class="navbar-link" href="tour.html">Tour</a>
       <a class="navbar-link" href="music.html">Music</a>
       <a href="index.html#navbar">
-        <img class="navbar-logo active" src="images/icons/main-logo.png" />
+        <img class="navbar-logo" src="images/icons/main-logo.png" />
       </a>
       <a class="navbar-link" href="shop.html">Shop</a>
       <a class="navbar-link" href="about.html">About</a>
@@ -78,69 +73,34 @@
     </nav>
     <main>
       <div class="wrapper">
-        <h1>Reach Worship</h1>
-        <section class="home-section">
-          <h2>Upcoming Tour Dates</h2>
-          <div class="home-tour-container">
-            <img class="home-tour-img" src="images/home/home-tour.png" />
-            <div class="home-tour-dates" id="js-home-tours-container">
-              <!-- JS INSERTS DATA HERE -->
+        <section class="signup-section">
+          <div class="signup-container">
+            <h2>Sign Up for a Reach Account</h2>
+            <div class="signup-field">
+              <label for="firstname">First Name</label>
+              <input name="firstname" type="text" placeholder="John" />
             </div>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>New Music</h2>
-          <div class="home-music-container" id="js-home-music-container">
-            <!-- JS INSERTS DATA HERE -->
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Saturday Night Worship</h2>
-          <div class="home-event-container">
-            <img class="home-event-img" src="images/home/home-event.png" />
-            <div class="home-event-info">
-              <p>
-                With cutting edge music, high energy, and making Nothing But
-                Jesus real through God's Word, Saturday nights are specifically
-                tailored to reach the next generation, but all are welcome! Come
-                and see what the "Nothing but Jesus" movement of the next
-                generation is all about!
-              </p>
-              <div>
-                <p>
-                  <strong>When:</strong> The third Saturday of every month at
-                  6:30PM
-                </p>
-                <p>
-                  <strong>Where:</strong>
-                  <a
-                    class="link"
-                    href="https://goo.gl/maps/w8sDfMuZvo52"
-                    target="_blank"
-                  >
-                    Reach Church in Bear, Delaware
-                  </a>
-                </p>
-              </div>
+            <div class="signup-field">
+              <label for="lastname">Last Name</label>
+              <input name="lastname" type="text" placeholder="Doe" />
             </div>
-          </div>
-        </section>
-        <section class="home-section">
-          <h2>Shop New Arrivals!</h2>
-          <div class="home-store-container">
-            <div class="home-store-img-container">
-              <div class="home-store-img">
-                <h3>RW Unisex T-Shirt</h3>
-                <img src="images/home/home-store-01.png" />
-              </div>
-              <div class="home-store-img">
-                <h3>RW Pullover</h3>
-                <img src="images/home/home-store-02.png" />
-              </div>
+            <div class="signup-field">
+              <label for="email">Email Address</label>
+              <input name="email" type="text" placeholder="jdoe@gmail.com" />
             </div>
-            <a href="shop.html">
-              <button class="home-btn home-store-btn">Shop all items</button>
-            </a>
+            <div class="signup-field">
+              <label for="username">Username</label>
+              <input name="username" type="text" placeholder="johndoe" />
+            </div>
+            <div class="signup-field">
+              <label for="password">Password</label>
+              <input name="password" type="password" />
+            </div>
+            <button class="signup-btn">Sign Up</button>
+          </div>
+          <div class="signup-login-container">
+            <p>Already have an account with us?</p>
+            <a href="login.html" class="signup-login-btn">Login</a>
           </div>
         </section>
       </div>

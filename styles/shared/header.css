@@ -38,3 +38,17 @@
 .navbar-logo:hover {
   opacity: 1;
 }
+
+.navbar-user-container {
+  font-size: 2.5em;
+  position: absolute;
+  right: 50px;
+  padding: 10px;
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-user-container a {
+  color: black;
+}

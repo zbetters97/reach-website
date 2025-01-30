@@ -60,7 +60,7 @@
 .map-container {
   width: 70%;
   height: 700px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

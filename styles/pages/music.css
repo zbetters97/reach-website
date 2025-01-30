@@ -69,6 +69,12 @@
   justify-content: space-between;
   align-items: center;
 }
+.album-services i {
+  transition: transform 150ms linear;
+}
+.album-services i:hover {
+  transform: scale(1.2);
+}
 .album-section:nth-child(odd) .album-services {
   border: 2px solid var(--basic-white);
 }
@@ -81,6 +87,7 @@
 
 .music-videos-section {
   background-color: var(--basic-white);
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,7 +103,6 @@
   text-align: center;
 }
 .music-video-grid {
-  margin-bottom: 3em;
   width: 60%;
   display: grid;
   grid-template-columns: 1fr 1fr;

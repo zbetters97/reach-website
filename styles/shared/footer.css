@@ -64,5 +64,5 @@ footer {
   transition: transform 150ms linear;
 }
 .footer-social-icon:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
