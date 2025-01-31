@@ -163,11 +163,19 @@
   outline: none;
 }
 
+.modal-added-alert {
+  font-size: 1em;
+  color: green;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: all 200ms;
+}
+
 .add-cart-btn {
   font-size: 1em;
   color: var(--basic-white);
   background-color: transparent;
-  margin-top: 0.5em;
   width: 70%;
   height: 70px;
   align-self: center;

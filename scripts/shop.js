@@ -74,6 +74,10 @@ function renderModalHTML(productId) {
             <input id="js-quantity-container" type="number" value="1" min="1" max="99" />
           </div>
 
+          <div class="modal-added-alert" id="js-modal-added-alert">
+            <i class="fa-solid fa-check"></i>
+            <p>Added to cart</p>
+          </div>
           <button class="add-cart-btn" id="js-add-cart-btn">            
             Add to Cart
           </button>

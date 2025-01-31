@@ -6,6 +6,11 @@ const concerts = [
     venue: "The Met",
     city: "Philadelphia",
     state: "PA",
+    ticketPrice: {
+      STR: 2500,
+      DLX: 4000,
+      VIP: 8000,
+    },
   },
   {
     id: "123456",
@@ -14,6 +19,11 @@ const concerts = [
     venue: "Stage AE",
     city: "Pittsburgh",
     state: "PA",
+    ticketPrice: {
+      STR: 2500,
+      DLX: 4000,
+      VIP: 8000,
+    },
   },
   {
     id: "123457",
@@ -22,6 +32,11 @@ const concerts = [
     venue: "Brooklyn Paramount Theater",
     city: "Brooklyn",
     state: "NY",
+    ticketPrice: {
+      STR: 2500,
+      DLX: 4000,
+      VIP: 8000,
+    },
   },
   {
     id: "123458",
@@ -30,6 +45,11 @@ const concerts = [
     venue: "The Stone Pony",
     city: "Asbury Park",
     state: "NJ",
+    ticketPrice: {
+      STR: 2500,
+      DLX: 4000,
+      VIP: 8000,
+    },
   },
   {
     id: "123459",
@@ -38,6 +58,11 @@ const concerts = [
     venue: "MGM Music Hall at Fenway",
     city: "Boston",
     state: "MA",
+    ticketPrice: {
+      STR: 2500,
+      DLX: 4000,
+      VIP: 8000,
+    },
   },
 ];
 export default concerts;

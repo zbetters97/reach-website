@@ -58,7 +58,17 @@
   font-size: 0.7em;
   padding: 0.3em;
   border: 2px solid var(--basic-blue);
+  background-color: transparent;
   outline: none;
+}
+
+.ticket-added-alert {
+  font-size: 1.5em;
+  color: green;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transition: all 200ms;
 }
 
 .tickets-add-btn {
@@ -67,11 +77,39 @@
   background-color: var(--basic-blue);
   padding: 0.5em;
   margin: 0 auto;
-  width: 40%;
-  border: 3px solid var(--basic-white);
+  width: 50%;
+  border: 3px solid var(--basic-blue);
   cursor: pointer;
+  align-self: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 200ms;
+}
+.tickets-add-btn::before {
+  content: "\f07a";
+  font-family: "FontAwesome";
+  font-size: 1.2em;
+  text-indent: -0.2em;
+  color: var(--basic-blue);
+  background-color: var(--basic-white);
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 50% 50% 0;
+  transform: translate(-20%, 0) scale(0, 1);
+  transform-origin: left center;
+  transition: all 200ms;
+  z-index: 1;
 }
 .tickets-add-btn:hover {
+  text-indent: 2.5em;
+}
+.tickets-add-btn:hover::before {
+  transform: translate(-20%, 0) scale(1, 1);
 }
 
 .tickets-back-container {
