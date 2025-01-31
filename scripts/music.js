@@ -14,7 +14,6 @@ function renderMusicHTML() {
   let albumHTML = ``;
 
   albums.forEach((album) => {
-    const year = album.year;
     const image = album.image;
     const title = album.title;
 

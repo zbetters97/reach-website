@@ -3,7 +3,7 @@
   background-color: white;
   margin: 100px auto 100px auto;
   width: 700px;
-  height: 1100px;
+  height: 900px;
   border: 3px solid black;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
@@ -74,7 +74,7 @@
   background-color: transparent;
   padding: 0.5em;
   margin: 0 auto;
-  width: 35%;
+  width: 30%;
   border: 3px solid black;
   cursor: pointer;
 }

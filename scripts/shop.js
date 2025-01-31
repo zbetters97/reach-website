@@ -35,8 +35,8 @@ function handleModal() {
   $("#js-shop-items-grid")
     .children()
     .on("click", function () {
-      const pId = $(this).data("product-id");
-      renderModalHTML(pId);
+      const productId = $(this).data("product-id");
+      renderModalHTML(productId);
 
       openModal(modal);
     });

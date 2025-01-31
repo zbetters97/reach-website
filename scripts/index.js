@@ -28,9 +28,9 @@ function renderTourHTML() {
   });
 
   eventsHTML += `
-    <a href="tour.html">
-      <button class="home-btn home-tour-btn">Find more dates</button>
-    </a>
+    <button class="home-btn home-tour-btn" type="button" location.href='tours.html'>
+      Find more dates
+    </button>
   `;
 
   $("#js-home-tours-container").html(eventsHTML);
@@ -38,7 +38,6 @@ function renderTourHTML() {
 
 function renderAlbumHTML() {
   const album = albums[albums.length - 1];
-  const year = album.year;
   const image = album.image;
   const title = album.title;
 
@@ -54,11 +53,9 @@ function renderAlbumHTML() {
       <ol class="home-music-songs" type="1">
         ${songsHTML}
       </ol>
-      <a href="music.html">
-        <button class="home-btn home-music-btn">
+        <button class="home-btn home-music-btn" type="button" location.href='music.html'>
           View all releases
         </button>
-      </a>
     </div>
   `;
 

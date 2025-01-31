@@ -1,3 +1,5 @@
+import { formatDateMDShort, formatTime } from "../utils/date.js";
+
 let map;
 let geocoder;
 let directionsService;
@@ -39,6 +41,8 @@ export function initMap(concerts) {
 function addTourMarkers() {
   mapConcerts.forEach((concert) => {
     const address = `${concert.venue}, ${concert.city}, ${concert.state}`;
+    const date = formatDateMDShort(concert.date);
+    const time = formatTime(concert.time);
 
     geocoder.geocode({ address: address }, (results, status) => {
       if (status == google.maps.GeocoderStatus.OK) {
@@ -58,8 +62,8 @@ function addTourMarkers() {
         infoWindow.setContent(`
           <div class="maps-info">
             <h3 class="maps-info-heading">${concert.venue}</h3>
-            <p class="maps-info-body">${concert.date} @ ${concert.time} (EST)</p>  
-            <button class="maps-info-btn">TICKETS</button>
+            <p class="maps-info-body">${date} @ ${time} (EST)</p>  
+            <a class="maps-info-btn" href="tickets.html?eventId=${concert.id}">TICKETS</a>
           </div>
         `);
 

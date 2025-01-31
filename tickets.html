@@ -44,12 +44,12 @@
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
     <link rel="stylesheet" href="styles/shared/footer.css" />
-    <link rel="stylesheet" href="styles/pages/login.css" />
+    <link rel="stylesheet" href="styles/pages/tickets.css" />
     <!-- END STYLESHEETS -->
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer type="module" src="scripts/login.js"></script>
+    <script defer type="module" src="scripts/tickets.js"></script>
     <!-- END SCRIPTS -->
   </head>
   <body>
@@ -73,36 +73,12 @@
     </nav>
     <main>
       <div class="wrapper">
-        <section class="login-section">
-          <div class="login-container">
-            <h2>Login to your Reach Account</h2>
-            <div class="login-field">
-              <label for="username">Username</label>
-              <input
-                name="username"
-                type="text"
-                placeholder="Enter your username"
-              />
-            </div>
-            <div class="login-field">
-              <label for="password">Password</label>
-              <input
-                name="password"
-                type="password"
-                placeholder="Enter your password"
-              />
-            </div>
-            <button class="login-btn">Login</button>
+        <section class="tickets-section">
+          <div class="tickets-container" id="js-tickets-container">
+            <!-- JS INSERTS DATA HERE -->
           </div>
-          <div class="login-signup-container">
-            <p>Don't have an account with us?</p>
-            <button
-              class="login-signup-btn"
-              type="button"
-              location.href="signup.html"
-            >
-              Sign Up
-            </button>
+          <div class="tickets-back-container">
+            <a class="ticket-back-btn" href="tour.html"> Go back </a>
           </div>
         </section>
       </div>

@@ -1,6 +1,7 @@
 import { handleWindow } from "./utils/window.js";
 import { findClosestConcert, getCurrentLocation, initMap } from "./data/map.js";
 import concerts from "./data/concerts.js";
+import { formatDateMDShort, formatTime } from "./utils/date.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -17,14 +18,20 @@ function renderTourHTML() {
   let tourHTML = ``;
 
   concerts.forEach((event) => {
+    const date = formatDateMDShort(event.date);
+    const time = formatTime(event.time);
+    const location = `${event.city}, ${event.state}`;
+    const venue = event.venue;
+    const id = event.id;
+
     tourHTML += `
       <section class="concert-section">
         <div class="concert-container">
-          <h3 class="concert-title">${event.date} @ ${event.time} (EST)</h3>
-          <h4 class="concert-info">${event.city}, ${event.state}</h4>
-          <h4 class="concert-info">${event.venue}</h4>
+          <h3 class="concert-title">${date} @ ${time}</h3>
+          <h4 class="concert-info">${location}</h4>
+          <h4 class="concert-info">${venue}</h4>
           <div class="concert-seperator"></div>
-          <a class="concert-info link" href="">-Tickets-</a>
+          <a class="concert-info link" href="tickets.html?eventId=${id}">-Tickets-</a>
         </div>
       </section>
     `;

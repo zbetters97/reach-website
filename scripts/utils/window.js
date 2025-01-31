@@ -1,6 +1,7 @@
 export function handleWindow() {
   const getOffset = () => $(".navbar").offset().top;
   let contentOffset = getOffset();
+
   $(window).resize(() => (contentOffset = getOffset()));
 
   $(window).scroll(() => {

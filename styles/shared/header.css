@@ -16,12 +16,12 @@
   text-transform: uppercase;
   cursor: pointer;
   color: gray;
-  transition: color 200ms;
-}
-.navbar-link.active {
-  color: black;
+  transition: color 150ms;
 }
 .navbar-link:hover {
+  color: black;
+}
+.navbar-link.active {
   color: black;
 }
 
