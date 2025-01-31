@@ -1,6 +1,7 @@
 import { handleWindow } from "./utils/window.js";
 import concerts from "./data/concerts.js";
 import albums from "./data/albums.js";
+import { formatDateMDShort, formatTime } from "./utils/date.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -13,27 +14,31 @@ function loadPage() {
 }
 
 function renderTourHTML() {
-  let eventsHTML = ``;
+  let concertsHTML = ``;
 
   const homePageConcerts = concerts.slice(0, 3);
 
-  homePageConcerts.forEach((event) => {
-    eventsHTML += `
+  homePageConcerts.forEach((concert) => {
+    const date = formatDateMDShort(concert.date);
+    const time = formatTime(concert.time);
+    const location = `${concert.city}, ${concert.state}`;
+
+    concertsHTML += `
       <div class="home-tour-entry">
-        <p>${event.date} @ ${event.time} (EST)</p>
-        <p>${event.city}, ${event.state}</p>
-        <p>${event.venue}</p>
+        <p>${date} @ ${time} (EST)</p>
+        <p>${location}</p>
+        <p>${concert.venue}</p>
       </div>
     `;
   });
 
-  eventsHTML += `
-    <button class="home-btn home-tour-btn" type="button" location.href='tours.html'>
+  concertsHTML += `
+    <button class="home-btn home-tour-btn" type="button" onclick="location.href='tour.html'">
       Find more dates
     </button>
   `;
 
-  $("#js-home-tours-container").html(eventsHTML);
+  $("#js-home-tours-container").html(concertsHTML);
 }
 
 function renderAlbumHTML() {
@@ -53,7 +58,7 @@ function renderAlbumHTML() {
       <ol class="home-music-songs" type="1">
         ${songsHTML}
       </ol>
-        <button class="home-btn home-music-btn" type="button" location.href='music.html'>
+        <button class="home-btn home-music-btn" type="button" onclick="location.href='music.html'">
           View all releases
         </button>
     </div>

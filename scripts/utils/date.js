@@ -10,7 +10,7 @@ export function formatDateMDLong(date) {
 export function formatDateMDShort(date) {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     month: "short",
-    day: "2-digit",
+    day: "numeric",
   });
 
   return formattedDate;
@@ -19,7 +19,7 @@ export function formatDateMDShort(date) {
 export function formatDateMDYLong(date) {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     month: "long",
-    day: "2-digit",
+    day: "numeric",
     year: "numeric",
   });
 
