@@ -31,6 +31,12 @@ function handleSignup() {
       email.addClass("invalid-field");
       isValid = false;
     }
+
+    if (password.val().length < 8) {
+      password.addClass("invalid-field");
+      isValid = false;
+    }
+
     if (password.val() !== repassword.val()) {
       password.addClass("invalid-field");
       repassword.addClass("invalid-field");
