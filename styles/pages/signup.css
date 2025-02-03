@@ -71,6 +71,22 @@
   align-items: center;
 }
 
+.signup-btn-container {
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.db-alert {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  display: inline-block;
+  display: flex;
+  gap: 0.3em;
+  opacity: 0;
+}
+
 .signup-login-btn {
   font-size: 1em;
   text-align: center;

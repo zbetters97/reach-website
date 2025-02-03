@@ -1,4 +1,11 @@
 import { handleWindow } from "./utils/window.js";
+import { dbSignup } from "./data/database.js";
+import {
+  checkEmptyInput,
+  isEmailValid,
+  isPasswordValid,
+  showFormAlert,
+} from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -12,43 +19,59 @@ function handleSignup() {
     });
   });
 
-  $("#js-signup-form").submit(function () {
+  $("#js-signup-form").submit(function (event) {
+    event.preventDefault();
+
     let isValid = true;
 
     $(this)
       .find(":input:not(:button)")
       .each(function () {
         checkEmptyInput($(this));
-
-        $(this).val() === "" && (isValid = false);
+        if (!$(this).val()) {
+          isValid = false;
+          showFormAlert("Please fill out all fields!");
+        }
       });
 
+    const firstName = $("#js-signup-firstname");
+    const lastName = $("#js-signup-lastname");
     const email = $("#js-signup-email");
+    const username = $("#js-signup-username");
     const password = $("#js-signup-password");
     const repassword = $("#js-signup-repassword");
 
-    if (!~email.val().indexOf("@")) {
+    if (!isValid) return;
+
+    if (!isEmailValid(email.val())) {
       email.addClass("invalid-field");
-      isValid = false;
+      showFormAlert("The email address is not valid!");
+
+      return;
     }
 
-    if (password.val().length < 8) {
+    if (!isPasswordValid(password.val())) {
       password.addClass("invalid-field");
-      isValid = false;
+      showFormAlert("The password must be at least 8 characters!");
+
+      return;
     }
 
     if (password.val() !== repassword.val()) {
       password.addClass("invalid-field");
       repassword.addClass("invalid-field");
-      isValid = false;
+
+      showFormAlert("The passwords do not match!");
+
+      return;
     }
 
-    return isValid;
+    dbSignup(
+      firstName.val(),
+      lastName.val(),
+      email.val(),
+      username.val(),
+      password.val()
+    );
   });
-}
-
-function checkEmptyInput(field) {
-  !field.val()
-    ? field.addClass("invalid-field")
-    : field.removeClass("invalid-field");
 }

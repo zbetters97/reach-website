@@ -1,4 +1,6 @@
 import { handleWindow } from "./utils/window.js";
+import { dbLogin } from "./data/database.js";
+import { isEmailValid, showFormAlert } from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -12,13 +14,24 @@ function handleLogin() {
     });
   });
 
-  $("#js-login-form").submit(function () {
+  $("#js-login-form").submit(function (event) {
+    event.preventDefault();
+
     checkEmptyForm($(this));
 
-    const username = $("#js-login-username");
+    const email = $("#js-login-email");
     const password = $("#js-login-password");
 
-    return !!username.val() && !!password.val();
+    if (!!email.val() && !!password.val()) {
+      if (!isEmailValid(email.val())) {
+        email.addClass("invalid-field");
+        showFormAlert("The email address is not valid!");
+      } else {
+        dbLogin(email.val(), password.val());
+      }
+    } else {
+      showFormAlert("Please enter your username and password!");
+    }
   });
 }
 

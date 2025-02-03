@@ -76,7 +76,7 @@
         <section class="signup-section">
           <h2>Sign Up for a Reach Account</h2>
 
-          <form class="signup-form" id="js-signup-form" action="" method="post">
+          <form class="signup-form" id="js-signup-form" method="post" action="">
             <div class="signup-field">
               <label for="firstname">First Name</label>
               <input id="js-signup-firstname" name="firstname" type="text" />
@@ -106,9 +106,15 @@
               />
             </div>
 
-            <button type="submit" class="signup-btn" id="js-signup-btn">
-              Sign Up
-            </button>
+            <div class="signup-btn-container">
+              <div class="db-alert js-db-alert">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p class="js-db-alert-message">error!</p>
+              </div>
+              <button type="submit" class="signup-btn" id="js-signup-btn">
+                Sign Up
+              </button>
+            </div>
           </form>
 
           <div class="signup-login-container">
