@@ -75,10 +75,11 @@
       <div class="wrapper">
         <section class="login-section">
           <h2>Login to your Reach Account</h2>
-          <div class="login-container">
+          <form class="login-form" id="js-login-form" action="" method="post">
             <div class="login-field">
               <label for="username">Username</label>
               <input
+                id="js-login-username"
                 name="username"
                 type="text"
                 placeholder="Enter your username"
@@ -87,13 +88,16 @@
             <div class="login-field">
               <label for="password">Password</label>
               <input
+                id="js-login-password"
                 name="password"
                 type="password"
                 placeholder="Enter your password"
               />
             </div>
-            <button class="login-btn">Login</button>
-          </div>
+            <button type="submit" class="login-btn" id="js-login-btn">
+              Login
+            </button>
+          </form>
           <div class="login-signup-container">
             <p>Don't have an account with us?</p>
             <button

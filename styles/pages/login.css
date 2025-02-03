@@ -20,7 +20,7 @@
   margin-top: 1em;
 }
 
-.login-container {
+.login-form {
   padding: 0.5em;
   width: 100%;
   margin-right: auto;
@@ -43,6 +43,10 @@
   margin-top: 0.3em;
   border: 2px solid var(--basic-blue);
   outline: none;
+  transition: all 150ms;
+}
+.login-field .invalid-field {
+  background-color: rgba(235, 12, 12, 0.3);
 }
 
 .login-btn {
@@ -54,8 +58,6 @@
   width: 40%;
   border: 3px solid var(--basic-white);
   cursor: pointer;
-}
-.login-btn:hover {
 }
 
 .login-signup-container {

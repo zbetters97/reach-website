@@ -75,29 +75,42 @@
       <div class="wrapper">
         <section class="signup-section">
           <h2>Sign Up for a Reach Account</h2>
-          <div class="signup-container">
+
+          <form class="signup-form" id="js-signup-form" action="" method="post">
             <div class="signup-field">
               <label for="firstname">First Name</label>
-              <input name="firstname" type="text" />
+              <input id="js-signup-firstname" name="firstname" type="text" />
             </div>
             <div class="signup-field">
               <label for="lastname">Last Name</label>
-              <input name="lastname" type="text" />
+              <input id="js-signup-lastname" name="lastname" type="text" />
             </div>
             <div class="signup-field">
               <label for="email">Email Address</label>
-              <input name="email" type="text" />
+              <input id="js-signup-email" name="email" type="text" />
             </div>
             <div class="signup-field">
               <label for="username">Username</label>
-              <input name="username" type="text" />
+              <input id="js-signup-username" name="username" type="text" />
             </div>
             <div class="signup-field">
               <label for="password">Password</label>
-              <input name="password" type="password" />
+              <input id="js-signup-password" name="password" type="password" />
             </div>
-            <button class="signup-btn">Sign Up</button>
-          </div>
+            <div class="signup-field">
+              <label for="re-password">Re-enter Password</label>
+              <input
+                id="js-signup-repassword"
+                name="re-password"
+                type="password"
+              />
+            </div>
+
+            <button type="submit" class="signup-btn" id="js-signup-btn">
+              Sign Up
+            </button>
+          </form>
+
           <div class="signup-login-container">
             <p>Already have an account with us?</p>
             <a href="login.html" class="signup-login-btn">Login</a>
