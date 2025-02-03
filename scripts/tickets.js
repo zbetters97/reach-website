@@ -28,54 +28,52 @@ function renderTicketHTML() {
   totalPrice = formatCurrency(concert.ticketPrice["STR"]);
 
   let ticketHTML = `
-    <h2>Tickets Checkout</h2>
+    <ul class="ticket-info-list">
+      <li>${date}</li>
+      <li>${time} (EST)</li>
+      <li>${location}, USA</li>
+      <li>${venue}</li>
+    </ul>
 
-      <ul class="ticket-info-list">
-        <li>${date}</li>
-        <li>${time} (EST)</li>
-        <li>${location}, USA</li>
-        <li>${venue}</li>
-      </ul>
-
-      <div>
-        <div class="ticket-field ticket-type">
-          <label for="ticket-type">Type</label>
-          <select id="js-ticket-type" name="ticket-type">
-            <option value="STR">Standard</option>
-            <option value="DLX">Deluxe</option>
-            <option value="VIP">VIP</option>
-          </select>
-        </div>
-
-        <div class="ticket-field ticket-amount">
-          <label for="ticket-amount">Quantity</label>
-          <input
-            id="js-ticket-amount"          
-            name="ticket-amount"
-            type="number"
-            value="1"
-            min="1"
-            max="10"
-          />
-        </div>
-
-        <div class="ticket-field ticket-price">
-          <label for="ticket-price">Price</label>
-          <input
-            id="js-ticket-price"
-            name="ticket-price"
-            readonly
-            type="text"
-            value="$${totalPrice}"
-          />
-        </div>
+    <div>
+      <div class="ticket-field ticket-type">
+        <label for="ticket-type">Type</label>
+        <select id="js-ticket-type" name="ticket-type">
+          <option value="STR">Standard</option>
+          <option value="DLX">Deluxe</option>
+          <option value="VIP">VIP</option>
+        </select>
       </div>
 
-      <div class="ticket-added-alert" id="js-ticket-added-alert">
-        <i class="fa-solid fa-check"></i>
-        <p>Added to cart</p>
+      <div class="ticket-field ticket-amount">
+        <label for="ticket-amount">Quantity</label>
+        <input
+          id="js-ticket-amount"          
+          name="ticket-amount"
+          type="number"
+          value="1"
+          min="1"
+          max="10"
+        />
       </div>
-      <button class="tickets-add-btn" id="js-tickets-add-btn">Add to Cart</button>
+
+      <div class="ticket-field ticket-price">
+        <label for="ticket-price">Price</label>
+        <input
+          id="js-ticket-price"
+          name="ticket-price"
+          readonly
+          type="text"
+          value="$${totalPrice}"
+        />
+      </div>
+    </div>
+
+    <div class="ticket-added-alert" id="js-ticket-added-alert">
+      <i class="fa-solid fa-check"></i>
+      <p>Added to cart</p>
+    </div>
+    <button class="tickets-add-btn" id="js-tickets-add-btn">Add to Cart</button>
   `;
 
   $("#js-tickets-container").html(ticketHTML);

@@ -191,8 +191,7 @@
   font-family: "FontAwesome";
   font-size: 1.2em;
   text-indent: 0.2em;
-  color: var(--basic-blue);
-  background-color: var(--basic-white);
+  color: var(--basic-white);
   width: 30%;
   height: 100%;
   position: absolute;
@@ -200,14 +199,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 50% 50% 0;
   transform: translate(-20%, 0) scale(0, 1);
-  transform-origin: left center;
+  transform-origin: left;
   transition: all 200ms;
   z-index: 1;
 }
 .add-cart-btn:hover {
-  text-indent: 2.5em;
+  text-indent: 2.2em;
 }
 .add-cart-btn:hover::before {
   transform: translate(-20%, 0) scale(1, 1);
