@@ -1,11 +1,23 @@
 import { handleWindow } from "./utils/window.js";
-import { dbLogin } from "./data/database.js";
+import { getUser, dbLogin } from "./data/database.js";
 import { isEmailValid, showFormAlert } from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
+  checkLoggedInUser();
   handleLogin();
 });
+
+async function checkLoggedInUser() {
+  try {
+    const user = await getUser();
+    if (user) {
+      window.location.href = "account.html";
+    }
+  } catch (error) {
+    return;
+  }
+}
 
 function handleLogin() {
   $("#js-login-form :input").each(function () {

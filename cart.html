@@ -44,12 +44,12 @@
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
     <link rel="stylesheet" href="styles/shared/footer.css" />
-    <link rel="stylesheet" href="styles/pages/shop.css" />
+    <link rel="stylesheet" href="styles/pages/cart.css" />
     <!-- END STYLESHEETS -->
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer type="module" src="scripts/shop.js"></script>
+    <script defer type="module" src="scripts/cart.js"></script>
     <!-- END SCRIPTS -->
   </head>
   <body>
@@ -59,7 +59,7 @@
       <a href="index.html#navbar">
         <img class="navbar-logo" src="images/icons/main-logo.png" />
       </a>
-      <a class="navbar-link active" href="shop.html">Shop</a>
+      <a class="navbar-link" href="shop.html">Shop</a>
       <a class="navbar-link" href="about.html">About</a>
 
       <div class="navbar-user-container">
@@ -73,19 +73,10 @@
     </nav>
     <main>
       <div class="wrapper">
-        <h1>Browse Our Store</h1>
-        <section class="shop-section">
-          <div class="shop-items-grid" id="js-shop-items-grid">
-            <!-- JS INSERTS DATA HERE -->
-          </div>
-
-          <div class="modal" id="js-modal">
-            <!-- JS INSERTS DATA HERE -->
-          </div>
-          <div class="overlay" id="js-overlay"></div>
+        <section class="cart-section">
+          <h1>Your Cart</h1>
         </section>
       </div>
-
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>

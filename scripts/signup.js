@@ -66,12 +66,6 @@ function handleSignup() {
       return;
     }
 
-    dbSignup(
-      firstName.val(),
-      lastName.val(),
-      email.val(),
-      username.val(),
-      password.val()
-    );
+    dbSignup(firstName.val(), lastName.val(), email.val(), password.val());
   });
 }

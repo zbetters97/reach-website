@@ -25,7 +25,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export function dbSignup(firstName, lastName, email, username, password) {
+export async function dbSignup(firstName, lastName, email, password) {
   const auth = getAuth();
   const db = getFirestore();
 
@@ -33,7 +33,6 @@ export function dbSignup(firstName, lastName, email, username, password) {
     .then((userCredential) => {
       const user = userCredential.user;
       const userData = {
-        username: username,
         email: email,
         firstName: firstName,
         lastName: lastName,
@@ -41,10 +40,10 @@ export function dbSignup(firstName, lastName, email, username, password) {
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-          console.log("created account!");
+          window.location.href = "login.html";
         })
         .catch((error) => {
-          console.log("error 1!", error);
+          console.log("error!", error);
         });
     })
     .catch((error) => {
@@ -62,9 +61,9 @@ export function dbLogin(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-
-      console.log("user signed in!");
       localStorage.setItem("loggedInUserId", user.uid);
+
+      window.location.href = "account.html";
     })
     .catch((error) => {
       if (error.code === "auth/invalid-credential") {
@@ -76,44 +75,39 @@ export function dbLogin(email, password) {
 }
 
 export function dbLogout() {
-  $("#js-logout-btn").on("click", () => {
-    const auth = getAuth();
+  const auth = getAuth();
 
-    localStorage.removeItem("loggedInUserId");
-    signOut(auth)
-      .then(() => {
-        console.log("signed out succesful");
-      })
-      .catch((error) => {
-        showFormAlert("Something went wrong! Please try again.");
-      });
-  });
+  localStorage.removeItem("loggedInUserId");
+
+  signOut(auth)
+    .then(() => {
+      return;
+    })
+    .catch(() => {
+      showFormAlert("Something went wrong! Please try again.");
+    });
 }
 
-function getUser() {
-  const auth = getAuth();
+export async function getUser() {
   const db = getFirestore();
 
-  onAuthStateChanged(auth, () => {
-    const loggedInUserId = localStorage.getItem("loggedInUserId");
+  const loggedInUserId = localStorage.getItem("loggedInUserId");
 
-    if (loggedInUserId) {
-      const docRef = doc(db, "users", loggedInUserId);
+  if (loggedInUserId) {
+    const docRef = doc(db, "users", loggedInUserId);
 
-      getDoc(docRef)
-        .then((docSnap) => {
-          if (docSnap.exists()) {
-            const userData = docSnap.data();
-            console.log("user found!", userData.firstName, userData.email);
-          } else {
-            console.log("no document found matching user!");
-          }
-        })
-        .catch((error) => {
-          console.log("error!", error);
-        });
-    } else {
-      console.log("user ID not found in local storage!");
+    try {
+      const userDoc = await getDoc(docRef);
+
+      if (userDoc.exists()) {
+        return userDoc.data();
+      } else {
+        console.log("Error! User does not exist.");
+      }
+    } catch (error) {
+      console.log("error!", error);
     }
-  });
+  } else {
+    console.log("Error! User ID not found in local storage.");
+  }
 }
