@@ -1,5 +1,5 @@
 import { handleWindow } from "./utils/window.js";
-import { getUser, dbLogout } from "./data/database.js";
+import { dbGetUser, dbLogout } from "./data/database.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -12,7 +12,7 @@ async function loadPage() {
 
 async function loadUser() {
   try {
-    const user = await getUser();
+    const user = await dbGetUser();
     renderAccountHTML(user);
   } catch (error) {
     window.location.href = "login.html";
@@ -20,8 +20,6 @@ async function loadUser() {
 }
 
 function renderAccountHTML(user) {
-  let accountHTML = ``;
-
   $("#js-account-name").html(user.firstName);
 
   $("#js-logout-btn").on("click", () => {

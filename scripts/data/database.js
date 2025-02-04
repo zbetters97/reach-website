@@ -3,13 +3,14 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
+  updatePassword,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import {
   getFirestore,
   getDoc,
   setDoc,
+  updateDoc,
   doc,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import { showFormAlert } from "../utils/form.js";
@@ -23,12 +24,11 @@ const firebaseConfig = {
   appId: "1:877552053114:web:30f29b843b829c802904c3",
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
+const auth = getAuth();
+const db = getFirestore();
 
 export async function dbSignup(firstName, lastName, email, password) {
-  const auth = getAuth();
-  const db = getFirestore();
-
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -56,8 +56,6 @@ export async function dbSignup(firstName, lastName, email, password) {
 }
 
 export function dbLogin(email, password) {
-  const auth = getAuth();
-
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -75,8 +73,6 @@ export function dbLogin(email, password) {
 }
 
 export function dbLogout() {
-  const auth = getAuth();
-
   localStorage.removeItem("loggedInUserId");
 
   signOut(auth)
@@ -88,9 +84,7 @@ export function dbLogout() {
     });
 }
 
-export async function getUser() {
-  const db = getFirestore();
-
+export async function dbGetUser() {
   const loggedInUserId = localStorage.getItem("loggedInUserId");
 
   if (loggedInUserId) {
@@ -107,7 +101,28 @@ export async function getUser() {
     } catch (error) {
       console.log("error!", error);
     }
-  } else {
-    console.log("Error! User ID not found in local storage.");
   }
+}
+
+export async function dbUpdateName(userId, firstName, lastName) {
+  try {
+    const usersRef = doc(db, "users", userId);
+
+    await updateDoc(usersRef, {
+      firstName: firstName,
+      lastName: lastName,
+    });
+  } catch (error) {
+    console.error("error! ", error);
+  }
+}
+
+export async function dbUpdatePassword(user, password) {
+  updatePassword(user, password)
+    .then(() => {
+      console.log("Password updated");
+    })
+    .catch((error) => {
+      console.error("error! ", error);
+    });
 }

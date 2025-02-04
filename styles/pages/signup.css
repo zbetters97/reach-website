@@ -44,9 +44,6 @@
   outline: none;
   transition: all 150ms;
 }
-.signup-field .invalid-field {
-  background-color: rgba(235, 12, 12, 0.3);
-}
 
 .signup-btn {
   font-size: 2em;

@@ -1,0 +1,70 @@
+.account-section {
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  background-color: white;
+  margin: 2em auto 2em auto;
+  width: 800px;
+  height: 500px;
+  border: 3px solid black;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.account-section h2 {
+  font-family: "Raleway", Arial, sans-serif;
+  font-size: 1.5em;
+  color: var(--basic-blue);
+  text-align: center;
+  margin-top: 1em;
+}
+
+.account-container {
+  padding: 0.5em;
+  margin: 1em;
+  height: 50%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 30px;
+}
+
+.account-card {
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+  padding: 20px;
+  width: 320px;
+  height: 60px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: transform 150ms;
+}
+.account-card:hover {
+  transform: scale(1.1);
+}
+.account-card-title {
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-card p {
+  font-size: 1em;
+}
+
+.logout-btn {
+  font-size: 1.7em;
+  vertical-align: middle;
+  text-align: center;
+  background-color: transparent;
+  padding: 0.5em 1.5em;
+  border: 2px solid black;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 200ms;
+}

@@ -44,12 +44,12 @@
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
     <link rel="stylesheet" href="styles/shared/footer.css" />
-    <link rel="stylesheet" href="styles/pages/account.css" />
+    <link rel="stylesheet" href="styles/pages/settings.css" />
     <!-- END STYLESHEETS -->
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer type="module" src="scripts/account.js"></script>
+    <script defer type="module" src="scripts/settings.js"></script>
     <!-- END SCRIPTS -->
   </head>
   <body>
@@ -73,39 +73,34 @@
     </nav>
     <main>
       <div class="wrapper">
-        <section class="account-section">
-          <h2>Hello, <span id="js-account-name"></span></h2>
-          <div class="account-container">
-            <a class="account-card" href="">
-              <div class="account-card-title">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <h3>Your Orders</h3>
-              </div>
-              <p>Track, return, or buy things again</p>
-            </a>
-            <a class="account-card" href="settings.html">
-              <div class="account-card-title">
-                <i class="fa-solid fa-user"></i>
-                <h3>Your Account</h3>
-              </div>
-              <p>Edit your name or password</p>
-            </a>
-            <a class="account-card" href="">
-              <div class="account-card-title">
-                <i class="fa-solid fa-wallet"></i>
-                <h3>Your Payments</h3>
-              </div>
-              <p>Manage payment methods and settings</p>
-            </a>
-            <a class="account-card" href="">
-              <div class="account-card-title">
-                <i class="fa-solid fa-house"></i>
-                <h3>Your Addresses</h3>
-              </div>
-              <p>Add, edit, or remove addresses</p>
+        <section class="settings-section">
+          <h2>Edit Your Account Information</h2>
+          <div class="settings-container">
+            <div class="settings-field">
+              <label for="email">Email Address</label>
+              <input id="js-settings-email" name="email" type="text" disabled />
+            </div>
+            <div class="settings-field">
+              <label for="firstname">First Name</label>
+              <input id="js-settings-firstname" name="firstname" type="text" />
+            </div>
+            <div class="settings-field">
+              <label for="lastname">Last Name</label>
+              <input id="js-settings-lastname" name="lastname" type="text" />
+            </div>
+            <button
+              class="settings-btn settings-save-btn"
+              id="js-settings-save-btn"
+            >
+              Save
+            </button>
+            <a class="settings-btn settings-password-btn" href="password.html">
+              Change Password
             </a>
           </div>
-          <button class="logout-btn" id="js-logout-btn">Logout</button>
+          <div class="settings-back-container">
+            <a class="settings-back-btn" href="account.html"> Go back </a>
+          </div>
         </section>
       </div>
       <a class="to-top" href="">

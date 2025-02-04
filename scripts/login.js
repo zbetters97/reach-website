@@ -1,5 +1,5 @@
 import { handleWindow } from "./utils/window.js";
-import { getUser, dbLogin } from "./data/database.js";
+import { dbGetUser, dbLogin } from "./data/database.js";
 import { isEmailValid, showFormAlert } from "./utils/form.js";
 
 $(document).ready(function () {
@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 async function checkLoggedInUser() {
   try {
-    const user = await getUser();
+    const user = await dbGetUser();
     if (user) {
       window.location.href = "account.html";
     }
