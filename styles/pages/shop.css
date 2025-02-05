@@ -36,7 +36,7 @@
 }
 
 /** MODAL **/
-.modal {
+.shop-modal {
   background-color: var(--basic-blue);
   color: var(--basic-white);
   position: fixed;
@@ -53,11 +53,11 @@
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 }
-.modal.active {
+.shop-modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-.close-btn {
+.shop-close-btn {
   color: var(--basic-white);
   font-size: 2rem;
   font-weight: bold;
@@ -70,16 +70,16 @@
   cursor: pointer;
 }
 
-.modal-container {
+.shop-modal-container {
   margin: 0.1em;
   display: flex;
   justify-content: space-evenly;
 }
-.modal-img {
+.shop-modal-img {
   width: 50%;
   border-radius: 10px;
 }
-.modal-info {
+.shop-modal-info {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.8rem;
   width: 40%;
@@ -89,12 +89,12 @@
   align-items: stretch;
 }
 
-.modal-info h3 {
+.shop-modal-info h3 {
   font-family: "Raleway", Arial, sans-serif;
   font-size: 2.3rem;
   font-weight: 600;
 }
-.modal-info h4 {
+.shop-modal-info h4 {
   font-weight: lighter;
 }
 
@@ -212,7 +212,7 @@
 }
 
 /* MODAL BACKDROP */
-.overlay {
+.shop-overlay {
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
@@ -222,7 +222,7 @@
   opacity: 0;
   pointer-events: none;
 }
-.overlay.active {
+.shop-overlay.active {
   opacity: 1;
   pointer-events: all;
 }

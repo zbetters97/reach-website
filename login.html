@@ -94,6 +94,10 @@
                 placeholder="Enter your password"
               />
             </div>
+            <p class="login-forgot-pw">
+              Forgot your password?
+              <a class="link" id="js-forgot-pw-link" href="">Click Here</a>
+            </p>
             <div class="login-btn-container">
               <div class="db-alert js-db-alert">
                 <i class="fa-solid fa-circle-exclamation"></i>
@@ -115,6 +119,37 @@
               Sign Up
             </button>
           </div>
+          <div class="login-modal" id="js-login-modal">
+            <button class="login-close-btn" id="js-login-close-btn">
+              &times;
+            </button>
+
+            <div class="login-modal-container">
+              <h2>Reset your password</h2>
+
+              <div class="login-modal-field">
+                <label for="email">Email</label>
+                <input
+                  id="js-modal-login-email"
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              <div class="login-modal-btn-container">
+                <div class="db-alert js-db-alert">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <p class="js-db-alert-message">error!</p>
+                </div>
+
+                <button class="login-modal-btn" id="js-login-modal-btn">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="login-overlay" id="js-login-overlay"></div>
         </section>
       </div>
       <a class="to-top" href="">

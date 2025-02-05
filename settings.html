@@ -80,26 +80,39 @@
               <label for="email">Email Address</label>
               <input id="js-settings-email" name="email" type="text" disabled />
             </div>
-            <div class="settings-field">
-              <label for="firstname">First Name</label>
-              <input id="js-settings-firstname" name="firstname" type="text" />
-            </div>
-            <div class="settings-field">
-              <label for="lastname">Last Name</label>
-              <input id="js-settings-lastname" name="lastname" type="text" />
-            </div>
-            <button
-              class="settings-btn settings-save-btn"
-              id="js-settings-save-btn"
-            >
-              Save
-            </button>
+            <form class="settings-form" id="js-settings-form">
+              <div class="settings-field">
+                <label for="firstname">First Name</label>
+                <input
+                  id="js-settings-firstname"
+                  name="firstname"
+                  type="text"
+                />
+              </div>
+              <div class="settings-field">
+                <label for="lastname">Last Name</label>
+                <input id="js-settings-lastname" name="lastname" type="text" />
+              </div>
+              <div class="settings-save-container">
+                <div class="db-alert js-db-alert">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <p class="js-db-alert-message">error!</p>
+                </div>
+                <button
+                  type="submit"
+                  class="settings-btn settings-save-btn"
+                  id="js-settings-save-btn"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
             <a class="settings-btn settings-password-btn" href="password.html">
               Change Password
             </a>
           </div>
           <div class="settings-back-container">
-            <a class="settings-back-btn" href="account.html"> Go back </a>
+            <a class="back-btn" href="account.html"> Go back </a>
           </div>
         </section>
       </div>

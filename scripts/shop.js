@@ -1,7 +1,7 @@
 import { handleWindow } from "./utils/window.js";
 import { productData, loadProducts, getProduct } from "./data/products.js";
 
-const modal = $("#js-modal");
+const modal = $("#js-shop-modal");
 
 $(document).ready(function () {
   handleWindow();
@@ -46,15 +46,15 @@ function renderModalHTML(productId) {
   const product = getProduct(productId);
 
   let modalHTML = `  
-    <button class="close-btn" id="js-close-modal-btn">&times;</button>
+    <button class="shop-close-btn" id="js-shop-close-modal-btn">&times;</button>
 
-    <div class="modal-body">
-      <div class="modal-container">
+    <div class="shop-modal-body">
+      <div class="shop-modal-container">
         <img
-          class="modal-img" id="js-modal-img"
+          class="shop-modal-img" id="js-shop-modal-img"
           src="${product.image}"
         />
-        <div class="modal-info">
+        <div class="shop-modal-info">
           <div>
             <h3>${product.name}</h3>
             <h4>$${product.getPrice()}</h4>
@@ -94,7 +94,7 @@ function renderModalHTML(productId) {
     $("#js-modal-img").attr("src", newImage);
   });
 
-  $("#js-overlay, #js-close-modal-btn").on("click", () => {
+  $("#js-shop-overlay, #js-shop-close-modal-btn").on("click", () => {
     closeModal(modal);
   });
 
@@ -110,15 +110,15 @@ function renderModalHTML(productId) {
 }
 
 function openModal(modal) {
-  if (modal == null) return;
-
-  modal.addClass("active");
-  $("#js-overlay").addClass("active");
+  if (modal != null) {
+    modal.addClass("active");
+    $("#js-shop-overlay").addClass("active");
+  }
 }
 
 function closeModal(modal) {
-  if (modal == null) return;
-
-  modal.removeClass("active");
-  $("#js-overlay").removeClass("active");
+  if (modal != null) {
+    modal.removeClass("active");
+    $("#js-shop-overlay").removeClass("active");
+  }
 }

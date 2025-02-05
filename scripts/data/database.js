@@ -3,7 +3,11 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  EmailAuthProvider,
   updatePassword,
+  reauthenticateWithCredential,
+  fetchSignInMethodsForEmail,
+  sendPasswordResetEmail,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import {
@@ -43,13 +47,15 @@ export async function dbSignup(firstName, lastName, email, password) {
           window.location.href = "login.html";
         })
         .catch((error) => {
-          console.log("error!", error);
+          console.log(error);
+          showFormAlert("Something went wrong! Please try again");
         });
     })
     .catch((error) => {
       if (error.code === "auth/email-already-in-use") {
         showFormAlert("The email address is already in use!");
       } else {
+        console.log(error);
         showFormAlert("Something went wrong! Please review fields.");
       }
     });
@@ -67,6 +73,7 @@ export function dbLogin(email, password) {
       if (error.code === "auth/invalid-credential") {
         showFormAlert("The email or password is incorrect!");
       } else {
+        console.log(error);
         showFormAlert("Something went wrong! Please try again.");
       }
     });
@@ -79,7 +86,8 @@ export function dbLogout() {
     .then(() => {
       return;
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log(error);
       showFormAlert("Something went wrong! Please try again.");
     });
 }
@@ -96,10 +104,12 @@ export async function dbGetUser() {
       if (userDoc.exists()) {
         return userDoc.data();
       } else {
-        console.log("Error! User does not exist.");
+        console.log(error);
+        localStorage.removeItem("loggedInUserId");
+        window.location.href = "login.html";
       }
     } catch (error) {
-      console.log("error!", error);
+      console.log(error);
     }
   }
 }
@@ -111,18 +121,83 @@ export async function dbUpdateName(userId, firstName, lastName) {
     await updateDoc(usersRef, {
       firstName: firstName,
       lastName: lastName,
-    });
+    })
+      .then(() => {
+        window.location.href = "account.html";
+      })
+      .catch((error) => {
+        console.log(error);
+        showFormAlert("Something went wrong! Please try again.");
+      });
   } catch (error) {
-    console.error("error! ", error);
+    console.error(error);
+    showFormAlert("Something went wrong! Please try again.");
   }
 }
 
-export async function dbUpdatePassword(user, password) {
-  updatePassword(user, password)
+export async function dbUpdatePassword(oldpassword, newpassword) {
+  const user = auth.currentUser;
+  const credentials = EmailAuthProvider.credential(user.email, oldpassword);
+
+  reauthenticateWithCredential(user, credentials)
     .then(() => {
-      console.log("Password updated");
+      updatePassword(user, newpassword)
+        .then(() => {
+          window.location.href = "settings.html";
+        })
+        .catch((error) => {
+          console.log(error);
+          showFormAlert("Something went wrong! Please try again.");
+        });
     })
     .catch((error) => {
-      console.error("error! ", error);
+      if (error.code === "auth/invalid-credential") {
+        console.log(error);
+        showFormAlert("The old password is incorrect!");
+
+        $("#js-settings-password-old").addClass("invalid-field");
+      } else {
+        console.log(error);
+        showFormAlert("Something went wrong! Please try again.");
+      }
     });
+}
+
+export function sendPasswordEmail(email) {
+  checkIfEmailExists(email)
+    .then((exists) => {
+      if (exists) {
+        sendPasswordResetEmail(auth, email)
+          .then(() => {
+            console.log("Password reset email sent");
+            window.location.href = "login.html";
+          })
+          .catch((error) => {
+            console.error(error);
+            showFormAlert("Something went wrong! Please try again.");
+          });
+      } else {
+        $("#js-modal-login-email").addClass("invalid-field");
+        showFormAlert("Email address does not exist!");
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      showFormAlert("Something went wrong! Please try again.");
+    });
+}
+
+async function checkIfEmailExists(email) {
+  try {
+    const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+
+    if (signInMethods.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }

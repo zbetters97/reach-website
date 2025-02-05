@@ -30,15 +30,20 @@
   align-items: flex-start;
 }
 
+.settings-form {
+  width: 100%;
+}
+
 .settings-field {
   font-size: 1.7em;
   margin-left: 1em;
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-direction: column;
 }
 .settings-field input {
   margin-top: 0.3em;
+  margin-bottom: 0.5em;
   font-size: 0.9em;
   padding: 0.3em;
   border: 2px solid var(--basic-blue);
@@ -48,7 +53,15 @@
 .settings-field input[name="email"] {
   font-weight: bold;
   color: black;
-  background-color: darkgray;
+  background-color: silver;
+}
+
+.settings-save-container {
+  align-self: center;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .settings-btn {
@@ -63,6 +76,9 @@
   border: 3px solid var(--basic-white);
   cursor: pointer;
 }
+.settings-save-btn {
+  width: 200px;
+}
 
 .settings-back-container {
   color: var(--basic-blue);
@@ -73,41 +89,4 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-}
-
-.settings-back-btn {
-  font-size: 1.5em;
-  color: black;
-  background-color: transparent;
-  padding: 0.5em 0.6em;
-  width: 25%;
-  border: 3px solid black;
-  cursor: pointer;
-  vertical-align: middle;
-  text-align: center;
-  display: inline-block;
-  position: relative;
-  transition: 200ms;
-}
-.settings-back-btn:after {
-  content: "\f30a";
-  font-family: FontAwesome;
-  font-size: 1em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  height: 100%;
-  transition: 200ms;
-}
-.settings-back-btn:hover {
-  padding-left: 1.2em;
-  padding-right: 0em;
-}
-.settings-back-btn:hover:after {
-  opacity: 1;
-  left: 10px;
 }

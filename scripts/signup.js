@@ -2,8 +2,11 @@ import { handleWindow } from "./utils/window.js";
 import { dbSignup } from "./data/database.js";
 import {
   checkEmptyInput,
+  disableNonNumericInput,
+  formatPhoneNumber,
   isEmailValid,
   isPasswordValid,
+  isPhoneValid,
   showFormAlert,
 } from "./utils/form.js";
 
@@ -18,6 +21,10 @@ function handleSignup() {
       $(this).removeClass("invalid-field");
     });
   });
+
+  const phone = $("#js-signup-phone");
+  phone.on("keydown", disableNonNumericInput);
+  phone.on("keyup", formatPhoneNumber);
 
   $("#js-signup-form").submit(function (event) {
     event.preventDefault();
@@ -34,18 +41,25 @@ function handleSignup() {
         }
       });
 
+    if (!isValid) return;
+
     const firstName = $("#js-signup-firstname");
     const lastName = $("#js-signup-lastname");
     const email = $("#js-signup-email");
-    const username = $("#js-signup-username");
+    const phone = $("#js-signup-phone");
     const password = $("#js-signup-password");
     const repassword = $("#js-signup-repassword");
-
-    if (!isValid) return;
 
     if (!isEmailValid(email.val())) {
       email.addClass("invalid-field");
       showFormAlert("The email address is not valid!");
+
+      return;
+    }
+
+    if (!isPhoneValid(phone.val())) {
+      phone.addClass("invalid-field");
+      showFormAlert("The phone number is not valid!");
 
       return;
     }

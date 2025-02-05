@@ -1,8 +1,14 @@
 import { handleWindow } from "./utils/window.js";
-import { dbUpdatePassword } from "./data/database.js";
+import { dbGetUser, dbUpdatePassword } from "./data/database.js";
+import {
+  checkEmptyForm,
+  isPasswordValid,
+  showFormAlert,
+} from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
+  loadPage();
 });
 
 function loadPage() {
@@ -11,21 +17,46 @@ function loadPage() {
 
 async function loadUser() {
   try {
-    const user = await dbGetUser();
-    changePassword(user);
+    await dbGetUser();
+    changePassword();
   } catch (error) {
-    window.location.href = "login.html";
+    console.log(error);
+    // window.location.href = "login.html";
   }
 }
 
-async function changePassword(user) {
-  $("#js-password-save-btn").on("click", () => {
-    const userId = localStorage.getItem("loggedInUserId");
+async function changePassword() {
+  $("#js-password-form :input").each(function () {
+    $(this).on("click", function () {
+      $(this).removeClass("invalid-field");
+    });
+  });
 
-    const oldPassword = $("#js-settings-password-old").val();
-    const newPassword = $("#js-settings-password-new").val();
-    const renewPassword = $("#js-settings-password-renew").val();
+  $("#js-password-form").submit(function (event) {
+    event.preventDefault();
 
-    dbUpdatePassword(userId, firstName, lastName);
+    checkEmptyForm($(this));
+
+    const oldPassword = $("#js-settings-password-old");
+    const newPassword = $("#js-settings-password-new");
+    const newRePassword = $("#js-settings-repassword-new");
+
+    if (!oldPassword.val() || !newPassword.val() || !newRePassword.val()) {
+      showFormAlert("Please fill out all fields!");
+      return;
+    }
+    if (newPassword.val() !== newRePassword.val()) {
+      newPassword.addClass("invalid-field");
+      newRePassword.addClass("invalid-field");
+      showFormAlert("New passwords must match!");
+      return;
+    }
+    if (!isPasswordValid(newPassword.val())) {
+      newPassword.addClass("invalid-field");
+      showFormAlert("New password must be at least 8 characters!");
+      return;
+    }
+
+    dbUpdatePassword(oldPassword.val(), newPassword.val());
   });
 }

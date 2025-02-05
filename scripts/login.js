@@ -1,11 +1,19 @@
 import { handleWindow } from "./utils/window.js";
-import { dbGetUser, dbLogin } from "./data/database.js";
-import { isEmailValid, showFormAlert } from "./utils/form.js";
+import { dbGetUser, dbLogin, sendPasswordEmail } from "./data/database.js";
+import {
+  checkEmptyForm,
+  hideFormAlert,
+  isEmailValid,
+  showFormAlert,
+} from "./utils/form.js";
+
+const modal = $("#js-login-modal");
 
 $(document).ready(function () {
   handleWindow();
   checkLoggedInUser();
   handleLogin();
+  handleModal();
 });
 
 async function checkLoggedInUser() {
@@ -47,10 +55,45 @@ function handleLogin() {
   });
 }
 
-function checkEmptyForm(form) {
-  form.find(":input:not(:button)").each(function () {
-    !$(this).val()
-      ? $(this).addClass("invalid-field")
-      : $(this).removeClass("invalid-field");
+function handleModal() {
+  $("#js-login-overlay, #js-login-close-btn").on("click", () => {
+    hideFormAlert();
+    closeModal(modal);
   });
+
+  $("#js-forgot-pw-link").on("click", (event) => {
+    event.preventDefault();
+    hideFormAlert();
+    openModal(modal);
+  });
+
+  $("#js-modal-login-email").on("click", function () {
+    $(this).removeClass("invalid-field");
+  });
+
+  $("#js-login-modal-btn").on("click", () => {
+    const email = $("#js-modal-login-email");
+
+    if (!email.val()) {
+      email.addClass("invalid-field");
+      showFormAlert("Please enter an email!");
+      return;
+    }
+
+    sendPasswordEmail(email.val());
+  });
+}
+
+function openModal(modal) {
+  if (modal != null) {
+    modal.addClass("active");
+    $("#js-login-overlay").addClass("active");
+  }
+}
+
+function closeModal(modal) {
+  if (modal != null) {
+    modal.removeClass("active");
+    $("#js-login-overlay").removeClass("active");
+  }
 }
