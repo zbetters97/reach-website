@@ -66,7 +66,7 @@
         <a class="navbar-cart" href="cart.html">
           <i class="fa-solid fa-cart-shopping"> </i>
         </a>
-        <a class="navbar-user" href="account.html">
+        <a class="navbar-user js-navbar-user">
           <i class="fa-solid fa-user"></i>
         </a>
       </div>
@@ -93,6 +93,15 @@
                 <label for="lastname">Last Name</label>
                 <input id="js-settings-lastname" name="lastname" type="text" />
               </div>
+              <div class="settings-field">
+                <label for="phone">Phone Number</label>
+                <input
+                  id="js-settings-phone"
+                  name="phone"
+                  type="tel"
+                  maxlength="16"
+                />
+              </div>
               <div class="settings-save-container">
                 <div class="db-alert js-db-alert">
                   <i class="fa-solid fa-circle-exclamation"></i>
@@ -114,8 +123,24 @@
           <div class="settings-back-container">
             <a class="back-btn" href="account.html"> Go back </a>
           </div>
+
+          <div class="success-modal" id="js-settings-success-modal">
+            <div class="success-modal-container">
+              <div class="success-modal-msg">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Changes Saved!</p>
+              </div>
+              <button
+                class="success-modal-btn"
+                onclick="window.location.href='account.html'"
+              >
+                Go to your account
+              </button>
+            </div>
+          </div>
         </section>
       </div>
+      <div class="success-overlay" id="js-settings-success-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>

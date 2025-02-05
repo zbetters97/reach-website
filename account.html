@@ -66,7 +66,7 @@
         <a class="navbar-cart" href="cart.html">
           <i class="fa-solid fa-cart-shopping"> </i>
         </a>
-        <a class="navbar-user" href="account.html">
+        <a class="navbar-user js-navbar-user">
           <i class="fa-solid fa-user"></i>
         </a>
       </div>
@@ -74,7 +74,7 @@
     <main>
       <div class="wrapper">
         <section class="account-section">
-          <h2>Hello, <span id="js-account-name"></span></h2>
+          <h2 id="js-account-name" style="opacity: 0">Hello, User</h2>
           <div class="account-container">
             <a class="account-card" href="">
               <div class="account-card-title">
@@ -106,8 +106,23 @@
             </a>
           </div>
           <button class="logout-btn" id="js-logout-btn">Logout</button>
+          <div class="success-modal" id="js-logout-success-modal">
+            <div class="success-modal-container">
+              <div class="success-modal-msg">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Logout Successful!</p>
+              </div>
+              <button
+                class="success-modal-btn"
+                onclick="window.location.href='index.html#navbar'"
+              >
+                Go to home
+              </button>
+            </div>
+          </div>
         </section>
       </div>
+      <div class="success-overlay" id="js-logout-success-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>

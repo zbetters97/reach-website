@@ -1,6 +1,12 @@
 import { handleWindow } from "./utils/window.js";
-import { dbGetUser, dbUpdateName } from "./data/database.js";
-import { checkEmptyForm, showFormAlert } from "./utils/form.js";
+import { dbGetUser, dbUpdateUserInfo } from "./data/database.js";
+import {
+  checkEmptyForm,
+  disableNonNumericInput,
+  formatPhoneNumber,
+  isPhoneValid,
+  showFormAlert,
+} from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -25,9 +31,11 @@ async function renderSettingsHTML(user) {
 
   const firstNameField = $("#js-settings-firstname");
   const lastNameField = $("#js-settings-lastname");
+  const phoneField = $("#js-settings-phone");
 
   firstNameField.val(user.firstName);
   lastNameField.val(user.lastName);
+  phoneField.val(user.phone);
 
   $("#js-settings-form :input").each(function () {
     $(this).on("click", function () {
@@ -35,21 +43,30 @@ async function renderSettingsHTML(user) {
     });
   });
 
+  phoneField.on("keydown", disableNonNumericInput);
+  phoneField.on("keyup", formatPhoneNumber);
+
   $("#js-settings-form").submit(function (event) {
     event.preventDefault();
-
-    const userId = localStorage.getItem("loggedInUserId");
-    !userId && (window.location.href = "login.html");
 
     checkEmptyForm($(this));
 
     const firstName = firstNameField.val();
     const lastName = lastNameField.val();
+    const phone = phoneField.val();
 
-    if (!!firstName && !!lastName) {
-      dbUpdateName(userId, firstName, lastName);
-    } else {
+    if (!firstName || !lastName || !phone) {
       showFormAlert("Please fill out all fields!");
+      return;
     }
+
+    if (!isPhoneValid(phone)) {
+      phoneField.addClass("invalid-field");
+      showFormAlert("The phone number is not valid!");
+
+      return;
+    }
+
+    dbUpdateUserInfo(firstName, lastName, phone);
   });
 }

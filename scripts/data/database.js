@@ -32,7 +32,7 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-export async function dbSignup(firstName, lastName, email, password) {
+export async function dbSignup(firstName, lastName, email, phone, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -40,11 +40,13 @@ export async function dbSignup(firstName, lastName, email, password) {
         email: email,
         firstName: firstName,
         lastName: lastName,
+        phone: phone,
       };
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
         .then(() => {
-          window.location.href = "login.html";
+          $("#js-signup-success-modal").addClass("active");
+          $("#js-signup-success-overlay").addClass("active");
         })
         .catch((error) => {
           console.log(error);
@@ -84,6 +86,8 @@ export function dbLogout() {
 
   signOut(auth)
     .then(() => {
+      $("#js-logout-success-modal").addClass("active");
+      $("#js-logout-success-overlay").addClass("active");
       return;
     })
     .catch((error) => {
@@ -114,16 +118,19 @@ export async function dbGetUser() {
   }
 }
 
-export async function dbUpdateName(userId, firstName, lastName) {
+export async function dbUpdateUserInfo(firstName, lastName, phone) {
   try {
+    const userId = auth.currentUser.uid;
     const usersRef = doc(db, "users", userId);
 
     await updateDoc(usersRef, {
       firstName: firstName,
       lastName: lastName,
+      phone: phone,
     })
       .then(() => {
-        window.location.href = "account.html";
+        $("#js-settings-success-modal").addClass("active");
+        $("#js-settings-success-overlay").addClass("active");
       })
       .catch((error) => {
         console.log(error);
@@ -143,7 +150,8 @@ export async function dbUpdatePassword(oldpassword, newpassword) {
     .then(() => {
       updatePassword(user, newpassword)
         .then(() => {
-          window.location.href = "settings.html";
+          $("#js-password-success-modal").addClass("active");
+          $("#js-password-success-overlay").addClass("active");
         })
         .catch((error) => {
           console.log(error);
@@ -169,8 +177,10 @@ export function sendPasswordEmail(email) {
       if (exists) {
         sendPasswordResetEmail(auth, email)
           .then(() => {
-            console.log("Password reset email sent");
-            window.location.href = "login.html";
+            $("#js-login-overlay").removeClass("active");
+            $("#js-login-modal").removeClass("active");
+            $("#js-reset-success-overlay").addClass("active");
+            $("#js-reset-success-modal").addClass("active");
           })
           .catch((error) => {
             console.error(error);

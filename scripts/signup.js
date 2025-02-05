@@ -80,6 +80,12 @@ function handleSignup() {
       return;
     }
 
-    dbSignup(firstName.val(), lastName.val(), email.val(), password.val());
+    dbSignup(
+      firstName.val(),
+      lastName.val(),
+      email.val(),
+      phone.val(),
+      password.val()
+    );
   });
 }

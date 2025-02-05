@@ -56,6 +56,11 @@ async function changePassword() {
       showFormAlert("New password must be at least 8 characters!");
       return;
     }
+    if (oldPassword.val() === newPassword.val()) {
+      newPassword.addClass("invalid-field");
+      showFormAlert("New password must be a different password!");
+      return;
+    }
 
     dbUpdatePassword(oldPassword.val(), newPassword.val());
   });

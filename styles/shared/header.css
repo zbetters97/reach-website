@@ -51,4 +51,5 @@
 }
 .navbar-user-container a {
   color: black;
+  cursor: pointer;
 }

@@ -20,10 +20,10 @@ async function loadUser() {
 }
 
 function renderAccountHTML(user) {
-  $("#js-account-name").html(user.firstName);
+  $("#js-account-name").html(`Welcome back, ${user.firstName}!`);
+  $("#js-account-name").css("opacity", 1);
 
   $("#js-logout-btn").on("click", () => {
     dbLogout();
-    window.location.href = "login.html";
   });
 }
