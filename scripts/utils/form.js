@@ -9,7 +9,7 @@ export function checkEmptyForm(form) {
 }
 
 export function checkEmptyInput(field) {
-  !field.val()
+  !field.val() && field.attr("name") !== "address-two"
     ? field.addClass("invalid-field")
     : field.removeClass("invalid-field");
 }
@@ -48,6 +48,11 @@ export function isPhoneValid(phone) {
 export function isPasswordValid(password) {
   const minPasswordLength = 8;
   return password.length >= minPasswordLength;
+}
+
+export function isZipValid(zip) {
+  const zipLength = 5;
+  return zip.length == zipLength && !isNaN(zip);
 }
 
 export function showFormAlert(message) {

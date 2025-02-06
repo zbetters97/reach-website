@@ -91,7 +91,7 @@ function renderModalHTML(productId) {
   $("#js-color-list").change(function () {
     const color = $(this).val() || product.color;
     const newImage = product.changeColor(color);
-    $("#js-modal-img").attr("src", newImage);
+    $("#js-shop-modal-img").attr("src", newImage);
   });
 
   $("#js-shop-overlay, #js-shop-close-modal-btn").on("click", () => {

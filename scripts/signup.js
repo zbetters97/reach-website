@@ -12,8 +12,12 @@ import {
 
 $(document).ready(function () {
   handleWindow();
-  handleSignup();
+  loadPage();
 });
+
+function loadPage() {
+  handleSignup();
+}
 
 function handleSignup() {
   $("#js-signup-form :input:not(:button)").each(function () {

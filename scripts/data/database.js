@@ -12,20 +12,27 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import {
   getFirestore,
+  addDoc,
   getDoc,
+  getDocs,
   setDoc,
   updateDoc,
+  deleteDoc,
   doc,
+  collection,
+  query,
+  where,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import { showFormAlert } from "../utils/form.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAJ01EvVbZGk9zvxSpkyZlI21oZxImnMzQ",
-  authDomain: "reach-worship.firebaseapp.com",
-  projectId: "reach-worship",
-  storageBucket: "reach-worship.firebasestorage.app",
-  messagingSenderId: "877552053114",
-  appId: "1:877552053114:web:30f29b843b829c802904c3",
+  apiKey: "AIzaSyANEmzsZ9GTVjrOCOMFSkw_OsPfcATDQL0",
+  authDomain: "reach-worship-23551.firebaseapp.com",
+  databaseURL: "https://reach-worship-23551-default-rtdb.firebaseio.com",
+  projectId: "reach-worship-23551",
+  storageBucket: "reach-worship-23551.firebasestorage.app",
+  messagingSenderId: "353132613915",
+  appId: "1:353132613915:web:3fff201b98bbd721c9c3be",
 };
 
 initializeApp(firebaseConfig);
@@ -108,7 +115,6 @@ export async function dbGetUser() {
       if (userDoc.exists()) {
         return userDoc.data();
       } else {
-        console.log(error);
         localStorage.removeItem("loggedInUserId");
         window.location.href = "login.html";
       }
@@ -121,13 +127,14 @@ export async function dbGetUser() {
 export async function dbUpdateUserInfo(firstName, lastName, phone) {
   try {
     const userId = auth.currentUser.uid;
-    const usersRef = doc(db, "users", userId);
-
-    await updateDoc(usersRef, {
+    const userData = {
       firstName: firstName,
       lastName: lastName,
       phone: phone,
-    })
+    };
+
+    const usersRef = doc(db, "users", userId);
+    await updateDoc(usersRef, userData)
       .then(() => {
         $("#js-settings-success-modal").addClass("active");
         $("#js-settings-success-overlay").addClass("active");
@@ -171,8 +178,8 @@ export async function dbUpdatePassword(oldpassword, newpassword) {
     });
 }
 
-export function sendPasswordEmail(email) {
-  checkIfEmailExists(email)
+export function dbSendPasswordEmail(email) {
+  dbCheckIfEmailExists(email)
     .then((exists) => {
       if (exists) {
         sendPasswordResetEmail(auth, email)
@@ -197,7 +204,7 @@ export function sendPasswordEmail(email) {
     });
 }
 
-async function checkIfEmailExists(email) {
+async function dbCheckIfEmailExists(email) {
   try {
     const signInMethods = await fetchSignInMethodsForEmail(auth, email);
 
@@ -209,5 +216,135 @@ async function checkIfEmailExists(email) {
   } catch (error) {
     console.log(error);
     return false;
+  }
+}
+
+export async function dbAddAddress(
+  fullName,
+  phone,
+  addressOne,
+  addressTwo,
+  city,
+  state,
+  zip
+) {
+  const userId = auth.currentUser.uid;
+  const addressData = {
+    userId: userId,
+    fullName: fullName,
+    phone: phone,
+    addressOne: addressOne,
+    addressTwo: addressTwo,
+    city: city,
+    state: state,
+    zip: zip,
+  };
+
+  try {
+    const addressesRef = collection(db, "addresses");
+    addDoc(addressesRef, addressData)
+      .then((ref) => {
+        $("#js-address-overlay").removeClass("active");
+        $("#js-address-modal").removeClass("active");
+        $("#js-address-success-overlay").addClass("active");
+        $("#js-address-success-modal").addClass("active");
+        console.log(ref);
+      })
+      .catch((error) => {
+        console.log(error);
+        showFormAlert("Something went wrong! Please try again");
+      });
+  } catch (error) {
+    console.log(error);
+    showFormAlert("Something went wrong! Please try again");
+  }
+}
+
+export async function dbUpdateAddress(
+  addressId,
+  fullName,
+  phone,
+  addressOne,
+  addressTwo,
+  city,
+  state,
+  zip
+) {
+  try {
+    const userId = auth.currentUser.uid;
+    const addressData = {
+      userId: userId,
+      fullName: fullName,
+      phone: phone,
+      addressOne: addressOne,
+      addressTwo: addressTwo,
+      city: city,
+      state: state,
+      zip: zip,
+    };
+
+    const addressesRef = doc(db, "addresses", addressId);
+    await updateDoc(addressesRef, addressData)
+      .then(() => {
+        $("#js-address-overlay").removeClass("active");
+        $("#js-address-modal").removeClass("active");
+        $("#js-address-success-overlay").addClass("active");
+        $("#js-address-success-modal").addClass("active");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function dbGetAddresses() {
+  try {
+    const uid = localStorage.getItem("loggedInUserId");
+
+    if (uid) {
+      const addresses = [];
+
+      const addressesRef = collection(db, "addresses");
+      const q = query(addressesRef, where("userId", "==", uid));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((address) => {
+        addresses.push({
+          aId: address.id,
+          ...address.data(),
+        });
+      });
+
+      return addresses;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function dbGetAddress(aId) {
+  try {
+    const addressRef = doc(db, "addresses", aId);
+    const snapshot = await getDoc(addressRef);
+
+    if (snapshot.exists()) {
+      const address = snapshot.data();
+      return address;
+    } else {
+      console.log("error!");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function dbRemoveAddress(aId) {
+  try {
+    const addressRef = doc(db, "addresses", aId);
+    await deleteDoc(addressRef);
+  } catch (error) {
+    console.log(error);
   }
 }

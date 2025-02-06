@@ -1,5 +1,5 @@
 import { handleWindow } from "./utils/window.js";
-import { dbGetUser, dbLogin, sendPasswordEmail } from "./data/database.js";
+import { dbGetUser, dbLogin, dbSendPasswordEmail } from "./data/database.js";
 import {
   checkEmptyForm,
   hideFormAlert,
@@ -80,7 +80,7 @@ function handleModal() {
       return;
     }
 
-    sendPasswordEmail(email.val());
+    dbSendPasswordEmail(email.val());
   });
 }
 
