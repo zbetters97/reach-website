@@ -1,9 +1,11 @@
 import {
   dbAddAddress,
-  dbGetAddress,
-  dbGetAddresses,
+  dbGetAddressById,
+  dbGetUserAddresses,
+  dbGetDefaultAddress,
   dbGetUser,
   dbRemoveAddress,
+  dbSetDefaultAddress,
   dbUpdateAddress,
 } from "./data/database.js";
 import {
@@ -13,6 +15,7 @@ import {
   isPhoneValid,
   isZipValid,
   showFormAlert,
+  statesOptionList,
 } from "./utils/form.js";
 import { handleWindow } from "./utils/window.js";
 
@@ -30,6 +33,7 @@ function loadPage() {
 async function loadUser() {
   try {
     await dbGetUser();
+    const address = await dbGetDefaultAddress();
     renderAddressHTML();
   } catch (error) {
     window.location.href = "login.html";
@@ -40,66 +44,88 @@ async function renderAddressHTML() {
   let addressHTML = ``;
 
   try {
-    const addresses = await dbGetAddresses();
+    const addresses = await dbGetUserAddresses();
+    const defaultAddressId = await dbGetDefaultAddress();
 
     if (addresses.length > 0) {
       addresses.forEach((address) => {
+        const isDefault = address.aId === defaultAddressId;
+
         addressHTML += `  
-        <div class="address-card">
-          <h3>${address.fullName}</h3>
-          <p>${address.addressOne}</p>
-          <p>${address.addressTwo}</p>
-          <p>${address.city}, ${address.state} ${address.zip}</p>
-          <p>Phone number: ${address.phone}</p>
-          <div class="address-card-btn-container">
-            <a class="link edit-address-btn" data-address-id=${address.aId}>Edit</a>
-            <a class="link remove-address-btn" data-address-id=${address.aId}>Remove</a>
+          <div class="address-card">
+            <h3>${address.fullName}</h3>
+            <p>${address.addressOne}</p>
+            <p>${address.addressTwo}</p>
+            <p>${address.city}, ${address.state} ${address.zip}</p>
+            <p>Phone number: ${address.phone}</p>
+            <div class="address-card-btn-container">
+              ${
+                isDefault
+                  ? ``
+                  : `<a class="link default-address-btn" data-address-id=${address.aId}>
+                Make Default
+                </a>`
+              }              
+              <a class="link edit-address-btn" data-address-id=${address.aId}>
+                Edit
+              </a>
+              <a class="link remove-address-btn" data-address-id=${address.aId}>
+                Remove
+              </a>
+            </div>
           </div>
-        </div>
-      `;
+        `;
       });
     } else {
       addressHTML += `    
-      <h3 class="address-empty-text">You have no existing addresses!</h3>
-    `;
+        <h3 class="address-empty-text">You have no saved addresses!</h3>
+      `;
     }
 
     addressHTML += `
-    <div class="address-new-container" id="js-address-new-container">
-      <i class="fa-solid fa-plus"></i>
-      <a class="address-new-btn">Add Address</a>
-    </div>
-  `;
+      <div class="address-new-container" id="js-address-new-container">
+        <i class="fa-solid fa-plus"></i>
+        <a class="address-new-btn">Add Address</a>
+      </div>
+    `;
 
     $("#js-address-container").html(addressHTML);
 
-    handleModal();
+    $(".default-address-btn").on("click", function () {
+      const addressId = $(this).data("address-id");
+      dbSetDefaultAddress(addressId);
+
+      $("#js-address-success-btn").on("click", () => {
+        $("#js-address-success-overlay").removeClass("active");
+        $("#js-address-success-modal").removeClass("active");
+        renderAddressHTML();
+      });
+    });
+
+    $(".edit-address-btn").on("click", function () {
+      const addressId = $(this).data("address-id");
+      renderModalHTML(addressId);
+      openModal(modal);
+    });
+
+    $(".remove-address-btn").on("click", function () {
+      const addressId = $(this).data("address-id");
+      dbRemoveAddress(addressId);
+      renderAddressHTML();
+    });
+
+    $("#js-address-new-container").on("click", () => {
+      renderModalHTML();
+      openModal(modal);
+    });
   } catch (error) {
-    console.log("error");
-    window.location.href = "account.hmtl";
+    console.log(error);
+    window.location.href = "account.html";
   }
 }
 
-function handleModal() {
-  $(".edit-address-btn").on("click", function () {
-    const addressId = $(this).data("address-id");
-    renderModalHTML(addressId);
-    openModal(modal);
-  });
-
-  $(".remove-address-btn").on("click", function () {
-    const addressId = $(this).data("address-id");
-    dbRemoveAddress(addressId);
-    renderAddressHTML();
-  });
-
-  $("#js-address-new-container").on("click", () => {
-    renderModalHTML();
-    openModal(modal);
-  });
-}
-
 async function renderModalHTML(addressId) {
+  let isDefault = false;
   let fullName = "";
   let addressOne = "";
   let addressTwo = "";
@@ -112,19 +138,21 @@ async function renderModalHTML(addressId) {
     let address;
 
     try {
-      address = await dbGetAddress(addressId);
+      address = await dbGetAddressById(addressId);
+      const defaultAddressId = await dbGetDefaultAddress();
+      isDefault = addressId === defaultAddressId;
+
+      fullName = address.fullName;
+      phone = address.phone;
+      addressOne = address.addressOne;
+      addressTwo = address.addressTwo;
+      city = address.city;
+      state = address.state;
+      zip = address.zip;
     } catch (error) {
       console.log(error);
-      window.location.href = "account.html";
+      addressId = "";
     }
-
-    fullName = address.fullName;
-    phone = address.phone;
-    addressOne = address.addressOne;
-    addressTwo = address.addressTwo;
-    city = address.city;
-    state = address.state;
-    zip = address.zip;
   }
 
   let modalHTML = `
@@ -136,8 +164,8 @@ async function renderModalHTML(addressId) {
 
     <form class="address-modal-form" id="js-address-modal-form">
       <div class="address-modal-field">
-        <label for="name">Full Name</label>
-        <input id="js-address-modal-name" name="name" type="text" value="${fullName}" />
+        <label for="full-name">Full Name</label>
+        <input id="js-address-modal-name" name="full-name" type="text" value="${fullName}" />
       </div>
 
       <div class="address-modal-field">
@@ -179,58 +207,7 @@ async function renderModalHTML(addressId) {
       <div class="address-modal-field">
         <label for="state">State</label>
         <select id="js-address-modal-state" name="state">
-          <option value="">Select state</option>
-          <option value="AL">Alabama</option>
-          <option value="AK">Alaska</option>
-          <option value="AZ">Arizona</option>
-          <option value="AR">Arkansas</option>
-          <option value="CA">California</option>
-          <option value="CO">Colorado</option>
-          <option value="CT">Connecticut</option>
-          <option value="DE">Delaware</option>
-          <option value="DC">District Of Columbia</option>
-          <option value="FL">Florida</option>
-          <option value="GA">Georgia</option>
-          <option value="HI">Hawaii</option>
-          <option value="ID">Idaho</option>
-          <option value="IL">Illinois</option>
-          <option value="IN">Indiana</option>
-          <option value="IA">Iowa</option>
-          <option value="KS">Kansas</option>
-          <option value="KY">Kentucky</option>
-          <option value="LA">Louisiana</option>
-          <option value="ME">Maine</option>
-          <option value="MD">Maryland</option>
-          <option value="MA">Massachusetts</option>
-          <option value="MI">Michigan</option>
-          <option value="MN">Minnesota</option>
-          <option value="MS">Mississippi</option>
-          <option value="MO">Missouri</option>
-          <option value="MT">Montana</option>
-          <option value="NE">Nebraska</option>
-          <option value="NV">Nevada</option>
-          <option value="NH">New Hampshire</option>
-          <option value="NJ">New Jersey</option>
-          <option value="NM">New Mexico</option>
-          <option value="NY">New York</option>
-          <option value="NC">North Carolina</option>
-          <option value="ND">North Dakota</option>
-          <option value="OH">Ohio</option>
-          <option value="OK">Oklahoma</option>
-          <option value="OR">Oregon</option>
-          <option value="PA">Pennsylvania</option>
-          <option value="RI">Rhode Island</option>
-          <option value="SC">South Carolina</option>
-          <option value="SD">South Dakota</option>
-          <option value="TN">Tennessee</option>
-          <option value="TX">Texas</option>
-          <option value="UT">Utah</option>
-          <option value="VT">Vermont</option>
-          <option value="VA">Virginia</option>
-          <option value="WA">Washington</option>
-          <option value="WV">West Virginia</option>
-          <option value="WI">Wisconsin</option>
-          <option value="WY">Wyoming</option>
+          ${statesOptionList}
         </select>
       </div>
 
@@ -245,13 +222,22 @@ async function renderModalHTML(addressId) {
         />
       </div>
 
+      <div class="address-modal-field">
+        <label for="default">Default</label>
+        <input
+          id="js-address-modal-default"
+          name="default"
+          type="checkbox"
+        />
+      </div>
+
       <div class="address-modal-save-container">
         <div class="db-alert js-db-alert">
           <i class="fa-solid fa-circle-exclamation"></i>
           <p class="js-db-alert-message">error!</p>
         </div>
         <button class="address-modal-btn" type="submit">
-          Save Changes
+          ${addressId ? `Save Changes` : `Add Address`}
         </button>
       </div>
     </form>  
@@ -259,9 +245,16 @@ async function renderModalHTML(addressId) {
 
   $("#js-address-modal").html(modalHTML);
   $("#js-address-modal-state").val(`${state}`);
+  $("#js-address-modal-default").prop("checked", isDefault);
 
   $("#js-address-overlay, #js-address-close-modal-btn").on("click", () => {
     closeModal(modal);
+  });
+
+  $("#js-address-success-btn").on("click", () => {
+    $("#js-address-success-overlay").removeClass("active");
+    $("#js-address-success-modal").removeClass("active");
+    renderAddressHTML();
   });
 
   handleSubmitAddress(addressId);
@@ -305,6 +298,7 @@ function handleSubmitAddress(addressId) {
     const city = $("#js-address-modal-city");
     const state = $("#js-address-modal-state");
     const zip = $("#js-address-modal-zip");
+    const isDefault = $("#js-address-modal-default");
 
     if (!isPhoneValid(phone.val())) {
       phone.addClass("invalid-field");
@@ -320,27 +314,20 @@ function handleSubmitAddress(addressId) {
       return;
     }
 
+    const addressInfo = {
+      fullName: fullName.val(),
+      phone: phone.val(),
+      addressOne: addressOne.val(),
+      addressTwo: addressTwo.val(),
+      city: city.val(),
+      state: state.val(),
+      zip: zip.val(),
+    };
+
     if (addressId) {
-      dbUpdateAddress(
-        addressId,
-        fullName.val(),
-        phone.val(),
-        addressOne.val(),
-        addressTwo.val(),
-        city.val(),
-        state.val(),
-        zip.val()
-      );
+      dbUpdateAddress(addressId, addressInfo, isDefault.prop("checked"));
     } else {
-      dbAddAddress(
-        fullName.val(),
-        phone.val(),
-        addressOne.val(),
-        addressTwo.val(),
-        city.val(),
-        state.val(),
-        zip.val()
-      );
+      dbAddAddress(addressInfo, isDefault.prop("checked"));
     }
   });
 }

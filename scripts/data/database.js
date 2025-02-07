@@ -12,6 +12,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 import {
   getFirestore,
+  serverTimestamp,
   addDoc,
   getDoc,
   getDocs,
@@ -22,6 +23,7 @@ import {
   collection,
   query,
   where,
+  orderBy,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 import { showFormAlert } from "../utils/form.js";
 
@@ -39,6 +41,7 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
+/** USER **/
 export async function dbSignup(firstName, lastName, email, phone, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -48,6 +51,8 @@ export async function dbSignup(firstName, lastName, email, phone, password) {
         firstName: firstName,
         lastName: lastName,
         phone: phone,
+        defaultAddressId: "",
+        defaultPaymentId: "",
       };
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, userData)
@@ -61,15 +66,15 @@ export async function dbSignup(firstName, lastName, email, phone, password) {
         });
     })
     .catch((error) => {
+      console.log(error);
+
       if (error.code === "auth/email-already-in-use") {
         showFormAlert("The email address is already in use!");
       } else {
-        console.log(error);
         showFormAlert("Something went wrong! Please review fields.");
       }
     });
 }
-
 export function dbLogin(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -79,15 +84,15 @@ export function dbLogin(email, password) {
       window.location.href = "account.html";
     })
     .catch((error) => {
+      console.log(error);
+
       if (error.code === "auth/invalid-credential") {
         showFormAlert("The email or password is incorrect!");
       } else {
-        console.log(error);
         showFormAlert("Something went wrong! Please try again.");
       }
     });
 }
-
 export function dbLogout() {
   localStorage.removeItem("loggedInUserId");
 
@@ -95,19 +100,17 @@ export function dbLogout() {
     .then(() => {
       $("#js-logout-success-modal").addClass("active");
       $("#js-logout-success-overlay").addClass("active");
-      return;
     })
     .catch((error) => {
       console.log(error);
       showFormAlert("Something went wrong! Please try again.");
     });
 }
-
 export async function dbGetUser() {
-  const loggedInUserId = localStorage.getItem("loggedInUserId");
+  const uid = localStorage.getItem("loggedInUserId");
 
-  if (loggedInUserId) {
-    const docRef = doc(db, "users", loggedInUserId);
+  if (uid) {
+    const docRef = doc(db, "users", uid);
 
     try {
       const userDoc = await getDoc(docRef);
@@ -115,6 +118,7 @@ export async function dbGetUser() {
       if (userDoc.exists()) {
         return userDoc.data();
       } else {
+        console.log("user was not found in db");
         localStorage.removeItem("loggedInUserId");
         window.location.href = "login.html";
       }
@@ -123,7 +127,6 @@ export async function dbGetUser() {
     }
   }
 }
-
 export async function dbUpdateUserInfo(firstName, lastName, phone) {
   try {
     const userId = auth.currentUser.uid;
@@ -132,7 +135,6 @@ export async function dbUpdateUserInfo(firstName, lastName, phone) {
       lastName: lastName,
       phone: phone,
     };
-
     const usersRef = doc(db, "users", userId);
     await updateDoc(usersRef, userData)
       .then(() => {
@@ -148,36 +150,39 @@ export async function dbUpdateUserInfo(firstName, lastName, phone) {
     showFormAlert("Something went wrong! Please try again.");
   }
 }
-
 export async function dbUpdatePassword(oldpassword, newpassword) {
-  const user = auth.currentUser;
-  const credentials = EmailAuthProvider.credential(user.email, oldpassword);
+  try {
+    const user = auth.currentUser;
+    const credentials = EmailAuthProvider.credential(user.email, oldpassword);
 
-  reauthenticateWithCredential(user, credentials)
-    .then(() => {
-      updatePassword(user, newpassword)
-        .then(() => {
-          $("#js-password-success-modal").addClass("active");
-          $("#js-password-success-overlay").addClass("active");
-        })
-        .catch((error) => {
-          console.log(error);
+    reauthenticateWithCredential(user, credentials)
+      .then(() => {
+        updatePassword(user, newpassword)
+          .then(() => {
+            $("#js-password-success-modal").addClass("active");
+            $("#js-password-success-overlay").addClass("active");
+          })
+          .catch((error) => {
+            console.log(error);
+            showFormAlert("Something went wrong! Please try again.");
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+
+        if (error.code === "auth/invalid-credential") {
+          showFormAlert("The old password is incorrect!");
+
+          $("#js-settings-password-old").addClass("invalid-field");
+        } else {
           showFormAlert("Something went wrong! Please try again.");
-        });
-    })
-    .catch((error) => {
-      if (error.code === "auth/invalid-credential") {
-        console.log(error);
-        showFormAlert("The old password is incorrect!");
-
-        $("#js-settings-password-old").addClass("invalid-field");
-      } else {
-        console.log(error);
-        showFormAlert("Something went wrong! Please try again.");
-      }
-    });
+        }
+      });
+  } catch (error) {
+    console.log(error);
+    window.location.href = "login.html";
+  }
 }
-
 export function dbSendPasswordEmail(email) {
   dbCheckIfEmailExists(email)
     .then((exists) => {
@@ -206,11 +211,12 @@ export function dbSendPasswordEmail(email) {
 
 async function dbCheckIfEmailExists(email) {
   try {
-    const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+    const emailAccounts = await fetchSignInMethodsForEmail(auth, email);
 
-    if (signInMethods.length > 0) {
+    if (emailAccounts.length > 0) {
       return true;
     } else {
+      console.log("email was not found in users auth db");
       return false;
     }
   } catch (error) {
@@ -218,133 +224,290 @@ async function dbCheckIfEmailExists(email) {
     return false;
   }
 }
+/** END USER **/
 
-export async function dbAddAddress(
-  fullName,
-  phone,
-  addressOne,
-  addressTwo,
-  city,
-  state,
-  zip
-) {
-  const userId = auth.currentUser.uid;
-  const addressData = {
-    userId: userId,
-    fullName: fullName,
-    phone: phone,
-    addressOne: addressOne,
-    addressTwo: addressTwo,
-    city: city,
-    state: state,
-    zip: zip,
-  };
-
+/** ADDRESS **/
+export async function dbAddAddress(addressInfo, isDefault) {
   try {
+    const userId = auth.currentUser.uid;
+    const addressData = {
+      userId: userId,
+      createdAt: serverTimestamp(),
+      ...addressInfo,
+    };
     const addressesRef = collection(db, "addresses");
-    addDoc(addressesRef, addressData)
-      .then((ref) => {
-        $("#js-address-overlay").removeClass("active");
-        $("#js-address-modal").removeClass("active");
-        $("#js-address-success-overlay").addClass("active");
-        $("#js-address-success-modal").addClass("active");
-        console.log(ref);
-      })
-      .catch((error) => {
-        console.log(error);
-        showFormAlert("Something went wrong! Please try again");
-      });
+    const docRef = await addDoc(addressesRef, addressData);
+
+    isDefault && dbSetDefaultAddress(docRef.id);
+
+    $("#js-address-overlay").removeClass("active");
+    $("#js-address-modal").removeClass("active");
+    $("#js-address-success-overlay").addClass("active");
+    $("#js-address-success-modal").addClass("active");
   } catch (error) {
     console.log(error);
     showFormAlert("Something went wrong! Please try again");
   }
 }
-
-export async function dbUpdateAddress(
-  addressId,
-  fullName,
-  phone,
-  addressOne,
-  addressTwo,
-  city,
-  state,
-  zip
-) {
+export async function dbUpdateAddress(addressId, addressInfo, isDefault) {
   try {
-    const userId = auth.currentUser.uid;
-    const addressData = {
-      userId: userId,
-      fullName: fullName,
-      phone: phone,
-      addressOne: addressOne,
-      addressTwo: addressTwo,
-      city: city,
-      state: state,
-      zip: zip,
-    };
-
-    const addressesRef = doc(db, "addresses", addressId);
-    await updateDoc(addressesRef, addressData)
-      .then(() => {
-        $("#js-address-overlay").removeClass("active");
-        $("#js-address-modal").removeClass("active");
-        $("#js-address-success-overlay").addClass("active");
-        $("#js-address-success-modal").addClass("active");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-export async function dbGetAddresses() {
-  try {
-    const uid = localStorage.getItem("loggedInUserId");
-
-    if (uid) {
-      const addresses = [];
-
-      const addressesRef = collection(db, "addresses");
-      const q = query(addressesRef, where("userId", "==", uid));
-      const querySnapshot = await getDocs(q);
-
-      querySnapshot.forEach((address) => {
-        addresses.push({
-          aId: address.id,
-          ...address.data(),
-        });
-      });
-
-      return addresses;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function dbGetAddress(aId) {
-  try {
-    const addressRef = doc(db, "addresses", aId);
+    const addressRef = doc(db, "addresses", addressId);
     const snapshot = await getDoc(addressRef);
 
     if (snapshot.exists()) {
-      const address = snapshot.data();
-      return address;
+      const userId = auth.currentUser.uid;
+      const createdAt = snapshot.data().createdAt;
+      const addressData = {
+        userId: userId,
+        createdAt: createdAt,
+        ...addressInfo,
+      };
+
+      await updateDoc(addressRef, addressData);
+
+      // SET DEFAULT IF CHECKED
+      // REMOVE DEFAULT IF UNCHECKED FROM CHECKED
+      if (isDefault) {
+        await dbSetDefaultAddress(snapshot.id);
+      } else if ((await dbGetDefaultAddress()) === snapshot.id) {
+        await dbSetDefaultAddress("");
+      }
+
+      $("#js-address-overlay").removeClass("active");
+      $("#js-address-modal").removeClass("active");
+      $("#js-address-success-overlay").addClass("active");
+      $("#js-address-success-modal").addClass("active");
     } else {
-      console.log("error!");
+      console.log("reference to address was not established");
+      showFormAlert("Something went wrong! Please try again");
+    }
+  } catch (error) {
+    console.error(error);
+    showFormAlert("Something went wrong! Please try again");
+  }
+}
+export async function dbGetAddressById(addressId) {
+  try {
+    const addressRef = doc(db, "addresses", addressId);
+    const snapshot = await getDoc(addressRef);
+
+    if (snapshot.exists()) {
+      return snapshot.data();
+    } else {
+      console.log("reference to address was not established");
     }
   } catch (error) {
     console.log(error);
   }
 }
-
-export async function dbRemoveAddress(aId) {
+export async function dbGetUserAddresses() {
   try {
-    const addressRef = doc(db, "addresses", aId);
+    const addressesRef = collection(db, "addresses");
+    const userId = auth.currentUser.uid;
+    const q = query(
+      addressesRef,
+      where("userId", "==", userId),
+      orderBy("createdAt", "asc")
+    );
+    const querySnapshot = await getDocs(q);
+
+    const addresses = [];
+    querySnapshot.forEach((address) => {
+      addresses.push({
+        aId: address.id,
+        ...address.data(),
+      });
+    });
+
+    return addresses;
+  } catch (error) {
+    console.log(error);
+    window.location.href = "account.html";
+  }
+}
+export async function dbSetDefaultAddress(addressId) {
+  try {
+    const userId = auth.currentUser.uid;
+    const userData = {
+      defaultAddressId: addressId,
+    };
+    const usersRef = doc(db, "users", userId);
+    await updateDoc(usersRef, userData);
+
+    $("#js-address-success-overlay").addClass("active");
+    $("#js-address-success-modal").addClass("active");
+  } catch (error) {
+    console.error(error);
+    showFormAlert("Something went wrong! Please try again.");
+  }
+}
+export async function dbGetDefaultAddress() {
+  const userId = auth.currentUser.uid;
+  const userRef = doc(db, "users", userId);
+
+  try {
+    const userDoc = await getDoc(userRef);
+
+    if (userDoc.exists()) {
+      const addressId = userDoc.data().defaultAddressId;
+      return await addressId;
+    } else {
+      console.log("user was not found in db");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function dbRemoveAddress(addressId) {
+  try {
+    const addressRef = doc(db, "addresses", addressId);
+
+    (await dbGetDefaultAddress()) === addressId && dbSetDefaultAddress("");
     await deleteDoc(addressRef);
   } catch (error) {
     console.log(error);
   }
 }
+/** END ADDRESS **/
+
+/** PAYMENT **/
+export async function dbAddPayment(paymentInfo, isDefault) {
+  try {
+    const userId = auth.currentUser.uid;
+    const paymentData = {
+      userId: userId,
+      createdAt: serverTimestamp(),
+      ...paymentInfo,
+    };
+    const paymentRef = collection(db, "payments");
+    const docRef = await addDoc(paymentRef, paymentData);
+
+    isDefault && dbSetDefaultPayment(docRef.id);
+
+    $("#js-payment-overlay").removeClass("active");
+    $("#js-payment-modal").removeClass("active");
+    $("#js-payment-success-overlay").addClass("active");
+    $("#js-payment-success-modal").addClass("active");
+  } catch (error) {
+    console.log(error);
+    showFormAlert("Something went wrong! Please try again");
+  }
+}
+export async function dbUpdatePayment(paymentId, paymentInfo, isDefault) {
+  try {
+    const paymentRef = doc(db, "payments", paymentId);
+    const snapshot = await getDoc(paymentRef);
+
+    if (snapshot.exists()) {
+      const userId = auth.currentUser.uid;
+      const createdAt = snapshot.data().createdAt;
+      const paymentData = {
+        userId: userId,
+        createdAt: createdAt,
+        ...paymentInfo,
+      };
+
+      await updateDoc(paymentRef, paymentData);
+
+      // SET DEFAULT IF CHECKED
+      // REMOVE DEFAULT IF UNCHECKED FROM CHECKED
+      if (isDefault) {
+        await dbSetDefaultPayment(snapshot.id);
+      } else if ((await dbGetDefaultPayment()) === snapshot.id) {
+        await dbSetDefaultPayment("");
+      }
+
+      $("#js-payment-overlay").removeClass("active");
+      $("#js-payment-modal").removeClass("active");
+      $("#js-payment-success-overlay").addClass("active");
+      $("#js-payment-success-modal").addClass("active");
+    } else {
+      console.log("reference to payment was not established");
+      showFormAlert("Something went wrong! Please try again");
+    }
+  } catch (error) {
+    console.error(error);
+    showFormAlert("Something went wrong! Please try again");
+  }
+}
+export async function dbGetPaymentById(paymentId) {
+  try {
+    const paymentRef = doc(db, "payments", paymentId);
+    const snapshot = await getDoc(paymentRef);
+
+    if (snapshot.exists()) {
+      return snapshot.data();
+    } else {
+      console.log("reference to payment was not established");
+    }
+  } catch (error) {}
+}
+export async function dbGetUserPayments() {
+  try {
+    const paymentRef = collection(db, "payments");
+    const userId = auth.currentUser.uid;
+    const q = query(
+      paymentRef,
+      where("userId", "==", userId),
+      orderBy("createdAt", "asc")
+    );
+    const querySnapshot = await getDocs(q);
+
+    const payments = [];
+    querySnapshot.forEach((payment) => {
+      payments.push({
+        pId: payment.id,
+        ...payment.data(),
+      });
+    });
+
+    return payments;
+  } catch (error) {
+    console.log(error);
+    window.location.href = "account.html";
+  }
+}
+export async function dbSetDefaultPayment(paymentId) {
+  try {
+    const userId = auth.currentUser.uid;
+    const userData = {
+      defaultPaymentId: paymentId,
+    };
+    const usersRef = doc(db, "users", userId);
+    await updateDoc(usersRef, userData);
+
+    $("#js-payment-success-overlay").addClass("active");
+    $("#js-payment-success-modal").addClass("active");
+  } catch (error) {
+    console.error(error);
+    showFormAlert("Something went wrong! Please try again.");
+  }
+}
+export async function dbGetDefaultPayment() {
+  const userId = auth.currentUser.uid;
+  const docRef = doc(db, "users", userId);
+
+  try {
+    const userDoc = await getDoc(docRef);
+
+    if (userDoc.exists()) {
+      const paymentId = userDoc.data().defaultPaymentId;
+      return paymentId;
+    } else {
+      console.log("user was not found in db");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function dbRemovePayment(paymentId) {
+  try {
+    const paymentRef = doc(db, "payments", paymentId);
+
+    (await dbGetDefaultPayment()) === paymentId && dbSetDefaultPayment("");
+    await deleteDoc(paymentRef);
+  } catch (error) {
+    console.log(error);
+  }
+}
+/** END PAYMENT **/
