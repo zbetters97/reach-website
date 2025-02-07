@@ -75,36 +75,42 @@ export async function dbSignup(firstName, lastName, email, phone, password) {
       }
     });
 }
-export function dbLogin(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      localStorage.setItem("loggedInUserId", user.uid);
+export async function dbLogin(email, password) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
 
-      window.location.href = "account.html";
-    })
-    .catch((error) => {
-      console.log(error);
+    localStorage.setItem("loggedInUserId", user.uid);
+    window.location.href = "account.html";
+  } catch (error) {
+    console.log(error);
 
-      if (error.code === "auth/invalid-credential") {
-        showFormAlert("The email or password is incorrect!");
-      } else {
-        showFormAlert("Something went wrong! Please try again.");
-      }
-    });
-}
-export function dbLogout() {
-  localStorage.removeItem("loggedInUserId");
-
-  signOut(auth)
-    .then(() => {
-      $("#js-logout-success-modal").addClass("active");
-      $("#js-logout-success-overlay").addClass("active");
-    })
-    .catch((error) => {
-      console.log(error);
+    if (
+      error.code === "auth/invalid-credential" ||
+      error.code === "auth/wrong-password" ||
+      error.code === "auth/user-not-found"
+    ) {
+      showFormAlert("The email or password is incorrect!");
+    } else {
       showFormAlert("Something went wrong! Please try again.");
-    });
+    }
+  }
+}
+export async function dbLogout() {
+  try {
+    await signOut(auth);
+    localStorage.removeItem("loggedInUserId");
+
+    $("#js-logout-success-modal").addClass("active");
+    $("#js-logout-success-overlay").addClass("active");
+  } catch (error) {
+    console.log(error);
+    showFormAlert("Something went wrong! Please try again.");
+  }
 }
 export async function dbGetUser() {
   const uid = localStorage.getItem("loggedInUserId");
@@ -136,15 +142,10 @@ export async function dbUpdateUserInfo(firstName, lastName, phone) {
       phone: phone,
     };
     const usersRef = doc(db, "users", userId);
-    await updateDoc(usersRef, userData)
-      .then(() => {
-        $("#js-settings-success-modal").addClass("active");
-        $("#js-settings-success-overlay").addClass("active");
-      })
-      .catch((error) => {
-        console.log(error);
-        showFormAlert("Something went wrong! Please try again.");
-      });
+    await updateDoc(usersRef, userData);
+
+    $("#js-settings-success-modal").addClass("active");
+    $("#js-settings-success-overlay").addClass("active");
   } catch (error) {
     console.error(error);
     showFormAlert("Something went wrong! Please try again.");
@@ -155,32 +156,20 @@ export async function dbUpdatePassword(oldpassword, newpassword) {
     const user = auth.currentUser;
     const credentials = EmailAuthProvider.credential(user.email, oldpassword);
 
-    reauthenticateWithCredential(user, credentials)
-      .then(() => {
-        updatePassword(user, newpassword)
-          .then(() => {
-            $("#js-password-success-modal").addClass("active");
-            $("#js-password-success-overlay").addClass("active");
-          })
-          .catch((error) => {
-            console.log(error);
-            showFormAlert("Something went wrong! Please try again.");
-          });
-      })
-      .catch((error) => {
-        console.log(error);
+    await reauthenticateWithCredential(user, credentials);
+    await updatePassword(user, newpassword);
 
-        if (error.code === "auth/invalid-credential") {
-          showFormAlert("The old password is incorrect!");
-
-          $("#js-settings-password-old").addClass("invalid-field");
-        } else {
-          showFormAlert("Something went wrong! Please try again.");
-        }
-      });
+    $("#js-password-success-modal").addClass("active");
+    $("#js-password-success-overlay").addClass("active");
   } catch (error) {
     console.log(error);
-    window.location.href = "login.html";
+
+    if (error.code === "auth/wrong-password") {
+      showFormAlert("The old password is incorrect!");
+      $("#js-settings-password-old").addClass("invalid-field");
+    } else {
+      showFormAlert("Something went wrong! Please try again.");
+    }
   }
 }
 export function dbSendPasswordEmail(email) {
