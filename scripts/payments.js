@@ -22,6 +22,7 @@ import {
 import { handleWindow } from "./utils/window.js";
 
 const modal = $("#js-payment-modal");
+const savedPassword = "";
 
 $(document).ready(function () {
   handleWindow();
@@ -62,7 +63,7 @@ async function renderPaymentHTML() {
             <div class="payment-card-btn-container">
             ${
               isDefault
-                ? ``
+                ? `<a class="link remove-default-payment-btn">Remove Default</a>`
                 : `<a class="link default-payment-btn" data-payment-id=${payment.pId}>Make Default</a>`
             }
               
@@ -90,6 +91,16 @@ async function renderPaymentHTML() {
     `;
 
     $("#js-payment-container").html(paymentHTML);
+
+    $(".remove-default-payment-btn").on("click", function () {
+      dbSetDefaultPayment("");
+
+      $("#js-payment-success-btn").on("click", () => {
+        $("#js-payment-success-overlay").removeClass("active");
+        $("#js-payment-success-modal").removeClass("active");
+        renderPaymentHTML();
+      });
+    });
 
     $(".default-payment-btn").on("click", function () {
       const paymentId = $(this).data("payment-id");
@@ -126,6 +137,8 @@ async function renderPaymentHTML() {
 async function renderModalHTML(paymentId) {
   let isDefault = false;
   let fullName = "";
+  let cardNum = "";
+  let code = "";
   let expDate = "";
 
   if (paymentId) {
@@ -137,6 +150,8 @@ async function renderModalHTML(paymentId) {
       isDefault = paymentId === defaultPaymentId;
 
       fullName = payment.fullName;
+      cardNum = payment.cardNum;
+      code = payment.code;
       expDate = payment.expDate;
     } catch (error) {
       console.log(error);
@@ -162,9 +177,9 @@ async function renderModalHTML(paymentId) {
         <input
           id="js-payment-modal-number"
           name="card-number"
-          type="text"
+          ${paymentId ? `type="password"` : `type="text"`}
           maxLength="19"
-          value=""
+          value="${cardNum}"          
         />
       </div>
 
@@ -173,9 +188,10 @@ async function renderModalHTML(paymentId) {
         <input
           id="js-payment-modal-code"
           name="code"
-          type="text"
+          ${paymentId ? `type="password"` : `type="text"`}
           maxLength="3"
-          value=""
+          value="${code}"
+          
         />
       </div>
 
@@ -235,11 +251,18 @@ function handleSubmitPayment(paymentId) {
   });
 
   const cardNum = $("#js-payment-modal-number");
-  cardNum.on("keydown", disableNonNumericInput);
-  cardNum.on("keyup", formatCardNumber);
+  cardNum.on("keydown", disableNonNumericInput, removeInputMask);
+  cardNum.on("keydown", removeInputMask);
 
   const code = $("#js-payment-modal-code");
-  code.on("keydown", disableNonNumericInput);
+  code.on("keydown", disableNonNumericInput, removeInputMask);
+
+  function removeInputMask(event) {
+    if (event.key === "Backspace" && $(this).attr("type") === "password") {
+      $(this).val("");
+      $(this).attr("type", "text");
+    }
+  }
 
   const expDate = $("#js-payment-modal-date");
   expDate.on("keydown", disableNonNumericInput);

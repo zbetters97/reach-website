@@ -43,37 +43,36 @@ const db = getFirestore();
 
 /** USER **/
 export async function dbSignup(firstName, lastName, email, phone, password) {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      const userData = {
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        defaultAddressId: "",
-        defaultPaymentId: "",
-      };
-      const docRef = doc(db, "users", user.uid);
-      setDoc(docRef, userData)
-        .then(() => {
-          $("#js-signup-success-modal").addClass("active");
-          $("#js-signup-success-overlay").addClass("active");
-        })
-        .catch((error) => {
-          console.log(error);
-          showFormAlert("Something went wrong! Please try again");
-        });
-    })
-    .catch((error) => {
-      console.log(error);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-      if (error.code === "auth/email-already-in-use") {
-        showFormAlert("The email address is already in use!");
-      } else {
-        showFormAlert("Something went wrong! Please review fields.");
-      }
-    });
+    const user = userCredential.user;
+    const userData = {
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      defaultAddressId: "",
+      defaultPaymentId: "",
+    };
+    const docRef = doc(db, "users", user.uid);
+    await setDoc(docRef, userData);
+
+    $("#js-signup-success-modal").addClass("active");
+    $("#js-signup-success-overlay").addClass("active");
+  } catch (error) {
+    console.log(error);
+
+    if (error.code === "auth/email-already-in-use") {
+      showFormAlert("The email address is already in use!");
+    } else {
+      showFormAlert("Something went wrong! Please review fields.");
+    }
+  }
 }
 export async function dbLogin(email, password) {
   try {
@@ -125,6 +124,7 @@ export async function dbGetUser() {
         return userDoc.data();
       } else {
         console.log("user was not found in db");
+
         localStorage.removeItem("loggedInUserId");
         window.location.href = "login.html";
       }
@@ -172,44 +172,39 @@ export async function dbUpdatePassword(oldpassword, newpassword) {
     }
   }
 }
-export function dbSendPasswordEmail(email) {
-  dbCheckIfEmailExists(email)
-    .then((exists) => {
-      if (exists) {
-        sendPasswordResetEmail(auth, email)
-          .then(() => {
-            $("#js-login-overlay").removeClass("active");
-            $("#js-login-modal").removeClass("active");
-            $("#js-reset-success-overlay").addClass("active");
-            $("#js-reset-success-modal").addClass("active");
-          })
-          .catch((error) => {
-            console.error(error);
-            showFormAlert("Something went wrong! Please try again.");
-          });
-      } else {
-        $("#js-modal-login-email").addClass("invalid-field");
-        showFormAlert("Email address does not exist!");
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      showFormAlert("Something went wrong! Please try again.");
-    });
-}
-
-async function dbCheckIfEmailExists(email) {
+export async function dbSendPasswordEmail(email) {
   try {
-    const emailAccounts = await fetchSignInMethodsForEmail(auth, email);
+    const emailExists = await dbCheckIfEmailExists(email);
 
-    if (emailAccounts.length > 0) {
-      return true;
+    if (emailExists) {
+      await sendPasswordResetEmail(auth, email);
+
+      $("#js-login-overlay").removeClass("active");
+      $("#js-login-modal").removeClass("active");
+      $("#js-reset-success-overlay").addClass("active");
+      $("#js-reset-success-modal").addClass("active");
     } else {
-      console.log("email was not found in users auth db");
-      return false;
+      $("#js-modal-login-email").addClass("invalid-field");
+      showFormAlert("Email address does not exist!");
     }
   } catch (error) {
     console.log(error);
+
+    if (error.code === "auth/invalid-email") {
+      showFormAlert("The email address is not valid!");
+    } else {
+      showFormAlert("Something went wrong! Please try again.");
+    }
+  }
+}
+
+async function dbCheckIfEmailExists(email) {
+  const emailAccounts = await fetchSignInMethodsForEmail(auth, email);
+
+  if (emailAccounts.length > 0) {
+    return true;
+  } else {
+    console.log("email was not found in users auth db");
     return false;
   }
 }

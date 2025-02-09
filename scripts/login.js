@@ -80,7 +80,16 @@ function handleModal() {
       return;
     }
 
-    dbSendPasswordEmail(email.val());
+    if (!!email.val()) {
+      if (!isEmailValid(email.val())) {
+        email.addClass("invalid-field");
+        showFormAlert("The email address is not valid!");
+      } else {
+        dbSendPasswordEmail(email.val());
+      }
+    } else {
+      showFormAlert("Please enter an email!");
+    }
   });
 }
 

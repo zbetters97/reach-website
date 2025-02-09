@@ -48,7 +48,7 @@ async function changePassword() {
     if (newPassword.val() !== newRePassword.val()) {
       newPassword.addClass("invalid-field");
       newRePassword.addClass("invalid-field");
-      showFormAlert("New passwords must match!");
+      showFormAlert("New passwords do not match!");
       return;
     }
     if (!isPasswordValid(newPassword.val())) {
