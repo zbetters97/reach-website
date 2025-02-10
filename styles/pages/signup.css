@@ -77,38 +77,16 @@
 
 .signup-login-btn {
   font-size: 1em;
-  text-align: center;
-  vertical-align: middle;
   color: black;
   background-color: transparent;
   padding: 0.5em 1em;
-  margin: 0 auto;
   width: 20%;
   border: 3px solid black;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 200ms;
 }
 .signup-login-btn:after {
-  content: "\f178";
-  font-family: FontAwesome;
   font-size: 1em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 0;
-  top: 0;
-  opacity: 0;
-  height: 100%;
-  transition: 200ms;
 }
 .signup-login-btn:hover {
-  padding-right: 1.5em;
-  padding-left: 0.5em;
-}
-.signup-login-btn:hover:after {
-  opacity: 1;
-  right: 10px;
+  padding-left: 1.5em;
+  padding-right: 0.5em;
 }

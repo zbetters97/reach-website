@@ -53,7 +53,7 @@ async function renderPaymentHTML() {
     if (payments.length > 0) {
       payments.forEach((payment) => {
         const cardNum = maskCardNumber(payment.cardNum);
-        const isDefault = payment.pId === defaultPaymentId;
+        const isDefault = payment.pid === defaultPaymentId;
 
         paymentHTML += `  
           <div class="payment-card">
@@ -64,13 +64,13 @@ async function renderPaymentHTML() {
             ${
               isDefault
                 ? `<a class="link remove-default-payment-btn">Remove Default</a>`
-                : `<a class="link default-payment-btn" data-payment-id=${payment.pId}>Make Default</a>`
+                : `<a class="link default-payment-btn" data-payment-id=${payment.pid}>Make Default</a>`
             }
               
-              <a class="link edit-payment-btn" data-payment-id=${payment.pId}>
+              <a class="link edit-payment-btn" data-payment-id=${payment.pid}>
                 Edit
               </a>
-              <a class="link remove-payment-btn" data-payment-id=${payment.pId}>
+              <a class="link remove-payment-btn" data-payment-id=${payment.pid}>
                 Remove
               </a>
             </div>
@@ -155,7 +155,7 @@ async function renderModalHTML(paymentId) {
       expDate = payment.expDate;
     } catch (error) {
       console.log(error);
-      paymentId = "";
+      closeModal(modal);
     }
   }
 
@@ -201,8 +201,9 @@ async function renderModalHTML(paymentId) {
           id="js-payment-modal-date" 
           name="exp-date" 
           type="text" 
-          maxLength="5" 
+          maxLength="5"           
           value="${expDate}"
+          placeholder="MM/DD"
         />
       </div>
 
@@ -252,13 +253,13 @@ function handleSubmitPayment(paymentId) {
 
   const cardNum = $("#js-payment-modal-number");
   cardNum.on("keydown", disableNonNumericInput, removeInputMask);
-  cardNum.on("keydown", removeInputMask);
+  cardNum.on("keyup", formatCardNumber);
 
   const code = $("#js-payment-modal-code");
   code.on("keydown", disableNonNumericInput, removeInputMask);
 
-  function removeInputMask(event) {
-    if (event.key === "Backspace" && $(this).attr("type") === "password") {
+  function removeInputMask() {
+    if ($(this).attr("type") === "password") {
       $(this).val("");
       $(this).attr("type", "text");
     }

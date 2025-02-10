@@ -33,7 +33,7 @@ function renderTourHTML() {
   });
 
   concertsHTML += `
-    <button class="home-btn home-tour-btn" type="button" onclick="location.href='tour.html'">
+    <button class="forward-btn home-btn home-tour-btn" type="button" onclick="location.href='tour.html'">
       Find more dates
     </button>
   `;
@@ -58,7 +58,7 @@ function renderAlbumHTML() {
       <ol class="home-music-songs" type="1">
         ${songsHTML}
       </ol>
-        <button class="home-btn home-music-btn" type="button" onclick="location.href='music.html'">
+        <button class="forward-btn home-btn home-music-btn" type="button" onclick="location.href='music.html'">
           View all releases
         </button>
     </div>

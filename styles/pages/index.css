@@ -55,36 +55,14 @@
 .home-btn {
   background-color: transparent;
   font-size: 1.5em;
-  vertical-align: middle;
-  text-align: center;
   padding: 0.5em 1em;
-  border: none;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  transition: 200ms;
 }
 .home-btn:after {
-  content: "\f178";
-  font-family: FontAwesome;
   font-size: 0.8em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 0;
-  top: 0;
-  opacity: 0;
-  height: 100%;
-  transition: 200ms;
 }
 .home-btn:hover {
   padding-right: 1.5em;
   padding-left: 0.5em;
-}
-.home-btn:hover:after {
-  opacity: 1;
-  right: 10px;
 }
 
 .home-tour-container {

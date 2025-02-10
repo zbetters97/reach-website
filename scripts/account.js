@@ -15,6 +15,7 @@ async function loadUser() {
     const user = await dbGetUser();
     renderAccountHTML(user);
   } catch (error) {
+    console.log(error);
     window.location.href = "login.html";
   }
 }

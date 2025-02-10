@@ -33,9 +33,9 @@ function loadPage() {
 async function loadUser() {
   try {
     await dbGetUser();
-    const address = await dbGetDefaultAddress();
     renderAddressHTML();
   } catch (error) {
+    console.log(error);
     window.location.href = "login.html";
   }
 }
@@ -49,7 +49,7 @@ async function renderAddressHTML() {
 
     if (addresses.length > 0) {
       addresses.forEach((address) => {
-        const isDefault = address.aId === defaultAddressId;
+        const isDefault = address.aid === defaultAddressId;
 
         addressHTML += `  
           <div class="address-card">
@@ -59,17 +59,15 @@ async function renderAddressHTML() {
             <p>${address.city}, ${address.state} ${address.zip}</p>
             <p>Phone number: ${address.phone}</p>
             <div class="address-card-btn-container">
-              ${
-                isDefault
-                  ? ``
-                  : `<a class="link default-address-btn" data-address-id=${address.aId}>
-                Make Default
-                </a>`
-              }              
-              <a class="link edit-address-btn" data-address-id=${address.aId}>
+             ${
+               isDefault
+                 ? `<a class="link remove-default-address-btn">Remove Default</a>`
+                 : `<a class="link default-address-btn" data-address-id=${address.aid}>Make Default</a>`
+             }          
+              <a class="link edit-address-btn" data-address-id=${address.aid}>
                 Edit
               </a>
-              <a class="link remove-address-btn" data-address-id=${address.aId}>
+              <a class="link remove-address-btn" data-address-id=${address.aid}>
                 Remove
               </a>
             </div>
@@ -90,6 +88,16 @@ async function renderAddressHTML() {
     `;
 
     $("#js-address-container").html(addressHTML);
+
+    $(".remove-default-address-btn").on("click", function () {
+      dbSetDefaultAddress("");
+
+      $("#js-address-success-btn").on("click", () => {
+        $("#js-address-success-overlay").removeClass("active");
+        $("#js-address-success-modal").removeClass("active");
+        renderAddressHTML();
+      });
+    });
 
     $(".default-address-btn").on("click", function () {
       const addressId = $(this).data("address-id");

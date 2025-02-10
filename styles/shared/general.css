@@ -79,6 +79,33 @@ h1 {
   transition: all 200ms;
 }
 
+.forward-btn {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 200ms;
+}
+.forward-btn:after {
+  content: "\f178";
+  font-family: FontAwesome;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  height: 100%;
+  transition: 200ms;
+}
+.forward-btn:hover:after {
+  opacity: 1;
+  right: 10px;
+}
+
 .back-btn {
   font-size: 1.5em;
   color: black;
@@ -160,39 +187,17 @@ h1 {
 
 .success-modal-btn {
   font-size: 1.7em;
-  text-align: center;
-  vertical-align: middle;
   color: black;
   background-color: transparent;
   padding: 0.7em 1.5em;
-  margin: 0 auto;
   border: 3px solid black;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 200ms;
 }
 .success-modal-btn:after {
-  content: "\f178";
-  font-family: FontAwesome;
   font-size: 1em;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  right: 0;
-  top: 0;
-  opacity: 0;
-  height: 100%;
-  transition: 200ms;
 }
 .success-modal-btn:hover {
   padding-right: 2.3em;
   padding-left: 0.7em;
-}
-.success-modal-btn:hover:after {
-  opacity: 1;
-  right: 10px;
 }
 
 /* SUCCESS MODAL BACKDROP */
