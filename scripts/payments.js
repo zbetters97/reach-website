@@ -22,7 +22,6 @@ import {
 import { handleWindow } from "./utils/window.js";
 
 const modal = $("#js-payment-modal");
-const savedPassword = "";
 
 $(document).ready(function () {
   handleWindow();
@@ -57,16 +56,16 @@ async function renderPaymentHTML() {
 
         paymentHTML += `  
           <div class="payment-card">
+            ${isDefault ? `<p class="payment-default-tag">Default</p>` : ``}    
             <h3>${payment.fullName}</h3>
             <p>${cardNum}</p>
             <p>${payment.expDate}</p>            
             <div class="payment-card-btn-container">
             ${
               isDefault
-                ? `<a class="link remove-default-payment-btn">Remove Default</a>`
-                : `<a class="link default-payment-btn" data-payment-id=${payment.pid}>Make Default</a>`
-            }
-              
+                ? ``
+                : `<a class="link set-default-payment-btn" data-payment-id=${payment.pid}>Make Default</a>`
+            }              
               <a class="link edit-payment-btn" data-payment-id=${payment.pid}>
                 Edit
               </a>
@@ -94,23 +93,13 @@ async function renderPaymentHTML() {
 
     $(".remove-default-payment-btn").on("click", function () {
       dbSetDefaultPayment("");
-
+      renderPaymentHTML();
+      /*
       $("#js-payment-success-btn").on("click", () => {
         $("#js-payment-success-overlay").removeClass("active");
-        $("#js-payment-success-modal").removeClass("active");
-        renderPaymentHTML();
+        $("#js-payment-success-modal").removeClass("active");        
       });
-    });
-
-    $(".default-payment-btn").on("click", function () {
-      const paymentId = $(this).data("payment-id");
-      dbSetDefaultPayment(paymentId);
-
-      $("#js-payment-success-btn").on("click", () => {
-        $("#js-payment-success-overlay").removeClass("active");
-        $("#js-payment-success-modal").removeClass("active");
-        renderPaymentHTML();
-      });
+      */
     });
 
     $(".edit-payment-btn").on("click", function () {

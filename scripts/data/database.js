@@ -242,7 +242,7 @@ export async function dbUpdateAddress(addressId, addressInfo, isDefault) {
 
     if (addressDoc.exists()) {
       const userId = auth.currentUser.uid;
-      const createdAt = snapshot.data().createdAt;
+      const createdAt = addressDoc.data().createdAt;
       const addressData = {
         userId: userId,
         createdAt: createdAt,
@@ -318,7 +318,7 @@ export async function dbGetDefaultAddress() {
     const userDoc = await getDoc(userRef);
 
     if (userDoc.exists()) {
-      const addressId = snapshot.data().defaultAddressId;
+      const addressId = userDoc.data().defaultAddressId;
       return addressId;
     } else {
       console.log("reference to user was not established");
@@ -336,8 +336,10 @@ export async function dbSetDefaultAddress(addressId) {
     const usersRef = doc(db, "users", userId);
     await updateDoc(usersRef, userData);
 
+    /* 
     $("#js-address-success-overlay").addClass("active");
-    $("#js-address-success-modal").addClass("active");
+    $("#js-address-success-modal").addClass("active"); 
+    */
   } catch (error) {
     console.error(error);
   }
@@ -384,7 +386,7 @@ export async function dbUpdatePayment(paymentId, paymentInfo, isDefault) {
 
     if (paymentDoc.exists()) {
       const userId = auth.currentUser.uid;
-      const createdAt = snapshot.data().createdAt;
+      const createdAt = paymentDoc.data().createdAt;
       const paymentData = {
         userId: userId,
         createdAt: createdAt,
@@ -478,8 +480,10 @@ export async function dbSetDefaultPayment(paymentId) {
     const usersRef = doc(db, "users", userId);
     await updateDoc(usersRef, userData);
 
+    /* 
     $("#js-payment-success-overlay").addClass("active");
-    $("#js-payment-success-modal").addClass("active");
+    $("#js-payment-success-modal").addClass("active"); 
+    */
   } catch (error) {
     console.error(error);
   }

@@ -49,6 +49,12 @@
   flex-direction: column;
   justify-content: space-around;
   gap: 0.3em;
+  position: relative;
+}
+.address-default-tag {
+  position: absolute;
+  top: 2%;
+  right: 2%;
 }
 .address-card h3 {
   font-size: 1.5em;

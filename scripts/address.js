@@ -53,6 +53,7 @@ async function renderAddressHTML() {
 
         addressHTML += `  
           <div class="address-card">
+            ${isDefault ? `<p class="address-default-tag">Default</p>` : ``}    
             <h3>${address.fullName}</h3>
             <p>${address.addressOne}</p>
             <p>${address.addressTwo}</p>
@@ -61,8 +62,8 @@ async function renderAddressHTML() {
             <div class="address-card-btn-container">
              ${
                isDefault
-                 ? `<a class="link remove-default-address-btn">Remove Default</a>`
-                 : `<a class="link default-address-btn" data-address-id=${address.aid}>Make Default</a>`
+                 ? ``
+                 : `<a class="link set-default-address-btn" data-address-id=${address.aid}>Make Default</a>`
              }          
               <a class="link edit-address-btn" data-address-id=${address.aid}>
                 Edit
@@ -91,23 +92,13 @@ async function renderAddressHTML() {
 
     $(".remove-default-address-btn").on("click", function () {
       dbSetDefaultAddress("");
-
+      renderAddressHTML();
+      /* 
       $("#js-address-success-btn").on("click", () => {
         $("#js-address-success-overlay").removeClass("active");
         $("#js-address-success-modal").removeClass("active");
-        renderAddressHTML();
-      });
-    });
-
-    $(".default-address-btn").on("click", function () {
-      const addressId = $(this).data("address-id");
-      dbSetDefaultAddress(addressId);
-
-      $("#js-address-success-btn").on("click", () => {
-        $("#js-address-success-overlay").removeClass("active");
-        $("#js-address-success-modal").removeClass("active");
-        renderAddressHTML();
-      });
+      }); 
+      */
     });
 
     $(".edit-address-btn").on("click", function () {
