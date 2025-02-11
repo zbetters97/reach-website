@@ -56,7 +56,8 @@
   font-weight: bold;
 }
 
-.product-container {
+.product-container,
+.ticket-container {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -71,6 +72,7 @@
   width: 150px;
   height: 150px;
   border-radius: 10px;
+  object-fit: cover;
 }
 .product-description {
   display: flex;
@@ -82,11 +84,20 @@
 }
 .product-quantity {
   display: flex;
+  align-items: center;
   gap: 0.7em;
 }
 .product-quantity a {
   font-weight: bold;
   color: var(--basic-blue);
+}
+.quantity-input {
+  width: 20%;
+  height: 30px;
+  display: none;
+}
+.quantity-save-btn {
+  display: none;
 }
 
 .product-delivery {
