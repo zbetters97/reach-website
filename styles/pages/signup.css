@@ -60,7 +60,6 @@
   margin: 0 auto;
   width: 40%;
   border: 3px solid var(--basic-white);
-  cursor: pointer;
 }
 
 .signup-login-container {

@@ -1,5 +1,6 @@
 import { handleWindow } from "./utils/window.js";
 import { productData, loadProducts, getProduct } from "./data/products.js";
+import cart from "./data/cart.js";
 
 const modal = $("#js-shop-modal");
 
@@ -74,13 +75,15 @@ function renderModalHTML(productId) {
             <input id="js-quantity-container" type="number" value="1" min="1" max="99" />
           </div>
 
-          <div class="modal-added-alert" id="js-modal-added-alert">
-            <i class="fa-solid fa-check"></i>
-            <p>Added to cart</p>
+          <div class="add-cart-btn-container">
+            <div class="shop-added-alert" id="js-shop-added-alert">
+              <i class="fa-solid fa-check"></i>
+              <p>Added to cart</p>
+            </div>
+            <button class="add-cart-btn" id="js-add-cart-btn">            
+              Add to Cart
+            </button>
           </div>
-          <button class="add-cart-btn" id="js-add-cart-btn">            
-            Add to Cart
-          </button>
         </div>
       </div>
     </div>
@@ -105,8 +108,19 @@ function renderModalHTML(productId) {
     const quantity = $("#js-quantity-container").val();
     if (quantity > 99 || quantity < 1) return;
 
-    console.log(`${product.size} ${product.color} ${quantity}`);
+    cart.addToCart(product.id, quantity, "S", product.size, product.color);
+    showAddToCartMsg();
+    console.log(cart);
   });
+}
+
+function showAddToCartMsg() {
+  const addedMessage = $("#js-shop-added-alert");
+  addedMessage.css("opacity", "1");
+
+  setTimeout(() => {
+    addedMessage.css("opacity", "0");
+  }, 2000);
 }
 
 function openModal(modal) {

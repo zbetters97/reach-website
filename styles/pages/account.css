@@ -65,6 +65,5 @@
   border: 2px solid black;
   display: inline-block;
   position: relative;
-  cursor: pointer;
   transition: all 200ms;
 }

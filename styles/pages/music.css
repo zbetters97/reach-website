@@ -81,9 +81,6 @@
 .album-section:nth-child(even) .album-services {
   border: 2px solid black;
 }
-.album-services a {
-  cursor: pointer;
-}
 
 .music-videos-section {
   background-color: var(--basic-white);

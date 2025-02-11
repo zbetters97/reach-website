@@ -1,3 +1,5 @@
+import { identifyCardType } from "./creditCard.js";
+
 let timeouts = [];
 
 export function checkEmptyForm(form) {
@@ -70,11 +72,12 @@ export function isZipValid(zip) {
 }
 
 export function isCardNumValid(cardNum) {
-  return cardNum.length == 19;
+  return identifyCardType(cardNum) !== "null";
 }
 
-export function isSecurityCodeValid(code) {
-  return code.length == 3 && !isNaN(code);
+export function isSecurityCodeValid(code, type) {
+  let length = type === "Amex" ? 4 : 3;
+  return code.length == length && !isNaN(code);
 }
 
 export function isExpDateValid(date) {

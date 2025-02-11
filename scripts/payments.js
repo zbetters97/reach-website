@@ -8,7 +8,7 @@ import {
   dbGetDefaultPayment,
   dbSetDefaultPayment,
 } from "./data/database.js";
-import { maskCardNumber } from "./utils/creditCard.js";
+import { identifyCardType, maskCardNumber } from "./utils/creditCard.js";
 import {
   checkEmptyInput,
   disableNonNumericInput,
@@ -43,7 +43,12 @@ async function loadUser() {
 }
 
 async function renderPaymentHTML() {
-  let paymentHTML = ``;
+  let paymentHTML = `
+    <div class="payment-new-container" id="js-payment-new-container">
+      <i class="fa-solid fa-plus"></i>
+      <a class="payment-new-btn">Add Payment</a>
+    </div>
+  `;
 
   try {
     const payments = await dbGetUserPayments();
@@ -58,6 +63,7 @@ async function renderPaymentHTML() {
           <div class="payment-card">
             ${isDefault ? `<p class="payment-default-tag">Default</p>` : ``}    
             <h3>${payment.fullName}</h3>
+            <p>${payment.type}</p>
             <p>${cardNum}</p>
             <p>${payment.expDate}</p>            
             <div class="payment-card-btn-container">
@@ -82,24 +88,11 @@ async function renderPaymentHTML() {
       `;
     }
 
-    paymentHTML += `
-      <div class="payment-new-container" id="js-payment-new-container">
-        <i class="fa-solid fa-plus"></i>
-        <a class="payment-new-btn">Add Payment</a>
-      </div>
-    `;
-
     $("#js-payment-container").html(paymentHTML);
 
     $(".remove-default-payment-btn").on("click", function () {
       dbSetDefaultPayment("");
       renderPaymentHTML();
-      /*
-      $("#js-payment-success-btn").on("click", () => {
-        $("#js-payment-success-overlay").removeClass("active");
-        $("#js-payment-success-modal").removeClass("active");        
-      });
-      */
     });
 
     $(".edit-payment-btn").on("click", function () {
@@ -126,6 +119,7 @@ async function renderPaymentHTML() {
 async function renderModalHTML(paymentId) {
   let isDefault = false;
   let fullName = "";
+  let type = "";
   let cardNum = "";
   let code = "";
   let expDate = "";
@@ -139,6 +133,7 @@ async function renderModalHTML(paymentId) {
       isDefault = paymentId === defaultPaymentId;
 
       fullName = payment.fullName;
+      type = payment.type;
       cardNum = payment.cardNum;
       code = payment.code;
       expDate = payment.expDate;
@@ -167,7 +162,7 @@ async function renderModalHTML(paymentId) {
           id="js-payment-modal-number"
           name="card-number"
           ${paymentId ? `type="password"` : `type="text"`}
-          maxLength="19"
+          maxLength="20"
           value="${cardNum}"          
         />
       </div>
@@ -178,7 +173,7 @@ async function renderModalHTML(paymentId) {
           id="js-payment-modal-code"
           name="code"
           ${paymentId ? `type="password"` : `type="text"`}
-          maxLength="3"
+          maxLength="4"
           value="${code}"
           
         />
@@ -242,7 +237,7 @@ function handleSubmitPayment(paymentId) {
 
   const cardNum = $("#js-payment-modal-number");
   cardNum.on("keydown", disableNonNumericInput, removeInputMask);
-  cardNum.on("keyup", formatCardNumber);
+  //cardNum.on("keyup", formatCardNumber);
 
   const code = $("#js-payment-modal-code");
   code.on("keydown", disableNonNumericInput, removeInputMask);
@@ -287,7 +282,10 @@ function handleSubmitPayment(paymentId) {
 
       return;
     }
-    if (!isSecurityCodeValid(code.val())) {
+
+    const cardType = identifyCardType(cardNum.val());
+
+    if (!isSecurityCodeValid(code.val(), cardType)) {
       code.addClass("invalid-field");
       showFormAlert("The security code is not valid!");
 
@@ -305,6 +303,7 @@ function handleSubmitPayment(paymentId) {
       cardNum: cardNum.val(),
       code: code.val(),
       expDate: expDate.val(),
+      type: cardType,
     };
 
     if (paymentId) {

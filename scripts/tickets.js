@@ -1,7 +1,8 @@
 import { handleWindow } from "./utils/window.js";
-import { getConcertByID } from "./data/concerts.js";
+import { getConcert } from "./data/concerts.js";
 import { formatDateMDYLong, formatTime } from "./utils/date.js";
 import formatCurrency from "./utils/money.js";
+import cart from "./data/cart.js";
 
 let totalPrice = 0;
 
@@ -17,7 +18,7 @@ function loadPage() {
 function renderTicketHTML() {
   const url = new URL(window.location.href);
   const id = url.searchParams.get("eventId");
-  const concert = getConcertByID(id);
+  const concert = getConcert(id);
 
   const date = formatDateMDYLong(concert.date);
   const time = formatTime(concert.time);
@@ -45,11 +46,11 @@ function renderTicketHTML() {
         </select>
       </div>
 
-      <div class="ticket-field ticket-amount">
-        <label for="ticket-amount">Quantity</label>
+      <div class="ticket-field ticket-quantity">
+        <label for="ticket-quantity">Quantity</label>
         <input
-          id="js-ticket-amount"          
-          name="ticket-amount"
+          id="js-ticket-quantity"          
+          name="ticket-quantity"
           type="number"
           value="1"
           min="1"
@@ -78,14 +79,14 @@ function renderTicketHTML() {
 
   $("#js-tickets-container").html(ticketHTML);
 
-  const ticketAmount = $("#js-ticket-amount");
+  const ticketQuantity = $("#js-ticket-quantity");
   const ticketType = $("#js-ticket-type");
 
-  ticketAmount.keypress(function (event) {
+  ticketQuantity.keypress(function (event) {
     event.preventDefault();
   });
 
-  ticketAmount.change(function () {
+  ticketQuantity.change(function () {
     updateTotal(concert);
   });
 
@@ -94,12 +95,17 @@ function renderTicketHTML() {
   });
 
   $("#js-tickets-add-btn").on("click", () => {
+    const quantity = ticketQuantity.val();
+    if (quantity > 10 || quantity < 1) return;
+
+    cart.addToCart(id, quantity, "T", ticketType.val());
     showAddToCartMsg();
+    console.log(cart);
   });
 }
 
 function updateTotal(concert) {
-  const quantity = $("#js-ticket-amount").val();
+  const quantity = $("#js-ticket-quantity").val();
   const type = $("#js-ticket-type").val();
   const price = concert.ticketPrice[type];
 

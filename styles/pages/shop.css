@@ -67,7 +67,6 @@
   position: absolute;
   top: 2%;
   right: 2%;
-  cursor: pointer;
 }
 
 .shop-modal-container {
@@ -163,15 +162,25 @@
   outline: none;
 }
 
-.modal-added-alert {
-  font-size: 1em;
+.add-cart-btn-container {
+  align-self: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+}
+.shop-added-alert {
+  font-size: 0.8em;
   color: green;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 0.3em;
   opacity: 0;
   transition: all 200ms;
 }
-
 .add-cart-btn {
   font-size: 1em;
   color: var(--basic-white);
@@ -181,7 +190,6 @@
   align-self: center;
   border: 3px solid var(--basic-white);
   border-radius: 10px;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 200ms;

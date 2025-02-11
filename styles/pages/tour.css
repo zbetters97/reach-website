@@ -89,7 +89,6 @@
   background-color: transparent;
   border: 2px solid var(--basic-blue);
   padding: 5px 10px;
-  cursor: pointer;
   transition: all 150ms;
 }
 .maps-info-btn:hover {

@@ -68,6 +68,8 @@
   color: green;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 0.3em;
   opacity: 0;
   transition: all 200ms;
 }
@@ -76,12 +78,11 @@
   font-size: 2em;
   color: var(--basic-white);
   background-color: var(--basic-blue);
+  align-self: center;
   padding: 0.5em;
   margin: 0 auto;
   width: 45%;
   border: 3px solid var(--basic-blue);
-  cursor: pointer;
-  align-self: center;
   position: relative;
   overflow: hidden;
   transition: all 200ms;

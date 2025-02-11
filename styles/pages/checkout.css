@@ -1,0 +1,112 @@
+.checkout-section {
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  background-color: white;
+  margin: 2em auto 2em auto;
+  width: 1000px;
+  border: 3px solid black;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-section h2 {
+  font-family: "Raleway", Arial, sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  color: var(--basic-blue);
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.checkout-container {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 1em;
+}
+
+.checkout-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.checkout-details,
+.checkout-product-container,
+.checkout-summary-container {
+  border: 2px solid black;
+  padding: 1em;
+}
+
+.checkout-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+}
+.details-header p {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+.details-header a {
+  color: var(--basic-blue);
+  font-weight: bold;
+}
+
+.checkout-product-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.product-container {
+  background-color: darkcyan;
+}
+.product-delivery {
+  background-color: bisque;
+}
+.delivery-option {
+  display: flex;
+}
+
+.product-details div {
+  display: flex;
+}
+.product-details img {
+  width: 100px;
+  display: inline-block;
+}
+
+.checkout-summary-container {
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.checkout-summary-container h3 {
+  font-size: 1.3em;
+}
+.order-pricing {
+  border-bottom: 2px solid black;
+}
+.order-pricing div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+}
+.order-total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkout-submit-btn {
+  font-size: 1.5em;
+  background-color: var(--basic-blue);
+  color: var(--basic-white);
+  padding: 0.5em;
+  border: none;
+}

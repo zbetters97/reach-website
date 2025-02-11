@@ -44,12 +44,12 @@
     <link rel="stylesheet" href="styles/shared/general.css" />
     <link rel="stylesheet" href="styles/shared/header.css" />
     <link rel="stylesheet" href="styles/shared/footer.css" />
-    <link rel="stylesheet" href="styles/pages/cart.css" />
+    <link rel="stylesheet" href="styles/pages/checkout.css" />
     <!-- END STYLESHEETS -->
 
     <!-- SCRIPTS -->
     <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script defer type="module" src="scripts/cart.js"></script>
+    <script defer type="module" src="scripts/checkout.js"></script>
     <!-- END SCRIPTS -->
   </head>
   <body>
@@ -63,7 +63,7 @@
       <a class="navbar-link" href="about.html">About</a>
 
       <div class="navbar-user-container">
-        <a class="navbar-cart" href="cart.html">
+        <a class="navbar-cart" href="checkout.html">
           <i class="fa-solid fa-cart-shopping"> </i>
         </a>
         <a class="navbar-user js-navbar-user">
@@ -73,8 +73,92 @@
     </nav>
     <main>
       <div class="wrapper">
-        <section class="cart-section">
-          <h1>Your Cart</h1>
+        <section class="checkout-section">
+          <h2>Secure Checkout</h2>
+
+          <div class="checkout-container">
+            <div class="checkout-items-container">
+              <div class="checkout-details address-container">
+                <div class="details-header">
+                  <p>Delivering to <span>Zachary Betters</span></p>
+                  <a>Change</a>
+                </div>
+                <p>162 Valerie Ln</p>
+                <p>Bear, DE 19701</p>
+              </div>
+              <div class="checkout-details payment-container">
+                <div class="details-header">
+                  <p>Paying with <span>Mastercard 1234</span></p>
+                  <a>Change</a>
+                </div>
+                <p>Jenna Betters</p>
+              </div>
+
+              <div class="checkout-product-container">
+                <div class="product-container">
+                  <div class="product-details">
+                    <h3>Arriving <span>Thursday, March 2</span></h3>
+                    <div>
+                      <img src="images/shop/shirt/shirt-classic-black.png" />
+                      <h4>RW Modern T-Shirt</h4>
+                    </div>
+
+                    <p>Size:<span>Medium</span></p>
+                    <p>Color:<span>Black</span></p>
+                  </div>
+
+                  <div class="product-quantity">
+                    <p>Quantity: <span>1</span></p>
+                    <a>Update</a>
+                    <input class="quantity-input" />
+                    <a>Save</a>
+                    <a>Delete</a>
+                  </div>
+                </div>
+
+                <div class="product-delivery">
+                  <h4>Choose a delivery option:</h4>
+                  <div class="delivery-option">
+                    <input type="radio" />
+                    <div>
+                      <p>Saturday, March 3</p>
+                      <p>Free Shipping</p>
+                    </div>
+                  </div>
+                  <div class="delivery-option">
+                    <input type="radio" />
+                    <div>
+                      <p>Friday, March 3</p>
+                      <p>$3.99 Shipping</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="checkout-summary-container">
+              <h3>Order Summary</h3>
+              <div class="order-pricing">
+                <div>
+                  <p>Items (<span>2</span>):</p>
+                  <p>$43.99</p>
+                </div>
+                <div>
+                  <p>Shipping & handling:</p>
+                  <p>$2.95</p>
+                </div>
+                <div>
+                  <p>Estimated tax:</p>
+                  <p>$1.15</p>
+                </div>
+              </div>
+              <div class="order-total">
+                <h3>Order total:</h3>
+                <h3>$45.99</h3>
+              </div>
+              <button class="checkout-submit-btn">Place order</button>
+            </div>
+          </div>
         </section>
       </div>
       <a class="to-top" href="">

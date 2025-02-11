@@ -25,11 +25,17 @@ body {
 h1 {
   font-family: "Archivo", Arial, sans-serif;
   text-transform: uppercase;
-  font-size: 3.7em;
+  /* */
+  font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight: 300;
   letter-spacing: 0.25em;
   margin: 0.8em;
   text-align: center;
+}
+
+a,
+button {
+  cursor: pointer;
 }
 
 .to-top {
@@ -83,7 +89,6 @@ h1 {
   text-align: center;
   vertical-align: middle;
   margin: 0 auto;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 200ms;
@@ -118,7 +123,6 @@ h1 {
   vertical-align: middle;
   display: inline-block;
   position: relative;
-  cursor: pointer;
   transition: all 200ms;
 }
 .back-btn:after {

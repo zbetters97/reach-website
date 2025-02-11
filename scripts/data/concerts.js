@@ -67,7 +67,7 @@ const concerts = [
 ];
 export default concerts;
 
-export function getConcertByID(concertId) {
+export function getConcert(concertId) {
   const concert =
     concerts[concerts.findIndex((c) => c.id == concertId)] || concerts[0];
 
