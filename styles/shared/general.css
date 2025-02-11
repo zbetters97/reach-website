@@ -63,7 +63,7 @@ button {
   background: linear-gradient(currentColor 0 0) bottom left/
     var(--underline-width, 0%) 0.12em no-repeat;
   display: inline-block;
-  padding: 0.2em 0;
+  padding-bottom: 0.2em;
   text-decoration: none;
   transition: background-size 0.3s;
 }

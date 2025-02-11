@@ -2,7 +2,7 @@
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   background-color: white;
   margin: 2em auto 2em auto;
-  width: 1000px;
+  width: 1200px;
   border: 3px solid black;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
@@ -22,9 +22,13 @@
 
 .checkout-container {
   padding: 1em;
+  width: 90%;
   display: grid;
   grid-template-columns: 2fr 1fr;
   column-gap: 1em;
+}
+.checkout-container h3 {
+  font-size: 1.3em;
 }
 
 .checkout-items-container {
@@ -33,52 +37,71 @@
   gap: 1em;
 }
 
-.checkout-details,
-.checkout-product-container,
-.checkout-summary-container {
+.checkout-item {
   border: 2px solid black;
   padding: 1em;
 }
 
-.checkout-details {
+.checkout-method {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
 }
-
-.details-header {
+.method-header {
   display: flex;
   justify-content: space-between;
 }
-.details-header p {
-  font-weight: bold;
-  font-size: 1.3em;
-}
-.details-header a {
+.method-header a {
   color: var(--basic-blue);
   font-weight: bold;
 }
 
-.checkout-product-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-}
 .product-container {
-  background-color: darkcyan;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
+
+.product-details {
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  column-gap: 0.3em;
+}
+.product-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+.product-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+.product-price {
+  font-weight: bold;
+}
+.product-quantity {
+  display: flex;
+  gap: 0.7em;
+}
+.product-quantity a {
+  font-weight: bold;
+  color: var(--basic-blue);
+}
+
 .product-delivery {
-  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
 }
 .delivery-option {
   display: flex;
+  gap: 0.5em;
 }
-
-.product-details div {
+.delivery-date {
   display: flex;
-}
-.product-details img {
-  width: 100px;
-  display: inline-block;
+  flex-direction: column;
+  gap: 0.3em;
 }
 
 .checkout-summary-container {
@@ -86,9 +109,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-}
-.checkout-summary-container h3 {
-  font-size: 1.3em;
 }
 .order-pricing {
   border-bottom: 2px solid black;

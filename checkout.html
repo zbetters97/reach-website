@@ -78,66 +78,83 @@
 
           <div class="checkout-container">
             <div class="checkout-items-container">
-              <div class="checkout-details address-container">
-                <div class="details-header">
-                  <p>Delivering to <span>Zachary Betters</span></p>
+              <div class="checkout-item checkout-method">
+                <div class="method-header">
+                  <h3>Delivering to <span>Zachary Betters</span></h3>
                   <a>Change</a>
                 </div>
                 <p>162 Valerie Ln</p>
                 <p>Bear, DE 19701</p>
               </div>
-              <div class="checkout-details payment-container">
-                <div class="details-header">
-                  <p>Paying with <span>Mastercard 1234</span></p>
+              <div class="checkout-item checkout-method">
+                <div class="method-header">
+                  <h3>Paying with <span>Mastercard 1234</span></h3>
                   <a>Change</a>
                 </div>
                 <p>Jenna Betters</p>
               </div>
 
-              <div class="checkout-product-container">
+              <div class="checkout-item checkout-product-container">
                 <div class="product-container">
+                  <h3>Shop Items</h3>
                   <div class="product-details">
-                    <h3>Arriving <span>Thursday, March 2</span></h3>
-                    <div>
-                      <img src="images/shop/shirt/shirt-classic-black.png" />
-                      <h4>RW Modern T-Shirt</h4>
+                    <img
+                      class="product-image"
+                      src="images/shop/shirt/shirt-classic-black.png"
+                    />
+
+                    <div class="product-description">
+                      <h3>RW Modern T-Shirt</h3>
+                      <p class="product-price">$19.99</p>
+
+                      <p>Size: <span>Medium</span></p>
+                      <p>Color: <span>Black</span></p>
+
+                      <div class="product-quantity">
+                        <p>Quantity: <span>1</span></p>
+                        <a>Update</a>
+                        <a>Delete</a>
+                      </div>
                     </div>
 
-                    <p>Size:<span>Medium</span></p>
-                    <p>Color:<span>Black</span></p>
-                  </div>
-
-                  <div class="product-quantity">
-                    <p>Quantity: <span>1</span></p>
-                    <a>Update</a>
-                    <input class="quantity-input" />
-                    <a>Save</a>
-                    <a>Delete</a>
-                  </div>
-                </div>
-
-                <div class="product-delivery">
-                  <h4>Choose a delivery option:</h4>
-                  <div class="delivery-option">
-                    <input type="radio" />
-                    <div>
-                      <p>Saturday, March 3</p>
-                      <p>Free Shipping</p>
-                    </div>
-                  </div>
-                  <div class="delivery-option">
-                    <input type="radio" />
-                    <div>
-                      <p>Friday, March 3</p>
-                      <p>$3.99 Shipping</p>
+                    <div class="product-delivery">
+                      <div class="delivery-option">
+                        <input type="radio" name="radio-option-id" />
+                        <div class="delivery-date">
+                          <h4>Saturday, March 3</h4>
+                          <p>Free Shipping</p>
+                        </div>
+                      </div>
+                      <div class="delivery-option">
+                        <input type="radio" name="radio-option-id" />
+                        <div class="delivery-date">
+                          <h4>Friday, March 3</h4>
+                          <p>$3.99 Delivery</p>
+                        </div>
+                      </div>
+                      <div class="delivery-option">
+                        <input type="radio" name="radio-option-id" />
+                        <div class="delivery-date">
+                          <h4>Friday, March 3</h4>
+                          <p>$3.99 Delivery</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div class="checkout-item checkout-ticket-container">
+                <div class="ticket-container">
+                  <h3>Ticket Items</h3>
+                  <div class="ticket-details"></div>
+                </div>
+              </div>
             </div>
 
-            <div class="checkout-summary-container">
+            <div class="checkout-item checkout-summary-container">
               <h3>Order Summary</h3>
+
               <div class="order-pricing">
                 <div>
                   <p>Items (<span>2</span>):</p>
@@ -152,10 +169,12 @@
                   <p>$1.15</p>
                 </div>
               </div>
+
               <div class="order-total">
                 <h3>Order total:</h3>
                 <h3>$45.99</h3>
               </div>
+
               <button class="checkout-submit-btn">Place order</button>
             </div>
           </div>
