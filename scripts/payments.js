@@ -12,12 +12,12 @@ import { identifyCardType, maskCardNumber } from "./utils/creditCard.js";
 import {
   checkEmptyInput,
   disableNonNumericInput,
-  formatCardNumber,
   formatDate,
   isCardNumValid,
   isExpDateValid,
   isSecurityCodeValid,
   showFormAlert,
+  showLoginErrorModal,
 } from "./utils/form.js";
 import { handleWindow } from "./utils/window.js";
 
@@ -38,7 +38,7 @@ async function loadUser() {
     renderPaymentHTML();
   } catch (error) {
     console.log(error);
-    window.location.href = "login.html";
+    showLoginErrorModal();
   }
 }
 
@@ -215,13 +215,12 @@ async function renderModalHTML(paymentId) {
   $("#js-payment-modal").html(modalHTML);
   $("#js-payment-modal-default").prop("checked", isDefault);
 
-  $("#js-payment-overlay, #js-payment-close-modal-btn").on("click", () => {
+  $("#js-modal-overlay, #js-payment-close-modal-btn").on("click", () => {
     closeModal(modal);
   });
 
   $("#js-payment-success-btn").on("click", () => {
-    $("#js-payment-success-overlay").removeClass("active");
-    $("#js-payment-success-modal").removeClass("active");
+    closeModal($("#js-success-modal"));
     renderPaymentHTML();
   });
 
@@ -317,13 +316,13 @@ function handleSubmitPayment(paymentId) {
 function openModal(modal) {
   if (modal != null) {
     modal.addClass("active");
-    $("#js-payment-overlay").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   }
 }
 
 function closeModal(modal) {
   if (modal != null) {
     modal.removeClass("active");
-    $("#js-payment-overlay").removeClass("active");
+    $("#js-modal-overlay").removeClass("active");
   }
 }

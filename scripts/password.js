@@ -4,6 +4,7 @@ import {
   checkEmptyForm,
   isPasswordValid,
   showFormAlert,
+  showLoginErrorModal,
 } from "./utils/form.js";
 
 $(document).ready(function () {
@@ -21,7 +22,7 @@ async function loadUser() {
     changePassword();
   } catch (error) {
     console.log(error);
-    // window.location.href = "login.html";
+    showLoginErrorModal();
   }
 }
 

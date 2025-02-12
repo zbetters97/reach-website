@@ -1,5 +1,6 @@
 import { handleWindow } from "./utils/window.js";
 import { dbGetUser, dbLogout } from "./data/database.js";
+import { showLoginErrorModal } from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -16,7 +17,7 @@ async function loadUser() {
     renderAccountHTML(user);
   } catch (error) {
     console.log(error);
-    window.location.href = "login.html";
+    showLoginErrorModal();
   }
 }
 

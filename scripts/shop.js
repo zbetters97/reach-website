@@ -7,6 +7,7 @@ const modal = $("#js-shop-modal");
 $(document).ready(function () {
   handleWindow();
   loadPage();
+  console.log(cart);
 });
 
 function loadPage() {
@@ -97,7 +98,7 @@ function renderModalHTML(pId) {
     $("#js-shop-modal-img").attr("src", product.image);
   });
 
-  $("#js-shop-overlay, #js-shop-close-modal-btn").on("click", () => {
+  $("#js-modal-overlay, #js-shop-close-modal-btn").on("click", () => {
     closeModal(modal);
   });
 
@@ -132,13 +133,13 @@ function showAddToCartMsg() {
 function openModal(modal) {
   if (modal != null) {
     modal.addClass("active");
-    $("#js-shop-overlay").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   }
 }
 
 function closeModal(modal) {
   if (modal != null) {
     modal.removeClass("active");
-    $("#js-shop-overlay").removeClass("active");
+    $("#js-modal-overlay").removeClass("active");
   }
 }

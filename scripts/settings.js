@@ -6,6 +6,7 @@ import {
   formatPhoneNumber,
   isPhoneValid,
   showFormAlert,
+  showLoginErrorModal,
 } from "./utils/form.js";
 
 $(document).ready(function () {
@@ -22,7 +23,8 @@ async function loadUser() {
     const user = await dbGetUser();
     renderSettingsHTML(user);
   } catch (error) {
-    window.location.href = "login.html";
+    console.log(error);
+    showLoginErrorModal();
   }
 }
 

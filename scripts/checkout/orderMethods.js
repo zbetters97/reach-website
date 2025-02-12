@@ -89,13 +89,10 @@ async function renderAddressModal() {
       });
     });
 
-    $("#js-checkout-overlay, #js-checkout-address-close-btn").on(
-      "click",
-      () => {
-        closeModal(addressModal);
-        closeModal(paymentModal);
-      }
-    );
+    $("#js-modal-overlay, #js-checkout-address-close-btn").on("click", () => {
+      closeModal(addressModal);
+      closeModal(paymentModal);
+    });
   } catch (error) {
     console.log(error);
   }
@@ -175,13 +172,10 @@ async function renderPaymentModal() {
       });
     });
 
-    $("#js-checkout-overlay, #js-checkout-payment-close-btn").on(
-      "click",
-      () => {
-        closeModal(addressModal);
-        closeModal(paymentModal);
-      }
-    );
+    $("#js-modal-overlay, #js-checkout-payment-close-btn").on("click", () => {
+      closeModal(addressModal);
+      closeModal(paymentModal);
+    });
   } catch (error) {
     console.log(error);
   }
@@ -190,13 +184,13 @@ async function renderPaymentModal() {
 function openModal(modal) {
   if (modal != null) {
     modal.addClass("active");
-    $("#js-checkout-overlay").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   }
 }
 
 function closeModal(modal) {
   if (modal != null) {
     modal.removeClass("active");
-    $("#js-checkout-overlay").removeClass("active");
+    $("#js-modal-overlay").removeClass("active");
   }
 }

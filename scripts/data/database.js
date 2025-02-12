@@ -63,8 +63,8 @@ export async function dbSignup(firstName, lastName, email, phone, password) {
     const docRef = doc(db, "users", user.uid);
     await setDoc(docRef, userData);
 
-    $("#js-signup-success-modal").addClass("active");
-    $("#js-signup-success-overlay").addClass("active");
+    $("#js-success-modal").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   } catch (error) {
     console.log(error);
 
@@ -85,6 +85,7 @@ export async function dbLogin(email, password) {
     const user = userCredential.user;
 
     localStorage.setItem("loggedInUserId", user.uid);
+
     window.location.href = "account.html";
   } catch (error) {
     console.log(error);
@@ -105,8 +106,8 @@ export async function dbLogout() {
     await signOut(auth);
     localStorage.removeItem("loggedInUserId");
 
-    $("#js-logout-success-modal").addClass("active");
-    $("#js-logout-success-overlay").addClass("active");
+    $("#js-success-modal").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   } catch (error) {
     console.log(error);
     showFormAlert("Something went wrong! Please try again.");
@@ -148,8 +149,8 @@ export async function dbUpdateUserInfo(firstName, lastName, phone) {
     const usersRef = doc(db, "users", userId);
     await updateDoc(usersRef, userData);
 
-    $("#js-settings-success-modal").addClass("active");
-    $("#js-settings-success-overlay").addClass("active");
+    $("#js-success-modal").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   } catch (error) {
     console.error(error);
     showFormAlert("Something went wrong! Please try again.");
@@ -163,8 +164,8 @@ export async function dbUpdatePassword(oldpassword, newpassword) {
     await reauthenticateWithCredential(user, credentials);
     await updatePassword(user, newpassword);
 
-    $("#js-password-success-modal").addClass("active");
-    $("#js-password-success-overlay").addClass("active");
+    $("#js-success-modal").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   } catch (error) {
     console.log(error);
 
@@ -183,10 +184,8 @@ export async function dbSendPasswordEmail(email) {
     if (emailExists) {
       await sendPasswordResetEmail(auth, email);
 
-      $("#js-login-overlay").removeClass("active");
       $("#js-login-modal").removeClass("active");
-      $("#js-reset-success-overlay").addClass("active");
-      $("#js-reset-success-modal").addClass("active");
+      $("#js-success-modal").addClass("active");
     } else {
       $("#js-modal-login-email").addClass("invalid-field");
       showFormAlert("Email address does not exist!");
@@ -228,10 +227,8 @@ export async function dbAddAddress(addressInfo, isDefault) {
 
     isDefault && dbSetDefaultAddress(docRef.id);
 
-    $("#js-address-overlay").removeClass("active");
     $("#js-address-modal").removeClass("active");
-    $("#js-address-success-overlay").addClass("active");
-    $("#js-address-success-modal").addClass("active");
+    $("#js-success-modal").addClass("active");
   } catch (error) {
     console.log(error);
     showFormAlert("Something went wrong! Please try again");
@@ -261,10 +258,8 @@ export async function dbUpdateAddress(addressId, addressInfo, isDefault) {
         await dbSetDefaultAddress("");
       }
 
-      $("#js-address-overlay").removeClass("active");
       $("#js-address-modal").removeClass("active");
-      $("#js-address-success-overlay").addClass("active");
-      $("#js-address-success-modal").addClass("active");
+      $("#js-success-modal").addClass("active");
     } else {
       console.log("reference to address was not established");
       showFormAlert("Something went wrong! Please try again.");
@@ -337,11 +332,6 @@ export async function dbSetDefaultAddress(addressId) {
     };
     const usersRef = doc(db, "users", userId);
     await updateDoc(usersRef, userData);
-
-    /* 
-    $("#js-address-success-overlay").addClass("active");
-    $("#js-address-success-modal").addClass("active"); 
-    */
   } catch (error) {
     console.error(error);
   }
@@ -372,10 +362,8 @@ export async function dbAddPayment(paymentInfo, isDefault) {
 
     isDefault && dbSetDefaultPayment(docRef.id);
 
-    $("#js-payment-overlay").removeClass("active");
     $("#js-payment-modal").removeClass("active");
-    $("#js-payment-success-overlay").addClass("active");
-    $("#js-payment-success-modal").addClass("active");
+    $("#js-success-modal").addClass("active");
   } catch (error) {
     console.log(error);
     showFormAlert("Something went wrong! Please try again.");
@@ -405,10 +393,8 @@ export async function dbUpdatePayment(paymentId, paymentInfo, isDefault) {
         await dbSetDefaultPayment("");
       }
 
-      $("#js-payment-overlay").removeClass("active");
       $("#js-payment-modal").removeClass("active");
-      $("#js-payment-success-overlay").addClass("active");
-      $("#js-payment-success-modal").addClass("active");
+      $("#js-success-modal").addClass("active");
     } else {
       console.log("reference to payment was not established");
       showFormAlert("Something went wrong! Please try again.");
@@ -481,11 +467,6 @@ export async function dbSetDefaultPayment(paymentId) {
     };
     const usersRef = doc(db, "users", userId);
     await updateDoc(usersRef, userData);
-
-    /* 
-    $("#js-payment-success-overlay").addClass("active");
-    $("#js-payment-success-modal").addClass("active"); 
-    */
   } catch (error) {
     console.error(error);
   }

@@ -15,6 +15,7 @@ import {
   isPhoneValid,
   isZipValid,
   showFormAlert,
+  showLoginErrorModal,
   statesOptionList,
 } from "./utils/form.js";
 import { handleWindow } from "./utils/window.js";
@@ -36,7 +37,7 @@ async function loadUser() {
     renderAddressHTML();
   } catch (error) {
     console.log(error);
-    window.location.href = "login.html";
+    showLoginErrorModal();
   }
 }
 
@@ -238,13 +239,12 @@ async function renderModalHTML(addressId) {
   $("#js-address-modal-state").val(`${state}`);
   $("#js-address-modal-default").prop("checked", isDefault);
 
-  $("#js-address-overlay, #js-address-close-modal-btn").on("click", () => {
+  $("#js-modal-overlay, #js-address-close-modal-btn").on("click", () => {
     closeModal(modal);
   });
 
   $("#js-address-success-btn").on("click", () => {
-    $("#js-address-success-overlay").removeClass("active");
-    $("#js-address-success-modal").removeClass("active");
+    closeModal($("#js-success-modal"));
     renderAddressHTML();
   });
 
@@ -326,13 +326,13 @@ function handleSubmitAddress(addressId) {
 function openModal(modal) {
   if (modal != null) {
     modal.addClass("active");
-    $("#js-address-overlay").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   }
 }
 
 function closeModal(modal) {
   if (modal != null) {
     modal.removeClass("active");
-    $("#js-address-overlay").removeClass("active");
+    $("#js-modal-overlay").removeClass("active");
   }
 }

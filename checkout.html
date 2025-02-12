@@ -117,15 +117,32 @@
               <!-- JS INSERTS DATA HERE -->
             </div>
           </div>
+
+          <div class="checkout-modal" id="js-checkout-address-modal">
+            <!-- JS INSERTS DATA HERE -->
+          </div>
+
+          <div class="checkout-modal" id="js-checkout-payment-modal">
+            <!-- JS INSERTS DATA HERE -->
+          </div>
+
+          <div class="alert-modal" id="js-alert-modal">
+            <div class="alert-modal-container">
+              <div class="alert-modal-msg">
+                <h2>Please login to continue</h2>
+              </div>
+              <button
+                class="forward-btn alert-modal-btn"
+                onclick="window.location.href='login.html'"
+              >
+                Go to login
+              </button>
+            </div>
+          </div>
         </section>
       </div>
-      <div class="checkout-modal" id="js-checkout-address-modal">
-        <!-- JS INSERTS DATA HERE -->
-      </div>
-      <div class="checkout-modal" id="js-checkout-payment-modal">
-        <!-- JS INSERTS DATA HERE -->
-      </div>
-      <div class="checkout-overlay" id="js-checkout-overlay"></div>
+
+      <div class="modal-overlay" id="js-modal-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>

@@ -1,3 +1,5 @@
+import { dbGetUser } from "./database.js";
+
 export class Cart {
   cartItems;
 

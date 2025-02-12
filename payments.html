@@ -87,24 +87,36 @@
             <!-- JS INSERTS DATA HERE -->
           </div>
 
-          <div class="success-modal" id="js-payment-success-modal">
-            <div class="success-modal-container">
+          <div class="alert-modal" id="js-success-modal">
+            <div class="alert-modal-container">
               <div class="success-modal-msg">
                 <i class="fa-solid fa-circle-check"></i>
                 <p>Changes Saved!</p>
               </div>
               <button
-                class="forward-btn success-modal-btn"
+                class="forward-btn alert-modal-btn"
                 id="js-payment-success-btn"
               >
                 Go to your payments
               </button>
             </div>
           </div>
+          <div class="alert-modal" id="js-alert-modal">
+            <div class="alert-modal-container">
+              <div class="alert-modal-msg">
+                <h2>Please login to continue</h2>
+              </div>
+              <button
+                class="forward-btn alert-modal-btn"
+                onclick="window.location.href='login.html'"
+              >
+                Go to login
+              </button>
+            </div>
+          </div>
         </section>
       </div>
-      <div class="payment-overlay" id="js-payment-overlay"></div>
-      <div class="success-overlay" id="js-payment-success-overlay"></div>
+      <div class="modal-overlay" id="js-modal-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>

@@ -150,14 +150,27 @@
             </div>
           </div>
 
-          <div class="success-modal" id="js-reset-success-modal">
-            <div class="success-modal-container">
+          <div class="alert-modal" id="js-success-modal">
+            <div class="alert-modal-container">
               <div class="success-modal-msg">
                 <i class="fa-solid fa-circle-check"></i>
-                <p>Reset Email Sent!</p>
+                <p>Reset email sent!</p>
               </div>
               <button
-                class="forward-btn success-modal-btn"
+                class="forward-btn alert-modal-btn"
+                onclick="window.location.href='login.html'"
+              >
+                Go to login
+              </button>
+            </div>
+          </div>
+          <div class="alert-modal" id="js-alert-modal">
+            <div class="alert-modal-container">
+              <div class="alert-modal-msg">
+                <h2>Please login to continue</h2>
+              </div>
+              <button
+                class="forward-btn alert-modal-btn"
                 onclick="window.location.href='login.html'"
               >
                 Go to login
@@ -166,8 +179,7 @@
           </div>
         </section>
       </div>
-      <div class="login-overlay" id="js-login-overlay"></div>
-      <div class="success-overlay" id="js-reset-success-overlay"></div>
+      <div class="modal-overlay" id="js-modal-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>

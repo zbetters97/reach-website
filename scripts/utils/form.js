@@ -104,6 +104,11 @@ export function hideFormAlert() {
   $("input").removeClass("invalid-field");
 }
 
+export function showLoginErrorModal() {
+  $("#js-alert-modal").addClass("active");
+  $("#js-modal-overlay").addClass("active");
+}
+
 export let statesOptionList = `
   <option value="">Select state</option>
   <option value="AL">Alabama</option>

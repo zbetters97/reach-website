@@ -56,7 +56,7 @@ function handleLogin() {
 }
 
 function handleModal() {
-  $("#js-login-overlay, #js-login-close-btn").on("click", () => {
+  $("#js-modal-overlay, #js-login-close-btn").on("click", () => {
     hideFormAlert();
     closeModal(modal);
   });
@@ -96,13 +96,13 @@ function handleModal() {
 function openModal(modal) {
   if (modal != null) {
     modal.addClass("active");
-    $("#js-login-overlay").addClass("active");
+    $("#js-modal-overlay").addClass("active");
   }
 }
 
 function closeModal(modal) {
   if (modal != null) {
     modal.removeClass("active");
-    $("#js-login-overlay").removeClass("active");
+    $("#js-modal-overlay").removeClass("active");
   }
 }
