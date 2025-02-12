@@ -42,11 +42,11 @@ async function loadUser() {
 
 async function renderAddressHTML() {
   let addressHTML = `
-      <div class="address-new-container" id="js-address-new-container">
-        <i class="fa-solid fa-plus"></i>
-        <a class="address-new-btn">Add Address</a>
-      </div>
-    `;
+    <div class="address-new-container" id="js-address-new-container">
+      <i class="fa-solid fa-plus"></i>
+      <a class="address-new-btn">Add Address</a>
+    </div>
+  `;
 
   try {
     const addresses = await dbGetUserAddresses();
@@ -91,12 +91,6 @@ async function renderAddressHTML() {
     $(".remove-default-address-btn").on("click", function () {
       dbSetDefaultAddress("");
       renderAddressHTML();
-      /* 
-      $("#js-address-success-btn").on("click", () => {
-        $("#js-address-success-overlay").removeClass("active");
-        $("#js-address-success-modal").removeClass("active");
-      }); 
-      */
     });
 
     $(".edit-address-btn").on("click", function () {

@@ -17,8 +17,14 @@ export class Cart {
     localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
-  addToCart(id, quantity = 1, category, type = "One Size", color) {
-    const index = this.cartItems.findIndex((p) => p.productId == id);
+  #generateId() {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
+  }
+
+  addToCart(pId, quantity = 1, category, type, color) {
+    const index = this.cartItems.findIndex(
+      (p) => p.pId == pId && p.type == type && p.color == color
+    );
 
     if (index !== -1) {
       this.cartItems[index].quantity += quantity;
@@ -26,19 +32,22 @@ export class Cart {
       const deliveryId = category === "T" ? "0" : "1";
 
       this.cartItems.push({
-        productId: id,
+        cId: this.#generateId(),
+        pId: pId,
         category: category,
         quantity: quantity,
         type: type,
         color: color,
-        deliveryOptionId: deliveryId,
+        deliveryId: deliveryId,
       });
     }
 
     this.saveToStorage();
   }
-  removeFromCart(id) {
-    const index = this.cartItems.findIndex((p) => p.id == id);
+
+  removeFromCart(cId) {
+    const index = this.cartItems.findIndex((p) => p.cId == cId);
+
     index !== -1 && this.cartItems.splice(index, 1);
 
     this.saveToStorage();
@@ -48,10 +57,14 @@ export class Cart {
     this.saveToStorage();
   }
 
-  updateQuantity(id, newQuantity) {
-    if (newQuantity > 0 && newQuantity < 1000) {
-      this.cartItems.forEach((cartItem) => {
-        cartItem.id === id && (cartItem.quantity = Number(newQuantity));
+  updateQuantity(cId, newQuantity) {
+    if (newQuantity === 0) {
+      this.removeFromCart(cId);
+      return true;
+    }
+    if (newQuantity > 0 && newQuantity < 100) {
+      this.cartItems.forEach((item) => {
+        item.cId === cId && (item.quantity = Number(newQuantity));
       });
 
       this.saveToStorage();
@@ -63,8 +76,9 @@ export class Cart {
   }
   calculateCartQuantity() {
     let cartQuantity = 0;
-    this.cartItems.forEach((product) => {
-      cartQuantity += product.quantity;
+
+    this.cartItems.forEach((item) => {
+      cartQuantity += item.quantity;
     });
 
     return cartQuantity;
@@ -73,20 +87,20 @@ export class Cart {
   calculateTotalPriceCents(products) {
     let totalPrice = 0;
 
-    this.cartItems.forEach((cartItem) => {
+    this.cartItems.forEach((item) => {
       const product =
-        products[products.findIndex((product) => product.id == cartItem.id)] ||
+        products[products.findIndex((product) => product.pId == item.id)] ||
         null;
 
-      totalPrice += cartItem.quantity * product.priceCents;
+      totalPrice += item.quantity * product.priceCents;
     });
 
     return totalPrice;
   }
 
-  updateDeliveryOption(id, deliveryId) {
-    this.cartItems.forEach((cartItem) => {
-      cartItem.id === id && (cartItem.deliveryOptionId = deliveryId);
+  updateDeliveryOption(cId, deliveryId) {
+    this.cartItems.forEach((item) => {
+      item.cId === cId && (item.deliveryId = deliveryId);
     });
 
     this.saveToStorage();

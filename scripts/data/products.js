@@ -1,15 +1,15 @@
 import formatCurrency from "../utils/money.js";
 
-export function getProduct(productId) {
+export function getProduct(pId) {
   const product =
-    productData[products.findIndex((product) => product.id === productId)] ||
+    productData[products.findIndex((product) => product.pId === pId)] ||
     productData[0];
 
   return product;
 }
 
 class Product {
-  id;
+  pId;
   name;
   image;
   priceCents;
@@ -19,7 +19,7 @@ class Product {
   category;
 
   constructor(productDetails) {
-    this.id = productDetails.id;
+    this.pId = productDetails.pId;
     this.name = productDetails.name;
     this.priceCents = productDetails.priceCents;
     this.colors = productDetails.colors;
@@ -44,7 +44,8 @@ class Product {
 
   changeColor(color) {
     this.color = color;
-    return `images/shop/${this.category}/${this.category}-${this.edition}-${color}.png`;
+    this.image = `images/shop/${this.category}/${this.category}-${this.edition}-${this.color}.png`;
+    return this.image;
   }
 
   getExtraHTML() {
@@ -81,7 +82,7 @@ class Clothing extends Product {
     return `
       <div class="size-container">
         <p>Size</p>
-        <div class="size-list" data-product-id=${this.id}>
+        <div class="size-list" data-product-id=${this.pId}>
           ${sizeHTML}
         </div>
       </div>
@@ -91,7 +92,7 @@ class Clothing extends Product {
 
 const products = [
   {
-    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+    pId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     name: "RW Modern T-Shirt",
     priceCents: 2500,
     colors: ["Ash", "Indigo", "White"],
@@ -100,7 +101,7 @@ const products = [
     sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
-    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c7",
+    pId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c7",
     name: "RW Classic T-Shirt",
     priceCents: 2500,
     colors: ["Black", "Navy"],
@@ -109,7 +110,7 @@ const products = [
     sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
-    id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
+    pId: "77919bbe-0e56-475b-adde-4f24dfed3a04",
     name: "RW Modern Pullover",
     priceCents: 4500,
     colors: ["Ash", "Charcoal"],
@@ -118,7 +119,7 @@ const products = [
     sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
-    id: "77919bbe-0e56-475b-adde-4f24dfed3a05",
+    pId: "77919bbe-0e56-475b-adde-4f24dfed3a05",
     name: "RW Classic Pullover",
     priceCents: 4500,
     colors: ["Black", "Navy"],
@@ -127,7 +128,7 @@ const products = [
     sizes: ["S", "M", "L", "XL", "2XL"],
   },
   {
-    id: "58b4fc92-e98c-42aa-8c55-b6b79996769a",
+    pId: "58b4fc92-e98c-42aa-8c55-b6b79996769a",
     name: "RW Modern Hat",
     priceCents: 1500,
     colors: ["Charcoal", "White"],

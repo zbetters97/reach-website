@@ -22,7 +22,7 @@ function renderTourHTML() {
     const time = formatTime(event.time);
     const location = `${event.city}, ${event.state}`;
     const venue = event.venue;
-    const id = event.id;
+    const cId = event.cId;
 
     tourHTML += `
       <section class="concert-section">
@@ -31,7 +31,7 @@ function renderTourHTML() {
           <h4 class="concert-info">${location}</h4>
           <h4 class="concert-info">${venue}</h4>
           <div class="concert-seperator"></div>
-          <a class="concert-info link" href="tickets.html?eventId=${id}">-Tickets-</a>
+          <a class="concert-info link" href="tickets.html?eventId=${cId}">-Tickets-</a>
         </div>
       </section>
     `;

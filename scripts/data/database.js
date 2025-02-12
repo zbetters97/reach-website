@@ -132,6 +132,8 @@ export async function dbGetUser() {
     } catch (error) {
       console.log(error);
     }
+  } else {
+    throw new Error("no user found");
   }
 }
 export async function dbUpdateUserInfo(firstName, lastName, phone) {

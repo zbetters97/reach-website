@@ -1,6 +1,6 @@
 const concerts = [
   {
-    id: "123455",
+    cId: "123455",
     date: "09-09-2025",
     time: "20:00:00",
     venue: "The Met",
@@ -13,7 +13,7 @@ const concerts = [
     },
   },
   {
-    id: "123456",
+    cId: "123456",
     date: "09-10-2025",
     time: "20:00:00",
     venue: "Stage AE",
@@ -26,7 +26,7 @@ const concerts = [
     },
   },
   {
-    id: "123457",
+    cId: "123457",
     date: "09-12-2025",
     time: "20:00:00",
     venue: "Brooklyn Paramount Theater",
@@ -39,7 +39,7 @@ const concerts = [
     },
   },
   {
-    id: "123458",
+    cId: "123458",
     date: "09-14-2025",
     time: "20:00:00",
     venue: "The Stone Pony",
@@ -52,7 +52,7 @@ const concerts = [
     },
   },
   {
-    id: "123459",
+    cId: "123459",
     date: "09-16-2025",
     time: "20:00:00",
     venue: "MGM Music Hall at Fenway",
@@ -67,9 +67,9 @@ const concerts = [
 ];
 export default concerts;
 
-export function getConcert(concertId) {
+export function getConcert(cId) {
   const concert =
-    concerts[concerts.findIndex((c) => c.id == concertId)] || concerts[0];
+    concerts[concerts.findIndex((c) => c.cId == cId)] || concerts[0];
 
   return concert;
 }

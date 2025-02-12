@@ -1,36 +1,30 @@
 import { handleWindow } from "./utils/window.js";
-import cart from "./data/cart.js";
-import { loadProducts, getProduct } from "./data/products.js";
-import { getConcert } from "./data/concerts.js";
+import { loadProducts } from "./data/products.js";
+import { renderOrderSummaryHTML } from "./checkout/orderSummary.js";
+import { renderPaymentSummaryHTML } from "./checkout/paymentSummary.js";
+import { renderMethodsHTML } from "./checkout/orderMethods.js";
+import { dbGetUser } from "./data/database.js";
 
 $(document).ready(function () {
   handleWindow();
   loadPage();
 });
 
-function loadPage() {
-  loadProducts();
-  renderCartItemsHTML();
+async function loadPage() {
+  loadUser();
 }
-
-function renderCartItemsHTML() {
-  let cartItemsHTML = ``;
-
-  cart.cartItems.forEach((cartItem) => {
-    const productId = cartItem.productId;
-    const quantity = cartItem.quantity;
-    const category = cartItem.category;
-    const type = cartItem.type;
-    const color = cartItem.color;
-
-    if (category === "S") {
-      const product = getProduct(productId);
-      console.log(product);
-    } else if (category === "T") {
-      const concert = getConcert(productId);
-      console.log(concert);
-    }
-  });
-
-  // $("#js-products-container").html(cartItemsHTML);
+async function loadUser() {
+  try {
+    await dbGetUser();
+    renderCheckout();
+  } catch (error) {
+    console.log(error);
+    window.location.href = "login.html";
+  }
+}
+async function renderCheckout() {
+  loadProducts();
+  renderMethodsHTML();
+  renderOrderSummaryHTML();
+  renderPaymentSummaryHTML();
 }

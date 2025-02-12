@@ -1,3 +1,10 @@
+import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+
+export function getCurrentDate() {
+  const date = dayjs().format("dddd, MMMM D");
+  return date;
+}
+
 export function formatDateMDLong(date) {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     month: "long",

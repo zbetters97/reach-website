@@ -19,7 +19,7 @@ function renderProductsHTML() {
 
   productData.forEach((product) => {
     productsHTML += `
-      <div class="shop-item js-shop-item" data-product-id=${product.id}>
+      <div class="shop-item js-shop-item" data-product-id=${product.pId}>
         <img src=${product.image} />
         <h3>${product.name}</h3>
         <p>$${product.getPrice()}</p>
@@ -36,15 +36,15 @@ function handleModal() {
   $("#js-shop-items-grid")
     .children()
     .on("click", function () {
-      const productId = $(this).data("product-id");
-      renderModalHTML(productId);
+      const pId = $(this).data("product-id");
+      renderModalHTML(pId);
 
       openModal(modal);
     });
 }
 
-function renderModalHTML(productId) {
-  const product = getProduct(productId);
+function renderModalHTML(pId) {
+  const product = getProduct(pId);
 
   let modalHTML = `  
     <button class="shop-close-btn" id="js-shop-close-modal-btn">&times;</button>
@@ -93,8 +93,8 @@ function renderModalHTML(productId) {
 
   $("#js-color-list").change(function () {
     const color = $(this).val() || product.color;
-    const newImage = product.changeColor(color);
-    $("#js-shop-modal-img").attr("src", newImage);
+    product.changeColor(color);
+    $("#js-shop-modal-img").attr("src", product.image);
   });
 
   $("#js-shop-overlay, #js-shop-close-modal-btn").on("click", () => {
@@ -102,15 +102,21 @@ function renderModalHTML(productId) {
   });
 
   $("#js-add-cart-btn").on("click", () => {
-    const size = $(`input[name="size-radio"]:checked`).val() || "S";
+    const size = $(`input[name="size-radio"]:checked`).val() || "One Size";
     product.size = size;
 
     const quantity = $("#js-quantity-container").val();
     if (quantity > 99 || quantity < 1) return;
 
-    cart.addToCart(product.id, quantity, "S", product.size, product.color);
+    cart.addToCart(
+      product.pId,
+      parseInt(quantity),
+      "S",
+      product.size,
+      product.color
+    );
+
     showAddToCartMsg();
-    console.log(cart);
   });
 }
 

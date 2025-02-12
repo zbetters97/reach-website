@@ -64,6 +64,10 @@
 }
 
 .product-details {
+  padding: 1em;
+  margin: 0.5em;
+  border: 1px solid black;
+  border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 3fr 2fr;
   column-gap: 0.3em;
@@ -84,6 +88,7 @@
 }
 .product-quantity {
   display: flex;
+  height: 20px;
   align-items: center;
   gap: 0.7em;
 }
@@ -92,12 +97,21 @@
   color: var(--basic-blue);
 }
 .quantity-input {
-  width: 20%;
-  height: 30px;
+  font-size: 1em;
+  vertical-align: middle;
+  width: 15%;
+  height: 20px;
   display: none;
 }
-.quantity-save-btn {
+.checkout-save-btn {
   display: none;
+}
+.editing-quantity .checkout-update-btn {
+  display: none;
+}
+.editing-quantity .checkout-save-btn,
+.editing-quantity .quantity-input {
+  display: unset;
 }
 
 .product-delivery {
@@ -141,3 +155,107 @@
   padding: 0.5em;
   border: none;
 }
+
+/** MODAL **/
+.checkout-modal {
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  color: var(--basic-blue);
+  background-color: var(--basic-white);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 0.5em;
+  margin: 2em auto 2em auto;
+  width: 550px;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  z-index: 999;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+}
+.checkout-modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.checkout-modal-close-btn {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--basic-blue);
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  right: 2%;
+}
+
+.checkout-modal h2 {
+  font-family: "Raleway", Arial, sans-serif;
+  font-size: 1.5em;
+  color: var(--basic-blue);
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.checkout-modal-container {
+  margin-bottom: 1em;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.checkout-modal-card {
+  font-size: 1.2em;
+  color: var(--basic-white);
+  background-color: var(--basic-blue);
+  padding: 15px 30px;
+  margin: 0 auto;
+  width: 70%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.3em;
+  position: relative;
+  cursor: pointer;
+  transition: 150ms;
+}
+.checkout-modal-card:hover {
+  transform: scale(1.1);
+}
+
+.checkout-modal-default-tag {
+  position: absolute;
+  top: 4%;
+  right: 2%;
+}
+.checkout-modal-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 0.2em;
+}
+
+/* MODAL BACKDROP */
+.checkout-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.checkout-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+/** END MODAL **/

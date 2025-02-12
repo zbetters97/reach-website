@@ -17,8 +17,8 @@ function loadPage() {
 
 function renderTicketHTML() {
   const url = new URL(window.location.href);
-  const id = url.searchParams.get("eventId");
-  const concert = getConcert(id);
+  const cId = url.searchParams.get("eventId");
+  const concert = getConcert(cId);
 
   const date = formatDateMDYLong(concert.date);
   const time = formatTime(concert.time);
@@ -98,9 +98,8 @@ function renderTicketHTML() {
     const quantity = ticketQuantity.val();
     if (quantity > 10 || quantity < 1) return;
 
-    cart.addToCart(id, quantity, "T", ticketType.val());
+    cart.addToCart(cId, parseInt(quantity), "T", ticketType.val());
     showAddToCartMsg();
-    console.log(cart);
   });
 }
 

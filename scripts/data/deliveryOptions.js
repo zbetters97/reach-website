@@ -1,9 +1,9 @@
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
-export function getDeliveryOption(deliveryId) {
+export function getDeliveryOption(dId) {
   const deliveryOption =
     deliveryOptions[
-      deliveryOptions.findIndex((delivery) => delivery.id === deliveryId)
+      deliveryOptions.findIndex((delivery) => delivery.dId == dId)
     ];
 
   return deliveryOption || deliveryOptions[0];
@@ -28,22 +28,17 @@ function isWeekend(day) {
 
 export const deliveryOptions = [
   {
-    id: "0",
-    days: 0,
-    priceCents: 0,
-  },
-  {
-    id: "1",
+    dId: "1",
     days: 7,
     priceCents: 0,
   },
   {
-    id: "2",
+    dId: "2",
     days: 3,
     priceCents: 499,
   },
   {
-    id: "3",
+    dId: "3",
     days: 1,
     priceCents: 999,
   },
