@@ -175,7 +175,7 @@ async function renderPaymentModal() {
       });
     });
 
-    $("#js-checkout-overlay, #js-checkout-method-close-modal-btn").on(
+    $("#js-checkout-overlay, #js-checkout-payment-close-btn").on(
       "click",
       () => {
         closeModal(addressModal);

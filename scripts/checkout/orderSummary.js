@@ -42,7 +42,12 @@ export function renderOrderSummaryHTML() {
               <a class="checkout-update-btn" data-cart-id=${cId}>
                 Update
               </a>
-              <input class="quantity-input" id="checkout-quantity-${cId}" type="number" max="99"/>
+              <input 
+              class="quantity-input" 
+              id="checkout-quantity-${cId}" 
+              data-cart-id=${cId}
+              type="number" min="0" max="99" 
+              />
               <a class="checkout-save-btn" data-cart-id=${cId} >
                 Save
               </a>
@@ -87,7 +92,12 @@ export function renderOrderSummaryHTML() {
               <a class="checkout-update-btn" data-cart-id=${cId}>
                 Update
               </a>
-              <input class="quantity-input" id="checkout-quantity-${cId}" type="number" max="10" />
+              <input 
+              class="quantity-input" 
+              id="checkout-quantity-${cId}" 
+              data-cart-id=${cId}
+              type="number" min="0" max="10" 
+              />
               <a class="checkout-save-btn" data-cart-id=${cId} >
                 Save
               </a>
@@ -119,6 +129,15 @@ export function renderOrderSummaryHTML() {
     $(this).on("click", function () {
       const cId = $(this).data("cart-id");
       $(`#product-quantity-${cId}`).addClass("editing-quantity");
+    });
+  });
+
+  $(".quantity-input").each(function () {
+    $(this).on("keypress", function (event) {
+      if (event.key == "Enter") {
+        const cId = $(this).data("cart-id");
+        updateItemQuantity(cId);
+      }
     });
   });
 
