@@ -118,22 +118,16 @@ export async function dbGetUser() {
 
   if (uid) {
     const docRef = doc(db, "users", uid);
+    const userDoc = await getDoc(docRef);
 
-    try {
-      const userDoc = await getDoc(docRef);
-
-      if (userDoc.exists()) {
-        return userDoc.data();
-      } else {
-        console.log("user was not found in db");
-
-        localStorage.removeItem("loggedInUserId");
-        window.location.href = "login.html";
-      }
-    } catch (error) {
-      console.log(error);
+    if (userDoc.exists()) {
+      return userDoc.data();
+    } else {
+      localStorage.removeItem("loggedInUserId");
+      throw new Error("no user found");
     }
   } else {
+    await signOut(auth);
     throw new Error("no user found");
   }
 }
@@ -270,58 +264,45 @@ export async function dbUpdateAddress(addressId, addressInfo, isDefault) {
   }
 }
 export async function dbGetAddressById(addressId) {
-  try {
-    const addressRef = doc(db, "addresses", addressId);
-    const addressDoc = await getDoc(addressRef);
+  const addressRef = doc(db, "addresses", addressId);
+  const addressDoc = await getDoc(addressRef);
 
-    if (addressDoc.exists()) {
-      return addressDoc.data();
-    } else {
-      console.log("reference to address was not established");
-    }
-  } catch (error) {
-    console.log(error);
+  if (addressDoc.exists()) {
+    return addressDoc.data();
+  } else {
+    throw new Error("reference to address was not established");
   }
 }
 export async function dbGetUserAddresses() {
-  try {
-    const addressesRef = collection(db, "addresses");
-    const userId = auth.currentUser.uid;
-    const q = query(
-      addressesRef,
-      where("userId", "==", userId),
-      orderBy("createdAt", "asc")
-    );
-    const querySnapshot = await getDocs(q);
+  const addressesRef = collection(db, "addresses");
+  const userId = auth.currentUser.uid;
+  const q = query(
+    addressesRef,
+    where("userId", "==", userId),
+    orderBy("createdAt", "asc")
+  );
+  const querySnapshot = await getDocs(q);
 
-    const addresses = [];
-    querySnapshot.forEach((address) => {
-      addresses.push({
-        aid: address.id,
-        ...address.data(),
-      });
+  const addresses = [];
+  querySnapshot.forEach((address) => {
+    addresses.push({
+      aid: address.id,
+      ...address.data(),
     });
+  });
 
-    return addresses;
-  } catch (error) {
-    console.log(error);
-    window.location.href = "account.html";
-  }
+  return addresses;
 }
 export async function dbGetDefaultAddress() {
-  try {
-    const userId = auth.currentUser.uid;
-    const userRef = doc(db, "users", userId);
-    const userDoc = await getDoc(userRef);
+  const userId = auth.currentUser.uid;
+  const userRef = doc(db, "users", userId);
+  const userDoc = await getDoc(userRef);
 
-    if (userDoc.exists()) {
-      const addressId = userDoc.data().defaultAddressId;
-      return addressId;
-    } else {
-      console.log("reference to user was not established");
-    }
-  } catch (error) {
-    console.log(error);
+  if (userDoc.exists()) {
+    const addressId = userDoc.data().defaultAddressId;
+    return addressId;
+  } else {
+    console.log("user was not found in db");
   }
 }
 export async function dbSetDefaultAddress(addressId) {
@@ -405,58 +386,45 @@ export async function dbUpdatePayment(paymentId, paymentInfo, isDefault) {
   }
 }
 export async function dbGetPaymentById(paymentId) {
-  try {
-    const paymentRef = doc(db, "payments", paymentId);
-    const paymentDoc = await getDoc(paymentRef);
+  const paymentRef = doc(db, "payments", paymentId);
+  const paymentDoc = await getDoc(paymentRef);
 
-    if (paymentDoc.exists()) {
-      return paymentDoc.data();
-    } else {
-      console.log("reference to payment was not established");
-    }
-  } catch (error) {
-    console.log(error);
+  if (paymentDoc.exists()) {
+    return paymentDoc.data();
+  } else {
+    throw new Error("reference to payment was not established");
   }
 }
 export async function dbGetUserPayments() {
-  try {
-    const paymentRef = collection(db, "payments");
-    const userId = auth.currentUser.uid;
-    const q = query(
-      paymentRef,
-      where("userId", "==", userId),
-      orderBy("createdAt", "asc")
-    );
-    const querySnapshot = await getDocs(q);
+  const paymentRef = collection(db, "payments");
+  const userId = auth.currentUser.uid;
+  const q = query(
+    paymentRef,
+    where("userId", "==", userId),
+    orderBy("createdAt", "asc")
+  );
+  const querySnapshot = await getDocs(q);
 
-    const payments = [];
-    querySnapshot.forEach((payment) => {
-      payments.push({
-        pid: payment.id,
-        ...payment.data(),
-      });
+  const payments = [];
+  querySnapshot.forEach((payment) => {
+    payments.push({
+      pid: payment.id,
+      ...payment.data(),
     });
+  });
 
-    return payments;
-  } catch (error) {
-    console.log(error);
-    window.location.href = "account.html";
-  }
+  return payments;
 }
 export async function dbGetDefaultPayment() {
-  try {
-    const userId = auth.currentUser.uid;
-    const docRef = doc(db, "users", userId);
-    const userDoc = await getDoc(docRef);
+  const userId = auth.currentUser.uid;
+  const docRef = doc(db, "users", userId);
+  const userDoc = await getDoc(docRef);
 
-    if (userDoc.exists()) {
-      const paymentId = userDoc.data().defaultPaymentId;
-      return paymentId;
-    } else {
-      console.log("user was not found in db");
-    }
-  } catch (error) {
-    console.log(error);
+  if (userDoc.exists()) {
+    const paymentId = userDoc.data().defaultPaymentId;
+    return paymentId;
+  } else {
+    console.log("user was not found in db");
   }
 }
 export async function dbSetDefaultPayment(paymentId) {

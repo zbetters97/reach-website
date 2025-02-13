@@ -90,8 +90,9 @@ async function renderPaymentHTML() {
 
     $("#js-payment-container").html(paymentHTML);
 
-    $(".remove-default-payment-btn").on("click", function () {
-      dbSetDefaultPayment("");
+    $(".set-default-payment-btn").on("click", function () {
+      const paymentId = $(this).data("payment-id");
+      dbSetDefaultPayment(paymentId);
       renderPaymentHTML();
     });
 
@@ -139,7 +140,7 @@ async function renderModalHTML(paymentId) {
       expDate = payment.expDate;
     } catch (error) {
       console.log(error);
-      closeModal(modal);
+      paymentId = "";
     }
   }
 

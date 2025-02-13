@@ -89,8 +89,9 @@ async function renderAddressHTML() {
 
     $("#js-address-container").html(addressHTML);
 
-    $(".remove-default-address-btn").on("click", function () {
-      dbSetDefaultAddress("");
+    $(".set-default-address-btn").on("click", function () {
+      const addressId = $(this).data("address-id");
+      dbSetDefaultAddress(addressId);
       renderAddressHTML();
     });
 

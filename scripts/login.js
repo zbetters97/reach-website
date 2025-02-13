@@ -18,10 +18,8 @@ $(document).ready(function () {
 
 async function checkLoggedInUser() {
   try {
-    const user = await dbGetUser();
-    if (user) {
-      window.location.href = "account.html";
-    }
+    await dbGetUser();
+    window.location.href = "account.html";
   } catch (error) {
     return;
   }

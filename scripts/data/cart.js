@@ -23,6 +23,14 @@ export class Cart {
     return Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
   }
 
+  setStorageKey(newKey) {
+    this.#localStorageKey = newKey;
+  }
+
+  setCartItems(cartItems) {
+    this.cartItems = cartItems;
+  }
+
   addToCart(pId, quantity = 1, category, type, color) {
     const index = this.cartItems.findIndex(
       (p) => p.pId == pId && p.type == type && p.color == color
@@ -109,5 +117,60 @@ export class Cart {
   }
 }
 
-let cart = new Cart("rw-cart");
+async function loadCart() {
+  const uid = localStorage.getItem("loggedInUserId");
+
+  const userKey = `rw-cart-${uid}`;
+  const guestKey = "rw-cart-guest";
+
+  const userCart = localStorage.getItem(userKey);
+  const guestCart = localStorage.getItem(guestKey);
+
+  try {
+    await dbGetUser();
+
+    if (uid) {
+      if (userCart) {
+        console.log("user cart found!");
+
+        localStorage.removeItem(guestKey);
+        return createCart(userKey, JSON.parse(userCart));
+      } else if (guestCart) {
+        console.log("guest cart found, converted to user cart");
+
+        localStorage.removeItem(guestKey);
+        return createCart(userKey, JSON.parse(guestCart));
+      } else {
+        console.log("no user cart found, guest cart created");
+
+        return new Cart(guestKey);
+      }
+    } else {
+      console.log("no user found, guest cart created");
+
+      return new Cart(guestKey);
+    }
+  } catch (error) {
+    if (guestCart) {
+      console.log("no user logged in, guest cart found");
+
+      return createCart(guestKey, JSON.parse(guestCart));
+    } else {
+      console.log("no guest cart found, guest cart created");
+
+      return new Cart(guestKey);
+    }
+  }
+}
+
+function createCart(storageKey, cartItems) {
+  const tempCart = new Cart(storageKey);
+
+  tempCart.setCartItems(cartItems);
+  tempCart.saveToStorage();
+
+  return tempCart;
+}
+
+let cart = await loadCart();
 export default cart;

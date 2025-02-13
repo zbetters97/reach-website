@@ -7,7 +7,6 @@ const modal = $("#js-shop-modal");
 $(document).ready(function () {
   handleWindow();
   loadPage();
-  console.log(cart);
 });
 
 function loadPage() {
