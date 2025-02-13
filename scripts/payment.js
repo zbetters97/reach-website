@@ -36,8 +36,7 @@ async function loadUser() {
   try {
     await dbGetUser();
     renderPaymentHTML();
-  } catch (error) {
-    console.log(error);
+  } catch {
     showLoginErrorModal();
   }
 }
@@ -57,7 +56,7 @@ async function renderPaymentHTML() {
     if (payments.length > 0) {
       payments.forEach((payment) => {
         const cardNum = maskCardNumber(payment.cardNum);
-        const isDefault = payment.pid === defaultPaymentId;
+        const isDefault = payment.productId === defaultPaymentId;
 
         paymentHTML += `  
           <div class="payment-card">
@@ -70,12 +69,16 @@ async function renderPaymentHTML() {
             ${
               isDefault
                 ? ``
-                : `<a class="link set-default-payment-btn" data-payment-id=${payment.pid}>Make Default</a>`
+                : `<a class="link set-default-payment-btn" data-payment-id=${payment.productId}>Make Default</a>`
             }              
-              <a class="link edit-payment-btn" data-payment-id=${payment.pid}>
+              <a class="link edit-payment-btn" data-payment-id=${
+                payment.productId
+              }>
                 Edit
               </a>
-              <a class="link remove-payment-btn" data-payment-id=${payment.pid}>
+              <a class="link remove-payment-btn" data-payment-id=${
+                payment.productId
+              }>
                 Remove
               </a>
             </div>
@@ -104,7 +107,7 @@ async function renderPaymentHTML() {
 
     $(".remove-payment-btn").on("click", function () {
       const paymentId = $(this).data("payment-id");
-      dbRemovePayment(paymentId);
+      deletePayment(paymentId);
     });
 
     $("#js-payment-new-container").on("click", () => {
@@ -115,6 +118,11 @@ async function renderPaymentHTML() {
     console.log(error);
     window.location.href = "account.html";
   }
+}
+
+async function deletePayment(paymentId) {
+  await dbRemovePayment(paymentId);
+  renderPaymentHTML();
 }
 
 async function renderModalHTML(paymentId) {

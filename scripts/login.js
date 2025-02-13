@@ -20,7 +20,7 @@ async function checkLoggedInUser() {
   try {
     await dbGetUser();
     window.location.href = "account.html";
-  } catch (error) {
+  } catch {
     return;
   }
 }

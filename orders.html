@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta
+      name="description"
+      content="Reach Worship band in Bear, Delaware. Come and see our mission of nothing but Jesus."
+    />
+    <meta
+      name="keywords"
+      content="Reach Worship, Delaware, DE, Nothing But Jesus, NBJ, worship, band, Reach Church, RW, Reach Worship DE, christian, Jesus, Jesus Christ, God"
+    />
+
+    <title>Reach Worship | DE</title>
+
+    <!-- APP ICONS -->
+    <link rel="shortcut icon" href="images/icons/web-logo.ico" />
+    <link rel="icon" href="images/icons/web-logo.ico" />
+    <link rel="apple-touch-icon" href="images/icons/app-logo.ico" />
+    <!-- END APP ICONS -->
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Palanquin:wght@100;200;300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- END FONTS -->
+    <!-- ICONS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- END ICONS -->
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" href="styles/shared/general.css" />
+    <link rel="stylesheet" href="styles/shared/header.css" />
+    <link rel="stylesheet" href="styles/shared/footer.css" />
+    <link rel="stylesheet" href="styles/pages/orders.css" />
+    <!-- END STYLESHEETS -->
+
+    <!-- SCRIPTS -->
+    <script defer src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script defer type="module" src="scripts/orders.js"></script>
+    <!-- END SCRIPTS -->
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <a class="navbar-link" href="tour.html">Tour</a>
+      <a class="navbar-link" href="music.html">Music</a>
+      <a href="index.html#navbar">
+        <img class="navbar-logo" src="images/icons/main-logo.png" />
+      </a>
+      <a class="navbar-link" href="shop.html">Shop</a>
+      <a class="navbar-link" href="about.html">About</a>
+
+      <div class="navbar-user-container">
+        <a class="navbar-cart" href="checkout.html">
+          <i class="fa-solid fa-cart-shopping"> </i>
+        </a>
+        <a class="navbar-user js-navbar-user">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </div>
+    </nav>
+    <main>
+      <div class="wrapper">
+        <section class="orders-section">
+          <h2>Your Orders</h2>
+          <div class="orders-container"></div>
+
+          <div class="alert-modal" id="js-alert-modal">
+            <div class="alert-modal-container">
+              <div class="alert-modal-msg">
+                <h2>Please login to continue</h2>
+              </div>
+              <button
+                class="forward-btn alert-modal-btn"
+                onclick="window.location.href='login.html'"
+              >
+                Go to login
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="modal-overlay" id="js-modal-overlay"></div>
+      <a class="to-top" href="">
+        <i class="fa-solid fa-arrow-up"></i>
+      </a>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <div class="footer-info-container">
+          <a
+            class="footer-info footer-link"
+            href="mailto:info@reachchurch.online?Subject=Hello%20Reach%20Worship"
+            target="_blank"
+          >
+            info@reachchurch.online
+          </a>
+          <div class="footer-seperator"></div>
+          <p class="footer-info">(302) 332-0114</p>
+          <div class="footer-seperator"></div>
+          <p class="footer-info">&copy; Reach Worship 2025</p>
+          <div class="footer-seperator"></div>
+          <a
+            class="footer-info footer-link"
+            href="https://www.linkedin.com/in/zachary-betters-916a74116/"
+            target="_blank"
+          >
+            Zachary Betters
+          </a>
+        </div>
+
+        <div class="footer-social-container">
+          <a href="https://www.facebook.com/NothingButJesus/" target="_blank">
+            <i class="footer-social-icon fa-brands fa-facebook"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/_reachchurch/?hl=en"
+            target="_blank"
+          >
+            <i class="footer-social-icon fa-brands fa-instagram"></i>
+          </a>
+          <a
+            href="https://open.spotify.com/artist/2tFNCpPM61936Ah9oN406C"
+            target="_blank"
+          >
+            <i class="footer-social-icon fa-brands fa-spotify"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

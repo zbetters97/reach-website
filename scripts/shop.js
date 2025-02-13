@@ -19,7 +19,7 @@ function renderProductsHTML() {
 
   productData.forEach((product) => {
     productsHTML += `
-      <div class="shop-item js-shop-item" data-product-id=${product.pId}>
+      <div class="shop-item js-shop-item" data-product-id=${product.productId}>
         <img src=${product.image} />
         <h3>${product.name}</h3>
         <p>$${product.getPrice()}</p>
@@ -36,15 +36,15 @@ function handleModal() {
   $("#js-shop-items-grid")
     .children()
     .on("click", function () {
-      const pId = $(this).data("product-id");
-      renderModalHTML(pId);
+      const productId = $(this).data("product-id");
+      renderModalHTML(productId);
 
       openModal(modal);
     });
 }
 
-function renderModalHTML(pId) {
-  const product = getProduct(pId);
+function renderModalHTML(productId) {
+  const product = getProduct(productId);
 
   let modalHTML = `  
     <button class="shop-close-btn" id="js-shop-close-modal-btn">&times;</button>
@@ -109,7 +109,7 @@ function renderModalHTML(pId) {
     if (quantity > 99 || quantity < 1) return;
 
     cart.addToCart(
-      product.pId,
+      product.productId,
       parseInt(quantity),
       "S",
       product.size,

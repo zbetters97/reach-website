@@ -31,9 +31,9 @@ export class Cart {
     this.cartItems = cartItems;
   }
 
-  addToCart(pId, quantity = 1, category, type, color) {
+  addToCart(productId, quantity = 1, category, type, color) {
     const index = this.cartItems.findIndex(
-      (p) => p.pId == pId && p.type == type && p.color == color
+      (p) => p.productId == productId && p.type == type && p.color == color
     );
 
     if (index !== -1) {
@@ -42,8 +42,8 @@ export class Cart {
       const deliveryId = category === "T" ? "0" : "1";
 
       this.cartItems.push({
-        cId: this.#generateId(),
-        pId: pId,
+        productId: productId,
+        cartId: this.#generateId(),
         category: category,
         quantity: quantity,
         type: type,
@@ -55,26 +55,29 @@ export class Cart {
     this.saveToStorage();
   }
 
-  removeFromCart(cId) {
-    const index = this.cartItems.findIndex((p) => p.cId == cId);
+  removeFromCart(cartId) {
+    const index = this.cartItems.findIndex((p) => p.cartId == cartId);
 
     index !== -1 && this.cartItems.splice(index, 1);
 
+    if (this.cartItems.length <= 0) {
+      localStorage.removeItem(this.#localStorageKey);
+    }
     this.saveToStorage();
   }
   emptyCart() {
     this.cartItems = [];
-    this.saveToStorage();
+    localStorage.removeItem(this.#localStorageKey);
   }
 
-  updateQuantity(cId, newQuantity) {
+  updateQuantity(cartId, newQuantity) {
     if (newQuantity === 0) {
-      this.removeFromCart(cId);
+      this.removeFromCart(cartId);
       return true;
     }
     if (newQuantity > 0 && newQuantity < 100) {
       this.cartItems.forEach((item) => {
-        item.cId === cId && (item.quantity = Number(newQuantity));
+        item.cartId === cartId && (item.quantity = Number(newQuantity));
       });
 
       this.saveToStorage();
@@ -94,23 +97,28 @@ export class Cart {
     return cartQuantity;
   }
 
-  calculateTotalPriceCents(products) {
-    let totalPrice = 0;
+  containsShopItems() {
+    let shopItemFound = false;
 
     this.cartItems.forEach((item) => {
-      const product =
-        products[products.findIndex((product) => product.pId == item.id)] ||
-        null;
-
-      totalPrice += item.quantity * product.priceCents;
+      item.category === "S" && (shopItemFound = true);
     });
 
-    return totalPrice;
+    return shopItemFound;
+  }
+  containsTicketItems() {
+    let ticketItemFound = false;
+
+    this.cartItems.forEach((item) => {
+      item.category === "T" && (ticketItemFound = true);
+    });
+
+    return ticketItemFound;
   }
 
-  updateDeliveryOption(cId, deliveryId) {
+  updateDeliveryOption(cartId, deliveryId) {
     this.cartItems.forEach((item) => {
-      item.cId === cId && (item.deliveryId = deliveryId);
+      item.cartId === cartId && (item.deliveryId = deliveryId);
     });
 
     this.saveToStorage();
@@ -130,36 +138,27 @@ async function loadCart() {
     await dbGetUser();
 
     if (uid) {
+      // USER LOGGED IN
       if (userCart) {
-        console.log("user cart found!");
-
-        localStorage.removeItem(guestKey);
+        // USER CART EXISTS, RETURN
         return createCart(userKey, JSON.parse(userCart));
       } else if (guestCart) {
-        console.log("guest cart found, converted to user cart");
-
+        // GUEST CART EXISTS, RETURN
         localStorage.removeItem(guestKey);
         return createCart(userKey, JSON.parse(guestCart));
       } else {
-        console.log("no user cart found, guest cart created");
-
-        return new Cart(guestKey);
+        // RETURN NEW USER CART
+        return new Cart(userKey);
       }
     } else {
-      console.log("no user found, guest cart created");
-
+      // USER NOT LOGGED IN, RETURN GUEST CART
       return new Cart(guestKey);
     }
   } catch (error) {
-    if (guestCart) {
-      console.log("no user logged in, guest cart found");
-
-      return createCart(guestKey, JSON.parse(guestCart));
-    } else {
-      console.log("no guest cart found, guest cart created");
-
-      return new Cart(guestKey);
-    }
+    // RETURN EXISTING GUEST CART OR CREATE NEW ONE
+    return guestCart
+      ? createCart(guestKey, JSON.parse(guestCart))
+      : new Cart(guestKey);
   }
 }
 

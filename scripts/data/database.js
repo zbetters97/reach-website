@@ -34,7 +34,7 @@ const firebaseConfig = {
   projectId: "reach-worship-23551",
   storageBucket: "reach-worship-23551.firebasestorage.app",
   messagingSenderId: "353132613915",
-  appId: "1:353132613915:web:3fff201b98bbd721c9c3be",
+  approductId: "1:353132613915:web:3fff201b98bbd721c9c3be",
 };
 
 initializeApp(firebaseConfig);
@@ -408,7 +408,7 @@ export async function dbGetUserPayments() {
   const payments = [];
   querySnapshot.forEach((payment) => {
     payments.push({
-      pid: payment.id,
+      productId: payment.id,
       ...payment.data(),
     });
   });

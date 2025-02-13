@@ -18,8 +18,7 @@ async function loadUser() {
   try {
     await dbGetUser();
     renderCheckout();
-  } catch (error) {
-    console.log(error);
+  } catch {
     showLoginErrorModal();
   }
 }

@@ -17,12 +17,14 @@ export function renderMethodsHTML() {
 }
 
 async function renderAddressHTML(aId) {
+  let addressHTML = ``;
+
   try {
     let addressId = aId || (await dbGetDefaultAddress());
     const address = await dbGetAddressById(addressId);
 
-    let addressHTML = `  
-      <div class="method-header">
+    addressHTML = `  
+      <div class="method-header" id="js-method-address" data-address-id=${addressId}>
         <h3>Delivering to <span>${address.fullName}</span></h3>
         <a id="js-address-change-btn">Change</a>
       </div>
@@ -30,15 +32,22 @@ async function renderAddressHTML(aId) {
       <p>${address.addressTwo}</p>
       <p>${address.city}, ${address.state} ${address.zip}</p>
     `;
-
-    $("#js-checkout-address").html(addressHTML);
-
-    $("#js-address-change-btn").on("click", () => {
-      renderAddressModal();
-    });
   } catch (error) {
-    console.log(error);
+    addressHTML = `
+    <div class="checkout-empty-container">
+      <h3>You have no saved addresses</h3>
+      <button class="forward-btn" onclick="window.location.href='address.html'">
+        Add an address
+      </button>
+    </div>
+    `;
   }
+
+  $("#js-checkout-address").html(addressHTML);
+
+  $("#js-address-change-btn").on("click", () => {
+    renderAddressModal();
+  });
 }
 
 async function renderAddressModal() {
@@ -98,28 +107,37 @@ async function renderAddressModal() {
   }
 }
 
-async function renderPaymentHTML(pId) {
+async function renderPaymentHTML(productId) {
+  let paymentHTML = ``;
+
   try {
-    let paymentId = pId || (await dbGetDefaultPayment());
+    let paymentId = productId || (await dbGetDefaultPayment());
     const payment = await dbGetPaymentById(paymentId);
     const lastFour = payment.cardNum.substr(payment.cardNum.length - 4);
 
-    let paymentHTML = `  
-      <div class="method-header">
+    paymentHTML = `  
+      <div class="method-header" id="js-method-payment" data-payment-id=${paymentId}>
         <h3>Paying with <span>${payment.type} ${lastFour}</span></h3>
         <a id="js-payment-change-btn">Change</a>
       </div>
       <p>${payment.fullName}</p>
     `;
-
-    $("#js-checkout-payment").html(paymentHTML);
-
-    $("#js-payment-change-btn").on("click", () => {
-      renderPaymentModal();
-    });
   } catch (error) {
-    console.log(error);
+    paymentHTML = `
+      <div class="checkout-empty-container">
+        <h3>You have no saved payment methods</h3>
+        <button class="forward-btn" onclick="window.location.href='payment.html'">
+          Add a payment method
+        </button>
+      </div>
+    `;
   }
+
+  $("#js-checkout-payment").html(paymentHTML);
+
+  $("#js-payment-change-btn").on("click", () => {
+    renderPaymentModal();
+  });
 }
 
 async function renderPaymentModal() {
@@ -138,11 +156,11 @@ async function renderPaymentModal() {
     if (payments.length > 0) {
       payments.forEach((payment) => {
         const cardNum = maskCardNumber(payment.cardNum);
-        const isDefault = payment.pid === defaultPaymentId;
+        const isDefault = payment.productId === defaultPaymentId;
 
         paymentModalHTML += `  
           <div class="checkout-modal-card checkout-payment-card" data-payment-id=${
-            payment.pid
+            payment.productId
           }>
             ${
               isDefault
@@ -166,9 +184,9 @@ async function renderPaymentModal() {
 
     $(".checkout-payment-card").each(function () {
       $(this).on("click", function () {
-        const pId = $(this).data("paymentId");
+        const productId = $(this).data("paymentId");
         closeModal(paymentModal);
-        renderPaymentHTML(pId);
+        renderPaymentHTML(productId);
       });
     });
 

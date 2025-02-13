@@ -17,8 +17,8 @@ function loadPage() {
 
 function renderTicketHTML() {
   const url = new URL(window.location.href);
-  const cId = url.searchParams.get("eventId");
-  const concert = getConcert(cId);
+  const ticketId = url.searchParams.get("eventId");
+  const concert = getConcert(ticketId);
 
   const date = formatDateMDYLong(concert.date);
   const time = formatTime(concert.time);
@@ -26,7 +26,7 @@ function renderTicketHTML() {
   const location = `${concert.city}, ${concert.state}`;
   const venue = concert.venue;
 
-  totalPrice = formatCurrency(concert.ticketPrice["STR"]);
+  totalPrice = formatCurrency(concert.ticketPrice["Standard"]);
 
   let ticketHTML = `
     <ul class="ticket-info-list">
@@ -40,8 +40,8 @@ function renderTicketHTML() {
       <div class="ticket-field ticket-type">
         <label for="ticket-type">Type</label>
         <select id="js-ticket-type" name="ticket-type">
-          <option value="STR">Standard</option>
-          <option value="DLX">Deluxe</option>
+          <option value="Standard">Standard</option>
+          <option value="Deluxe">Deluxe</option>
           <option value="VIP">VIP</option>
         </select>
       </div>
@@ -98,7 +98,7 @@ function renderTicketHTML() {
     const quantity = ticketQuantity.val();
     if (quantity > 10 || quantity < 1) return;
 
-    cart.addToCart(cId, parseInt(quantity), "T", ticketType.val());
+    cart.addToCart(ticketId, parseInt(quantity), "T", ticketType.val());
     showAddToCartMsg();
   });
 }

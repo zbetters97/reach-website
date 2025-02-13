@@ -35,8 +35,7 @@ async function loadUser() {
   try {
     await dbGetUser();
     renderAddressHTML();
-  } catch (error) {
-    console.log(error);
+  } catch {
     showLoginErrorModal();
   }
 }
@@ -103,8 +102,7 @@ async function renderAddressHTML() {
 
     $(".remove-address-btn").on("click", function () {
       const addressId = $(this).data("address-id");
-      dbRemoveAddress(addressId);
-      renderAddressHTML();
+      deleteAddress(addressId);
     });
 
     $("#js-address-new-container").on("click", () => {
@@ -115,6 +113,11 @@ async function renderAddressHTML() {
     console.log(error);
     window.location.href = "account.html";
   }
+}
+
+async function deleteAddress(addressId) {
+  await dbRemoveAddress(addressId);
+  renderAddressHTML();
 }
 
 async function renderModalHTML(addressId) {

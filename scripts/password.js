@@ -20,8 +20,7 @@ async function loadUser() {
   try {
     await dbGetUser();
     changePassword();
-  } catch (error) {
-    console.log(error);
+  } catch {
     showLoginErrorModal();
   }
 }

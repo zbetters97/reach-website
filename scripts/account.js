@@ -15,8 +15,7 @@ async function loadUser() {
   try {
     const user = await dbGetUser();
     renderAccountHTML(user);
-  } catch (error) {
-    console.log(error);
+  } catch {
     showLoginErrorModal();
   }
 }
