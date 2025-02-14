@@ -109,7 +109,7 @@ function renderProgressBar(deliveryDate) {
     $("#js-tracking-preparing").addClass("tracking-current-status");
     trackingBar.css("width", "10%");
   } else if (5 > daysRemaining && daysRemaining > 0) {
-    $("#js-tracking-shipping").addClass("tracking-current-status");
+    $("#js-tracking-shipped").addClass("tracking-current-status");
     trackingBar.css("width", "50%");
   } else {
     $("#js-tracking-delivered").addClass("tracking-current-status");
