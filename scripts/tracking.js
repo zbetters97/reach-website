@@ -105,10 +105,10 @@ function renderProgressBar(deliveryDate) {
 
   const daysRemaining = getDeliveryDaysRemaining(deliveryDate);
 
-  if (daysRemaining > 5) {
+  if (daysRemaining > 3) {
     $("#js-tracking-preparing").addClass("tracking-current-status");
     trackingBar.css("width", "10%");
-  } else if (5 > daysRemaining && daysRemaining > 0) {
+  } else if (3 > daysRemaining && daysRemaining > 0) {
     $("#js-tracking-shipped").addClass("tracking-current-status");
     trackingBar.css("width", "50%");
   } else {
