@@ -42,12 +42,7 @@ async function loadUser() {
 }
 
 async function renderPaymentHTML() {
-  let paymentHTML = `
-    <div class="payment-new-container" id="js-payment-new-container">
-      <i class="fa-solid fa-plus"></i>
-      <a class="payment-new-btn">Add Payment</a>
-    </div>
-  `;
+  let paymentHTML = ``;
 
   try {
     const payments = await dbGetUserPayments();
@@ -90,6 +85,13 @@ async function renderPaymentHTML() {
         <h3 class="payment-empty-text">You have no saved payments!</h3>
       `;
     }
+
+    paymentHTML += `
+      <div class="payment-new-container" id="js-payment-new-container">
+        <i class="fa-solid fa-plus"></i>
+        <a class="payment-new-btn">Add Payment</a>
+      </div>
+    `;
 
     $("#js-payment-container").html(paymentHTML);
 
@@ -245,7 +247,6 @@ function handleSubmitPayment(paymentId) {
 
   const cardNum = $("#js-payment-modal-number");
   cardNum.on("keydown", disableNonNumericInput, removeInputMask);
-  //cardNum.on("keyup", formatCardNumber);
 
   const code = $("#js-payment-modal-code");
   code.on("keydown", disableNonNumericInput, removeInputMask);

@@ -41,12 +41,7 @@ async function loadUser() {
 }
 
 async function renderAddressHTML() {
-  let addressHTML = `
-    <div class="address-new-container" id="js-address-new-container">
-      <i class="fa-solid fa-plus"></i>
-      <a class="address-new-btn">Add Address</a>
-    </div>
-  `;
+  let addressHTML = ``;
 
   try {
     const addresses = await dbGetUserAddresses();
@@ -85,6 +80,13 @@ async function renderAddressHTML() {
         <h3 class="address-empty-text">You have no saved addresses!</h3>
       `;
     }
+
+    addressHTML += `
+      <div class="address-new-container" id="js-address-new-container">
+        <i class="fa-solid fa-plus"></i>
+        <a class="address-new-btn">Add Address</a>
+      </div>
+    `;
 
     $("#js-address-container").html(addressHTML);
 
