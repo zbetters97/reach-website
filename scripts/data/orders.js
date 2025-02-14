@@ -12,14 +12,22 @@ function saveToStorage() {
 }
 
 export function getOrder(orderId) {
-  const order = orders.findIndex((o) => o.orderId == orderId) || orders[0];
+  const index = orders.findIndex((o) => {
+    return o.orderId === orderId;
+  });
+
+  const order = orders[index];
+
   return order;
 }
 
 export function getOrderProduct(order, productId) {
-  const product =
-    order.products.findIndex((p) => p.productId == productId) ||
-    order.products[0];
+  const index = order.items.findIndex((p) => {
+    return p.productId === productId;
+  });
+
+  const product = order.items[index];
+
   return product;
 }
 

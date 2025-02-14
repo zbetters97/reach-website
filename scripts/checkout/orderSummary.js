@@ -7,6 +7,7 @@ import {
   deliveryOptions,
 } from "../data/deliveryOptions.js";
 import {
+  formatDateDMY,
   formatDateMDYLong,
   formatTime,
   getCurrentDate,
@@ -200,7 +201,7 @@ function deliveryOptionsHTML(item) {
 
     const isChecked = deliveryId == item.deliveryId;
 
-    const date = calculateDeliveryDate(deliveryOption);
+    const date = formatDateDMY(calculateDeliveryDate(deliveryOption));
 
     const price =
       deliveryOption.priceCents === 0

@@ -5,6 +5,10 @@ export function getCurrentDate() {
   return date;
 }
 
+export function formatDateDMY(date) {
+  return dayjs(date).format("dddd, MMMM D");
+}
+
 export function formatDateMDLong(date) {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     month: "long",

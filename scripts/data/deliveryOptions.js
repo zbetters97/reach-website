@@ -17,8 +17,18 @@ export function calculateDeliveryDate(deliveryOption) {
     !isWeekend(day) && daysRemaining--;
   }
 
-  const date = day.format("dddd, MMMM D");
-  return date;
+  return day;
+}
+
+export function getDeliveryDaysRemaining(deliveryDate) {
+  let today = dayjs();
+
+  let delivery = dayjs(new Date(deliveryDate));
+
+  let hours = delivery.diff(today, "hours");
+  const days = Math.floor(hours / 24);
+
+  return days;
 }
 
 function isWeekend(day) {

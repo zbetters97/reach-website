@@ -3,7 +3,7 @@ import { orders } from "./data/orders.js";
 import { showLoginErrorModal } from "./utils/form.js";
 import { handleWindow } from "./utils/window.js";
 import formatCurrency from "./utils/money.js";
-import { formatDateMDYLong, formatTime } from "./utils/date.js";
+import { formatDateDMY, formatDateMDYLong, formatTime } from "./utils/date.js";
 import { getProduct, loadProducts } from "./data/products.js";
 import { getConcert } from "./data/concerts.js";
 
@@ -21,7 +21,8 @@ async function loadUser() {
     await dbGetUser();
     loadProducts();
     renderOrderPage();
-  } catch {
+  } catch (error) {
+    console.log(error);
     showLoginErrorModal();
   }
 }
@@ -68,6 +69,7 @@ function renderOrderPage() {
       if (item.category === "S") {
         const product = getProduct(item.productId);
         const image = product.changeColor(item.color);
+        const date = formatDateDMY(item.deliveryDate);
 
         itemsHTML += `    
           <div class="order-products-container">
@@ -78,10 +80,15 @@ function renderOrderPage() {
               />
               <div class="order-product-details">
                 <h3>${product.name}, ${item.type}</h3>
-                <p>Arriving on: <span>${item.deliveryDate}</span></p>
+                <p>Arriving on: <span>${date}</span></p>
                 <p>Quantity: <span>${item.quantity}</span></p>
               </div>
-              <button class="forward-btn order-track-btn">Track package</button>
+              <a 
+              class="forward-btn order-track-btn"
+              href="tracking.html?orderId=${orderId}&productId=${product.productId}"
+              >
+                Track package
+              </a>
             </div>
           </div>
         `;

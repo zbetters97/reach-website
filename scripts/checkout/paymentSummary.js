@@ -94,7 +94,6 @@ async function submitOrder() {
   let orderItems = [];
 
   cart.cartItems.forEach((item) => {
-    console.log(getDeliveryOption(item.deliveryId));
     orderItems.push({
       productId: item.productId,
       category: item.category,
