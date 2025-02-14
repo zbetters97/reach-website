@@ -102,7 +102,7 @@ function renderModalHTML(productId) {
   });
 
   $("#js-add-cart-btn").on("click", () => {
-    const size = $(`input[name="size-radio"]:checked`).val() || "One Size";
+    const size = $("input[name='size-radio']:checked").val() || "One Size";
     product.size = size;
 
     const quantity = $("#js-quantity-container").val();

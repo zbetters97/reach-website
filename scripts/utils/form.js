@@ -76,7 +76,7 @@ export function isCardNumValid(cardNum) {
 }
 
 export function isSecurityCodeValid(code, type) {
-  let length = type === "Amex" ? 4 : 3;
+  let length = type === "AMEX" ? 4 : 3;
   return code.length == length && !isNaN(code);
 }
 

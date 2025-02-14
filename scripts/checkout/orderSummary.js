@@ -196,7 +196,7 @@ function deliveryOptionsHTML(item) {
   const cartId = item.cartId;
 
   deliveryOptions.forEach((deliveryOption) => {
-    const deliveryId = deliveryOption.dId;
+    const deliveryId = deliveryOption.deliveryId;
 
     const isChecked = deliveryId == item.deliveryId;
 

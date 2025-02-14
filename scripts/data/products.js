@@ -37,7 +37,11 @@ class Product {
   getColorHTML() {
     let colorHTML = ``;
     this.colors.forEach((color) => {
-      colorHTML += `<option value="${color}">${color}</option>`;
+      colorHTML += `
+        <option value="${color}" ${color === this.color && `selected`}>
+          ${color}
+        </option>      
+      `;
     });
 
     return colorHTML;
@@ -70,12 +74,13 @@ class Clothing extends Product {
     const select = "checked";
 
     let sizeHTML = ``;
-    this.sizes.forEach((size) => {
+    Object.keys(this.sizes).forEach((size) => {
       sizeHTML += `
         <label role="radio" class="size-select">
           <input type="radio" name="size-radio" value="${size}" 
+          ${size === "Small" && `checked`} 
           ${this.size === size && select} />
-          <p>${size}</p>
+          <p>${this.sizes[size]}</p>
         </label>
       `;
     });
@@ -99,7 +104,13 @@ const products = [
     colors: ["Ash", "Indigo", "White"],
     edition: "Modern",
     category: "shirt",
-    sizes: ["S", "M", "L", "XL", "2XL"],
+    sizes: {
+      Small: "S",
+      Medium: "M",
+      Large: "L",
+      XLarge: "XL",
+      XXLarge: "2XL",
+    },
   },
   {
     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c7",
@@ -108,7 +119,13 @@ const products = [
     colors: ["Black", "Navy"],
     edition: "Classic",
     category: "shirt",
-    sizes: ["S", "M", "L", "XL", "2XL"],
+    sizes: {
+      Small: "S",
+      Medium: "M",
+      Large: "L",
+      XLarge: "XL",
+      XXLarge: "2XL",
+    },
   },
   {
     productId: "77919bbe-0e56-475b-adde-4f24dfed3a04",
@@ -117,7 +134,13 @@ const products = [
     colors: ["Ash", "Charcoal"],
     edition: "Modern",
     category: "hoodie",
-    sizes: ["S", "M", "L", "XL", "2XL"],
+    sizes: {
+      Small: "S",
+      Medium: "M",
+      Large: "L",
+      XLarge: "XL",
+      XXLarge: "2XL",
+    },
   },
   {
     productId: "77919bbe-0e56-475b-adde-4f24dfed3a05",
@@ -126,7 +149,13 @@ const products = [
     colors: ["Black", "Navy"],
     edition: "Classic",
     category: "hoodie",
-    sizes: ["S", "M", "L", "XL", "2XL"],
+    sizes: {
+      Small: "S",
+      Medium: "M",
+      Large: "L",
+      XLarge: "XL",
+      XXLarge: "2XL",
+    },
   },
   {
     productId: "58b4fc92-e98c-42aa-8c55-b6b79996769a",

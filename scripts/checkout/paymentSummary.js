@@ -1,10 +1,16 @@
 import cart from "../data/cart.js";
 import { getProduct } from "../data/products.js";
-import { getDeliveryOption } from "../data/deliveryOptions.js";
+import {
+  calculateDeliveryDate,
+  getDeliveryOption,
+} from "../data/deliveryOptions.js";
 import formatCurrency from "../utils/money.js";
 import { showFormAlert } from "../utils/form.js";
 import { addOrder } from "../data/orders.js";
 import { getConcert } from "../data/concerts.js";
+import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
+
+const modal = $("#js-checkout-modal");
 
 export function renderPaymentSummaryHTML() {
   let productPriceCents = 0;
@@ -45,7 +51,7 @@ export function renderPaymentSummaryHTML() {
       </div>
     </div>
 
-    <div class="order-total">
+    <div class="order-total" id="js-order-total" data-order-total=${totalAfterTaxCents}>
       <h3>Order total:</h3>
       <h3>$${formatCurrency(totalAfterTaxCents)}</h3>
     </div>
@@ -70,7 +76,7 @@ export function renderPaymentSummaryHTML() {
 
 async function submitOrder() {
   if (cart.cartItems.length <= 0) {
-    showFormAlert("Error! Cart is empty.");
+    showFormAlert("Your cart is empty.");
     return;
   }
 
@@ -85,7 +91,40 @@ async function submitOrder() {
     return;
   }
 
-  addOrder(cart.cartItems);
+  let orderItems = [];
+
+  cart.cartItems.forEach((item) => {
+    console.log(getDeliveryOption(item.deliveryId));
+    orderItems.push({
+      productId: item.productId,
+      category: item.category,
+      type: item.type,
+      color: item.color,
+      quantity: item.quantity,
+      deliveryDate: calculateDeliveryDate(getDeliveryOption(item.deliveryId)),
+    });
+  });
+
+  const orderId =
+    Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
+  const orderTotal = $("#js-order-total").data("order-total");
+
+  let order = {
+    orderId: orderId,
+    orderDate: dayjs(),
+    totalInCents: orderTotal,
+    items: orderItems,
+  };
+
+  addOrder(order);
   cart.emptyCart();
-  window.location.href = `orders.html`;
+
+  openModal(modal);
+}
+
+function openModal(modal) {
+  if (modal != null) {
+    modal.addClass("active");
+    $("#js-modal-overlay").addClass("active");
+  }
 }

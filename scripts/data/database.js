@@ -120,7 +120,7 @@ export async function dbGetUser() {
     const docRef = doc(db, "users", uid);
     const userDoc = await getDoc(docRef);
 
-    if (userDoc.exists()) {
+    if (userDoc.exists() && auth.currentUser) {
       return userDoc.data();
     } else {
       localStorage.removeItem("loggedInUserId");
