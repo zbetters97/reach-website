@@ -1,3 +1,6 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .about-section h2 {
   font-family: "Raleway", Arial, sans-serif;
   text-transform: capitalize;
@@ -6,19 +9,22 @@
   letter-spacing: 0.15em;
   text-align: center;
   margin-bottom: 0.5em;
-}
-.about-section p {
-  font-family: Verdana, Arial, sans-serif;
+
+  p {
+    font-family: Verdana, Arial, sans-serif;
+  }
 }
 
 .about-band-img {
   margin: 0 auto;
   width: 50%;
   aspect-ratio: 16/9;
+  -o-object-fit: cover;
   object-fit: cover;
   border-radius: 10px;
   display: block;
 }
+
 .about-info {
   font-size: 1.5em;
   line-height: 1.4em;
@@ -28,10 +34,10 @@
 
 .about-member-container {
   margin-bottom: 100px;
-}
 
-.about-member-container h2 {
-  margin-top: 1em;
+  h2 {
+    margin-top: 1em;
+  }
 }
 
 .about-member {
@@ -43,15 +49,17 @@
 
 .about-member-img {
   width: 50%;
+  -o-object-fit: cover;
   object-fit: cover;
   box-shadow: 0 0 15px #252525;
   opacity: 0.8;
   cursor: pointer;
   transition: 200ms;
-}
-.about-member-img:hover {
-  opacity: 1;
-  box-shadow: 0 0 35px #252525;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: 0 0 35px #252525;
+  }
 }
 
 .about-member-info {
@@ -60,27 +68,33 @@
   width: 50%;
   opacity: 0;
 }
+
 .members-animate-on {
   animation: fadeInLeft 500ms forwards;
 }
+
 @keyframes fadeInLeft {
   0% {
     opacity: 0;
     transform: translateX(-35px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
+
 .members-animate-off {
   animation: fadeOutLeft 500ms forwards;
 }
+
 @keyframes fadeOutLeft {
   0% {
     opacity: 1;
     transform: translateX(0);
   }
+
   100% {
     opacity: 0;
     transform: translateX(-35px);
@@ -103,12 +117,12 @@
   padding: 0.2em 0;
   width: 85%;
   border-radius: 6px;
-  border: 2px solid var(--basic-blue);
+  border: 2px solid $basic-blue;
 }
 
 .about-member-tag {
-  color: var(--basic-white);
-  background-color: var(--basic-blue);
+  color: $basic-white;
+  background-color: $error-highlight;
   width: 70%;
   padding: 0.2em;
   margin-top: -2px;
@@ -136,7 +150,10 @@
 .about-member-quote {
   font-size: 1.5em;
   padding: 1em 1em;
+
+  p {
+    padding-bottom: 1em;
+  }
 }
-.about-member-quote p {
-  padding-bottom: 1em;
-}
+
+/*# sourceMappingURL=about.css.map */

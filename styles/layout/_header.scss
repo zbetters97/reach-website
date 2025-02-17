@@ -1,14 +1,17 @@
+@use "../abstracts"as *;
+
 .navbar {
   background-color: rgb(255, 255, 255, 0.5);
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
   width: 100%;
   height: 200px;
   margin: 0 auto;
   gap: 4em;
   border-bottom: 3px solid black;
 }
+
 .navbar-link {
   font-family: "Palanquin", Arial, sans-serif;
   font-size: 2.2em;
@@ -16,24 +19,29 @@
   text-transform: uppercase;
   color: gray;
   transition: color 150ms;
+
+  &:hover {
+    color: black;
+  }
 }
-.navbar-link:hover {
-  color: black;
-}
+
 .navbar-link.active {
   color: black;
 }
+
 .navbar-logo {
   width: 180px;
   aspect-ratio: 1/1;
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 200ms;
+
+  &:hover {
+    opacity: 1;
+  }
 }
+
 .navbar-logo.active {
-  opacity: 1;
-}
-.navbar-logo:hover {
   opacity: 1;
 }
 
@@ -46,9 +54,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.navbar-user-container a {
-  color: black;
+
+  a {
+    color: black;
+  }
 }
 
 .hamburger {
@@ -61,27 +70,32 @@
   background: none;
   border: none;
   display: none;
+
+  .bar,
+  &:after,
+  &:before {
+    content: "";
+    background-color: black;
+    margin: 8px 0px;
+    width: 100%;
+    height: 5px;
+    display: block;
+    transition: all 400ms;
+  }
 }
 
-.hamburger .bar,
-.hamburger:after,
-.hamburger:before {
-  content: "";
-  background-color: black;
-  margin: 8px 0px;
-  width: 100%;
-  height: 5px;
-  display: block;
-  transition: all 400ms;
-}
-.hamburger.is-active:before {
-  transform: rotate(-45deg) translate(-12px, 8px);
-}
-.hamburger.is-active:after {
-  transform: rotate(45deg) translate(-10px, -6px);
-}
-.hamburger.is-active .bar {
-  opacity: 0;
+.hamburger.is-active {
+  &:before {
+    transform: rotate(-45deg) translate(-12px, 8px);
+  }
+
+  &:after {
+    transform: rotate(45deg) translate(-10px, -6px);
+  }
+
+  .bar {
+    opacity: 0;
+  }
 }
 
 .mobile-nav {
@@ -92,7 +106,7 @@
   min-height: 40vh;
   display: block;
   z-index: 98;
-  background-color: var(--basic-white);
+  background-color: $basic-white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   transition: all 400ms;
 
@@ -111,7 +125,7 @@
   }
 
   a.active {
-    color: var(--basic-blue);
+    color: $basic-blue;
   }
 }
 
@@ -123,6 +137,7 @@
   .navbar {
     display: none;
   }
+
   .hamburger {
     display: unset;
   }
@@ -132,6 +147,7 @@
   .hamburger {
     display: none;
   }
+
   .mobile-nav {
     display: none;
   }

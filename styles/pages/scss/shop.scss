@@ -1,3 +1,6 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .shop-items-grid {
   width: 80%;
   margin: 0 auto;
@@ -17,19 +20,23 @@
   cursor: pointer;
   transition: transform 200ms;
 }
+
 .shop-item:hover {
   transform: scale(1.1);
 }
+
 .shop-item img {
   margin-bottom: 1em;
   width: 100%;
   border-radius: 15px;
 }
+
 .shop-item h3 {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.5em;
   margin-bottom: 0.3em;
 }
+
 .shop-item p {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.3em;
@@ -37,8 +44,8 @@
 
 /** MODAL **/
 .shop-modal {
-  background-color: var(--basic-blue);
-  color: var(--basic-white);
+  background-color: $basic-blue;
+  color: $basic-white;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -53,12 +60,13 @@
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 }
+
 .shop-modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
 .shop-close-btn {
-  color: var(--basic-white);
+  color: $basic-white;
   font-size: 2rem;
   font-weight: bold;
   background: none;
@@ -74,10 +82,12 @@
   display: flex;
   justify-content: space-evenly;
 }
+
 .shop-modal-img {
   width: 50%;
   border-radius: 10px;
 }
+
 .shop-modal-info {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.8rem;
@@ -93,6 +103,7 @@
   font-size: 2.3rem;
   font-weight: 600;
 }
+
 .shop-modal-info h4 {
   font-weight: lighter;
 }
@@ -102,15 +113,17 @@
   flex-direction: column;
   width: 40%;
 }
+
 .color-container select {
   font-size: 1em;
   margin-top: 0.3em;
   margin-left: 0.3em;
-  color: var(--basic-white);
+  color: $basic-white;
   background-color: transparent;
-  border: 3px solid var(--basic-white);
+  border: 3px solid $basic-white;
   vertical-align: middle;
 }
+
 .color-container option {
   color: black;
 }
@@ -121,11 +134,13 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .size-container {
   display: flex;
   flex-direction: column;
   width: 90%;
 }
+
 .size-container label {
   font-size: 0.8em;
   text-align: center;
@@ -134,16 +149,19 @@
   padding: 0.2em;
   cursor: pointer;
 }
+
 .size-container label:has(input[type="radio"]) {
   display: grid;
   flex-direction: row;
   align-items: center;
   border: 4px solid transparent;
 }
+
 .size-container label:has(input[type="radio"]:checked) {
-  border: 4px solid var(--basic-white);
+  border: 4px solid $basic-white;
   border-radius: 100%;
 }
+
 .size-container input {
   position: absolute;
   opacity: 0;
@@ -151,13 +169,14 @@
 
 .quantity-container input {
   font-size: 1em;
-  color: var(--basic-white);
+  color: $basic-white;
   background-color: transparent;
   margin-top: 0.3em;
   margin-left: 0.5em;
   border: none;
-  border-bottom: 3px solid var(--basic-white);
+  border-bottom: 3px solid $basic-white;
 }
+
 .quantity-container input:focus {
   outline: none;
 }
@@ -171,6 +190,7 @@
   align-items: center;
   gap: 0.3em;
 }
+
 .shop-added-alert {
   font-size: 0.8em;
   color: green;
@@ -181,25 +201,27 @@
   opacity: 0;
   transition: all 200ms;
 }
+
 .add-cart-btn {
   font-size: 1em;
-  color: var(--basic-white);
+  color: $basic-white;
   background-color: transparent;
   width: 70%;
   height: 70px;
   align-self: center;
-  border: 3px solid var(--basic-white);
+  border: 3px solid $basic-white;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   transition: all 200ms;
 }
+
 .add-cart-btn::before {
   content: "\f07a";
   font-family: "FontAwesome";
   font-size: 1.2em;
   text-indent: 0.2em;
-  color: var(--basic-white);
+  color: $basic-white;
   width: 30%;
   height: 100%;
   position: absolute;
@@ -212,9 +234,11 @@
   transition: all 200ms;
   z-index: 1;
 }
+
 .add-cart-btn:hover {
   text-indent: 2.2em;
 }
+
 .add-cart-btn:hover::before {
   transform: translate(-20%, 0) scale(1, 1);
 }
@@ -230,8 +254,10 @@
   opacity: 0;
   pointer-events: none;
 }
+
 .shop-overlay.active {
   opacity: 1;
   pointer-events: all;
 }
+
 /** END MODAL **/

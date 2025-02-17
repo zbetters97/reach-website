@@ -1,3 +1,6 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .account-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   background-color: white;
@@ -11,13 +14,14 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-}
-.account-section h2 {
-  font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.5em;
-  color: var(--basic-blue);
-  text-align: center;
-  margin-top: 1em;
+
+  h2 {
+    font-family: "Raleway", Arial, sans-serif;
+    font-size: 1.5em;
+    color: $basic-blue;
+    text-align: center;
+    margin-top: 1em;
+  }
 }
 
 .account-container {
@@ -31,8 +35,8 @@
 }
 
 .account-card {
-  color: var(--basic-white);
-  background-color: var(--basic-blue);
+  color: $basic-white;
+  background-color: $basic-blue;
   padding: 20px;
   width: 320px;
   height: 60px;
@@ -41,19 +45,21 @@
   flex-direction: column;
   justify-content: space-around;
   transition: transform 150ms;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
-.account-card:hover {
-  transform: scale(1.1);
-}
+
 .account-card-title {
   font-size: 1.5em;
   display: flex;
   align-items: center;
   gap: 10px;
-}
 
-.account-card p {
-  font-size: 1em;
+  p {
+    font-size: 1em;
+  }
 }
 
 .logout-btn {

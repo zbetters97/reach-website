@@ -1,8 +1,12 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .hero {
-  background-image: url("../../images/home/banner.png");
+  background-image: url("/images/home/banner.png");
   background-position: center center;
   background-size: cover;
-  background-attachment: fixed; /* does not scroll with page */
+  background-attachment: fixed;
+  /* does not scroll with page */
   width: 100%;
   height: 100vh;
   display: flex;
@@ -11,12 +15,13 @@
   align-items: center;
   flex-wrap: nowrap;
 }
+
 .hero-text {
   font-family: "ostrich_sansmedium", Arial, sans-serif;
   font-size: 13em;
   font-weight: 550;
   letter-spacing: 0.1em;
-  color: var(--basic-white);
+  color: $basic-white;
   text-shadow: 5px 5px 2px black;
   height: 220px;
 }
@@ -30,14 +35,17 @@
 .home-section {
   padding: 2.5em;
 }
+
 .home-section:nth-child(odd) {
-  background-color: var(--basic-white);
+  background-color: $basic-white;
   color: black;
 }
+
 .home-section:nth-child(even) {
-  background-color: var(--basic-blue);
-  color: var(--basic-white);
+  background-color: $basic-blue;
+  color: $basic-white;
 }
+
 .home-section h2 {
   font-family: "Raleway", Arial, sans-serif;
   text-transform: capitalize;
@@ -47,6 +55,7 @@
   margin-bottom: 0.5em;
   text-align: center;
 }
+
 .home-section h3 {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   font-size: 2.5em;
@@ -54,6 +63,7 @@
   letter-spacing: 0.1em;
   text-align: center;
 }
+
 .home-section p {
   font-family: Verdana, Arial, sans-serif;
 }
@@ -63,9 +73,11 @@
   font-size: 1.5em;
   padding: 0.5em 1em;
 }
+
 .home-btn:after {
   font-size: 0.8em;
 }
+
 .home-btn:hover {
   padding-right: 1.5em;
   padding-left: 0.5em;
@@ -78,10 +90,12 @@
   justify-content: center;
   align-items: center;
 }
+
 .home-tour-img {
   width: 60%;
   border-radius: 6px;
 }
+
 .home-tour-dates {
   width: 50%;
   display: flex;
@@ -90,6 +104,7 @@
   align-items: center;
   align-self: stretch;
 }
+
 .home-tour-entry {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.5em;
@@ -101,9 +116,10 @@
   justify-content: center;
   align-items: center;
 }
+
 .home-tour-btn {
-  color: var(--basic-white);
-  border: 2px solid var(--basic-white);
+  color: $basic-white;
+  border: 2px solid $basic-white;
 }
 
 .home-music-container {
@@ -114,10 +130,12 @@
   align-items: center;
   gap: 5%;
 }
+
 .home-music-img {
   width: 65%;
   border-radius: 6px;
 }
+
 .home-music-album {
   width: 60%;
   margin: 0 auto;
@@ -127,16 +145,19 @@
   align-items: center;
   align-self: stretch;
 }
+
 .home-music-songs {
   font-size: 1.6em;
   line-height: 40px;
   text-transform: uppercase;
   list-style-position: inside;
 }
+
 .home-music-album h3 {
   width: 70%;
   border-bottom: 2px solid black;
 }
+
 .home-music-btn {
   color: black;
   border: 2px solid black;
@@ -150,12 +171,14 @@
   align-items: center;
   gap: 3%;
 }
+
 .home-event-img {
   width: 40%;
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
 }
+
 .home-event-info {
   font-size: 1.6em;
   display: flex;
@@ -165,6 +188,7 @@
   height: 280px;
   line-height: 35px;
 }
+
 .home-event-info a {
   color: inherit;
 }
@@ -178,19 +202,23 @@
   align-items: center;
   gap: 25px;
 }
+
 .home-store-img-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .home-store-img {
   width: 40%;
   text-align: center;
 }
+
 .home-store-img img {
   width: 90%;
   border-radius: 10px;
 }
+
 .home-store-btn {
   color: black;
   border: 2px solid black;

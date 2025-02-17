@@ -1,11 +1,16 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .concert-section {
   padding: 50px;
 }
+
 .concert-section:nth-child(odd) {
-  background-color: var(--basic-blue);
+  background-color: $basic-blue;
 }
+
 .concert-section:nth-child(even) {
-  background-color: var(--basic-white);
+  background-color: $basic-white;
 }
 
 .concert-container {
@@ -15,9 +20,11 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .concert-section:nth-child(odd) .concert-container {
-  color: var(--basic-white);
+  color: $basic-white;
 }
+
 .concert-section:nth-child(even) .concert-container {
   color: black;
 }
@@ -29,6 +36,7 @@
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
+
 .concert-info {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   font-size: 1.8em;
@@ -36,11 +44,13 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
 .concert-seperator {
   width: 30%;
   height: 1px;
   border-top: 3px solid;
 }
+
 .concert-info.link {
   color: inherit;
   letter-spacing: 0.05em;
@@ -73,6 +83,7 @@
   border: 5px solid black;
   border-radius: 10px;
 }
+
 .maps-info {
   display: flex;
   flex-direction: column;
@@ -80,20 +91,23 @@
   align-items: center;
   height: 6em;
 }
+
 .maps-info-body {
   font-size: 1.2em;
 }
+
 .maps-info-btn {
   font-size: 1.1em;
   color: black;
   background-color: transparent;
-  border: 2px solid var(--basic-blue);
+  border: 2px solid $basic-blue;
   padding: 5px 10px;
   transition: all 150ms;
 }
+
 .maps-info-btn:hover {
-  background-color: var(--basic-blue);
-  color: var(--basic-white);
+  background-color: $basic-blue;
+  color: $basic-white;
 }
 
 .address-form {
@@ -103,26 +117,31 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .map-form-input {
   display: flex;
   flex-direction: column;
 }
+
 .map-form-input div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .map-alert {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5em;
   font-weight: 600;
 }
+
 .address-form label {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 2.2em;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
 }
+
 .address-form input {
   font-size: 1.6em;
   border: 2px solid black;
@@ -136,6 +155,7 @@
   justify-content: space-between;
   align-self: flex-start;
 }
+
 .address-form button {
   width: 180px;
   min-width: 180px;
@@ -147,13 +167,16 @@
   border: 2px solid black;
   transition: all 200ms;
 }
+
 .btn-hover {
   cursor: pointer;
 }
+
 .btn-hover:hover {
-  color: var(--basic-white);
-  background-color: var(--basic-blue);
+  color: $basic-white;
+  background-color: $basic-blue;
 }
+
 .address-form .fa-spin {
   display: none;
 }

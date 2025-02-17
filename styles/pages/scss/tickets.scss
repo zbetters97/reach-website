@@ -1,3 +1,6 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .tickets-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   background-color: white;
@@ -12,10 +15,11 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
 .tickets-section h2 {
   font-family: "Raleway", Arial, sans-serif;
   font-size: 1.5em;
-  color: var(--basic-blue);
+  color: $basic-blue;
   text-align: center;
   margin-top: 1em;
 }
@@ -32,7 +36,7 @@
 .ticket-info-list {
   font-size: 1.5em;
   color: white;
-  background-color: var(--basic-blue);
+  background-color: $basic-blue;
   list-style-type: none;
   border-radius: 14px;
   padding: 0.5em;
@@ -53,12 +57,13 @@
   display: flex;
   flex-direction: column;
 }
+
 .ticket-field input,
 .ticket-field select {
   margin-top: 0.3em;
   font-size: 0.7em;
   padding: 0.3em;
-  border: 2px solid var(--basic-blue);
+  border: 2px solid $basic-blue;
   background-color: transparent;
   outline: none;
 }
@@ -76,17 +81,18 @@
 
 .tickets-add-btn {
   font-size: 2em;
-  color: var(--basic-white);
-  background-color: var(--basic-blue);
+  color: $basic-white;
+  background-color: $basic-blue;
   align-self: center;
   padding: 0.5em;
   margin: 0 auto;
   width: 45%;
-  border: 3px solid var(--basic-blue);
+  border: 3px solid $basic-blue;
   position: relative;
   overflow: hidden;
   transition: all 200ms;
 }
+
 .tickets-add-btn::before {
   content: "\f07a";
   font-family: "FontAwesome";
@@ -104,9 +110,11 @@
   transition: all 200ms;
   z-index: 1;
 }
+
 .tickets-add-btn:hover {
   text-indent: 2.2em;
 }
+
 .tickets-add-btn:hover::before {
   transform: translate(-20%, 0) scale(1, 1);
 }

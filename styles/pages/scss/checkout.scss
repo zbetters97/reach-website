@@ -1,3 +1,6 @@
+@use "../../abstracts"as *;
+@use "../../layout"as *;
+
 .checkout-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   background-color: white;
@@ -11,11 +14,12 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .checkout-section h2 {
   font-family: "Raleway", Arial, sans-serif;
   font-size: 1.5em;
   text-align: center;
-  color: var(--basic-blue);
+  color: $basic-blue;
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -27,6 +31,7 @@
   grid-template-columns: 5fr 2fr;
   column-gap: 1em;
 }
+
 .checkout-container h3 {
   font-size: 1.3em;
 }
@@ -47,12 +52,14 @@
   flex-direction: column;
   gap: 0.3em;
 }
+
 .method-header {
   display: flex;
   justify-content: space-between;
 }
+
 .method-header a {
-  color: var(--basic-blue);
+  color: $basic-blue;
   font-weight: bold;
 }
 
@@ -62,19 +69,22 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .checkout-empty-container h3 {
   opacity: 0.8;
   font-size: 1.5em;
-  color: var(--basic-blue);
+  color: $basic-blue;
 }
+
 .checkout-empty-container button {
   font-size: 1.3em;
-  background-color: var(--basic-blue);
-  color: var(--basic-white);
+  background-color: $basic-blue;
+  color: $basic-white;
   padding: 0.7em 1.3em;
   margin-top: 1em;
   border: none;
 }
+
 .checkout-empty-container button:hover {
   padding-left: 0.5em;
   padding-right: 2.1em;
@@ -96,30 +106,36 @@
   grid-template-columns: 1fr 3fr 2fr;
   column-gap: 0.3em;
 }
+
 .product-image {
   width: 150px;
   height: 150px;
   border-radius: 10px;
   object-fit: cover;
 }
+
 .product-description {
   display: flex;
   flex-direction: column;
   gap: 0.3em;
 }
+
 .product-price {
   font-weight: bold;
 }
+
 .product-quantity {
   display: flex;
   height: 20px;
   align-items: center;
   gap: 0.7em;
 }
+
 .product-quantity a {
   font-weight: bold;
-  color: var(--basic-blue);
+  color: $basic-blue;
 }
+
 .quantity-input {
   font-size: 1em;
   vertical-align: middle;
@@ -127,12 +143,15 @@
   height: 20px;
   display: none;
 }
+
 .checkout-save-btn {
   display: none;
 }
+
 .editing-quantity .checkout-update-btn {
   display: none;
 }
+
 .editing-quantity .checkout-save-btn,
 .editing-quantity .quantity-input {
   display: unset;
@@ -143,10 +162,12 @@
   flex-direction: column;
   gap: 0.7em;
 }
+
 .delivery-option {
   display: flex;
   gap: 0.5em;
 }
+
 .delivery-date {
   display: flex;
   flex-direction: column;
@@ -159,14 +180,17 @@
   flex-direction: column;
   justify-content: space-around;
 }
+
 .order-pricing {
   border-bottom: 2px solid black;
 }
+
 .order-pricing div {
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5em;
 }
+
 .order-total {
   display: flex;
   justify-content: space-between;
@@ -179,10 +203,11 @@
   flex-direction: column;
   align-items: center;
 }
+
 .checkout-submit-btn {
   font-size: 1.5em;
-  background-color: var(--basic-blue);
-  color: var(--basic-white);
+  background-color: $basic-blue;
+  color: $basic-white;
   padding: 0.5em;
   margin-top: 0.1em;
   border: none;
@@ -192,8 +217,8 @@
 /** MODAL **/
 .checkout-modal {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
-  color: var(--basic-blue);
-  background-color: var(--basic-white);
+  color: $basic-blue;
+  background-color: $basic-white;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -210,6 +235,7 @@
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 }
+
 .checkout-modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
@@ -217,7 +243,7 @@
 .checkout-modal-close-btn {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--basic-blue);
+  color: $basic-blue;
   background: none;
   border: none;
   outline: none;
@@ -229,7 +255,7 @@
 .checkout-modal h2 {
   font-family: "Raleway", Arial, sans-serif;
   font-size: 1.5em;
-  color: var(--basic-blue);
+  color: $basic-blue;
   text-align: center;
   margin-top: 1em;
   margin-bottom: 1em;
@@ -248,8 +274,8 @@
 
 .checkout-modal-card {
   font-size: 1.2em;
-  color: var(--basic-white);
-  background-color: var(--basic-blue);
+  color: $basic-white;
+  background-color: $basic-blue;
   padding: 15px 30px;
   margin: 0 auto;
   width: 70%;
@@ -262,6 +288,7 @@
   cursor: pointer;
   transition: 150ms;
 }
+
 .checkout-modal-card:hover {
   transform: scale(1.1);
 }
@@ -271,8 +298,10 @@
   top: 4%;
   right: 2%;
 }
+
 .checkout-modal-card h3 {
   font-size: 1.5em;
   margin-bottom: 0.2em;
 }
+
 /** END MODAL **/
