@@ -3,14 +3,22 @@
 
 .concert-section {
   padding: 50px;
-}
 
-.concert-section:nth-child(odd) {
-  background-color: $basic-blue;
-}
+  &:nth-child(odd) {
+    background-color: $basic-blue;
 
-.concert-section:nth-child(even) {
-  background-color: $basic-white;
+    .concert-container {
+      color: $basic-white;
+    }
+  }
+
+  &:nth-child(even) {
+    background-color: $basic-white;
+
+    .concert-container {
+      color: black;
+    }
+  }
 }
 
 .concert-container {
@@ -19,14 +27,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-
-.concert-section:nth-child(odd) .concert-container {
-  color: $basic-white;
-}
-
-.concert-section:nth-child(even) .concert-container {
-  color: black;
 }
 
 .concert-title {
@@ -43,18 +43,18 @@
   font-weight: 200;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+
+  &.link {
+    color: inherit;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
 }
 
 .concert-seperator {
   width: 30%;
   height: 1px;
   border-top: 3px solid;
-}
-
-.concert-info.link {
-  color: inherit;
-  letter-spacing: 0.05em;
-  font-weight: 600;
 }
 
 .map-title {
@@ -103,11 +103,11 @@
   border: 2px solid $basic-blue;
   padding: 5px 10px;
   transition: all 150ms;
-}
 
-.maps-info-btn:hover {
-  background-color: $basic-blue;
-  color: $basic-white;
+  &:hover {
+    background-color: $basic-blue;
+    color: $basic-white;
+  }
 }
 
 .address-form {
@@ -116,37 +116,53 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+
+  label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2.2em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+  }
+
+  input {
+    font-size: 1.6em;
+    border: 2px solid black;
+    padding: 0.2em;
+    width: 100%;
+  }
+
+  button {
+    width: 180px;
+    min-width: 180px;
+    color: black;
+    font-size: 1.7em;
+    padding: 0.4em 1em;
+    margin-right: 25px;
+    background-color: transparent;
+    border: 2px solid black;
+    transition: all 200ms;
+  }
+
+  .fa-spin {
+    display: none;
+  }
 }
 
 .map-form-input {
   display: flex;
   flex-direction: column;
-}
 
-.map-form-input div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .map-alert {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5em;
   font-weight: 600;
-}
-
-.address-form label {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2.2em;
-  margin-top: 0.2em;
-  margin-bottom: 0.2em;
-}
-
-.address-form input {
-  font-size: 1.6em;
-  border: 2px solid black;
-  padding: 0.2em;
-  width: 100%;
 }
 
 .map-form-btn {
@@ -156,27 +172,11 @@
   align-self: flex-start;
 }
 
-.address-form button {
-  width: 180px;
-  min-width: 180px;
-  color: black;
-  font-size: 1.7em;
-  padding: 0.4em 1em;
-  margin-right: 25px;
-  background-color: transparent;
-  border: 2px solid black;
-  transition: all 200ms;
-}
-
 .btn-hover {
   cursor: pointer;
-}
 
-.btn-hover:hover {
-  color: $basic-white;
-  background-color: $basic-blue;
-}
-
-.address-form .fa-spin {
-  display: none;
+  &:hover {
+    color: $basic-white;
+    background-color: $basic-blue;
+  }
 }

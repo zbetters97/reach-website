@@ -3,16 +3,40 @@
 
 .album-section {
   padding: 2.5em;
-}
 
-.album-section:nth-child(odd) {
-  background-color: $basic-blue;
-  color: $basic-white;
-}
+  &:nth-child(odd) {
+    background-color: $basic-blue;
+    color: $basic-white;
 
-.album-section:nth-child(even) {
-  background-color: $basic-white;
-  color: black;
+    .album-img {
+      border: 4px solid $basic-white;
+    }
+
+    .album-title {
+      border-bottom: 2px solid $basic-white;
+    }
+
+    .album-services {
+      border: 2px solid $basic-white;
+    }
+  }
+
+  &:nth-child(even) {
+    background-color: $basic-white;
+    color: black;
+
+    .album-img {
+      border: 4px solid black;
+    }
+
+    .album-title {
+      border-bottom: 2px solid black;
+    }
+
+    .album-services {
+      border: 2px solid black;
+    }
+  }
 }
 
 .album-container {
@@ -26,14 +50,6 @@
 
 .album-img {
   width: 70%;
-}
-
-.album-section:nth-child(odd) .album-img {
-  border: 4px solid $basic-white;
-}
-
-.album-section:nth-child(even) .album-img {
-  border: 4px solid black;
 }
 
 .album-content {
@@ -56,14 +72,6 @@
   margin-bottom: 0.7em;
 }
 
-.album-section:nth-child(odd) .album-title {
-  border-bottom: 2px solid $basic-white;
-}
-
-.album-section:nth-child(even) .album-title {
-  border-bottom: 2px solid black;
-}
-
 .album-songs {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.7em;
@@ -82,22 +90,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.album-services i {
-  transition: transform 150ms linear;
-}
+  i {
+    transition: transform 150ms linear;
+  }
 
-.album-services i:hover {
-  transform: scale(1.2);
-}
-
-.album-section:nth-child(odd) .album-services {
-  border: 2px solid $basic-white;
-}
-
-.album-section:nth-child(even) .album-services {
-  border: 2px solid black;
+  i:hover {
+    transform: scale(1.2);
+  }
 }
 
 .music-videos-section {

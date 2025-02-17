@@ -60,11 +60,11 @@
   position: absolute;
   top: 4%;
   right: 2%;
-}
 
-.address-card h3 {
-  font-size: 1.5em;
-  margin-bottom: 0.2em;
+  h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.2em;
+  }
 }
 
 .address-card-btn-container {
@@ -85,14 +85,14 @@
   border: 2px solid black;
   cursor: pointer;
   transition: all 150ms;
-}
 
-.address-new-container:hover {
-  transform: scale(1.1);
-}
+  &:hover {
+    transform: scale(1.1);
+  }
 
-.address-new-container i {
-  font-size: 2em;
+  i {
+    font-size: 2em;
+  }
 }
 
 .address-new-btn {
@@ -134,10 +134,15 @@
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-}
 
-.address-modal.active {
-  transform: translate(-50%, -50%) scale(1);
+  h3 {
+    font-size: 1.3em;
+    padding-bottom: 1em;
+  }
+
+  &.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 .address-close-btn {
@@ -150,11 +155,6 @@
   position: absolute;
   top: 0;
   right: 2%;
-}
-
-.address-modal h3 {
-  font-size: 1.3em;
-  padding-bottom: 1em;
 }
 
 .address-modal-form {

@@ -13,15 +13,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
 
-.payment-section h2 {
-  font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.5em;
-  color: $basic-blue;
-  text-align: center;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  h2 {
+    font-family: "Raleway", Arial, sans-serif;
+    font-size: 1.5em;
+    color: $basic-blue;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
 }
 
 .payment-container {
@@ -54,17 +54,17 @@
   justify-content: space-around;
   gap: 0.3em;
   position: relative;
+
+  h3 {
+    font-size: 1.5em;
+    margin-bottom: 0.2em;
+  }
 }
 
 .payment-default-tag {
   position: absolute;
   top: 4%;
   right: 2%;
-}
-
-.payment-card h3 {
-  font-size: 1.5em;
-  margin-bottom: 0.2em;
 }
 
 .payment-card-btn-container {
@@ -85,14 +85,14 @@
   border: 2px solid black;
   cursor: pointer;
   transition: all 150ms;
-}
 
-.payment-new-container:hover {
-  transform: scale(1.1);
-}
+  &:hover {
+    transform: scale(1.1);
+  }
 
-.payment-new-container i {
-  font-size: 2em;
+  i {
+    font-size: 2em;
+  }
 }
 
 .payment-new-btn {
@@ -134,10 +134,15 @@
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
-}
 
-.payment-modal.active {
-  transform: translate(-50%, -50%) scale(1);
+  &.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  h3 {
+    font-size: 1.3em;
+    padding-bottom: 1em;
+  }
 }
 
 .payment-close-btn {
@@ -150,11 +155,6 @@
   position: absolute;
   top: 0;
   right: 2%;
-}
-
-.payment-modal h3 {
-  font-size: 1.3em;
-  padding-bottom: 1em;
 }
 
 .payment-modal-form {
@@ -172,15 +172,15 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
 
-.payment-modal-field input {
-  font-size: 1em;
-  padding: 0.3em;
-  margin-top: 0.3em;
-  border: 2px solid $basic-blue;
-  outline: none;
-  transition: all 150ms;
+  input {
+    font-size: 1em;
+    padding: 0.3em;
+    margin-top: 0.3em;
+    border: 2px solid $basic-blue;
+    outline: none;
+    transition: all 150ms;
+  }
 }
 
 .payment-modal-save-container {

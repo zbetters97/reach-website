@@ -26,61 +26,55 @@
   height: 220px;
 }
 
-@media (max-width: 900px) {
-  .hero {
-    display: none;
-  }
-}
-
 .home-section {
   padding: 2.5em;
-}
 
-.home-section:nth-child(odd) {
-  background-color: $basic-white;
-  color: black;
-}
+  &:nth-child(odd) {
+    background-color: $basic-white;
+    color: black;
+  }
 
-.home-section:nth-child(even) {
-  background-color: $basic-blue;
-  color: $basic-white;
-}
+  &:nth-child(even) {
+    background-color: $basic-blue;
+    color: $basic-white;
+  }
 
-.home-section h2 {
-  font-family: "Raleway", Arial, sans-serif;
-  text-transform: capitalize;
-  font-size: 3em;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5em;
-  text-align: center;
-}
+  h2 {
+    font-family: "Raleway", Arial, sans-serif;
+    text-transform: capitalize;
+    font-size: 3em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
 
-.home-section h3 {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 2.5em;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-align: center;
-}
+  h3 {
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-size: 2.5em;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
 
-.home-section p {
-  font-family: Verdana, Arial, sans-serif;
+  p {
+    font-family: Verdana, Arial, sans-serif;
+  }
 }
 
 .home-btn {
   background-color: transparent;
   font-size: 1.5em;
   padding: 0.5em 1em;
-}
 
-.home-btn:after {
-  font-size: 0.8em;
-}
+  &:after {
+    font-size: 0.8em;
+  }
 
-.home-btn:hover {
-  padding-right: 1.5em;
-  padding-left: 0.5em;
+  &:hover {
+    padding-right: 1.5em;
+    padding-left: 0.5em;
+  }
 }
 
 .home-tour-container {
@@ -144,6 +138,11 @@
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+
+  h3 {
+    width: 70%;
+    border-bottom: 2px solid black;
+  }
 }
 
 .home-music-songs {
@@ -151,11 +150,6 @@
   line-height: 40px;
   text-transform: uppercase;
   list-style-position: inside;
-}
-
-.home-music-album h3 {
-  width: 70%;
-  border-bottom: 2px solid black;
 }
 
 .home-music-btn {
@@ -187,10 +181,10 @@
   width: 50%;
   height: 280px;
   line-height: 35px;
-}
 
-.home-event-info a {
-  color: inherit;
+  a {
+    color: inherit;
+  }
 }
 
 .home-store-container {
@@ -212,14 +206,20 @@
 .home-store-img {
   width: 40%;
   text-align: center;
-}
 
-.home-store-img img {
-  width: 90%;
-  border-radius: 10px;
+  img {
+    width: 90%;
+    border-radius: 10px;
+  }
 }
 
 .home-store-btn {
   color: black;
   border: 2px solid black;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    display: none;
+  }
 }

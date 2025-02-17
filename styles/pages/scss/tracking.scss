@@ -13,14 +13,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
 
-.tracking-section h2 {
-  font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.5em;
-  color: $basic-blue;
-  text-align: center;
-  margin-top: 1em;
+  h2 {
+    font-family: "Raleway", Arial, sans-serif;
+    font-size: 1.5em;
+    color: $basic-blue;
+    text-align: center;
+    margin-top: 1em;
+  }
 }
 
 .tracking-container {
@@ -38,37 +38,37 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
 
-.tracking-empty-container h3 {
-  opacity: 0.8;
-  font-size: 1.5em;
-  color: $basic-blue;
-}
+  h3 {
+    opacity: 0.8;
+    font-size: 1.5em;
+    color: $basic-blue;
+  }
 
-.tracking-empty-container button {
-  font-size: 1.3em;
-  background-color: $basic-blue;
-  color: $basic-white;
-  padding: 0.7em 1.2em;
-  margin-top: 1em;
-  width: 25%;
-  border: none;
-}
+  button {
+    font-size: 1.3em;
+    background-color: $basic-blue;
+    color: $basic-white;
+    padding: 0.7em 1.2em;
+    margin-top: 1em;
+    width: 25%;
+    border: none;
+  }
 
-.tracking-empty-container button:hover {
-  padding-right: 0.4em;
-  padding-left: 2em;
+  button:hover {
+    padding-right: 0.4em;
+    padding-left: 2em;
+  }
 }
 
 .tracking-product-container {
   display: flex;
   flex-direction: column;
   gap: 1em;
-}
 
-.tracking-product-container h3 {
-  font-size: 1.7em;
+  h3 {
+    font-size: 1.7em;
+  }
 }
 
 .tracking-product {
@@ -126,9 +126,9 @@
   font-size: 1.3em;
   padding: 0.7em 1.2em;
   width: auto;
-}
 
-.tracking-back-btn:hover {
-  padding-right: 0.4em;
-  padding-left: 2em;
+  &:hover {
+    padding-right: 0.4em;
+    padding-left: 2em;
+  }
 }

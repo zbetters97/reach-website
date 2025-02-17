@@ -14,14 +14,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
 
-.settings-section h2 {
-  font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.5em;
-  color: $basic-blue;
-  text-align: center;
-  margin-top: 1em;
+  h2 {
+    font-family: "Raleway", Arial, sans-serif;
+    font-size: 1.5em;
+    color: $basic-blue;
+    text-align: center;
+    margin-top: 1em;
+  }
 }
 
 .settings-container {
@@ -44,22 +44,22 @@
   width: 70%;
   display: flex;
   flex-direction: column;
-}
 
-.settings-field input {
-  margin-top: 0.3em;
-  margin-bottom: 0.5em;
-  font-size: 0.9em;
-  padding: 0.3em;
-  border: 2px solid $basic-blue;
-  outline: none;
-  transition: all 150ms;
-}
+  input {
+    margin-top: 0.3em;
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+    padding: 0.3em;
+    border: 2px solid $basic-blue;
+    outline: none;
+    transition: all 150ms;
+  }
 
-.settings-field input[name="email"] {
-  font-weight: bold;
-  color: black;
-  background-color: silver;
+  input[name="email"] {
+    font-weight: bold;
+    color: black;
+    background-color: silver;
+  }
 }
 
 .settings-save-container {

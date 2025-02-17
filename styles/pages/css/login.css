@@ -167,7 +167,6 @@ button {
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 }
-
 .alert-modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
@@ -225,7 +224,6 @@ button {
   pointer-events: none;
   transition: all 150ms;
 }
-
 .navbar-overlay.active,
 .modal-overlay.active {
   opacity: 1;
@@ -261,7 +259,6 @@ button {
 .navbar-link:hover {
   color: black;
 }
-
 .navbar-link.active {
   color: black;
 }
@@ -269,14 +266,13 @@ button {
 .navbar-logo {
   width: 180px;
   aspect-ratio: 1/1;
-  cursor: pointer;
   opacity: 0.8;
+  cursor: pointer;
   transition: opacity 200ms;
 }
 .navbar-logo:hover {
   opacity: 1;
 }
-
 .navbar-logo.active {
   opacity: 1;
 }
@@ -315,7 +311,6 @@ button {
   display: block;
   transition: all 400ms;
 }
-
 .hamburger.is-active:before {
   transform: rotate(-45deg) translate(-12px, 8px);
 }
@@ -327,6 +322,8 @@ button {
 }
 
 .mobile-nav {
+  background-color: rgb(250, 250, 250);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   right: 100%;
@@ -334,8 +331,6 @@ button {
   min-height: 40vh;
   display: block;
   z-index: 98;
-  background-color: rgb(250, 250, 250);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   transition: all 400ms;
 }
 .mobile-nav a {
@@ -354,7 +349,6 @@ button {
 .mobile-nav a.active {
   color: #002c5f;
 }
-
 .mobile-nav.is-active {
   right: 0;
 }
@@ -376,10 +370,11 @@ button {
   }
 }
 footer {
+  font-family: "Libre Baskerville", Arial, sans-serif;
   background-color: black;
+  margin: 0 auto;
   width: 100%;
   height: 250px;
-  margin: 0 auto;
 }
 
 .footer-container {
@@ -398,35 +393,33 @@ footer {
   align-content: center;
   flex-wrap: wrap;
 }
-
-.footer-info {
-  font-family: "Libre Baskerville", Arial, sans-serif;
+.footer-info-container div {
+  height: 40px;
+  border-right: 2px solid rgb(250, 250, 250);
+}
+.footer-info-container p,
+.footer-info-container a {
   font-size: 1.2em;
   color: rgb(250, 250, 250);
 }
-
-.footer-link {
+.footer-info-container a {
+  cursor: pointer;
   position: relative;
 }
-.footer-link::before {
+.footer-info-container a::before {
   content: "";
   position: absolute;
-  display: block;
+  background-color: rgb(250, 250, 250);
   width: 100%;
   height: 2px;
+  display: block;
   bottom: 0;
   left: 0;
-  background-color: #002c5f;
   transform: scaleX(0);
-  transition: transform 0.3s ease;
+  transition: transform 300ms ease;
 }
-.footer-link:hover::before {
+.footer-info-container a:hover::before {
   transform: scaleX(1);
-}
-
-.footer-seperator {
-  height: 40px;
-  border-right: 2px solid rgb(250, 250, 250);
 }
 
 .footer-social-container {
@@ -435,13 +428,12 @@ footer {
   display: flex;
   justify-content: space-between;
 }
-
-.footer-social-icon {
+.footer-social-container i {
   font-size: 3.2em;
   color: rgb(250, 250, 250);
   transition: transform 150ms linear;
 }
-.footer-social-icon:hover {
+.footer-social-container i:hover {
   transform: scale(1.2);
 }
 
@@ -480,7 +472,6 @@ footer {
   justify-content: space-between;
   align-items: center;
 }
-
 .login-section h2 {
   font-family: "Raleway", Arial, sans-serif;
   font-size: 1.5em;
@@ -505,7 +496,6 @@ footer {
   display: flex;
   flex-direction: column;
 }
-
 .login-field input {
   font-size: 0.7em;
   padding: 0.3em;
@@ -527,7 +517,6 @@ footer {
   color: black;
   text-align: center;
 }
-
 .login-forgot-pw a {
   font-weight: bold;
   color: #002c5f;
@@ -563,11 +552,9 @@ footer {
   width: 30%;
   border: 3px solid black;
 }
-
 .login-signup-btn:after {
   font-size: 1em;
 }
-
 .login-signup-btn:hover {
   padding-right: 1.5em;
   padding-left: 0.5em;
@@ -592,7 +579,6 @@ footer {
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 }
-
 .login-modal.active {
   transform: translate(-50%, -50%) scale(1);
 }
@@ -625,7 +611,6 @@ footer {
   display: flex;
   flex-direction: column;
 }
-
 .login-modal-field input {
   font-size: 0.7em;
   padding: 0.3em;
