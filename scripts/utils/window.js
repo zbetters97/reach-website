@@ -1,7 +1,7 @@
 import { dbGetUser } from "../data/database.js";
 
 export function handleWindow() {
-  const getOffset = () => $(".navbar").offset().top;
+  const getOffset = () => $("header").offset().top;
   let contentOffset = getOffset();
 
   $(window).resize(() => (contentOffset = getOffset()));
@@ -13,9 +13,29 @@ export function handleWindow() {
   });
 
   $(".to-top").click(() => {
-    $("body, html").animate({ scrollTop: $("#navbar").offset().top }, 800);
+    $("body, html").animate({ scrollTop: $("header").offset().top }, 800);
     return !1;
   });
+
+  const hamburger = $(".hamburger");
+  const navOverlay = $(".navbar-overlay");
+
+  const showMobileMenu = function () {
+    if (hamburger.hasClass("is-active")) {
+      hamburger.removeClass("is-active");
+      $(".mobile-nav").removeClass("is-active");
+      navOverlay.removeClass("active");
+      $("body").removeClass("lock-scroll");
+    } else {
+      hamburger.addClass("is-active");
+      $(".mobile-nav").addClass("is-active");
+      navOverlay.addClass("active");
+      $("body").addClass("lock-scroll");
+    }
+  };
+
+  hamburger.on("click", () => showMobileMenu());
+  navOverlay.on("click", () => showMobileMenu());
 
   handleAccountPage();
 }

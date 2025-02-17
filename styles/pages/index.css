@@ -21,6 +21,12 @@
   height: 220px;
 }
 
+@media (max-width: 900px) {
+  .hero {
+    display: none;
+  }
+}
+
 .home-section {
   padding: 2.5em;
 }

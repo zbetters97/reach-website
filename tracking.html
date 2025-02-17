@@ -53,23 +53,43 @@
     <!-- END SCRIPTS -->
   </head>
   <body>
-    <nav class="navbar" id="navbar">
-      <a class="navbar-link" href="tour.html">Tour</a>
-      <a class="navbar-link" href="music.html">Music</a>
-      <a href="index.html#navbar">
-        <img class="navbar-logo" src="images/icons/main-logo.png" />
-      </a>
-      <a class="navbar-link" href="shop.html">Shop</a>
-      <a class="navbar-link" href="about.html">About</a>
+    <header>
+      <nav class="navbar" id="navbar">
+        <a class="navbar-link" href="tour.html">Tour</a>
+        <a class="navbar-link" href="music.html">Music</a>
+        <a href="index.html#navbar">
+          <img class="navbar-logo" src="images/icons/main-logo.png" />
+        </a>
+        <a class="navbar-link" href="shop.html">Shop</a>
+        <a class="navbar-link" href="about.html">About</a>
 
-      <div class="navbar-user-container">
-        <a class="navbar-cart" href="checkout.html">
-          <i class="fa-solid fa-cart-shopping"> </i>
-        </a>
-        <a class="navbar-user js-navbar-user">
-          <i class="fa-solid fa-user"></i>
-        </a>
-      </div>
+        <div class="navbar-user-container">
+          <a class="navbar-cart" href="checkout.html">
+            <i class="fa-solid fa-cart-shopping"> </i>
+          </a>
+          <a class="navbar-user js-navbar-user">
+            <i class="fa-solid fa-user"></i>
+          </a>
+        </div>
+      </nav>
+      <button class="hamburger">
+        <div class="bar"></div>
+      </button>
+    </header>
+
+    <nav class="mobile-nav">
+      <a href="index.html#navbar">Home</a>
+      <a href="tour.html">Tour</a>
+      <a href="music.html">Music</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+
+      <a class="navbar-cart" href="checkout.html">
+        <i class="fa-solid fa-cart-shopping"> </i>
+      </a>
+      <a class="navbar-user js-navbar-user">
+        <i class="fa-solid fa-user"></i>
+      </a>
     </nav>
     <main>
       <div class="wrapper">
@@ -95,6 +115,7 @@
           </div>
         </section>
       </div>
+      <div class="navbar-overlay"></div>
       <div class="modal-overlay" id="js-modal-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>

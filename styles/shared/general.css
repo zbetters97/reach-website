@@ -21,12 +21,22 @@
 
 body {
   background-color: var(--basic-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lock-scroll {
+  position: fixed;
+}
+
+main {
+  flex: 1;
 }
 
 h1 {
   font-family: "Archivo", Arial, sans-serif;
   text-transform: uppercase;
-  /* */
   font-size: clamp(1.5rem, 5vw, 4rem);
   font-weight: 300;
   letter-spacing: 0.25em;
@@ -212,6 +222,7 @@ button {
 }
 
 /* SUCCESS MODAL BACKDROP */
+.navbar-overlay,
 .modal-overlay {
   background-color: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -221,9 +232,17 @@ button {
   bottom: 0;
   opacity: 0;
   pointer-events: none;
+  transition: all 150ms;
 }
+.navbar-overlay.active,
 .modal-overlay.active {
   opacity: 1;
   pointer-events: all;
 }
 /** END SUCCESS MODAL **/
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 1.3em;
+  }
+}

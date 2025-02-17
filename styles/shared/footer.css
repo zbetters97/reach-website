@@ -66,3 +66,25 @@ footer {
 .footer-social-icon:hover {
   transform: scale(1.2);
 }
+
+@media (max-width: 900px) {
+  .footer-info-container {
+    font-size: 1em;
+    margin-top: 2em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+  .footer-seperator {
+    display: none;
+  }
+
+  .footer-social-container {
+    font-size: 0.8em;
+    margin-top: 2em;
+    width: 50%;
+  }
+}
