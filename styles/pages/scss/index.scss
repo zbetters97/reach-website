@@ -33,26 +33,36 @@
   &:nth-child(odd) {
     background-color: $basic-white;
     color: black;
+
+    h2 {
+      border-bottom: 3px solid black;
+    }
   }
 
   &:nth-child(even) {
     background-color: $basic-blue;
     color: $basic-white;
+
+    h2 {
+      border-bottom: 3px solid $basic-white;
+    }
   }
 
   h2 {
     font-family: "Raleway", Arial, sans-serif;
-    text-transform: capitalize;
-    font-size: 3em;
+    font-size: calc(2rem + 0.5vw);
     font-weight: 500;
     letter-spacing: 0.1em;
-    margin-bottom: 0.5em;
+    text-transform: capitalize;
     text-align: center;
+    padding: 0 0.5em 0.3em 0.5em;
+    margin: 0 auto 1em auto;
+    width: fit-content;
   }
 
   h3 {
     font-family: "Archivo", Arial, Helvetica, sans-serif;
-    font-size: 2.5em;
+    font-size: calc(2rem + 0.5vw);
     font-weight: 400;
     letter-spacing: 0.1em;
     text-align: center;
@@ -65,7 +75,7 @@
 
 .home-btn {
   background-color: transparent;
-  font-size: 1.5em;
+  font-size: calc(1rem + 0.5vw);
   padding: 0.5em 1em;
 
   &:after {
@@ -79,148 +89,261 @@
 }
 
 .home-tour-container {
+  margin: 0 auto;
   width: 75%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.home-tour-img {
-  width: 60%;
-  border-radius: 6px;
-}
+  @media (min-width: 900px) {
+    @include flexbox(row, center, center);
+  }
 
-.home-tour-dates {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-}
+  img {
+    width: 100%;
+    border-radius: 6px;
+  }
 
-.home-tour-entry {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 1.5em;
-  text-transform: uppercase;
-  font-weight: 500;
-  line-height: 1.5em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+  .home-tour-dates {
+    width: 100%;
+    align-self: stretch;
+    @include flexbox(column, space-between, center, 0.5em);
 
-.home-tour-btn {
-  color: $basic-white;
-  border: 2px solid $basic-white;
-}
+    .home-tour-entry {
+      text-transform: uppercase;
+      font-family: $alert-font;
+      font-size: calc(0.8rem + 0.5vw);
+      font-weight: 500;
+      line-height: 1.5em;
+      @include flexbox(column, center, center);
+    }
 
-.home-music-container {
-  width: 60%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
-}
-
-.home-music-img {
-  width: 65%;
-  border-radius: 6px;
-}
-
-.home-music-album {
-  width: 60%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-
-  h3 {
-    width: 70%;
-    border-bottom: 2px solid black;
+    button {
+      color: $basic-white;
+      border: 2px solid $basic-white;
+    }
   }
 }
 
-.home-music-songs {
-  font-size: 1.6em;
-  line-height: 40px;
-  text-transform: uppercase;
-  list-style-position: inside;
-}
+.home-music-container {
+  margin: 0 auto;
+  width: 70%;
+  max-width: 75em;
 
-.home-music-btn {
-  color: black;
-  border: 2px solid black;
+  @media (min-width: 900px) {
+    @include flexbox(row);
+  }
+
+  img {
+    width: 65%;
+    border-radius: 6px;
+  }
+
+  .home-music-album {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+
+    h3 {
+      width: 70%;
+      border-bottom: 2px solid black;
+    }
+
+    ol {
+      font-size: calc(1.2rem + 0.5vw);
+      text-transform: uppercase;
+      list-style-position: inside;
+      line-height: 1.5em;
+    }
+
+    button {
+      color: black;
+      border: 2px solid black;
+    }
+  }
 }
 
 .home-event-container {
-  width: 90%;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3%;
-}
+  width: 85%;
 
-.home-event-img {
-  width: 40%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  border-radius: 8px;
-}
+  @media (min-width: 900px) {
+    @include flexbox(row, center, center, 2em);
+  }
 
-.home-event-info {
-  font-size: 1.6em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 50%;
-  height: 280px;
-  line-height: 35px;
+  img {
+    width: 40%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 
-  a {
-    color: inherit;
+  .home-event-info {
+    font-size: calc(1rem + 0.5vw);
+    width: 50%;
+    height: 280px;
+    line-height: 35px;
+    @include flexbox(column, space-between);
+
+    a {
+      color: inherit;
+    }
   }
 }
 
 .home-store-container {
+  margin: 0 auto;
   width: 80%;
-  margin: 0 auto 100px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
-}
 
-.home-store-img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.home-store-img {
-  width: 40%;
-  text-align: center;
-
-  img {
-    width: 90%;
-    border-radius: 10px;
+  @media (min-width: 900px) {
+    @include flexbox(column, center, center, 3em);
   }
-}
 
-.home-store-btn {
-  color: black;
-  border: 2px solid black;
+  .home-store-img-container {
+    @media (min-width: 900px) {
+      @include flexbox(row, center, center);
+    }
+
+    .home-store-product {
+      text-align: center;
+      width: 40%;
+
+      img {
+        width: 90%;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  button {
+    color: black;
+    border: 2px solid black;
+  }
 }
 
 @media (max-width: 900px) {
   .hero {
     display: none;
+  }
+
+  .home-section {
+    background-color: transparent !important;
+    padding: 0;
+
+    h2 {
+      display: none;
+    }
+
+    img {
+      border-radius: 0px;
+    }
+  }
+
+  .home-tour-container {
+    position: relative;
+    width: 100%;
+
+    .home-tour-dates {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      @include flexbox(column, space-around, center, 0.5em);
+    }
+  }
+
+  .home-music-container {
+    width: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    .home-music-album {
+      color: $basic-white;
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      @include flexbox(column, space-around, center, 0.5em);
+
+      h3 {
+        border-bottom: 2px solid $basic-white;
+        padding: 0 0.5em 0.3em 0.5em;
+        margin: 0 auto 1em auto;
+        width: fit-content;
+      }
+
+      button {
+        color: $basic-white;
+        border: 2px solid $basic-white;
+      }
+    }
+  }
+
+  .home-event-container {
+    width: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    .home-event-info {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      @include flexbox(column, space-evenly, center);
+
+      p {
+        padding: 0 1em;
+      }
+    }
+  }
+
+  .home-store-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    .home-store-img-container {
+      width: 100%;
+      height: 100%;
+      @include flexbox(row, center, center);
+
+      .home-store-product {
+        width: 100%;
+
+        h3 {
+          display: none;
+        }
+
+        img {
+          border-radius: 0px;
+          width: 100%;
+        }
+      }
+    }
+
+    button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }

@@ -176,6 +176,7 @@ body {
 
 .lock-scroll {
   position: fixed;
+  width: 100%;
 }
 
 main {
@@ -183,13 +184,14 @@ main {
 }
 
 h1 {
-  font-family: "Archivo", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   text-transform: uppercase;
-  font-size: clamp(1.5rem, 5vw, 4rem);
-  font-weight: 300;
-  letter-spacing: 0.25em;
-  margin: 0.8em;
+  font-size: calc(2rem + 0.5vw);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: rgb(0, 44, 95);
   text-align: center;
+  margin: 1.5em;
 }
 
 a {
@@ -279,7 +281,7 @@ a {
   aspect-ratio: 1/1;
   opacity: 0.7;
   cursor: pointer;
-  transition: opacity 150ms;
+  transition: opacity 300ms;
 }
 .navbar-link-container .navbar-logo:hover {
   opacity: 1;
@@ -325,17 +327,14 @@ a {
   align-items: center;
   gap: 1em;
   flex-wrap: initial;
+  position: relative;
 }
 .navbar-icon-container a {
   color: rgb(250, 250, 250);
   padding: 0.3em 0.5em;
-  transition: all 150ms;
+  border: 2px solid transparent;
 }
-.navbar-icon-container a.active {
-  color: rgb(0, 44, 95);
-  background-color: rgb(250, 250, 250);
-}
-.navbar-icon-container a:hover {
+.navbar-icon-container a:hover, .navbar-icon-container a.active {
   color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
 }
@@ -348,23 +347,36 @@ a {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
   border: 2px solid black;
   position: absolute;
-  top: 104px;
-  right: 62px;
-  padding: 0.5em 1em;
+  top: 62px;
+  right: -2px;
+  padding: 0.4em 1em;
+  white-space: nowrap;
+  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: initial;
   gap: initial;
   flex-wrap: initial;
-  opacity: 0;
   transition: opacity 150ms;
+}
+.navbar-user-dropdown:after {
+  content: "";
+  position: absolute;
+  border-width: 2px 0 0 2px;
+  border-style: solid;
+  border-color: black;
+  width: 20px;
+  height: 20px;
+  top: -12px;
+  right: 20px;
+  background: inherit;
+  transform: rotate(45deg);
 }
 .navbar-user-dropdown a {
   color: rgb(0, 44, 95);
 }
-.navbar-user-dropdown a:hover,
-.navbar-user-dropdown a.active {
+.navbar-user-dropdown a:hover, .navbar-user-dropdown a.active {
   color: rgb(136, 139, 140);
   background-color: initial;
 }
@@ -451,7 +463,7 @@ footer {
   background-color: black;
   margin: 0 auto;
   width: 100%;
-  height: 30vh;
+  height: 280px;
 }
 footer div {
   padding: 0.2em;
@@ -466,7 +478,7 @@ footer div {
 
 .footer-info-container {
   margin: 0 auto;
-  width: 70%;
+  width: 60%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -576,22 +588,30 @@ footer div {
   background-color: rgb(250, 250, 250);
   color: black;
 }
+.home-section:nth-child(odd) h2 {
+  border-bottom: 3px solid black;
+}
 .home-section:nth-child(even) {
   background-color: rgb(0, 44, 95);
   color: rgb(250, 250, 250);
 }
+.home-section:nth-child(even) h2 {
+  border-bottom: 3px solid rgb(250, 250, 250);
+}
 .home-section h2 {
   font-family: "Raleway", Arial, sans-serif;
-  text-transform: capitalize;
-  font-size: 3em;
+  font-size: calc(2rem + 0.5vw);
   font-weight: 500;
   letter-spacing: 0.1em;
-  margin-bottom: 0.5em;
+  text-transform: capitalize;
   text-align: center;
+  padding: 0 0.5em 0.3em 0.5em;
+  margin: 0 auto 1em auto;
+  width: fit-content;
 }
 .home-section h3 {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 2.5em;
+  font-size: calc(2rem + 0.5vw);
   font-weight: 400;
   letter-spacing: 0.1em;
   text-align: center;
@@ -602,7 +622,7 @@ footer div {
 
 .home-btn {
   background-color: transparent;
-  font-size: 1.5em;
+  font-size: calc(1rem + 0.5vw);
   padding: 0.5em 1em;
 }
 .home-btn:after {
@@ -614,59 +634,71 @@ footer div {
 }
 
 .home-tour-container {
-  width: 75%;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 75%;
 }
-
-.home-tour-img {
-  width: 60%;
+@media (min-width: 900px) {
+  .home-tour-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: initial;
+    flex-wrap: initial;
+  }
+}
+.home-tour-container img {
+  width: 100%;
   border-radius: 6px;
 }
-
-.home-tour-dates {
-  width: 50%;
+.home-tour-container .home-tour-dates {
+  width: 100%;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  align-self: stretch;
+  gap: 0.5em;
+  flex-wrap: initial;
 }
-
-.home-tour-entry {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 1.5em;
+.home-tour-container .home-tour-dates .home-tour-entry {
   text-transform: uppercase;
+  font-family: "Archivo", Arial, sans-serif;
+  font-size: calc(0.8rem + 0.5vw);
   font-weight: 500;
   line-height: 1.5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
-
-.home-tour-btn {
+.home-tour-container .home-tour-dates button {
   color: rgb(250, 250, 250);
   border: 2px solid rgb(250, 250, 250);
 }
 
 .home-music-container {
-  width: 60%;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5%;
+  width: 70%;
+  max-width: 75em;
 }
-
-.home-music-img {
+@media (min-width: 900px) {
+  .home-music-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: initial;
+    align-items: initial;
+    gap: initial;
+    flex-wrap: initial;
+  }
+}
+.home-music-container img {
   width: 65%;
   border-radius: 6px;
 }
-
-.home-music-album {
+.home-music-container .home-music-album {
   width: 60%;
   margin: 0 auto;
   display: flex;
@@ -675,78 +707,90 @@ footer div {
   align-items: center;
   align-self: stretch;
 }
-.home-music-album h3 {
+.home-music-container .home-music-album h3 {
   width: 70%;
   border-bottom: 2px solid black;
 }
-
-.home-music-songs {
-  font-size: 1.6em;
-  line-height: 40px;
+.home-music-container .home-music-album ol {
+  font-size: calc(1.2rem + 0.5vw);
   text-transform: uppercase;
   list-style-position: inside;
+  line-height: 1.5em;
 }
-
-.home-music-btn {
+.home-music-container .home-music-album button {
   color: black;
   border: 2px solid black;
 }
 
 .home-event-container {
-  width: 90%;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3%;
+  width: 85%;
 }
-
-.home-event-img {
+@media (min-width: 900px) {
+  .home-event-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    flex-wrap: initial;
+  }
+}
+.home-event-container img {
   width: 40%;
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 8px;
 }
-
-.home-event-info {
-  font-size: 1.6em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.home-event-container .home-event-info {
+  font-size: calc(1rem + 0.5vw);
   width: 50%;
   height: 280px;
   line-height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
 }
-.home-event-info a {
+.home-event-container .home-event-info a {
   color: inherit;
 }
 
 .home-store-container {
+  margin: 0 auto;
   width: 80%;
-  margin: 0 auto 100px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 25px;
 }
-
-.home-store-img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media (min-width: 900px) {
+  .home-store-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    flex-wrap: initial;
+  }
 }
-
-.home-store-img {
-  width: 40%;
+@media (min-width: 900px) {
+  .home-store-container .home-store-img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: initial;
+    flex-wrap: initial;
+  }
+}
+.home-store-container .home-store-img-container .home-store-product {
   text-align: center;
+  width: 40%;
 }
-.home-store-img img {
+.home-store-container .home-store-img-container .home-store-product img {
   width: 90%;
   border-radius: 10px;
 }
-
-.home-store-btn {
+.home-store-container button {
   color: black;
   border: 2px solid black;
 }
@@ -754,5 +798,125 @@ footer div {
 @media (max-width: 900px) {
   .hero {
     display: none;
+  }
+  .home-section {
+    background-color: transparent !important;
+    padding: 0;
+  }
+  .home-section h2 {
+    display: none;
+  }
+  .home-section img {
+    border-radius: 0px;
+  }
+  .home-tour-container {
+    position: relative;
+    width: 100%;
+  }
+  .home-tour-container .home-tour-dates {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: initial;
+  }
+  .home-music-container {
+    width: 100%;
+    position: relative;
+  }
+  .home-music-container img {
+    width: 100%;
+  }
+  .home-music-container .home-music-album {
+    color: rgb(250, 250, 250);
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: initial;
+  }
+  .home-music-container .home-music-album h3 {
+    border-bottom: 2px solid rgb(250, 250, 250);
+    padding: 0 0.5em 0.3em 0.5em;
+    margin: 0 auto 1em auto;
+    width: fit-content;
+  }
+  .home-music-container .home-music-album button {
+    color: rgb(250, 250, 250);
+    border: 2px solid rgb(250, 250, 250);
+  }
+  .home-event-container {
+    width: 100%;
+    position: relative;
+  }
+  .home-event-container img {
+    width: 100%;
+  }
+  .home-event-container .home-event-info {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: initial;
+    flex-wrap: initial;
+  }
+  .home-event-container .home-event-info p {
+    padding: 0 1em;
+  }
+  .home-store-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .home-store-container .home-store-img-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: initial;
+    flex-wrap: initial;
+  }
+  .home-store-container .home-store-img-container .home-store-product {
+    width: 100%;
+  }
+  .home-store-container .home-store-img-container .home-store-product h3 {
+    display: none;
+  }
+  .home-store-container .home-store-img-container .home-store-product img {
+    border-radius: 0px;
+    width: 100%;
+  }
+  .home-store-container button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

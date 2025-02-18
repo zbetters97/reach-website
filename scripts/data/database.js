@@ -106,7 +106,7 @@ export async function dbLogout() {
     await signOut(auth);
     localStorage.removeItem("loggedInUserId");
 
-    $("#js-success-modal").addClass("active");
+    $("#js-logout-modal").addClass("active");
     $("#js-modal-overlay").addClass("active");
   } catch (error) {
     console.log(error);

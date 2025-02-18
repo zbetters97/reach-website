@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Palanquin:wght@100;200;300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Palanquin:wght@100;200;300;400;500;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
     <!-- END FONTS -->
@@ -75,9 +75,10 @@
             <i class="fa-solid fa-user"></i>
           </a>
           <div class="navbar-user-dropdown js-navbar-user-dropdown">
+            <h3 id="js-navbar-dropdown-header">Hi, User</h3>
             <a href="account.html">Account</a>
             <a href="checkout.html">Cart</a>
-            <a class="js-account-logout-link" href="#">Logout</a>
+            <a class="js-account-logout-link">Logout</a>
           </div>
         </div>
       </nav>
@@ -106,7 +107,7 @@
         <section class="home-section">
           <h2>Upcoming Tour Dates</h2>
           <div class="home-tour-container">
-            <img class="home-tour-img" src="images/home/home-tour.png" />
+            <img src="images/home/home-tour.png" />
             <div class="home-tour-dates" id="js-home-tours-container">
               <!-- JS INSERTS DATA HERE -->
             </div>
@@ -121,7 +122,7 @@
         <section class="home-section">
           <h2>Saturday Night Worship</h2>
           <div class="home-event-container">
-            <img class="home-event-img" src="images/home/home-event.png" />
+            <img src="images/home/home-event.png" />
             <div class="home-event-info">
               <p>
                 With cutting edge music, high energy, and making Nothing But
@@ -153,11 +154,11 @@
           <h2>Shop New Arrivals!</h2>
           <div class="home-store-container">
             <div class="home-store-img-container">
-              <div class="home-store-img">
+              <div class="home-store-product">
                 <h3>RW Unisex T-Shirt</h3>
                 <img src="images/home/home-store-01.png" />
               </div>
-              <div class="home-store-img">
+              <div class="home-store-product">
                 <h3>RW Pullover</h3>
                 <img src="images/home/home-store-02.png" />
               </div>
@@ -169,6 +170,20 @@
             >
               Shop all items
             </button>
+          </div>
+          <div class="alert-modal" id="js-logout-modal">
+            <div class="alert-modal-container">
+              <div class="success-modal-msg">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Logout succesful!</p>
+              </div>
+              <button
+                class="forward-btn alert-modal-btn"
+                onclick="window.location.href='login.html'"
+              >
+                Go to login
+              </button>
+            </div>
           </div>
         </section>
       </div>

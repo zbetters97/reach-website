@@ -18,7 +18,7 @@
     aspect-ratio: 1/1;
     opacity: 0.7;
     cursor: pointer;
-    transition: opacity 150ms;
+    transition: opacity 300ms;
 
     &:hover {
       opacity: 1;
@@ -68,21 +68,18 @@
   font-size: 2rem;
   margin-right: 2em;
   @include flexbox(row, space-evenly, center, 1em);
+  position: relative;
 
   a {
     color: $basic-white;
     padding: 0.3em 0.5em;
-    transition: all 150ms;
+    border: 2px solid transparent;
 
+    &:hover,
     &.active {
       color: $basic-blue;
       background-color: $basic-white;
     }
-  }
-
-  a:hover {
-    color: $basic-blue;
-    background-color: $basic-white;
   }
 }
 
@@ -94,21 +91,36 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
   border: 2px solid black;
   position: absolute;
-  top: 104px;
-  right: 62px;
-  padding: 0.5em 1em;
-  @include flexbox(column, center);
+  top: 62px;
+  right: -2px;
+  padding: 0.4em 1em;
+  white-space: nowrap;
   opacity: 0;
+  @include flexbox(column, center);
   transition: opacity 150ms;
+
+  &:after {
+    content: "";
+    position: absolute;
+    border-width: 2px 0 0 2px;
+    border-style: solid;
+    border-color: black;
+    width: 20px;
+    height: 20px;
+    top: -12px;
+    right: 20px;
+    background: inherit;
+    transform: rotate(45deg);
+  }
 
   a {
     color: $basic-blue;
-  }
 
-  a:hover,
-  a.active {
-    color: $basic-gray;
-    background-color: initial;
+    &:hover,
+    &.active {
+      color: $basic-gray;
+      background-color: initial;
+    }
   }
 }
 

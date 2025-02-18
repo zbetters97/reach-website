@@ -48,7 +48,9 @@ export function handleWindow() {
 function handleAccountPage() {
   $(".js-navbar-user").on("click", async function () {
     try {
-      await dbGetUser();
+      const user = await dbGetUser();
+
+      $("#js-navbar-dropdown-header").html(`Hi, ${user.firstName}`);
 
       $(this).addClass("active");
       $(".js-navbar-user-dropdown").css("opacity", 1);

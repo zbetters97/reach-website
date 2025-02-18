@@ -33,7 +33,7 @@ function renderTourHTML() {
   });
 
   concertsHTML += `
-    <button class="forward-btn home-btn home-tour-btn" type="button" onclick="location.href='tour.html'">
+    <button class="forward-btn home-btn" type="button" onclick="location.href='tour.html'">
       Find more dates
     </button>
   `;
@@ -52,10 +52,10 @@ function renderAlbumHTML() {
   });
 
   let albumHTML = `
-    <img class="home-music-img" src="${image}" />
+    <img src="${image}" />
     <div class="home-music-album" id="js-home-album-container">
       <h3>${title}</h3>
-      <ol class="home-music-songs" type="1">
+      <ol type="1">
         ${songsHTML}
       </ol>
         <button class="forward-btn home-btn home-music-btn" type="button" onclick="location.href='music.html'">
