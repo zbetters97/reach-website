@@ -1,0 +1,70 @@
+@use "../abstracts"as *;
+
+.alert-modal {
+  font-size: calc(1.7rem + 0.5vw);
+  font-family: $alert-font;
+  color: $basic-blue;
+  background-color: $basic-white;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 1em 2em;
+  @include flexbox(column, center, center);
+  z-index: 999;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+
+  &.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.alert-modal-container {
+  width: 100%;
+  height: 100%;
+  @include flexbox(column, space-evenly, center, 0);
+}
+
+.alert-modal-msg {
+  text-align: center;
+  margin-bottom: 1.3em;
+  gap: 0.3em;
+}
+
+.success-modal-msg {
+  color: green;
+  margin-bottom: 1.3em;
+  @include flexbox(row, center, center, 0.3em);
+}
+
+.alert-modal-btn {
+  font-size: calc(1.3rem + 0.5vw);
+  color: black;
+  background-color: transparent;
+  padding: 0.7em 1.2em;
+  border: 3px solid black;
+
+  &:hover {
+    padding-right: 2em;
+    padding-left: 0.4em;
+  }
+}
+
+.navbar-overlay,
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 150ms;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

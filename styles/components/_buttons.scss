@@ -1,0 +1,68 @@
+@use "../abstracts"as *;
+
+button {
+  cursor: pointer;
+}
+
+.forward-btn {
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: all 200ms;
+
+  &:after {
+    content: "\f178";
+    font-family: FontAwesome;
+    position: absolute;
+    @include flexbox(row, center, center);
+    right: 0;
+    top: 0;
+    opacity: 0;
+    height: 100%;
+    transition: 200ms;
+  }
+
+  &:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
+}
+
+.back-btn {
+  font-size: 1.5rem;
+  color: black;
+  background-color: transparent;
+  padding: 0.5em 0.6em;
+  margin: 0 auto;
+  width: 25%;
+  border: 3px solid black;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  transition: all 200ms;
+
+  &:after {
+    content: "\f30a";
+    font-family: FontAwesome;
+    height: 100%;
+    position: absolute;
+    @include flexbox(row, center, center);
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: all 200ms;
+  }
+
+  &:hover {
+    padding-left: 1.2em;
+    padding-right: 0;
+  }
+
+  &:hover:after {
+    opacity: 1;
+    left: 10px;
+  }
+}
