@@ -1,4 +1,4 @@
-import { dbGetUser } from "../data/database.js";
+import { dbGetUser, dbLogout } from "../data/database.js";
 
 export function handleWindow() {
   const getOffset = () => $("header").offset().top;
@@ -15,6 +15,11 @@ export function handleWindow() {
   $(".to-top").click(() => {
     $("body, html").animate({ scrollTop: $("header").offset().top }, 800);
     return !1;
+  });
+
+  $(document).on("click", () => {
+    $(".js-navbar-user").removeClass("active");
+    $(".js-navbar-user-dropdown").css("opacity", 0);
   });
 
   const hamburger = $(".hamburger");
@@ -43,11 +48,25 @@ export function handleWindow() {
 function handleAccountPage() {
   $(".js-navbar-user").on("click", async function () {
     try {
+      await dbGetUser();
+
+      $(this).addClass("active");
+      $(".js-navbar-user-dropdown").css("opacity", 1);
+    } catch (error) {
+      window.location.href = "login.html";
+    }
+  });
+
+  $(".js-navbar-user-mobile").on("click", async function () {
+    try {
       const user = await dbGetUser();
       window.location.href = user ? "account.html" : "login.html";
     } catch (error) {
       window.location.href = "login.html";
-      return;
     }
+  });
+
+  $(".js-account-logout-link").on("click", () => {
+    dbLogout();
   });
 }

@@ -2,22 +2,18 @@
 
 .navbar {
   background-color: rgb(255, 255, 255, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  height: 200px;
-  margin: 0 auto;
-  gap: 4em;
   border-bottom: 3px solid black;
+  margin: 0 auto;
+  width: 100%;
+  @include flexbox(row, center, flex-end, 4em);
 }
 
 .navbar-link {
-  font-family: "Palanquin", Arial, sans-serif;
-  font-size: 2.2em;
+  font-family: $navbar-font;
+  font-size: 2.2rem;
   font-weight: 400;
   text-transform: uppercase;
-  color: gray;
+  color: $basic-gray;
   transition: color 150ms;
 
   &:hover {
@@ -34,7 +30,7 @@
   aspect-ratio: 1/1;
   opacity: 0.8;
   cursor: pointer;
-  transition: opacity 200ms;
+  transition: opacity 150ms;
 
   &:hover {
     opacity: 1;
@@ -46,17 +42,48 @@
 }
 
 .navbar-user-container {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   position: absolute;
-  right: 50px;
-  padding: 10px;
-  width: 120px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  right: 75px;
+  width: 10%;
+  @include flexbox(row, space-between, center);
 
   a {
     color: black;
+    transition: all 150ms;
+    padding: 0.2em 0.4em;
+
+    &.active {
+      background-color: $basic-gray;
+    }
+  }
+
+  a:hover {
+    background-color: $basic-gray;
+  }
+}
+
+.navbar-user-dropdown {
+  font-family: $navbar-font;
+  font-weight: 600;
+  font-size: 1.5rem;
+  background-color: $basic-blue;
+  position: absolute;
+  top: 65px;
+  right: 0;
+  padding: 0.5em 1em;
+  @include flexbox(column, center);
+  opacity: 0;
+  transition: opacity 150ms;
+
+  a {
+    color: $basic-white;
+  }
+
+  a:hover,
+  a.active {
+    color: $basic-gray;
+    background-color: initial;
   }
 }
 
@@ -64,19 +91,19 @@
   margin-top: 1em;
   margin-left: 1.5em;
   width: 35px;
-  cursor: pointer;
-  position: relative;
-  z-index: 99;
   background: none;
   border: none;
   display: none;
+  position: relative;
+  z-index: 99;
+  cursor: pointer;
 
   .bar,
   &:after,
   &:before {
     content: "";
     background-color: black;
-    margin: 8px 0px;
+    margin: 8px 0;
     width: 100%;
     height: 5px;
     display: block;
@@ -111,9 +138,9 @@
   transition: all 400ms;
 
   a {
-    font-family: "Palanquin", Arial, sans-serif;
+    font-family: $navbar-font;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.7rem;
     color: black;
     text-decoration: none;
     text-align: center;
@@ -121,7 +148,6 @@
     padding-top: 0.3em;
     margin: 0 auto;
     width: 100%;
-    max-width: 200px;
 
     &.active {
       color: $basic-blue;

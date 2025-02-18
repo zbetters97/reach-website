@@ -14,6 +14,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
 }
 
 .lock-scroll {
@@ -40,16 +44,20 @@ button {
 }
 
 .to-top {
-  font-size: 2.2em;
+  font-size: 2.2rem;
   color: rgb(250, 250, 250);
-  background: #002c5f;
+  background: rgb(0, 44, 95);
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   border-radius: 100%;
-  width: 1em;
-  height: 1em;
+  width: 40px;
+  height: 40px;
   padding: 0.3em;
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
   position: fixed;
   right: 2%;
   bottom: 3%;
@@ -65,7 +73,7 @@ button {
   display: inline-block;
   padding-bottom: 0.2em;
   text-decoration: none;
-  transition: background-size 0.3s;
+  transition: background-size 300ms;
 }
 .link:hover {
   --underline-width: 100%;
@@ -76,13 +84,13 @@ button {
 }
 
 .db-alert {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: bold;
-  color: red;
+  color: rgb(255, 0, 0);
   display: flex;
   gap: 0.3em;
   opacity: 0;
-  transition: all 200ms;
+  transition: opacity 300ms;
 }
 
 .forward-btn {
@@ -98,8 +106,11 @@ button {
   font-family: FontAwesome;
   position: absolute;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
   right: 0;
   top: 0;
   opacity: 0;
@@ -112,7 +123,7 @@ button {
 }
 
 .back-btn {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: black;
   background-color: transparent;
   padding: 0.5em 0.6em;
@@ -128,12 +139,14 @@ button {
 .back-btn:after {
   content: "\f30a";
   font-family: FontAwesome;
-  font-size: 1em;
   height: 100%;
   position: absolute;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
   left: 0;
   top: 0;
   opacity: 0;
@@ -141,28 +154,30 @@ button {
 }
 .back-btn:hover {
   padding-left: 1.2em;
-  padding-right: 0em;
+  padding-right: 0;
 }
 .back-btn:hover:after {
   opacity: 1;
   left: 10px;
 }
 
-/** SUCCESS MODAL **/
+/** MODAL **/
 .alert-modal {
+  font-size: calc(1.7rem + 0.5vw);
+  font-family: "Archivo", Arial, sans-serif;
+  color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
-  color: #002c5f;
+  border-radius: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 450px;
-  height: 250px;
-  max-width: 80%;
+  padding: 1em 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  gap: initial;
+  flex-wrap: initial;
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
@@ -178,37 +193,37 @@ button {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-}
-
-.success-modal-msg {
-  font-size: 2.3em;
-  color: green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3em;
+  gap: 0;
+  flex-wrap: initial;
 }
 
 .alert-modal-msg {
-  font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.3em;
   text-align: center;
+  margin-bottom: 1.3em;
   gap: 0.3em;
 }
 
+.success-modal-msg {
+  color: green;
+  margin-bottom: 1.3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: initial;
+}
+
 .alert-modal-btn {
-  font-size: 1.7em;
+  font-size: calc(1.3rem + 0.5vw);
   color: black;
   background-color: transparent;
-  padding: 0.7em 1.5em;
+  padding: 0.7em 1.2em;
   border: 3px solid black;
 }
-.alert-modal-btn:after {
-  font-size: 1em;
-}
 .alert-modal-btn:hover {
-  padding-right: 2.3em;
-  padding-left: 0.7em;
+  padding-right: 2em;
+  padding-left: 0.4em;
 }
 
 /* SUCCESS MODAL BACKDROP */
@@ -238,22 +253,23 @@ button {
 }
 .navbar {
   background-color: rgba(255, 255, 255, 0.5);
+  border-bottom: 3px solid black;
+  margin: 0 auto;
+  width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: flex-end;
-  width: 100%;
-  height: 200px;
-  margin: 0 auto;
   gap: 4em;
-  border-bottom: 3px solid black;
+  flex-wrap: initial;
 }
 
 .navbar-link {
   font-family: "Palanquin", Arial, sans-serif;
-  font-size: 2.2em;
+  font-size: 2.2rem;
   font-weight: 400;
   text-transform: uppercase;
-  color: gray;
+  color: rgb(136, 139, 140);
   transition: color 150ms;
 }
 .navbar-link:hover {
@@ -268,7 +284,7 @@ button {
   aspect-ratio: 1/1;
   opacity: 0.8;
   cursor: pointer;
-  transition: opacity 200ms;
+  transition: opacity 150ms;
 }
 .navbar-logo:hover {
   opacity: 1;
@@ -278,34 +294,71 @@ button {
 }
 
 .navbar-user-container {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   position: absolute;
-  right: 50px;
-  padding: 10px;
-  width: 120px;
+  right: 75px;
+  width: 10%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 .navbar-user-container a {
   color: black;
+  transition: all 150ms;
+  padding: 0.2em 0.4em;
+}
+.navbar-user-container a.active {
+  background-color: rgb(136, 139, 140);
+}
+.navbar-user-container a:hover {
+  background-color: rgb(136, 139, 140);
+}
+
+.navbar-user-dropdown {
+  font-family: "Palanquin", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  background-color: rgb(0, 44, 95);
+  position: absolute;
+  top: 65px;
+  right: 0;
+  padding: 0.5em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+.navbar-user-dropdown a {
+  color: rgb(250, 250, 250);
+}
+.navbar-user-dropdown a:hover,
+.navbar-user-dropdown a.active {
+  color: rgb(136, 139, 140);
+  background-color: initial;
 }
 
 .hamburger {
   margin-top: 1em;
   margin-left: 1.5em;
   width: 35px;
-  cursor: pointer;
-  position: relative;
-  z-index: 99;
   background: none;
   border: none;
   display: none;
+  position: relative;
+  z-index: 99;
+  cursor: pointer;
 }
 .hamburger .bar, .hamburger:after, .hamburger:before {
   content: "";
   background-color: black;
-  margin: 8px 0px;
+  margin: 8px 0;
   width: 100%;
   height: 5px;
   display: block;
@@ -336,7 +389,7 @@ button {
 .mobile-nav a {
   font-family: "Palanquin", Arial, sans-serif;
   font-weight: bold;
-  font-size: 1.7em;
+  font-size: 1.7rem;
   color: black;
   text-decoration: none;
   text-align: center;
@@ -344,10 +397,9 @@ button {
   padding-top: 0.3em;
   margin: 0 auto;
   width: 100%;
-  max-width: 200px;
 }
 .mobile-nav a.active {
-  color: #002c5f;
+  color: rgb(0, 44, 95);
 }
 .mobile-nav.is-active {
   right: 0;
@@ -374,37 +426,42 @@ footer {
   background-color: black;
   margin: 0 auto;
   width: 100%;
-  height: 250px;
+  height: 30vh;
 }
-
-.footer-container {
+footer div {
+  padding: 0.2em;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 80%;
-  padding: 0.2em;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 
 .footer-info-container {
   margin: 0 auto;
-  width: 60%;
+  width: 70%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: wrap;
+  flex-wrap: initial;
 }
 .footer-info-container div {
-  height: 40px;
-  border-right: 2px solid rgb(250, 250, 250);
+  height: 25%;
+  border-right: 3px solid rgb(250, 250, 250);
 }
 .footer-info-container p,
 .footer-info-container a {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   color: rgb(250, 250, 250);
 }
 .footer-info-container a {
-  cursor: pointer;
+  padding-bottom: 0.3em;
   position: relative;
+  cursor: pointer;
 }
 .footer-info-container a::before {
   content: "";
@@ -424,12 +481,16 @@ footer {
 
 .footer-social-container {
   margin: 0 auto;
-  width: 20%;
+  width: 25%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
 }
 .footer-social-container i {
-  font-size: 3.2em;
+  font-size: 3.2rem;
   color: rgb(250, 250, 250);
   transition: transform 150ms linear;
 }
@@ -439,7 +500,7 @@ footer {
 
 @media (max-width: 900px) {
   .footer-info-container {
-    font-size: 1em;
+    font-size: 1rem;
     margin-top: 2em;
     width: 100%;
     display: flex;
@@ -447,12 +508,12 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 1em;
+    flex-wrap: initial;
   }
-  .footer-seperator {
+  .footer-info-container div {
     display: none;
   }
   .footer-social-container {
-    font-size: 0.8em;
     margin-top: 2em;
     width: 50%;
   }
@@ -497,7 +558,7 @@ footer {
 
 /** MODAL **/
 .shop-modal {
-  background-color: #002c5f;
+  background-color: rgb(0, 44, 95);
   color: rgb(250, 250, 250);
   position: fixed;
   top: 50%;

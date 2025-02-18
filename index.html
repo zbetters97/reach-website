@@ -66,12 +66,17 @@
         <a class="navbar-link" href="about.html">About</a>
 
         <div class="navbar-user-container">
-          <a class="" href="checkout.html">
+          <a href="checkout.html">
             <i class="fa-solid fa-cart-shopping"> </i>
           </a>
           <a class="js-navbar-user">
             <i class="fa-solid fa-user"></i>
           </a>
+          <div class="navbar-user-dropdown js-navbar-user-dropdown">
+            <a href="account.html">Account</a>
+            <a href="checkout.html">Cart</a>
+            <a class="js-account-logout-link" href="#">Logout</a>
+          </div>
         </div>
       </nav>
       <button class="hamburger">
@@ -86,7 +91,7 @@
       <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
 
-      <a class="" href="checkout.html">
+      <a href="checkout.html">
         <i class="fa-solid fa-cart-shopping"> </i>
       </a>
       <a class="js-navbar-user">
@@ -166,12 +171,13 @@
         </section>
       </div>
       <div class="navbar-overlay"></div>
+      <div class="modal-overlay" id="js-modal-overlay"></div>
       <a class="to-top" href="">
         <i class="fa-solid fa-arrow-up"></i>
       </a>
     </main>
     <footer>
-      <div class="footer-container">
+      <div>
         <div class="footer-info-container">
           <a
             href="mailto:info@reachchurch.online?Subject=Hello%20Reach%20Worship"
