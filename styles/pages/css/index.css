@@ -7,7 +7,6 @@ button {
   vertical-align: middle;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
   transition: all 200ms;
 }
 .forward-btn:after {
@@ -653,6 +652,7 @@ footer div {
 }
 .home-tour-container .home-tour-dates {
   width: 100%;
+  height: 100%;
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -699,13 +699,15 @@ footer div {
   border-radius: 6px;
 }
 .home-music-container .home-music-album {
-  width: 60%;
   margin: 0 auto;
+  width: 60%;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  align-self: stretch;
+  gap: initial;
+  flex-wrap: initial;
 }
 .home-music-container .home-music-album h3 {
   width: 70%;
@@ -746,7 +748,7 @@ footer div {
   font-size: calc(1rem + 0.5vw);
   width: 50%;
   height: 280px;
-  line-height: 35px;
+  line-height: 1.5em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -823,10 +825,14 @@ footer div {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: safe center;
     align-items: center;
     gap: 0.5em;
     flex-wrap: initial;
+    overflow: auto;
+  }
+  .home-tour-container button {
+    margin: 1em 0;
   }
   .home-music-container {
     width: 100%;
@@ -844,13 +850,13 @@ footer div {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    overflow: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: safe center;
     align-items: center;
     gap: 0.5em;
     flex-wrap: initial;
+    overflow: auto;
   }
   .home-music-container .home-music-album h3 {
     border-bottom: 2px solid rgb(250, 250, 250);
@@ -859,6 +865,7 @@ footer div {
     width: fit-content;
   }
   .home-music-container .home-music-album button {
+    margin: 1em 0;
     color: rgb(250, 250, 250);
     border: 2px solid rgb(250, 250, 250);
   }
@@ -880,9 +887,9 @@ footer div {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: safe center;
     align-items: center;
-    gap: initial;
+    gap: 1em;
     flex-wrap: initial;
   }
   .home-event-container .home-event-info p {
@@ -918,5 +925,6 @@ footer div {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: rgba(250, 250, 250, 0.7);
   }
 }

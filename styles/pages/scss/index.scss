@@ -103,6 +103,7 @@
 
   .home-tour-dates {
     width: 100%;
+    height: 100%;
     align-self: stretch;
     @include flexbox(column, space-between, center, 0.5em);
 
@@ -137,13 +138,10 @@
   }
 
   .home-music-album {
-    width: 60%;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    width: 60%;
     align-self: stretch;
+    @include flexbox(column, space-between, center);
 
     h3 {
       width: 70%;
@@ -183,7 +181,7 @@
     font-size: calc(1rem + 0.5vw);
     width: 50%;
     height: 280px;
-    line-height: 35px;
+    line-height: 1.5em;
     @include flexbox(column, space-between);
 
     a {
@@ -252,7 +250,12 @@
       transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
-      @include flexbox(column, space-around, center, 0.5em);
+      @include flexbox(column, safe center, center, 0.5em);
+      overflow: auto;
+    }
+
+    button {
+      margin: 1em 0;
     }
   }
 
@@ -273,8 +276,8 @@
       transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
+      @include flexbox(column, safe center, center, 0.5em);
       overflow: auto;
-      @include flexbox(column, space-around, center, 0.5em);
 
       h3 {
         border-bottom: 2px solid $basic-white;
@@ -284,6 +287,7 @@
       }
 
       button {
+        margin: 1em 0;
         color: $basic-white;
         border: 2px solid $basic-white;
       }
@@ -307,7 +311,7 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      @include flexbox(column, space-evenly, center);
+      @include flexbox(column, safe center, center, 1em);
 
       p {
         padding: 0 1em;
@@ -344,6 +348,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      background-color: rgba($basic-white, 0.7);
     }
   }
 }
