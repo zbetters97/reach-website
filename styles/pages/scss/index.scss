@@ -198,7 +198,7 @@
     @include flexbox(column, center, center, 3em);
   }
 
-  .home-store-img-container {
+  .home-store-products-container {
     @media (min-width: 900px) {
       @include flexbox(row, center, center);
     }
@@ -226,7 +226,6 @@
   }
 
   .home-section {
-    background-color: transparent !important;
     padding: 0;
 
     h2 {
@@ -239,8 +238,13 @@
   }
 
   .home-tour-container {
-    position: relative;
     width: 100%;
+    position: relative;
+    @include flexbox(center, center);
+
+    img {
+      width: 100%;
+    }
 
     .home-tour-dates {
       background-color: rgba(0, 0, 0, 0.5);
@@ -262,6 +266,7 @@
   .home-music-container {
     width: 100%;
     position: relative;
+    @include flexbox(center, center);
 
     img {
       width: 100%;
@@ -297,6 +302,7 @@
   .home-event-container {
     width: 100%;
     position: relative;
+    @include flexbox(center, center);
 
     img {
       width: 100%;
@@ -310,27 +316,27 @@
       transform: translate(-50%, -50%);
       width: 100%;
       height: 100%;
-      overflow: auto;
       @include flexbox(column, safe center, center, 1em);
+      overflow: auto;
 
       p {
         padding: 0 1em;
+        width: 80%;
       }
     }
   }
 
   .home-store-container {
     width: 100%;
-    height: 100%;
     position: relative;
 
-    .home-store-img-container {
+    .home-store-products-container {
       width: 100%;
-      height: 100%;
       @include flexbox(row, center, center);
 
       .home-store-product {
         width: 100%;
+        @include flexbox(center, center);
 
         h3 {
           display: none;
@@ -349,6 +355,34 @@
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: rgba($basic-white, 0.7);
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .home-tour-container {
+    .home-tour-entry:not(:first-child) {
+      display: none;
+    }
+  }
+
+  .home-music-container {
+    .home-music-album ol {
+      display: none;
+    }
+  }
+
+  .home-event-container {
+    .home-event-info {
+      overflow: hidden;
+
+      p {
+        font-size: calc(0.8rem + 0.5vw);
+      }
+
+      div {
+        display: none;
+      }
     }
   }
 }

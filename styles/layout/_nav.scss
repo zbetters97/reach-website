@@ -4,13 +4,12 @@
   background-color: $basic-blue;
   border-bottom: 3px solid black;
   padding-top: 1.5rem;
-  margin: 0 auto;
   width: 100%;
-  @include flexbox(row, space-between, flex-end, 4em);
+  @include flexbox(row, space-between, center, 4em);
 }
 
 .navbar-link-container {
-  margin-left: 2em;
+  margin-left: 1.5em;
   @include flexbox(row, space-evenly, center, 2em);
 
   .navbar-logo {
@@ -31,7 +30,7 @@
 
   .nav-link {
     font-family: $navbar-font;
-    font-size: 1.7rem;
+    font-size: calc(1rem + 0.5vw);
     font-weight: 400;
     text-transform: uppercase;
     color: $basic-white;
@@ -65,8 +64,8 @@
 }
 
 .navbar-icon-container {
-  font-size: 2rem;
-  margin-right: 2em;
+  font-size: calc(1.2rem + 0.5vw);
+  margin-right: 1.5em;
   @include flexbox(row, space-evenly, center, 1em);
   position: relative;
 
@@ -196,7 +195,7 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .navbar {
     display: none;
   }
@@ -206,7 +205,7 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
   .hamburger {
     display: none;
   }
