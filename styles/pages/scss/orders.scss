@@ -27,9 +27,11 @@
 
 .orders-container {
   width: 100%;
+  @include flexbox(column, space-between, center);
 }
 
 .order-container {
+  width: 100%;
   margin-bottom: 2em;
   border: 2px solid black;
 }
@@ -124,4 +126,8 @@
     padding-left: 0.4em;
     padding-right: 2em;
   }
+}
+
+.orders-back-btn {
+  margin: 1em;
 }

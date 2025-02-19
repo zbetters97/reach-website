@@ -25,49 +25,36 @@
     height: 100%;
     background: rgb(0, 45, 95, 0);
   }
+
+  .hero-text {
+    font-family: "ostrich_sansmedium", Arial, sans-serif;
+    font-size: 13em;
+    font-weight: 550;
+    letter-spacing: 0.1em;
+    color: $basic-white;
+    text-shadow: 5px 5px 2px black;
+    height: 220px;
+  }
 }
 
-.hero-text {
-  font-family: "ostrich_sansmedium", Arial, sans-serif;
-  font-size: 13em;
-  font-weight: 550;
-  letter-spacing: 0.1em;
-  color: $basic-white;
-  text-shadow: 5px 5px 2px black;
-  height: 220px;
+.wrapper {
+  background-image: $bg-blue;
 }
 
 .home-section {
-  padding: 2.5em;
-
-  &:nth-child(odd) {
-    background-color: $basic-white;
-    color: black;
-
-    h2 {
-      border-bottom: 3px solid black;
-    }
-  }
-
-  &:nth-child(even) {
-    background-color: $basic-blue;
-    color: $basic-white;
-
-    h2 {
-      border-bottom: 3px solid $basic-white;
-    }
-  }
+  color: $basic-white;
+  padding-bottom: 30vh;
+  margin: 0 auto;
+  width: 65%;
 
   h2 {
     font-family: "Raleway", Arial, sans-serif;
-    font-size: calc(2rem + 0.5vw);
+    font-size: calc(3rem + 0.5vw);
     font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: capitalize;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
     text-align: center;
-    padding: 0 0.5em 0.3em 0.5em;
-    margin: 0 auto 1em auto;
-    width: fit-content;
+    margin-bottom: 0.5em;
   }
 
   h3 {
@@ -84,9 +71,11 @@
 }
 
 .home-btn {
+  font-size: calc(1.2rem + 0.5vw);
   background-color: transparent;
-  font-size: calc(1rem + 0.5vw);
+  border: 2px solid $basic-white;
   padding: 0.5em 1em;
+
 
   &:after {
     font-size: 0.8em;
@@ -98,127 +87,169 @@
   }
 }
 
-.home-tour-container {
-  margin: 0 auto;
-  width: 75%;
-  @include flexbox(row, center, center);
+.banner-section {
+  height: 100vh;
+  @include flexbox(column, center, center, 0.5em);
 
-  img {
-    width: 100%;
-    border-radius: 6px;
+  h2 {
+    font-weight: 700;
+    font-size: 4rem;
+    vertical-align: middle;
+    letter-spacing: 0.5em;
+    color: $basic-white;
   }
 
-  .home-tour-dates {
-    width: 100%;
-    height: 100%;
-    align-self: stretch;
-    @include flexbox(column, space-between, center, 0.5em);
+  p {
+    font-size: 1.5rem;
+  }
+}
 
-    .home-tour-entry {
-      text-transform: uppercase;
-      font-family: $alert-font;
-      font-size: calc(0.8rem + 0.5vw);
-      font-weight: 500;
-      line-height: 1.5em;
-      @include flexbox(column, center, center);
-    }
+.music-section {
+  img {
+    width: 70%;
+    border-radius: 30px;
+  }
 
-    button {
+  .home-album-container {
+    @include flexbox(row, center, center);
+    position: relative;
+
+    .home-music-album {
       color: $basic-white;
-      border: 2px solid $basic-white;
-    }
-  }
-}
-
-.home-music-container {
-  margin: 0 auto;
-  width: 70%;
-  max-width: 75em;
-  @include flexbox(row, center, center);
-
-  img {
-    width: 65%;
-    border-radius: 6px;
-  }
-
-  .home-music-album {
-    margin: 0 auto;
-    width: 60%;
-    align-self: stretch;
-    @include flexbox(column, space-between, center);
-
-    h3 {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 70%;
-      border-bottom: 2px solid black;
-    }
+      height: 100%;
+      @include flexbox(column, center, center, 2em);
 
-    ol {
-      font-size: calc(1.2rem + 0.5vw);
-      text-transform: uppercase;
-      list-style-position: inside;
-      line-height: 1.5em;
-    }
+      h3 {
+        width: 40%;
+        border-bottom: 2px solid $basic-white;
+      }
 
-    button {
-      color: black;
-      border: 2px solid black;
-    }
-  }
-}
+      ol {
+        font-size: calc(1.2rem + 0.5vw);
+        text-transform: uppercase;
+        list-style-position: inside;
+        line-height: 1.5em;
+      }
 
-.home-event-container {
-  margin: 0 auto;
-  width: 85%;
-  @include flexbox(row, center, center, 2em);
-
-  img {
-    width: 40%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-
-  .home-event-info {
-    font-size: calc(1rem + 0.5vw);
-    width: 50%;
-    height: 280px;
-    line-height: 1.5em;
-    @include flexbox(column, space-between);
-
-    a {
-      color: inherit;
-    }
-  }
-}
-
-.home-store-container {
-  margin: 0 auto;
-  width: 80%;
-  @include flexbox(column, center, center, 3em);
-
-  .home-store-products-container {
-    @media (min-width: 900px) {
-      @include flexbox(row, center, center);
-    }
-
-    .home-store-product {
-      text-align: center;
-      width: 40%;
-
-      img {
-        width: 90%;
-        border-radius: 10px;
+      button {
+        color: $basic-white;
+        border: 2px solid $basic-white;
       }
     }
   }
+}
 
-  button {
-    color: black;
-    border: 2px solid black;
+.tour-section {
+  .home-tour-container {
+    margin: 0 auto;
+    width: 100%;
+    @include flexbox(row, center, center);
+    position: relative;
+
+    img {
+      width: 90%;
+      border-radius: 30px;
+    }
+
+    .home-tours-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      height: 100%;
+      @include flexbox(column, center, center, 2em);
+
+      .home-tour-entry {
+        text-transform: uppercase;
+        font-family: $alert-font;
+        font-size: calc(0.8rem + 0.5vw);
+        font-weight: 500;
+        line-height: 1.5em;
+        @include flexbox(column, center, center);
+      }
+
+      button {
+        color: $basic-white;
+        border: 2px solid $basic-white;
+      }
+    }
   }
 }
 
-@media (max-width: 900px) {
+.store-section {
+  margin: 0 auto;
+  width: 100%;
+
+  .home-store-container {
+    position: relative;
+
+    .home-store-products {
+      @include flexbox(row, center, center);
+
+      img {
+        filter: brightness(0.3);
+      }
+    }
+
+    button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $basic-white;
+      border-color: $basic-white;
+    }
+  }
+}
+
+.event-section {
+  .home-event-container {
+    @include flexbox(row, center, center);
+    position: relative;
+
+    img {
+      border-radius: 30px;
+      width: 100%;
+    }
+
+    .home-event-info {
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      @include flexbox(column, center, center, 2em);
+      font-size: calc(1rem + 0.5vw);
+      line-height: 1.5em;
+
+      p,
+      div {
+        text-align: center;
+        margin: 0 auto;
+        width: 90%;
+      }
+
+      a {
+        color: inherit;
+      }
+    }
+  }
+}
+
+@media (max-width: 1080px) {
   .hero {
     display: none;
   }
@@ -230,144 +261,135 @@
       display: none;
     }
 
+    p {
+      color: $basic-white;
+    }
+
     img {
       border-radius: 0px;
     }
   }
 
-  .home-tour-container {
+  .banner-section {
+    display: none;
+  }
+
+  .music-section {
     width: 100%;
-    position: relative;
 
     img {
       width: 100%;
+      border-radius: 0px;
     }
 
-    .home-tour-dates {
-      background-color: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      @include flexbox(column, safe center, center, 0.5em);
-      overflow: auto;
-    }
+    .home-album-container {
+      position: relative;
 
-    button {
-      margin: 1em 0;
-    }
-  }
-
-  .home-music-container {
-    width: 100%;
-    position: relative;
-
-    img {
-      width: 100%;
-    }
-
-    .home-music-album {
-      color: $basic-white;
-      background-color: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      @include flexbox(column, safe center, center, 0.5em);
-      overflow: auto;
-
-      h3 {
-        border-bottom: 2px solid $basic-white;
-        padding: 0 0.5em 0.3em 0.5em;
-        margin: 0 auto 1em auto;
-        width: fit-content;
-      }
-
-      button {
-        margin: 1em 0;
-        color: $basic-white;
-        border: 2px solid $basic-white;
-      }
-    }
-  }
-
-  .home-event-container {
-    width: 100%;
-    position: relative;
-
-    img {
-      width: 100%;
-    }
-
-    .home-event-info {
-      background-color: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      @include flexbox(column, safe center, center, 1em);
-      overflow: auto;
-
-      p {
-        padding: 0 1em;
-        width: 80%;
-      }
-    }
-  }
-
-  .home-store-container {
-    width: 100%;
-    position: relative;
-
-    .home-store-products-container {
-      width: 100%;
-      @include flexbox(row, center, center);
-
-      .home-store-product {
+      .home-music-album {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 0px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
-        @include flexbox(center, center);
+        height: 100%;
+        @include flexbox(column, center, center, 0.5em);
+        overflow: auto;
 
         h3 {
-          display: none;
+          border-bottom: 2px solid $basic-white;
+          padding: 0 0.5em 0.3em 0.5em;
+          margin: 0 auto 1em auto;
+          width: fit-content;
         }
 
-        img {
-          border-radius: 0px;
-          width: 100%;
+        button {
+          margin: 1em 0;
+          color: $basic-white;
+          border: 2px solid $basic-white;
         }
       }
     }
+  }
 
-    button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba($basic-white, 0.7);
+  .tour-section {
+    width: 100%;
+
+    .home-tour-container {
+      position: relative;
+
+      img {
+        width: 100%;
+        border-radius: 0px;
+      }
+
+      .home-tours-container {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 0px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        @include flexbox(column, center, center, 0.5em);
+
+        button {
+          margin: 1em 0;
+        }
+      }
+    }
+  }
+
+  .store-section {
+    .home-store-container {
+      .home-store-products {
+        img {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  .event-section {
+    width: 100%;
+
+    .home-event-container {
+
+      img {
+        border-radius: 0px;
+        width: 100%;
+      }
+
+      .home-event-info {
+        @include flexbox(column, center, center, 1em);
+
+        p {
+          padding: 0 1em;
+          width: 80%;
+        }
+      }
     }
   }
 }
 
 @media (max-width: 500px) {
-  .home-tour-container {
-    .home-tour-entry:not(:first-child) {
-      display: none;
-    }
-  }
-
-  .home-music-container {
+  .music-section {
     .home-music-album ol {
       display: none;
     }
   }
 
-  .home-event-container {
+  .tour-section {
+    .home-tours-container {
+      .home-tour-entry:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  .event-section {
     .home-event-info {
       overflow: hidden;
 

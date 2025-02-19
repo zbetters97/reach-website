@@ -593,7 +593,7 @@ footer div {
 
 /** MODAL **/
 .shop-modal {
-  background-color: rgb(0, 44, 95);
+  background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
   color: rgb(250, 250, 250);
   position: fixed;
   top: 50%;

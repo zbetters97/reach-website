@@ -578,9 +578,16 @@ footer div {
 
 .orders-container {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 
 .order-container {
+  width: 100%;
   margin-bottom: 2em;
   border: 2px solid black;
 }
@@ -670,4 +677,8 @@ footer div {
 .order-track-btn:hover {
   padding-left: 0.4em;
   padding-right: 2em;
+}
+
+.orders-back-btn {
+  margin: 1em;
 }

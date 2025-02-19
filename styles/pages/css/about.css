@@ -668,7 +668,7 @@ footer div {
 
 .about-member-tag {
   color: rgb(250, 250, 250);
-  background-color: rgba(235, 12, 12, 0.3);
+  background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
   width: 70%;
   padding: 0.2em;
   margin-top: -2px;

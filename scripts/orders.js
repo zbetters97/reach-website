@@ -122,5 +122,11 @@ function renderOrderPage() {
     ordersHTML += `${itemsHTML} </div>`;
   });
 
+  ordersHTML += `
+    <button class="back-btn orders-back-btn" onclick="window.location.href='account.html'">
+      Go back
+    </button>
+  `;
+
   $("#js-orders-container").html(ordersHTML);
 }

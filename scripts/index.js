@@ -18,14 +18,40 @@ $(document).ready(function () {
 function loadPage() {
   darkenHero();
   handleHeroScroll();
-  renderTourHTML();
   renderAlbumHTML();
+  renderTourHTML();
 }
 
 function handleHeroScroll() {
   $(window).scroll(() => {
     darkenHero();
   });
+}
+
+function renderAlbumHTML() {
+  const album = albums[albums.length - 1];
+  const image = album.image;
+  const title = album.title;
+
+  let songsHTML = ``;
+  album.songs.forEach((song) => {
+    songsHTML += `<li>${song}</li>`;
+  });
+
+  let albumHTML = `
+    <img src="${image}" />
+    <div class="home-music-album" id="js-home-album-container">
+      <h3>${title}</h3>
+      <ol type="1">
+        ${songsHTML}
+      </ol>
+        <button class="forward-btn home-btn home-music-btn" type="button" onclick="location.href='music.html'">
+          View all releases
+        </button>
+    </div>
+  `;
+
+  $("#js-home-album-container").html(albumHTML);
 }
 
 function renderTourHTML() {
@@ -54,30 +80,4 @@ function renderTourHTML() {
   `;
 
   $("#js-home-tours-container").html(concertsHTML);
-}
-
-function renderAlbumHTML() {
-  const album = albums[albums.length - 1];
-  const image = album.image;
-  const title = album.title;
-
-  let songsHTML = ``;
-  album.songs.forEach((song) => {
-    songsHTML += `<li>${song}</li>`;
-  });
-
-  let albumHTML = `
-    <img src="${image}" />
-    <div class="home-music-album" id="js-home-album-container">
-      <h3>${title}</h3>
-      <ol type="1">
-        ${songsHTML}
-      </ol>
-        <button class="forward-btn home-btn home-music-btn" type="button" onclick="location.href='music.html'">
-          View all releases
-        </button>
-    </div>
-  `;
-
-  $("#js-home-music-container").html(albumHTML);
 }

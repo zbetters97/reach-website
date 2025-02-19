@@ -6,7 +6,7 @@
   padding: 50px;
 
   &:nth-child(odd) {
-    background-color: $basic-blue;
+    background-image: $bg-blue;
 
     .concert-container {
       color: $basic-white;

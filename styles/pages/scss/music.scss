@@ -6,7 +6,7 @@
   padding: 2.5em;
 
   &:nth-child(odd) {
-    background-color: $basic-blue;
+    background-image: $bg-blue;
     color: $basic-white;
 
     .album-img {

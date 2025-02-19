@@ -78,7 +78,7 @@
           <div class="navbar-user-dropdown js-navbar-user-dropdown">
             <h3 id="js-navbar-dropdown-header">Hi, User</h3>
             <a href="account.html">Account</a>
-            <a href="checkout.html">Cart</a>
+            <a href="orders.html">Orders</a>
             <a class="js-account-logout-link">Logout</a>
           </div>
         </div>
@@ -104,26 +104,49 @@
     </nav>
     <main>
       <div class="wrapper">
-        <h1>Reach Worship</h1>
-        <section class="home-section">
-          <h2>Upcoming Tour Dates</h2>
+        <section class="home-section banner-section">
+          <p>Welcome to</p>
+          <h2>Reach Worship</h2>
+        </section>
+        <section class="home-section music-section">
+          <h2>Our latest music</h2>
+          <div class="home-album-container" id="js-home-album-container">
+            <!-- JS INSERTS DATA HERE -->
+          </div>
+        </section>
+        <section class="home-section tour-section">
+          <h2>Where we're touring</h2>
+
           <div class="home-tour-container">
             <img src="images/home/home-tour.png" />
-            <div class="home-tour-dates" id="js-home-tours-container">
+
+            <div class="home-tours-container" id="js-home-tours-container">
               <!-- JS INSERTS DATA HERE -->
             </div>
           </div>
         </section>
-        <section class="home-section">
-          <h2>New Music</h2>
-          <div class="home-music-container" id="js-home-music-container">
-            <!-- JS INSERTS DATA HERE -->
+        <section class="home-section store-section">
+          <h2>New Merch Available</h2>
+          <div class="home-store-container">
+            <div class="home-store-products">
+              <img src="images/home/home-store-01.png" />
+              <img src="images/home/home-store-02.png" />
+            </div>
+            <button
+              class="forward-btn home-btn home-store-btn"
+              type="button"
+              onclick="location.href='shop.html'"
+            >
+              Shop all items
+            </button>
           </div>
         </section>
-        <section class="home-section">
+        <section class="home-section event-section">
           <h2>Saturday Night Worship</h2>
+
           <div class="home-event-container">
             <img src="images/home/home-event.png" />
+
             <div class="home-event-info">
               <p>
                 With cutting edge music, high energy, and making Nothing But
@@ -151,42 +174,20 @@
             </div>
           </div>
         </section>
-        <section class="home-section">
-          <h2>Shop New Arrivals!</h2>
-          <div class="home-store-container">
-            <div class="home-store-products-container">
-              <div class="home-store-product">
-                <h3>RW Unisex T-Shirt</h3>
-                <img src="images/home/home-store-01.png" />
-              </div>
-              <div class="home-store-product">
-                <h3>RW Pullover</h3>
-                <img src="images/home/home-store-02.png" />
-              </div>
+        <div class="alert-modal" id="js-logout-modal">
+          <div class="alert-modal-container">
+            <div class="success-modal-msg">
+              <i class="fa-solid fa-circle-check"></i>
+              <p>Logout succesful!</p>
             </div>
             <button
-              class="forward-btn home-btn home-store-btn"
-              type="button"
-              onclick="location.href='shop.html'"
+              class="forward-btn alert-modal-btn"
+              onclick="window.location.href='login.html'"
             >
-              Shop all items
+              Go to login
             </button>
           </div>
-          <div class="alert-modal" id="js-logout-modal">
-            <div class="alert-modal-container">
-              <div class="success-modal-msg">
-                <i class="fa-solid fa-circle-check"></i>
-                <p>Logout succesful!</p>
-              </div>
-              <button
-                class="forward-btn alert-modal-btn"
-                onclick="window.location.href='login.html'"
-              >
-                Go to login
-              </button>
-            </div>
-          </div>
-        </section>
+        </div>
       </div>
       <div class="navbar-overlay"></div>
       <div class="modal-overlay" id="js-modal-overlay"></div>
