@@ -331,6 +331,7 @@ a {
   color: rgb(250, 250, 250);
   padding: 0.3em 0.5em;
   border: 2px solid transparent;
+  border-radius: 4px;
 }
 .navbar-icon-container a:hover, .navbar-icon-container a.active {
   color: rgb(0, 44, 95);
@@ -375,8 +376,8 @@ a {
   color: rgb(0, 44, 95);
 }
 .navbar-user-dropdown a:hover, .navbar-user-dropdown a.active {
-  color: rgb(136, 139, 140);
-  background-color: initial;
+  color: rgb(250, 250, 250);
+  background-color: rgb(0, 44, 95);
 }
 
 .hamburger {
@@ -566,6 +567,15 @@ footer div {
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
+  position: relative;
+}
+.hero .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 45, 95, 0);
 }
 
 .hero-text {
@@ -633,16 +643,12 @@ footer div {
 .home-tour-container {
   margin: 0 auto;
   width: 75%;
-}
-@media (min-width: 900px) {
-  .home-tour-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: initial;
-    flex-wrap: initial;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 .home-tour-container img {
   width: 100%;
@@ -681,16 +687,12 @@ footer div {
   margin: 0 auto;
   width: 70%;
   max-width: 75em;
-}
-@media (min-width: 900px) {
-  .home-music-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: initial;
-    align-items: initial;
-    gap: initial;
-    flex-wrap: initial;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 .home-music-container img {
   width: 65%;
@@ -725,16 +727,12 @@ footer div {
 .home-event-container {
   margin: 0 auto;
   width: 85%;
-}
-@media (min-width: 900px) {
-  .home-event-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 2em;
-    flex-wrap: initial;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  flex-wrap: initial;
 }
 .home-event-container img {
   width: 40%;
@@ -761,16 +759,12 @@ footer div {
 .home-store-container {
   margin: 0 auto;
   width: 80%;
-}
-@media (min-width: 900px) {
-  .home-store-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 3em;
-    flex-wrap: initial;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3em;
+  flex-wrap: initial;
 }
 @media (min-width: 900px) {
   .home-store-container .home-store-products-container {
@@ -811,12 +805,6 @@ footer div {
   .home-tour-container {
     width: 100%;
     position: relative;
-    display: flex;
-    flex-direction: center;
-    justify-content: center;
-    align-items: initial;
-    gap: initial;
-    flex-wrap: initial;
   }
   .home-tour-container img {
     width: 100%;
@@ -843,12 +831,6 @@ footer div {
   .home-music-container {
     width: 100%;
     position: relative;
-    display: flex;
-    flex-direction: center;
-    justify-content: center;
-    align-items: initial;
-    gap: initial;
-    flex-wrap: initial;
   }
   .home-music-container img {
     width: 100%;
@@ -884,12 +866,6 @@ footer div {
   .home-event-container {
     width: 100%;
     position: relative;
-    display: flex;
-    flex-direction: center;
-    justify-content: center;
-    align-items: initial;
-    gap: initial;
-    flex-wrap: initial;
   }
   .home-event-container img {
     width: 100%;

@@ -3,14 +3,29 @@ import concerts from "./data/concerts.js";
 import albums from "./data/albums.js";
 import { formatDateMDShort, formatTime } from "./utils/date.js";
 
+const darkenHero = () => {
+  $(".hero-overlay").css(
+    "background",
+    `rgba(0, 45, 95, ${(window.scrollY * 1) / window.innerHeight})`
+  );
+};
+
 $(document).ready(function () {
   handleWindow();
   loadPage();
 });
 
 function loadPage() {
+  darkenHero();
+  handleHeroScroll();
   renderTourHTML();
   renderAlbumHTML();
+}
+
+function handleHeroScroll() {
+  $(window).scroll(() => {
+    darkenHero();
+  });
 }
 
 function renderTourHTML() {

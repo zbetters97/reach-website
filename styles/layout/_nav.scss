@@ -73,6 +73,7 @@
     color: $basic-white;
     padding: 0.3em 0.5em;
     border: 2px solid transparent;
+    border-radius: 4px;
 
     &:hover,
     &.active {
@@ -117,8 +118,8 @@
 
     &:hover,
     &.active {
-      color: $basic-gray;
-      background-color: initial;
+      color: $basic-white;
+      background-color: $basic-blue;
     }
   }
 }
