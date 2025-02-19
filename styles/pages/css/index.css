@@ -238,6 +238,7 @@ a {
 }
 
 .db-alert {
+  font-family: "Archivo", Arial, sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   color: rgb(255, 0, 0);
@@ -559,14 +560,14 @@ footer div {
   background-position: center center;
   background-size: cover;
   background-attachment: fixed;
-  /* does not scroll with page */
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: nowrap;
+  gap: initial;
+  flex-wrap: initial;
   position: relative;
 }
 .hero .hero-overlay {
@@ -666,7 +667,7 @@ footer div {
 }
 .music-section .home-album-container .home-music-album {
   color: rgb(250, 250, 250);
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   position: absolute;
   top: 50%;
@@ -712,7 +713,7 @@ footer div {
   border-radius: 30px;
 }
 .tour-section .home-tour-container .home-tours-container {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   position: absolute;
   top: 50%;
@@ -761,7 +762,7 @@ footer div {
   flex-wrap: initial;
 }
 .store-section .home-store-container .home-store-products img {
-  filter: brightness(0.3);
+  filter: brightness(0.5);
 }
 .store-section .home-store-container button {
   position: absolute;
@@ -786,7 +787,7 @@ footer div {
   width: 100%;
 }
 .event-section .home-event-container .home-event-info {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 30px;
   position: absolute;
   top: 50%;
@@ -843,7 +844,7 @@ footer div {
     position: relative;
   }
   .music-section .home-album-container .home-music-album {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0px;
     position: absolute;
     top: 50%;
@@ -881,7 +882,7 @@ footer div {
     border-radius: 0px;
   }
   .tour-section .home-tour-container .home-tours-container {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0px;
     position: absolute;
     top: 50%;

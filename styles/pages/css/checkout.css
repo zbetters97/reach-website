@@ -238,6 +238,7 @@ a {
 }
 
 .db-alert {
+  font-family: "Archivo", Arial, sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   color: rgb(255, 0, 0);

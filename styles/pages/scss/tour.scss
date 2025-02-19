@@ -3,13 +3,19 @@
 @use "../../layout"as *;
 
 .concert-section {
-  padding: 50px;
+  padding: 2em;
 
   &:nth-child(odd) {
     background-image: $bg-blue;
 
     .concert-container {
       color: $basic-white;
+    }
+
+    .concert-seperator {
+      width: 30%;
+      height: 1px;
+      border-top: 3px solid $basic-white;
     }
   }
 
@@ -19,108 +25,96 @@
     .concert-container {
       color: black;
     }
+
+    .concert-seperator {
+      width: 30%;
+      height: 1px;
+      border-top: 3px solid black;
+    }
   }
 }
 
 .concert-container {
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
+  @include flexbox(column, space-between, center, 1em);
 
-.concert-title {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2.2em;
-  font-weight: 400;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.concert-info {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 1.8em;
-  font-weight: 200;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-
-  &.link {
-    color: inherit;
-    letter-spacing: 0.05em;
-    font-weight: 600;
+  .concert-title {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: calc(1.5rem + 0.5vw);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
   }
-}
 
-.concert-seperator {
-  width: 30%;
-  height: 1px;
-  border-top: 3px solid;
+  .concert-info {
+    font-family: "Archivo", Arial, Helvetica, sans-serif;
+    font-size: calc(1rem + 0.5vw);
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    &.link {
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: inherit;
+    }
+  }
 }
 
 .map-title {
   font-family: "Raleway", Arial, sans-serif;
-  text-transform: capitalize;
-  font-size: 3em;
+  font-size: 3rem;
   font-weight: 500;
   letter-spacing: 0.15em;
-  margin: 1em;
+  text-transform: capitalize;
   text-align: center;
+  margin: 1em;
 }
 
 .map-container {
+  margin: 0 auto 5em auto;
   width: 70%;
   height: 700px;
-  margin: 0 auto 100px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox(column, space-between, center);
 }
 
 .google-map {
+  border: 3px solid black;
+  border-radius: 4px;
   width: 60%;
   height: 70%;
-  border: 5px solid black;
-  border-radius: 10px;
 }
 
 .maps-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   height: 6em;
-}
+  @include flexbox(column, space-between, center);
 
-.maps-info-body {
-  font-size: 1.2em;
-}
+  .maps-info-body {
+    font-size: 1rem;
+  }
 
-.maps-info-btn {
-  font-size: 1.1em;
-  color: black;
-  background-color: transparent;
-  border: 2px solid $basic-blue;
-  padding: 5px 10px;
-  transition: all 150ms;
+  .maps-info-btn {
+    font-size: 1rem;
+    color: black;
+    background-color: transparent;
+    border: 2px solid $basic-blue;
+    padding: 0.3em 0.7em;
+    transition: all 150ms;
 
-  &:hover {
-    background-color: $basic-blue;
-    color: $basic-white;
+    &:hover {
+      background-color: $basic-blue;
+      color: $basic-white;
+    }
   }
 }
 
 .address-form {
   width: 60%;
   height: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  @include flexbox(column, space-evenly);
 
   label {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2.2em;
+    font-size: 2.2rem;
     margin-top: 0.2em;
     margin-bottom: 0.2em;
   }
@@ -129,19 +123,31 @@
     font-size: 1.6em;
     border: 2px solid black;
     padding: 0.2em;
-    width: 100%;
   }
 
   button {
-    width: 180px;
-    min-width: 180px;
+    font-size: 1.7rem;
+    width: 20%;
     color: black;
-    font-size: 1.7em;
-    padding: 0.4em 1em;
-    margin-right: 25px;
     background-color: transparent;
     border: 2px solid black;
+    padding: 0.4em 1em;
+    margin-right: 1em;
     transition: all 200ms;
+  }
+
+  .map-form-input {
+    @include flexbox(column);
+
+    div {
+      @include flexbox(row, space-between, center);
+    }
+
+    .map-alert {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
   }
 
   .fa-spin {
@@ -149,35 +155,28 @@
   }
 }
 
-.map-form-input {
-  display: flex;
-  flex-direction: column;
+.map-form-btn-container {
+  width: 100%;
+  height: 20%;
+  @include flexbox(column, space-evenly, $gap: 0.5em);
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .map-form-btns {
+    .btn-hover {
+      cursor: pointer;
+
+      &:hover {
+        color: $basic-white;
+        background-color: $basic-blue;
+      }
+    }
   }
 }
 
-.map-alert {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.5em;
-  font-weight: 600;
-}
+@media (max-width: 1080px) {
 
-.map-form-btn {
-  width: 40%;
-  display: flex;
-  justify-content: space-between;
-  align-self: flex-start;
-}
-
-.btn-hover {
-  cursor: pointer;
-
-  &:hover {
-    color: $basic-white;
-    background-color: $basic-blue;
+  h1,
+  .map-title,
+  .map-container {
+    display: none;
   }
 }

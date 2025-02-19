@@ -94,7 +94,7 @@
       <a href="checkout.html">
         <i class="fa-solid fa-cart-shopping"> </i>
       </a>
-      <a class="js-navbar-user">
+      <a class="js-navbar-user-mobile">
         <i class="fa-solid fa-user"></i>
       </a>
     </nav>
@@ -123,23 +123,29 @@
                 placeholder="New York City, NY"
               />
             </div>
-            <div class="map-form-btn">
-              <button class="btn-hover" id="js-map-autofill">
-                <i
-                  class="fa fa-refresh fa-spin"
-                  id="js-map-autofill-icon"
-                  spin
-                ></i>
-                <span id="js-map-autofill-text">Autofill</span>
-              </button>
-              <button class="map-submit-btn btn-hover" id="js-map-submit">
-                <i
-                  class="fa fa-refresh fa-spin"
-                  id="js-map-submit-icon"
-                  spin
-                ></i>
-                <span id="js-map-submit-text">Submit</span>
-              </button>
+            <div class="map-form-btn-container">
+              <div class="db-alert js-db-alert">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <p class="js-db-alert-message">error!</p>
+              </div>
+              <div class="map-form-btns">
+                <button class="btn-hover" id="js-map-autofill">
+                  <i
+                    class="fa fa-refresh fa-spin"
+                    id="js-map-autofill-icon"
+                    spin
+                  ></i>
+                  <span id="js-map-autofill-text">Autofill</span>
+                </button>
+                <button class="map-submit-btn btn-hover" id="js-map-submit">
+                  <i
+                    class="fa fa-refresh fa-spin"
+                    id="js-map-submit-icon"
+                    spin
+                  ></i>
+                  <span id="js-map-submit-text">Submit</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

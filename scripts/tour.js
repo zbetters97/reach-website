@@ -2,6 +2,7 @@ import { handleWindow } from "./utils/window.js";
 import { findClosestConcert, getCurrentLocation, initMap } from "./data/map.js";
 import concerts from "./data/concerts.js";
 import { formatDateMDShort, formatTime } from "./utils/date.js";
+import { showFormAlert } from "./utils/form.js";
 
 $(document).ready(function () {
   handleWindow();
@@ -51,7 +52,7 @@ function handleForm() {
         getCurrentLocation(position);
       });
     } else {
-      console.log("error");
+      showFormAlert("Something went wrong!");
     }
   });
 
@@ -60,7 +61,7 @@ function handleForm() {
       showLoading("submit");
       findClosestConcert(addressInput.val(), concerts);
     } else {
-      console.log("error");
+      showFormAlert("Please provide an address!");
     }
   });
 }

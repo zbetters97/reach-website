@@ -238,6 +238,7 @@ a {
 }
 
 .db-alert {
+  font-family: "Archivo", Arial, sans-serif;
   font-size: 1.2rem;
   font-weight: bold;
   color: rgb(255, 0, 0);
@@ -555,7 +556,7 @@ footer div {
 }
 
 .concert-section {
-  padding: 50px;
+  padding: 2em;
 }
 .concert-section:nth-child(odd) {
   background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
@@ -563,96 +564,101 @@ footer div {
 .concert-section:nth-child(odd) .concert-container {
   color: rgb(250, 250, 250);
 }
+.concert-section:nth-child(odd) .concert-seperator {
+  width: 30%;
+  height: 1px;
+  border-top: 3px solid rgb(250, 250, 250);
+}
 .concert-section:nth-child(even) {
   background-color: rgb(250, 250, 250);
 }
 .concert-section:nth-child(even) .concert-container {
   color: black;
 }
+.concert-section:nth-child(even) .concert-seperator {
+  width: 30%;
+  height: 1px;
+  border-top: 3px solid black;
+}
 
 .concert-container {
-  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 1em;
+  flex-wrap: initial;
 }
-
-.concert-title {
+.concert-container .concert-title {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2.2em;
+  font-size: calc(1.5rem + 0.5vw);
   font-weight: 400;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
-
-.concert-info {
+.concert-container .concert-info {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 1.8em;
+  font-size: calc(1rem + 0.5vw);
   font-weight: 200;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.concert-info.link {
-  color: inherit;
-  letter-spacing: 0.05em;
+.concert-container .concert-info.link {
   font-weight: 600;
-}
-
-.concert-seperator {
-  width: 30%;
-  height: 1px;
-  border-top: 3px solid;
+  letter-spacing: 0.2em;
+  color: inherit;
 }
 
 .map-title {
   font-family: "Raleway", Arial, sans-serif;
-  text-transform: capitalize;
-  font-size: 3em;
+  font-size: 3rem;
   font-weight: 500;
   letter-spacing: 0.15em;
-  margin: 1em;
+  text-transform: capitalize;
   text-align: center;
+  margin: 1em;
 }
 
 .map-container {
+  margin: 0 auto 5em auto;
   width: 70%;
   height: 700px;
-  margin: 0 auto 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 
 .google-map {
+  border: 3px solid black;
+  border-radius: 4px;
   width: 60%;
   height: 70%;
-  border: 5px solid black;
-  border-radius: 10px;
 }
 
 .maps-info {
+  height: 6em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 6em;
+  gap: initial;
+  flex-wrap: initial;
 }
-
-.maps-info-body {
-  font-size: 1.2em;
+.maps-info .maps-info-body {
+  font-size: 1rem;
 }
-
-.maps-info-btn {
-  font-size: 1.1em;
+.maps-info .maps-info-btn {
+  font-size: 1rem;
   color: black;
   background-color: transparent;
   border: 2px solid rgb(0, 44, 95);
-  padding: 5px 10px;
+  padding: 0.3em 0.7em;
   transition: all 150ms;
 }
-.maps-info-btn:hover {
+.maps-info .maps-info-btn:hover {
   background-color: rgb(0, 44, 95);
   color: rgb(250, 250, 250);
 }
@@ -663,10 +669,13 @@ footer div {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
 }
 .address-form label {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 2.2em;
+  font-size: 2.2rem;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
 }
@@ -674,50 +683,64 @@ footer div {
   font-size: 1.6em;
   border: 2px solid black;
   padding: 0.2em;
-  width: 100%;
 }
 .address-form button {
-  width: 180px;
-  min-width: 180px;
+  font-size: 1.7rem;
+  width: 20%;
   color: black;
-  font-size: 1.7em;
-  padding: 0.4em 1em;
-  margin-right: 25px;
   background-color: transparent;
   border: 2px solid black;
+  padding: 0.4em 1em;
+  margin-right: 1em;
   transition: all 200ms;
+}
+.address-form .map-form-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
+}
+.address-form .map-form-input div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
+}
+.address-form .map-form-input .map-alert {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 .address-form .fa-spin {
   display: none;
 }
 
-.map-form-input {
+.map-form-btn-container {
+  width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: initial;
+  gap: 0.5em;
+  flex-wrap: initial;
 }
-.map-form-input div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.map-alert {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.5em;
-  font-weight: 600;
-}
-
-.map-form-btn {
-  width: 40%;
-  display: flex;
-  justify-content: space-between;
-  align-self: flex-start;
-}
-
-.btn-hover {
+.map-form-btn-container .map-form-btns .btn-hover {
   cursor: pointer;
 }
-.btn-hover:hover {
+.map-form-btn-container .map-form-btns .btn-hover:hover {
   color: rgb(250, 250, 250);
   background-color: rgb(0, 44, 95);
+}
+
+@media (max-width: 1080px) {
+  h1,
+  .map-title,
+  .map-container {
+    display: none;
+  }
 }
