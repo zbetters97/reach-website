@@ -3,21 +3,18 @@
 @use "../../layout"as *;
 
 .shop-items-grid {
-  width: 80%;
-  margin: 0 auto;
-  margin-bottom: 100px;
+  margin: 0 auto 5em auto;
+  width: 90%;
+  text-align: center;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   place-items: center;
   row-gap: 4em;
 }
 
 .shop-item {
   width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flexbox(column, center, center);
   cursor: pointer;
   transition: transform 200ms;
 
@@ -25,38 +22,36 @@
     transform: scale(1.1);
   }
 
-  img {
-    margin-bottom: 1em;
-    width: 100%;
-    border-radius: 15px;
-  }
-
   h3 {
     font-family: Verdana, Arial, sans-serif;
-    font-size: 1.5em;
+    font-size: calc(1rem + 0.5vw);
     margin-bottom: 0.3em;
   }
 
   p {
     font-family: Verdana, Arial, sans-serif;
-    font-size: 1.3em;
+    font-size: calc(0.8rem + 0.5vw);
+  }
+
+  img {
+    border-radius: 15px;
+    margin-bottom: 1em;
+    width: 100%;
   }
 }
 
 /** MODAL **/
 .shop-modal {
-  background-image: $bg-blue;
   color: $basic-white;
+  background-image: $bg-blue;
+  border-radius: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 1000px;
-  height: 700px;
-  max-width: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
+  width: 60%;
+  max-width: 1000px;
+  min-width: 600px;
+  @include flexbox(row, center, center);
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
@@ -68,104 +63,91 @@
 
 .shop-close-btn {
   color: $basic-white;
-  font-size: 2rem;
+  font-size: calc(1.5rem + 0.5vw);
   font-weight: bold;
   background: none;
   border: none;
   outline: none;
   position: absolute;
-  top: 2%;
-  right: 2%;
+  top: 0;
+  right: 12px;
 }
 
 .shop-modal-container {
-  margin: 0.1em;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.shop-modal-img {
-  width: 50%;
-  border-radius: 10px;
-}
-
-.shop-modal-info {
   font-family: Verdana, Arial, sans-serif;
-  font-size: 1.8rem;
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
+  padding: 4em 1em;
+  @include flexbox(row, space-evenly, $gap: 1em);
 
-  h3 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: 2.3rem;
-    font-weight: 600;
+  img {
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
   }
 
-  h4 {
-    font-weight: lighter;
+  &>div {
+    font-size: calc(1rem + 0.5vw);
+    width: 40%;
+    @include flexbox(column, space-between, stretch);
+
+    h3 {
+      font-family: "Raleway", Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    h4 {
+      font-weight: lighter;
+    }
   }
 }
 
 .color-container {
-  display: flex;
-  flex-direction: column;
+  @include flexbox(column);
   width: 40%;
 
   select {
     font-size: 1em;
-    margin-top: 0.3em;
-    margin-left: 0.3em;
     color: $basic-white;
     background-color: transparent;
     border: 3px solid $basic-white;
+    padding: 0.2em;
+    margin-top: 0.3em;
+    margin-left: 0.3em;
     vertical-align: middle;
-  }
 
-  option {
-    color: black;
+    option {
+      color: black;
+    }
   }
-}
-
-.size-list {
-  margin-top: 0.3em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .size-container {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
+  @include flexbox(column);
+  width: 100%;
 
-  label {
-    font-size: 0.8em;
-    text-align: center;
-    width: 2em;
-    height: 2em;
-    padding: 0.2em;
-    cursor: pointer;
+  .size-list {
+    @include flexbox(row, space-between, center);
 
-    &:has(input[type="radio"]) {
+    label {
+      text-align: center;
+      margin-top: 0.3em;
+      margin-left: 0.3em;
+      width: 2.2em;
+      height: 2.2em;
+      cursor: pointer;
       display: grid;
-      flex-direction: row;
       align-items: center;
       border: 4px solid transparent;
+
+      &:has(input[type="radio"]:checked) {
+        border: 4px solid $basic-white;
+        border-radius: 100%;
+      }
     }
 
-
-    &:has(input[type="radio"]:checked) {
-      border: 4px solid $basic-white;
-      border-radius: 100%;
+    input {
+      position: absolute;
+      opacity: 0;
     }
-  }
-
-  input {
-    position: absolute;
-    opacity: 0;
   }
 }
 
@@ -174,10 +156,11 @@
     font-size: 1em;
     color: $basic-white;
     background-color: transparent;
-    margin-top: 0.3em;
-    margin-left: 0.5em;
     border: none;
     border-bottom: 3px solid $basic-white;
+    margin-top: 0.3em;
+    margin-left: 0.3em;
+    width: 30%;
   }
 
   input:focus {
@@ -185,83 +168,145 @@
   }
 }
 
-.add-cart-btn-container {
+.add-cart-container {
   align-self: center;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3em;
-}
+  @include flexbox(column, center, center, 0.3em);
 
-.shop-added-alert {
-  font-size: 0.8em;
-  color: green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3em;
-  opacity: 0;
-  transition: all 200ms;
-}
-
-.add-cart-btn {
-  font-size: 1em;
-  color: $basic-white;
-  background-color: transparent;
-  width: 70%;
-  height: 70px;
-  align-self: center;
-  border: 3px solid $basic-white;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  transition: all 200ms;
-
-  &::before {
-    content: "\f07a";
-    font-family: "FontAwesome";
-    font-size: 1.2em;
-    text-indent: 0.2em;
-    color: $basic-white;
-    width: 30%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(-20%, 0) scale(0, 1);
-    transform-origin: left;
+  .shop-added-alert {
+    color: green;
+    @include flexbox(row, center, center, 0.3em);
+    opacity: 0;
     transition: all 200ms;
-    z-index: 1;
   }
 
-  &:hover {
-    text-indent: 2.2em;
-  }
-
-  &:hover::before {
-    transform: translate(-20%, 0) scale(1, 1);
+  .shop-add-btn {
+    font-size: calc(1.2rem + 0.5vw);
+    color: $basic-white;
+    background-color: transparent;
+    border: 3px solid $basic-white;
+    border-radius: 10px;
+    width: 60%;
+    max-width: 300px;
+    align-self: center;
+    position: relative;
+    overflow: hidden;
   }
 }
 
 /* MODAL BACKDROP */
 .shop-overlay {
   background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  pointer-events: none;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+opacity: 0;
+pointer-events: none;
 
-  &.active {
-    opacity: 1;
-    pointer-events: all;
-  }
+&.active {
+  opacity: 1;
+  pointer-events: all;
+}
 }
 
 /** END MODAL **/
+
+@media (max-width: 1200px) {
+  .shop-items-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shop-modal {
+    width: 90%;
+    min-width: auto;
+  }
+
+  .shop-modal-container {
+    padding-bottom: 2em;
+
+    img {
+      width: 60%;
+    }
+
+    &>div {
+      gap: 0.5em;
+      width: 90%;
+    }
+  }
+
+  .title-container {
+    width: 100%;
+    @include flexbox(row, space-between);
+  }
+
+  .color-container {
+    width: 50%;
+    min-width: 300px;
+
+    select {
+      margin-left: 0;
+      width: 50%;
+    }
+  }
+
+  .size-container {
+    width: 100%;
+    max-width: 400px;
+    min-width: 200px;
+
+    .size-list {
+      label {
+        border-radius: 50%;
+        border: 3px solid $basic-white;
+
+        &:has(input[type="radio"]:checked) {
+          color: black;
+          background-color: $basic-white;
+        }
+      }
+    }
+  }
+
+  .quantity-container {
+    width: 60%;
+    min-width: 300px;
+  }
+
+  .add-cart-container {
+    .shop-add-btn {
+      width: 40%;
+      min-width: 175px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+
+  h1 {
+    display: none;
+  }
+
+  .shop-items-grid {
+    margin-top: 2em;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+
+    h3,
+    p {
+      font-size: 1.3rem;
+    }
+  }
+
+  .shop-modal-container {
+    padding: 3em 0 1em 0;
+
+    @include flexbox(column, space-evenly, center, 1em);
+
+    img {
+      width: 70%;
+    }
+  }
+}

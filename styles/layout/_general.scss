@@ -82,17 +82,11 @@ a {
 
 .db-alert {
   font-family: $alert-font;
-  font-size: 1.2rem;
+  font-size: calc(1.2rem + 0.5vw);
   font-weight: bold;
   color: $error-text;
   display: flex;
   gap: 0.3em;
   opacity: 0;
   transition: opacity 300ms;
-}
-
-@media (max-width: 900px) {
-  h1 {
-    font-size: 1.3em;
-  }
 }

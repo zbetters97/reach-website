@@ -4,8 +4,9 @@
 
 .tickets-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
-  background-color: white;
-  border: 3px solid black;
+  color: $basic-white;
+  background-image: $bg-blue;
+  border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   margin: 2em auto 2em auto;
   width: 80%;
@@ -14,8 +15,7 @@
 
   h2 {
     font-family: "Raleway", Arial, sans-serif;
-    font-size: calc(1rem + 0.5vw);
-    color: $basic-blue;
+    font-size: calc(0.8rem + 0.5vw);
     text-align: center;
     margin-top: 1em;
   }
@@ -29,12 +29,12 @@
 
 .ticket-info-list {
   font-size: calc(1.3rem + 0.5vw);
-  color: white;
-  background-image: $bg-blue;
+  font-weight: 600;
+  color: $basic-blue;
+  background-color: $basic-white;
   list-style-type: none;
-  padding: 0.5em 0;
+  padding: 0.5em 1em;
   margin: 0 auto;
-  width: 100%;
   @include flexbox(column, space-evenly, center, 0.2em);
 }
 
@@ -50,8 +50,9 @@
     input,
     select {
       font-size: calc(1rem + 0.5vw);
+      color: $basic-white;
       background-color: transparent;
-      border: 2px solid $basic-blue;
+      border: 2px solid $basic-white;
       padding: 0.3em;
       margin-top: 0.3em;
       outline: none;
@@ -71,64 +72,46 @@
     transition: all 200ms;
   }
 
-  button {
+  .ticket-add-btn {
     font-size: calc(1.3em + 0.5vw);
     color: $basic-white;
-    background-color: $basic-blue;
-    border: 3px solid $basic-blue;
-    padding: 0.5em;
-    margin: 0 auto;
+    background-color: transparent;
+    border: 3px solid $basic-white;
     width: 40%;
     max-width: 250px;
     min-width: 175px;
-    text-align: center;
-    vertical-align: middle;
-    display: inline-block;
-    position: relative;
-    transition: all 200ms;
-
-    &:after {
-      content: "\f07a";
-      font-family: "FontAwesome";
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      top: 0;
-      opacity: 0;
-      @include flexbox(row, center, center);
-      transition: all 200ms;
-    }
-
-    &:hover {
-      padding-left: 1.2em;
-      padding-right: 0;
-    }
-
-    &:hover:after {
-      opacity: 1;
-      left: 10px;
-    }
   }
 }
 
 .tickets-back-container {
-  border-top: 2px solid black;
-  padding: 1em 0;
+  background-color: white;
+  padding: 2em 0;
   width: 100%;
   @include flexbox(row, center, center);
+
+  a {
+    color: black;
+    background-color: transparent;
+    border: 3px solid black;
+  }
 }
 
 @media (max-width: 500px) {
   .tickets-section {
     background-color: transparent;
     border: none;
+    border-radius: 0;
     box-shadow: none;
     margin: 0;
     width: 100%;
 
     h2 {
       font-size: 1.5rem;
+    }
+
+    .ticket-info-list {
+      padding: 0.5em 0;
+      width: 100%;
     }
 
     .tickets-back-container {

@@ -66,3 +66,36 @@ button {
     left: 10px;
   }
 }
+
+.add-cart-btn {
+  border-radius: 10px;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  transition: all 200ms;
+
+  &:after {
+    content: "\f07a";
+    font-family: "FontAwesome";
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    @include flexbox(row, center, center);
+    transition: all 200ms;
+  }
+
+  &:hover {
+    padding-left: 1.2em;
+    padding-right: 0;
+  }
+
+  &:hover:after {
+    opacity: 1;
+    left: 10px;
+  }
+}

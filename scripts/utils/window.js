@@ -19,7 +19,7 @@ export function handleWindow() {
 
   $(document).on("click", () => {
     $(".js-navbar-user").removeClass("active");
-    $(".js-navbar-user-dropdown").css("opacity", 0);
+    $(".js-navbar-user-dropdown").css("visibility", "hidden");
   });
 
   const hamburger = $(".hamburger");
@@ -53,7 +53,7 @@ function handleAccountPage() {
       $("#js-navbar-dropdown-header").html(`Hi, ${user.firstName}`);
 
       $(this).addClass("active");
-      $(".js-navbar-user-dropdown").css("opacity", 1);
+      $(".js-navbar-user-dropdown").css("visibility", "unset");
     } catch (error) {
       window.location.href = "login.html";
     }

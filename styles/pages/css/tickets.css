@@ -70,6 +70,41 @@ button {
   left: 10px;
 }
 
+.add-cart-btn {
+  border-radius: 10px;
+  padding: 0.5em;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  transition: all 200ms;
+}
+.add-cart-btn:after {
+  content: "\f07a";
+  font-family: "FontAwesome";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
+  transition: all 200ms;
+}
+.add-cart-btn:hover {
+  padding-left: 1.2em;
+  padding-right: 0;
+}
+.add-cart-btn:hover:after {
+  opacity: 1;
+  left: 10px;
+}
+
 .alert-modal {
   font-size: calc(1.7rem + 0.5vw);
   font-family: "Archivo", Arial, sans-serif;
@@ -240,7 +275,7 @@ a {
 
 .db-alert {
   font-family: "Archivo", Arial, sans-serif;
-  font-size: 1.2rem;
+  font-size: calc(1.2rem + 0.5vw);
   font-weight: bold;
   color: rgb(255, 0, 0);
   display: flex;
@@ -249,11 +284,6 @@ a {
   transition: opacity 300ms;
 }
 
-@media (max-width: 900px) {
-  h1 {
-    font-size: 1.3em;
-  }
-}
 .navbar {
   background-color: rgb(0, 44, 95);
   border-bottom: 3px solid black;
@@ -360,8 +390,7 @@ a {
   align-items: initial;
   gap: initial;
   flex-wrap: initial;
-  opacity: 0;
-  transition: opacity 150ms;
+  visibility: hidden;
 }
 .navbar-user-dropdown:after {
   content: "";
@@ -422,7 +451,7 @@ a {
   right: 100%;
   width: 100%;
   min-height: 40vh;
-  display: block;
+  display: none;
   z-index: 98;
   transition: all 400ms;
 }
@@ -443,6 +472,7 @@ a {
 }
 .mobile-nav.is-active {
   right: 0;
+  display: block;
 }
 
 @media (max-width: 800px) {
@@ -560,8 +590,9 @@ footer div {
 
 .tickets-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
-  background-color: white;
-  border: 3px solid black;
+  color: rgb(250, 250, 250);
+  background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
+  border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   margin: 2em auto 2em auto;
   width: 80%;
@@ -575,8 +606,7 @@ footer div {
 }
 .tickets-section h2 {
   font-family: "Raleway", Arial, sans-serif;
-  font-size: calc(1rem + 0.5vw);
-  color: rgb(0, 44, 95);
+  font-size: calc(0.8rem + 0.5vw);
   text-align: center;
   margin-top: 1em;
 }
@@ -594,12 +624,12 @@ footer div {
 
 .ticket-info-list {
   font-size: calc(1.3rem + 0.5vw);
-  color: white;
-  background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
+  font-weight: 600;
+  color: rgb(0, 44, 95);
+  background-color: rgb(250, 250, 250);
   list-style-type: none;
-  padding: 0.5em 0;
+  padding: 0.5em 1em;
   margin: 0 auto;
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -630,8 +660,9 @@ footer div {
 .ticket-input-container .ticket-field input,
 .ticket-input-container .ticket-field select {
   font-size: calc(1rem + 0.5vw);
+  color: rgb(250, 250, 250);
   background-color: transparent;
-  border: 2px solid rgb(0, 44, 95);
+  border: 2px solid rgb(250, 250, 250);
   padding: 0.3em;
   margin-top: 0.3em;
   outline: none;
@@ -658,51 +689,19 @@ footer div {
   opacity: 0;
   transition: all 200ms;
 }
-.ticket-add-container button {
+.ticket-add-container .ticket-add-btn {
   font-size: calc(1.3em + 0.5vw);
   color: rgb(250, 250, 250);
-  background-color: rgb(0, 44, 95);
-  border: 3px solid rgb(0, 44, 95);
-  padding: 0.5em;
-  margin: 0 auto;
+  background-color: transparent;
+  border: 3px solid rgb(250, 250, 250);
   width: 40%;
   max-width: 250px;
   min-width: 175px;
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-  position: relative;
-  transition: all 200ms;
-}
-.ticket-add-container button:after {
-  content: "\f07a";
-  font-family: "FontAwesome";
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: initial;
-  flex-wrap: initial;
-  transition: all 200ms;
-}
-.ticket-add-container button:hover {
-  padding-left: 1.2em;
-  padding-right: 0;
-}
-.ticket-add-container button:hover:after {
-  opacity: 1;
-  left: 10px;
 }
 
 .tickets-back-container {
-  border-top: 2px solid black;
-  padding: 1em 0;
+  background-color: white;
+  padding: 2em 0;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -711,17 +710,27 @@ footer div {
   gap: initial;
   flex-wrap: initial;
 }
+.tickets-back-container a {
+  color: black;
+  background-color: transparent;
+  border: 3px solid black;
+}
 
 @media (max-width: 500px) {
   .tickets-section {
     background-color: transparent;
     border: none;
+    border-radius: 0;
     box-shadow: none;
     margin: 0;
     width: 100%;
   }
   .tickets-section h2 {
     font-size: 1.5rem;
+  }
+  .tickets-section .ticket-info-list {
+    padding: 0.5em 0;
+    width: 100%;
   }
   .tickets-section .tickets-back-container {
     padding: 2em 0;

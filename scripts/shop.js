@@ -51,12 +51,9 @@ function renderModalHTML(productId) {
 
     <div class="shop-modal-body">
       <div class="shop-modal-container">
-        <img
-          class="shop-modal-img" id="js-shop-modal-img"
-          src="${product.image}"
-        />
-        <div class="shop-modal-info">
-          <div>
+        <img id="js-shop-modal-img" src="${product.image}" />
+        <div>
+          <div class="title-container">
             <h3>${product.name}</h3>
             <h4>$${product.getPrice()}</h4>
           </div>
@@ -75,12 +72,12 @@ function renderModalHTML(productId) {
             <input id="js-quantity-container" type="number" value="1" min="1" max="99" />
           </div>
 
-          <div class="add-cart-btn-container">
+          <div class="add-cart-container">
             <div class="shop-added-alert" id="js-shop-added-alert">
               <i class="fa-solid fa-check"></i>
               <p>Added to cart</p>
             </div>
-            <button class="add-cart-btn" id="js-add-cart-btn">            
+            <button class="add-cart-btn shop-add-btn" id="js-add-cart-btn">            
               Add to Cart
             </button>
           </div>

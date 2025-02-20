@@ -97,10 +97,9 @@
   top: 50px;
   right: 0;
   padding: 0.4em 1em;
-  white-space: nowrap;  
+  white-space: nowrap;
   @include flexbox(column, center);
-  opacity: 0;
-  transition: opacity 150ms;
+  visibility: hidden;
 
   &:after {
     content: "";
@@ -173,7 +172,7 @@
   right: 100%;
   width: 100%;
   min-height: 40vh;
-  display: block;
+  display: none;
   z-index: 98;
   transition: all 400ms;
 
@@ -196,6 +195,7 @@
 
   &.is-active {
     right: 0;
+    display: block;
   }
 }
 

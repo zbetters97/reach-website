@@ -75,7 +75,7 @@ function renderTicketHTML() {
         <i class="fa-solid fa-check"></i>
         <p>Added to cart</p>
       </div>
-      <button id="js-tickets-add-btn">
+      <button class="add-cart-btn ticket-add-btn" id="js-tickets-add-btn">
         Add to Cart
       </button>
     </div>
