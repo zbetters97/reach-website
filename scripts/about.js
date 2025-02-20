@@ -27,16 +27,16 @@ function renderMembersHTML() {
         <img class="about-member-img" src="${image}" />
         <div class="about-member-info">
           <div class="about-member-banner">
-            <h3 class="about-member-name">${name}</h3>
+            <h3>${name}</h3>
             <div class="about-member-tag">
-              <h4 class="about-member-title">${title}</h4>
-              <a class="about-member-social" href="${social}" target="_blank">
+              <h4>${title}</h4>
+              <a href="${social}" target="_blank">
                 <i class="fa-brands fa-instagram"></i>
               </a>
             </div>
           </div>
           <div class="about-member-quote">
-            <p>
+            <p class="about-question">
               <strong>Q:</strong>
               <em>${question}</em>
             </p>
@@ -45,6 +45,10 @@ function renderMembersHTML() {
               "${answer}"
             </p>
           </div>
+
+          <a class="about-close-btn">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </a>
         </div>
       </div>
     `;
@@ -59,12 +63,14 @@ function showMemberText() {
 
     if (!$target.hasClass("active")) {
       $target.addClass("active");
-      $target.addClass("members-animate-on");
-      $target.removeClass("members-animate-off");
     } else {
       $target.removeClass("active");
-      $target.removeClass("members-animate-on");
-      $target.addClass("members-animate-off");
     }
   });
+
+  $(".about-close-btn")
+    .children()
+    .on("click", function () {
+      $(this).parent().parent().removeClass("active");
+    });
 }
