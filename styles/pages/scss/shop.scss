@@ -63,7 +63,7 @@
 
 .shop-close-btn {
   color: $basic-white;
-  font-size: calc(1.5rem + 0.5vw);
+  font-size: calc(1.7rem + 0.5vw);
   font-weight: bold;
   background: none;
   border: none;
@@ -197,18 +197,18 @@
 /* MODAL BACKDROP */
 .shop-overlay {
   background-color: rgba(0, 0, 0, 0.7);
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-opacity: 0;
-pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
 
-&.active {
-  opacity: 1;
-  pointer-events: all;
-}
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
 }
 
 /** END MODAL **/
@@ -300,13 +300,30 @@ pointer-events: none;
     }
   }
 
+  .shop-close-btn {
+    font-size: 2rem;
+  }
+
   .shop-modal-container {
-    padding: 3em 0 1em 0;
+    padding: 1em 0;
 
     @include flexbox(column, space-evenly, center, 1em);
 
     img {
-      width: 70%;
+      width: 50%;
+    }
+  }
+
+  .color-container {
+    @include flexbox(row, initial, center, 0.5em);
+  }
+
+  .quantity-container {
+    @include flexbox(row, initial, center, 0.5em);
+
+    input {
+      border: 3px solid $basic-white;
+      padding: 0.3em;
     }
   }
 }

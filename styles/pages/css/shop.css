@@ -654,7 +654,7 @@ footer div {
 
 .shop-close-btn {
   color: rgb(250, 250, 250);
-  font-size: calc(1.5rem + 0.5vw);
+  font-size: calc(1.7rem + 0.5vw);
   font-weight: bold;
   background: none;
   border: none;
@@ -893,8 +893,11 @@ footer div {
   .shop-items-grid p {
     font-size: 1.3rem;
   }
+  .shop-close-btn {
+    font-size: 2rem;
+  }
   .shop-modal-container {
-    padding: 3em 0 1em 0;
+    padding: 1em 0;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -903,6 +906,26 @@ footer div {
     flex-wrap: initial;
   }
   .shop-modal-container img {
-    width: 70%;
+    width: 50%;
+  }
+  .color-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: initial;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: initial;
+  }
+  .quantity-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: initial;
+    align-items: center;
+    gap: 0.5em;
+    flex-wrap: initial;
+  }
+  .quantity-container input {
+    border: 3px solid rgb(250, 250, 250);
+    padding: 0.3em;
   }
 }
