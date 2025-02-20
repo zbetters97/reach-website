@@ -5,20 +5,16 @@
 .tickets-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   background-color: white;
-  margin: 2em auto 2em auto;
-  width: 600px;
-  height: 800px;
   border: 3px solid black;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  margin: 2em auto 2em auto;
+  width: 80%;
+  max-width: 600px;
+  @include flexbox(column, space-evenly, center, 1em);
 
   h2 {
     font-family: "Raleway", Arial, sans-serif;
-    font-size: 1.5em;
+    font-size: calc(1rem + 0.5vw);
     color: $basic-blue;
     text-align: center;
     margin-top: 1em;
@@ -28,103 +24,115 @@
 .tickets-container {
   padding: 0.2em;
   width: 100%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  @include flexbox(column, space-evenly, initial, 1em);
 }
 
 .ticket-info-list {
-  font-size: 1.5em;
+  font-size: calc(1.3rem + 0.5vw);
   color: white;
-  background-color: $basic-blue;
+  background-image: $bg-blue;
   list-style-type: none;
-  border-radius: 14px;
-  padding: 0.5em;
+  padding: 0.5em 0;
   margin: 0 auto;
-  width: 85%;
-  height: 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  width: 100%;
+  @include flexbox(column, space-evenly, center, 0.2em);
 }
 
-.ticket-field {
-  font-size: 2em;
-  margin-bottom: 0.7em;
-  margin-left: 1em;
-  width: 35%;
-  display: flex;
-  flex-direction: column;
+.ticket-input-container {
+  @include flexbox(column, space-evenly, initial, 1em);
 
-  input,
-  select {
-    margin-top: 0.3em;
-    font-size: 0.7em;
-    padding: 0.3em;
-    border: 2px solid $basic-blue;
-    background-color: transparent;
-    outline: none;
+  .ticket-field {
+    font-size: calc(1.5rem + 0.5vw);
+    margin-left: 1em;
+    width: 200px;
+    @include flexbox(column);
+
+    input,
+    select {
+      font-size: calc(1rem + 0.5vw);
+      background-color: transparent;
+      border: 2px solid $basic-blue;
+      padding: 0.3em;
+      margin-top: 0.3em;
+      outline: none;
+    }
   }
 }
 
-.ticket-added-alert {
-  font-size: 1.5em;
-  color: green;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3em;
-  opacity: 0;
-  transition: all 200ms;
-}
+.ticket-add-container {
+  @include flexbox(column, center, center, 0.3em);
 
-.tickets-add-btn {
-  font-size: 2em;
-  color: $basic-white;
-  background-color: $basic-blue;
-  align-self: center;
-  padding: 0.5em;
-  margin: 0 auto;
-  width: 45%;
-  border: 3px solid $basic-blue;
-  position: relative;
-  overflow: hidden;
-  transition: all 200ms;
-
-  &::before {
-    content: "\f07a";
-    font-family: "FontAwesome";
-    font-size: 1.2em;
-    text-indent: -0.2em;
-    width: 25%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(-20%, 0) scale(0, 1);
-    transform-origin: left;
+  .ticket-alert {
+    font-family: $alert-font;
+    font-size: calc(1em + 0.5vw);
+    color: green;
+    @include flexbox(row, center, center, 0.3em);
+    opacity: 0;
     transition: all 200ms;
-    z-index: 1;
   }
 
-  &:hover {
-    text-indent: 2.2em;
-  }
+  button {
+    font-size: calc(1.3em + 0.5vw);
+    color: $basic-white;
+    background-color: $basic-blue;
+    border: 3px solid $basic-blue;
+    padding: 0.5em;
+    margin: 0 auto;
+    width: 40%;
+    max-width: 250px;
+    min-width: 175px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    transition: all 200ms;
 
-  &:hover::before {
-    transform: translate(-20%, 0) scale(1, 1);
+    &:after {
+      content: "\f07a";
+      font-family: "FontAwesome";
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      @include flexbox(row, center, center);
+      transition: all 200ms;
+    }
+
+    &:hover {
+      padding-left: 1.2em;
+      padding-right: 0;
+    }
+
+    &:hover:after {
+      opacity: 1;
+      left: 10px;
+    }
   }
 }
 
 .tickets-back-container {
   border-top: 2px solid black;
+  padding: 1em 0;
   width: 100%;
-  height: 15%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexbox(row, center, center);
+}
+
+@media (max-width: 500px) {
+  .tickets-section {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .tickets-back-container {
+      padding: 2em 0;
+    }
+  }
 }

@@ -37,6 +37,7 @@ button {
   padding: 0.5em 0.6em;
   margin: 0 auto;
   width: 25%;
+  min-width: 120px;
   border: 3px solid black;
   text-align: center;
   vertical-align: middle;
@@ -326,7 +327,6 @@ a {
   align-items: center;
   gap: 1em;
   flex-wrap: initial;
-  position: relative;
 }
 .navbar-icon-container a {
   color: rgb(250, 250, 250);
@@ -338,6 +338,9 @@ a {
   color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
 }
+.navbar-icon-container .user-icon {
+  position: relative;
+}
 
 .navbar-user-dropdown {
   font-family: "Palanquin", Arial, sans-serif;
@@ -347,30 +350,30 @@ a {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
   border: 2px solid black;
   position: absolute;
-  top: 62px;
-  right: -2px;
+  top: 50px;
+  right: 0;
   padding: 0.4em 1em;
   white-space: nowrap;
-  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: initial;
   gap: initial;
   flex-wrap: initial;
+  opacity: 0;
   transition: opacity 150ms;
 }
 .navbar-user-dropdown:after {
   content: "";
-  position: absolute;
   border-width: 2px 0 0 2px;
   border-style: solid;
   border-color: black;
+  background: inherit;
+  position: absolute;
+  top: -5%;
+  right: 8%;
   width: 20px;
   height: 20px;
-  top: -12px;
-  right: 20px;
-  background: inherit;
   transform: rotate(45deg);
 }
 .navbar-user-dropdown a {
@@ -558,20 +561,21 @@ footer div {
 .tickets-section {
   font-family: "Archivo", Arial, Helvetica, sans-serif;
   background-color: white;
-  margin: 2em auto 2em auto;
-  width: 600px;
-  height: 800px;
   border: 3px solid black;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  border-radius: 20px;
+  margin: 2em auto 2em auto;
+  width: 80%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 1em;
+  flex-wrap: initial;
 }
 .tickets-section h2 {
   font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.5em;
+  font-size: calc(1rem + 0.5vw);
   color: rgb(0, 44, 95);
   text-align: center;
   margin-top: 1em;
@@ -580,99 +584,146 @@ footer div {
 .tickets-container {
   padding: 0.2em;
   width: 100%;
-  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: initial;
+  gap: 1em;
+  flex-wrap: initial;
 }
 
 .ticket-info-list {
-  font-size: 1.5em;
+  font-size: calc(1.3rem + 0.5vw);
   color: white;
-  background-color: rgb(0, 44, 95);
+  background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
   list-style-type: none;
-  border-radius: 14px;
-  padding: 0.5em;
+  padding: 0.5em 0;
   margin: 0 auto;
-  width: 85%;
-  height: 20%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 0.2em;
+  flex-wrap: initial;
 }
 
-.ticket-field {
-  font-size: 2em;
-  margin-bottom: 0.7em;
-  margin-left: 1em;
-  width: 35%;
+.ticket-input-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: initial;
+  gap: 1em;
+  flex-wrap: initial;
 }
-.ticket-field input,
-.ticket-field select {
-  margin-top: 0.3em;
-  font-size: 0.7em;
-  padding: 0.3em;
-  border: 2px solid rgb(0, 44, 95);
+.ticket-input-container .ticket-field {
+  font-size: calc(1.5rem + 0.5vw);
+  margin-left: 1em;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
+}
+.ticket-input-container .ticket-field input,
+.ticket-input-container .ticket-field select {
+  font-size: calc(1rem + 0.5vw);
   background-color: transparent;
+  border: 2px solid rgb(0, 44, 95);
+  padding: 0.3em;
+  margin-top: 0.3em;
   outline: none;
 }
 
-.ticket-added-alert {
-  font-size: 1.5em;
-  color: green;
+.ticket-add-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.3em;
+  flex-wrap: initial;
+}
+.ticket-add-container .ticket-alert {
+  font-family: "Archivo", Arial, sans-serif;
+  font-size: calc(1em + 0.5vw);
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: initial;
   opacity: 0;
   transition: all 200ms;
 }
-
-.tickets-add-btn {
-  font-size: 2em;
+.ticket-add-container button {
+  font-size: calc(1.3em + 0.5vw);
   color: rgb(250, 250, 250);
   background-color: rgb(0, 44, 95);
-  align-self: center;
+  border: 3px solid rgb(0, 44, 95);
   padding: 0.5em;
   margin: 0 auto;
-  width: 45%;
-  border: 3px solid rgb(0, 44, 95);
+  width: 40%;
+  max-width: 250px;
+  min-width: 175px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
   position: relative;
-  overflow: hidden;
   transition: all 200ms;
 }
-.tickets-add-btn::before {
+.ticket-add-container button:after {
   content: "\f07a";
   font-family: "FontAwesome";
-  font-size: 1.2em;
-  text-indent: -0.2em;
-  width: 25%;
   height: 100%;
   position: absolute;
   top: 0;
+  left: 0;
+  top: 0;
+  opacity: 0;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  transform: translate(-20%, 0) scale(0, 1);
-  transform-origin: left;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
   transition: all 200ms;
-  z-index: 1;
 }
-.tickets-add-btn:hover {
-  text-indent: 2.2em;
+.ticket-add-container button:hover {
+  padding-left: 1.2em;
+  padding-right: 0;
 }
-.tickets-add-btn:hover::before {
-  transform: translate(-20%, 0) scale(1, 1);
+.ticket-add-container button:hover:after {
+  opacity: 1;
+  left: 10px;
 }
 
 .tickets-back-container {
   border-top: 2px solid black;
+  padding: 1em 0;
   width: 100%;
-  height: 15%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: initial;
+  flex-wrap: initial;
+}
+
+@media (max-width: 500px) {
+  .tickets-section {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    width: 100%;
+  }
+  .tickets-section h2 {
+    font-size: 1.5rem;
+  }
+  .tickets-section .tickets-back-container {
+    padding: 2em 0;
+  }
 }

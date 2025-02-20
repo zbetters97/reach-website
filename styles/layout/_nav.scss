@@ -67,7 +67,6 @@
   font-size: calc(1.2rem + 0.5vw);
   margin-right: 1.5em;
   @include flexbox(row, space-evenly, center, 1em);
-  position: relative;
 
   a {
     color: $basic-white;
@@ -81,6 +80,10 @@
       background-color: $basic-white;
     }
   }
+
+  .user-icon {
+    position: relative;
+  }
 }
 
 .navbar-user-dropdown {
@@ -91,25 +94,25 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
   border: 2px solid black;
   position: absolute;
-  top: 62px;
-  right: -2px;
+  top: 50px;
+  right: 0;
   padding: 0.4em 1em;
-  white-space: nowrap;
-  opacity: 0;
+  white-space: nowrap;  
   @include flexbox(column, center);
+  opacity: 0;
   transition: opacity 150ms;
 
   &:after {
     content: "";
-    position: absolute;
     border-width: 2px 0 0 2px;
     border-style: solid;
     border-color: black;
+    background: inherit;
+    position: absolute;
+    top: -5%;
+    right: 8%;
     width: 20px;
     height: 20px;
-    top: -12px;
-    right: 20px;
-    background: inherit;
     transform: rotate(45deg);
   }
 

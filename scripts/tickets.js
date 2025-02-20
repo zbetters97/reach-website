@@ -3,6 +3,7 @@ import { getConcert } from "./data/concerts.js";
 import { formatDateMDYLong, formatTime } from "./utils/date.js";
 import formatCurrency from "./utils/money.js";
 import cart from "./data/cart.js";
+import { showFormAlert } from "./utils/form.js";
 
 let totalPrice = 0;
 
@@ -36,7 +37,7 @@ function renderTicketHTML() {
       <li>${venue}</li>
     </ul>
 
-    <div>
+    <div class="ticket-input-container">
       <div class="ticket-field ticket-type">
         <label for="ticket-type">Type</label>
         <select id="js-ticket-type" name="ticket-type">
@@ -69,12 +70,15 @@ function renderTicketHTML() {
         />
       </div>
     </div>
-
-    <div class="ticket-added-alert" id="js-ticket-added-alert">
-      <i class="fa-solid fa-check"></i>
-      <p>Added to cart</p>
+    <div class="ticket-add-container">
+      <div class="ticket-alert" id="js-ticket-alert">
+        <i class="fa-solid fa-check"></i>
+        <p>Added to cart</p>
+      </div>
+      <button id="js-tickets-add-btn">
+        Add to Cart
+      </button>
     </div>
-    <button class="tickets-add-btn" id="js-tickets-add-btn">Add to Cart</button>
   `;
 
   $("#js-tickets-container").html(ticketHTML);
@@ -95,11 +99,28 @@ function renderTicketHTML() {
   });
 
   $("#js-tickets-add-btn").on("click", () => {
-    const quantity = ticketQuantity.val();
-    if (quantity > 10 || quantity < 1) return;
+    const quantity = parseInt(ticketQuantity.val());
+    const ticketAlert = $("#js-ticket-alert");
 
-    cart.addToCart(ticketId, parseInt(quantity), "T", ticketType.val());
+    if (isNaN(quantity) || quantity > 10 || quantity < 1) {
+      ticketAlert.html(
+        `<i class="fa-solid fa-circle-exclamation"></i>
+        <p class="js-db-alert-message">Please provide a valid quantity!</p>`
+      );
+      ticketAlert.css("color", "red");
+
+      showAddToCartMsg();
+      return;
+    }
+
+    ticketAlert.html(
+      `<i class="fa-solid fa-check"></i>
+        <p>Added to cart</p>`
+    );
+    ticketAlert.css("color", "green");
+
     showAddToCartMsg();
+    cart.addToCart(ticketId, parseInt(quantity), "T", ticketType.val());
   });
 }
 
@@ -113,7 +134,7 @@ function updateTotal(concert) {
 }
 
 function showAddToCartMsg() {
-  const addedMessage = $("#js-ticket-added-alert");
+  const addedMessage = $("#js-ticket-alert");
   addedMessage.css("opacity", "1");
 
   setTimeout(() => {

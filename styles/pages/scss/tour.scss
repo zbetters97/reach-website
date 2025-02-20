@@ -12,10 +12,11 @@
       color: $basic-white;
     }
 
-    .concert-seperator {
-      width: 30%;
-      height: 1px;
-      border-top: 3px solid $basic-white;
+    .concert-venue {
+      border-bottom: 3px solid $basic-white;
+      padding-bottom: 1em;
+      width: 80%;
+      max-width: 500px;
     }
   }
 
@@ -27,19 +28,21 @@
     }
 
     .concert-seperator {
-      width: 30%;
-      height: 1px;
-      border-top: 3px solid black;
+      border-bottom: 3px solid black;
+      padding-bottom: 1em;
+      width: 80%;
+      max-width: 500px;
     }
   }
 }
 
 .concert-container {
   @include flexbox(column, space-between, center, 1em);
+  text-align: center;
 
   .concert-title {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: calc(1.5rem + 0.5vw);
+    font-size: calc(1.3rem + 0.5vw);
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -178,5 +181,14 @@
   .map-title,
   .map-container {
     display: none;
+  }
+
+  .concert-container {
+    .concert-info.link {
+      color: black;
+      background-color: $basic-white;
+      border: 2px solid black;
+      padding: 0.7em 1em;
+    }
   }
 }

@@ -37,6 +37,7 @@ button {
   padding: 0.5em 0.6em;
   margin: 0 auto;
   width: 25%;
+  min-width: 120px;
   border: 3px solid black;
   text-align: center;
   vertical-align: middle;
@@ -326,7 +327,6 @@ a {
   align-items: center;
   gap: 1em;
   flex-wrap: initial;
-  position: relative;
 }
 .navbar-icon-container a {
   color: rgb(250, 250, 250);
@@ -338,6 +338,9 @@ a {
   color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
 }
+.navbar-icon-container .user-icon {
+  position: relative;
+}
 
 .navbar-user-dropdown {
   font-family: "Palanquin", Arial, sans-serif;
@@ -347,30 +350,30 @@ a {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.7);
   border: 2px solid black;
   position: absolute;
-  top: 62px;
-  right: -2px;
+  top: 50px;
+  right: 0;
   padding: 0.4em 1em;
   white-space: nowrap;
-  opacity: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: initial;
   gap: initial;
   flex-wrap: initial;
+  opacity: 0;
   transition: opacity 150ms;
 }
 .navbar-user-dropdown:after {
   content: "";
-  position: absolute;
   border-width: 2px 0 0 2px;
   border-style: solid;
   border-color: black;
+  background: inherit;
+  position: absolute;
+  top: -5%;
+  right: 8%;
   width: 20px;
   height: 20px;
-  top: -12px;
-  right: 20px;
-  background: inherit;
   transform: rotate(45deg);
 }
 .navbar-user-dropdown a {

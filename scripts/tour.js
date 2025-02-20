@@ -30,7 +30,7 @@ function renderTourHTML() {
         <div class="concert-container">
           <h3 class="concert-title">${date} @ ${time}</h3>
           <h4 class="concert-info">${location}</h4>
-          <h4 class="concert-info">${venue}</h4>
+          <h4 class="concert-info concert-venue">${venue}</h4>
           <div class="concert-seperator"></div>
           <a class="concert-info link" href="tickets.html?eventId=${ticketId}">-Tickets-</a>
         </div>
