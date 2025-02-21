@@ -102,14 +102,12 @@
 }
 
 .home-album-img {
-  border-radius: 20px;
   width: 100%;
 }
 
 .home-album {
   color: $basic-white;
   background-color: $bg-shadow;
-  border-radius: 30px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -145,7 +143,6 @@
 
 .home-tours {
   background-color: $bg-shadow-lighter;
-  border-radius: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -156,7 +153,6 @@
 }
 
 .home-tour-img {
-  border-radius: 30px;
   width: 100%;
 }
 
@@ -258,10 +254,6 @@
     color: $basic-blue;
   }
 
-  .home-album-img {
-    border-radius: 0px;
-  }
-
   .home-album-container {
     width: 100%;
   }
@@ -280,10 +272,6 @@
     width: 100%;
   }
 
-  .home-tour-img {
-    border-radius: 0px;
-  }
-
   .home-tour-btn {
     margin: 1em 0;
   }
@@ -294,10 +282,6 @@
 
   .home-event-container {
     width: 100%;
-  }
-
-  .home-event-img {
-    border-radius: 0px;
   }
 
   .home-event-info {
