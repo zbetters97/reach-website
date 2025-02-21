@@ -11,25 +11,25 @@
   height: 100vh;
   @include flexbox(column, center, center);
   position: relative;
+}
 
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgb(0, 45, 95, 0);
-  }
+.hero-title {
+  font-family: "ostrich_sansmedium", Arial, sans-serif;
+  font-size: 13em;
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  color: $basic-white;
+  text-shadow: 5px 5px 2px black;
+  height: 220px;
+}
 
-  .hero-text {
-    font-family: "ostrich_sansmedium", Arial, sans-serif;
-    font-size: 13em;
-    font-weight: 550;
-    letter-spacing: 0.1em;
-    color: $basic-white;
-    text-shadow: 5px 5px 2px black;
-    height: 220px;
-  }
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 45, 95, 0);
 }
 
 .wrapper {
@@ -37,32 +37,29 @@
 }
 
 .home-section {
+  font-family: $font-basic;
   color: $basic-white;
   padding-bottom: 30vh;
   margin: 0 auto;
-  width: 65%;
+  width: 100%;
+}
 
-  h2 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: calc(3rem + 0.5vw);
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 0.5em;
-  }
+.home-header {
+  font-family: $font-heading;
+  font-size: calc(2.5rem + 0.5vw);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
 
-  h3 {
-    font-family: "Archivo", Arial, Helvetica, sans-serif;
-    font-size: calc(2rem + 0.5vw);
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-align: center;
-  }
-
-  p {
-    font-family: Verdana, Arial, sans-serif;
-  }
+.home-subheader {
+  font-family: $font-secondary;
+  font-size: calc(2rem + 0.5vw);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-align: center;
 }
 
 .home-btn {
@@ -70,7 +67,6 @@
   background-color: transparent;
   border: 2px solid $basic-white;
   padding: 0.5em 1em;
-
 
   &:after {
     font-size: 0.8em;
@@ -85,163 +81,152 @@
 .banner-section {
   height: 100vh;
   @include flexbox(column, center, center, 0.5em);
-
-  h2 {
-    font-weight: 700;
-    font-size: 4rem;
-    vertical-align: middle;
-    letter-spacing: 0.5em;
-    color: $basic-white;
-  }
-
-  p {
-    font-size: 1.5rem;
-  }
 }
 
-.music-section {
-  img {
-    width: 70%;
-    border-radius: 30px;
-  }
-
-  .home-album-container {
-    @include flexbox(row, center, center);
-    position: relative;
-
-    .home-music-album {
-      color: $basic-white;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 30px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 70%;
-      height: 100%;
-      @include flexbox(column, center, center, 2em);
-
-      h3 {
-        width: 40%;
-        border-bottom: 2px solid $basic-white;
-      }
-
-      ol {
-        font-size: calc(1.2rem + 0.5vw);
-        text-transform: uppercase;
-        list-style-position: inside;
-        line-height: 1.5em;
-      }
-
-      button {
-        color: $basic-white;
-        border: 2px solid $basic-white;
-      }
-    }
-  }
+.welcome-subheader {
+  font-size: calc(1rem + 0.5vw);
 }
 
-.tour-section {
-  .home-tour-container {
-    margin: 0 auto;
-    width: 100%;
-    @include flexbox(row, center, center);
-    position: relative;
-
-    img {
-      width: 90%;
-      border-radius: 30px;
-    }
-
-    .home-tours-container {
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 30px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      height: 100%;
-      @include flexbox(column, center, center, 2em);
-
-      .home-tour-entry {
-        text-transform: uppercase;
-        font-family: $font-secondary;
-        font-size: calc(0.8rem + 0.5vw);
-        font-weight: 500;
-        line-height: 1.5em;
-        @include flexbox(column, center, center);
-      }
-
-      button {
-        color: $basic-white;
-        border: 2px solid $basic-white;
-      }
-    }
-  }
+.welcome-header {
+  font-weight: 700;
+  font-size: calc(3.2rem + 0.5vw);
+  letter-spacing: 0.5em;
+  color: $basic-white;
 }
 
-.store-section {
+.home-album-container {
   margin: 0 auto;
-  width: 100%;
-
-  .home-store-container {
-    position: relative;
-
-    .home-store-products {
-      @include flexbox(row, center, center);
-
-      img {
-        filter: brightness(0.5);
-      }
-    }
-
-    button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: $basic-white;
-      border-color: $basic-white;
-    }
-  }
+  width: 45%;
+  @include flexbox(row, center, center);
+  position: relative;
 }
 
-.event-section {
-  .home-event-container {
-    @include flexbox(row, center, center);
-    position: relative;
+.home-album-img {
+  border-radius: 20px;
+  width: 100%;
+}
 
-    img {
-      border-radius: 30px;
-      width: 100%;
-    }
+.home-album {
+  color: $basic-white;
+  background-color: $bg-shadow;
+  border-radius: 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  @include flexbox(column, center, center, 2em);
+}
 
-    .home-event-info {
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 30px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      @include flexbox(column, center, center, 2em);
-      font-size: calc(1rem + 0.5vw);
-      line-height: 1.5em;
+.home-album-title {
+  border-bottom: 3px solid $basic-white;
+  padding-bottom: 0.1em;
+}
 
-      p,
-      div {
-        text-align: center;
-        margin: 0 auto;
-        width: 90%;
-      }
+.home-album-songs {
+  font-size: calc(1.2rem + 0.5vw);
+  text-transform: uppercase;
+  list-style-position: inside;
+  line-height: 1.5em;
+}
 
-      a {
-        color: inherit;
-      }
-    }
-  }
+.home-album-btn {
+  color: $basic-white;
+  border: 2px solid $basic-white;
+}
+
+.home-tour-container {
+  margin: 0 auto;
+  width: 55%;
+  @include flexbox(row, center, center);
+  position: relative;
+}
+
+.home-tours {
+  background-color: $bg-shadow-lighter;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  @include flexbox(column, center, center, 2em);
+}
+
+.home-tour-img {
+  border-radius: 30px;
+  width: 100%;
+}
+
+.home-tour {
+  text-transform: uppercase;
+  font-family: $font-secondary;
+  font-size: calc(1.2rem + 0.5vw);
+  font-weight: 500;
+  line-height: 1.5em;
+  @include flexbox(column, center, center);
+}
+
+.home-tour-btn {
+  color: $basic-white;
+  border: 2px solid $basic-white;
+}
+
+.home-store-container {
+  position: relative;
+}
+
+.home-products {
+  @include flexbox(row, center, center);
+}
+
+.home-store-img {
+  filter: brightness(0.5);
+}
+
+.home-store-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $basic-white;
+  border-color: $basic-white;
+}
+
+.home-event-container {
+  margin: 0 auto;
+  width: 70%;
+  @include flexbox(row, center, center);
+  position: relative;
+}
+
+.home-event-img {
+  border-radius: 20px;
+  width: 100%;
+}
+
+.home-event-info {
+  font-size: calc(1.2rem + 0.5vw);
+  line-height: 1.5em;
+  background-color: $bg-shadow;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  @include flexbox(column, center, center, 2em);
+}
+
+.home-event-desc {
+  width: 80%;
+}
+
+.home-event-text {
+  text-align: center;
+  margin: 0 auto;
 }
 
 @media (max-width: 1080px) {
@@ -251,150 +236,107 @@
 
   .home-section {
     padding: 0;
-
-    h2 {
-      display: none;
-    }
-
-    p {
-      color: $basic-white;
-    }
-
-    img {
-      border-radius: 0px;
-    }
   }
 
-  .banner-section {
+  .home-header:not(.welcome-header) {
     display: none;
   }
 
-  .music-section {
+  .banner-section {
+    color: $basic-blue;
+    background-color: $basic-white;
+    height: 500px;
     width: 100%;
-
-    img {
-      width: 100%;
-      border-radius: 0px;
-    }
-
-    .home-album-container {
-      position: relative;
-
-      .home-music-album {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 0px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-        @include flexbox(column, center, center, 0.5em);
-        overflow: auto;
-
-        h3 {
-          border-bottom: 2px solid $basic-white;
-          padding: 0 0.5em 0.3em 0.5em;
-          margin: 0 auto 1em auto;
-          width: fit-content;
-        }
-
-        button {
-          margin: 1em 0;
-          color: $basic-white;
-          border: 2px solid $basic-white;
-        }
-      }
-    }
   }
 
-  .tour-section {
-    width: 100%;
-
-    .home-tour-container {
-      position: relative;
-
-      img {
-        width: 100%;
-        border-radius: 0px;
-      }
-
-      .home-tours-container {
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 0px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-        @include flexbox(column, center, center, 0.5em);
-
-        button {
-          margin: 1em 0;
-        }
-      }
-    }
+  .welcome-subheader {
+    font-size: calc(0.8rem + 0.5vw);
   }
 
-  .store-section {
-    .home-store-container {
-      .home-store-products {
-        img {
-          width: 50%;
-        }
-      }
-    }
+  .welcome-header {
+    font-size: calc(2.3rem + 0.5vw);
+    color: $basic-blue;
   }
 
-  .event-section {
+  .home-album-img {
+    border-radius: 0px;
+  }
+
+  .home-album-container {
     width: 100%;
+  }
 
-    .home-event-container {
+  .home-album {
+    border-radius: 0px;
+    overflow: auto;
+  }
 
-      img {
-        border-radius: 0px;
-        width: 100%;
-      }
+  .home-album-btn {
+    font-size: calc(1.3rem + 0.5vw);
+    margin: 1em 0;
+  }
 
-      .home-event-info {
-        @include flexbox(column, center, center, 1em);
+  .home-tour-container {
+    width: 100%;
+  }
 
-        p {
-          padding: 0 1em;
-          width: 80%;
-        }
-      }
-    }
+  .home-tour-img {
+    border-radius: 0px;
+  }
+
+  .home-tour-btn {
+    margin: 1em 0;
+  }
+
+  .home-store-img {
+    width: 50%;
+  }
+
+  .home-event-container {
+    width: 100%;
+  }
+
+  .home-event-img {
+    border-radius: 0px;
+  }
+
+  .home-event-info {
+    font-size: calc(1rem + 0.5vw);
+  }
+
+  .home-event-desc {
+    padding: 0 1em;
+    width: 80%;
   }
 }
 
-@media (max-width: 500px) {
-  .music-section {
-    .home-music-album ol {
-      display: none;
-    }
+@media (max-width: 600px) {
+
+  .banner-section {
+    height: 200px;
   }
 
-  .tour-section {
-    .home-tours-container {
-      .home-tour-entry:not(:first-child) {
-        display: none;
-      }
-    }
+  .welcome-header {
+    font-size: 2rem;
   }
 
-  .event-section {
-    .home-event-info {
-      overflow: hidden;
+  .home-album-songs {
+    display: none;
+  }
 
-      p {
-        font-size: calc(0.8rem + 0.5vw);
-      }
+  .home-tour:not(:first-child) {
+    display: none;
+  }
 
-      div {
-        display: none;
-      }
-    }
+  .home-event-info {
+    overflow: hidden;
+  }
+
+  .home-event-text {
+    font-size: calc(0.8rem + 0.5vw);
+  }
+
+  .home-event-details {
+    display: none;
   }
 }

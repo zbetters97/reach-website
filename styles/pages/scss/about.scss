@@ -192,9 +192,17 @@
 
 @media (max-width: 800px) {
 
-  h2,
-  .mission-section {
+  h2 {
     display: none;
+  }
+
+  .mission-section {
+    margin-bottom: 2em;
+    width: 100%;
+  }
+
+  .about-band-desc {
+    font-size: calc(1rem + 0.5vw);
   }
 }
 
@@ -202,6 +210,10 @@
 
   h1 {
     margin: 0.5em 0;
+  }
+
+  .mission-section {
+    display: none;
   }
 
   .about-members {
@@ -236,7 +248,7 @@
     font-size: calc(2rem + 0.5vw);
   }
 
-  .about-member-quote {
+  .member-quote {
     font-size: calc(1.2rem + 0.5vw);
   }
 

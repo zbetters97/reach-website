@@ -39,13 +39,16 @@ function renderAlbumHTML() {
   });
 
   let albumHTML = `
-    <img src="${image}" />
-    <div class="home-music-album" id="js-home-album-container">
-      <h3>${title}</h3>
-      <ol type="1">
+    <img class="home-album-img" src="${image}" />
+    <div class="home-album">
+      <h3 class="home-subheader home-album-title">${title}</h3>
+      <ol class="home-album-songs" type="1">
         ${songsHTML}
       </ol>
-        <button class="forward-btn home-btn home-music-btn" type="button" onclick="location.href='music.html'">
+        <button 
+          class="forward-btn home-btn home-album-btn" type="button" 
+          onclick="location.href='music.html'"
+        >
           View all releases
         </button>
     </div>
@@ -65,7 +68,7 @@ function renderTourHTML() {
     const location = `${concert.city}, ${concert.state}`;
 
     concertsHTML += `
-      <div class="home-tour-entry">
+      <div class="home-tour">
         <p>${date} @ ${time} (EST)</p>
         <p>${location}</p>
         <p>${concert.venue}</p>
@@ -74,10 +77,14 @@ function renderTourHTML() {
   });
 
   concertsHTML += `
-    <button class="forward-btn home-btn" type="button" onclick="location.href='tour.html'">
+    <button 
+      class="forward-btn home-btn home-tour-btn" 
+      type="button" 
+      onclick="location.href='tour.html'"
+    >
       Find more dates
     </button>
   `;
 
-  $("#js-home-tours-container").html(concertsHTML);
+  $("#js-home-tours").html(concertsHTML);
 }

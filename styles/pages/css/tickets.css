@@ -231,6 +231,7 @@ h1 {
 
 a {
   cursor: pointer;
+  color: inherit;
 }
 
 .to-top {
@@ -722,7 +723,7 @@ footer {
   flex-wrap: initial;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .tickets-section {
     background-color: transparent;
     border: none;

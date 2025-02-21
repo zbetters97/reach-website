@@ -231,6 +231,7 @@ h1 {
 
 a {
   cursor: pointer;
+  color: inherit;
 }
 
 .to-top {

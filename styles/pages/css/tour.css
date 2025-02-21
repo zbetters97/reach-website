@@ -231,6 +231,7 @@ h1 {
 
 a {
   cursor: pointer;
+  color: inherit;
 }
 
 .to-top {
@@ -818,10 +819,5 @@ footer {
     background-color: rgb(250, 250, 250);
     border: 2px solid black;
     padding: 0.7em 1em;
-  }
-}
-@media (max-width: 600px) {
-  h1 {
-    display: none;
   }
 }
