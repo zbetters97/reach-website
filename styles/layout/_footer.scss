@@ -6,67 +6,39 @@ footer {
   margin: 0 auto;
   width: 100%;
   height: 300px;
+}
 
-  div {
-    height: 100%;
-    @include flexbox(column, space-around, center);
-  }
+.footer-container {
+  height: 100%;
+  @include flexbox(column, space-around, center);
 }
 
 .footer-info-container {
   margin: 0 auto;
   width: 60%;
   @include flexbox(row, space-between, center, 1em);
+}
 
-  div {
-    height: 25%;
-    border: 1px solid $basic-white;
-  }
-
-  p,
-  a {
-    font-size: calc(0.8rem + 0.5vw);
-    color: $basic-white;
-  }
-
-  a {
-    padding-bottom: 0.3em;
-    position: relative;
-    cursor: pointer;
-
-    &::before {
-      content: "";
-      position: absolute;
-      background-color: $basic-white;
-      width: 100%;
-      height: 2px;
-      display: block;
-      bottom: 0;
-      left: 0;
-      transform: scaleX(0);
-      transition: transform 300ms ease;
-    }
-
-    &:hover::before {
-      transform: scaleX(1);
-    }
-  }
+.footer-seperator {
+  border: 1px solid $basic-white;
+  height: 100%;
 }
 
 .footer-social-container {
   margin: 0 auto;
   width: 25%;
   @include flexbox($justify: space-between);
+}
 
-  i {
-    font-size: calc(2.2rem + 0.5vw);
-    color: $basic-white;
-    transition: transform 150ms linear;
+.footer-text {
+  font-size: calc(0.8rem + 0.5vw);
+  color: $basic-white;
+  padding-bottom: 0.3em;
+}
 
-    &:hover {
-      transform: scale(1.2);
-    }
-  }
+.footer-icon {
+  font-size: calc(2.2rem + 0.5vw);
+  color: $basic-white;
 }
 
 @media (max-width: 900px) {

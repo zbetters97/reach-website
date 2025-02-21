@@ -18,12 +18,12 @@ export function handleWindow() {
   });
 
   $(document).on("click", () => {
-    $(".js-navbar-user").removeClass("active");
-    $(".js-navbar-user-dropdown").css("visibility", "hidden");
+    $(".user-icon").removeClass("is-active");
+    $(".nav-user-dropdown").css("visibility", "hidden");
   });
 
   const hamburger = $(".hamburger");
-  const navOverlay = $(".navbar-overlay");
+  const navOverlay = $(".mobile-nav-overlay");
 
   const showMobileMenu = function () {
     if (hamburger.hasClass("is-active")) {
@@ -46,20 +46,20 @@ export function handleWindow() {
 }
 
 function handleAccountPage() {
-  $(".js-navbar-user").on("click", async function () {
+  $(".nav-user-icon-container").on("click", async function () {
     try {
       const user = await dbGetUser();
 
-      $("#js-navbar-dropdown-header").html(`Hi, ${user.firstName}`);
+      $(".nav-dropdown-header").html(`Hi, ${user.firstName}`);
 
-      $(this).addClass("active");
-      $(".js-navbar-user-dropdown").css("visibility", "unset");
+      $(".user-icon").addClass("is-active");
+      $(".nav-user-dropdown").css("visibility", "unset");
     } catch (error) {
       window.location.href = "login.html";
     }
   });
 
-  $(".js-navbar-user-mobile").on("click", async function () {
+  $(".mobile-nav-user").on("click", async function () {
     try {
       const user = await dbGetUser();
       window.location.href = user ? "account.html" : "login.html";
@@ -68,7 +68,7 @@ function handleAccountPage() {
     }
   });
 
-  $(".js-account-logout-link").on("click", () => {
+  $(".nav-logout-link").on("click", () => {
     dbLogout();
   });
 }

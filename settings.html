@@ -52,29 +52,29 @@
   <body>
     <header>
       <nav class="navbar" id="navbar">
-        <div class="navbar-link-container">
+        <div class="nav-links">
           <a href="index.html#navbar">
-            <img class="navbar-logo" src="images/icons/main-logo.png" />
+            <img class="nav-logo" src="images/icons/main-logo.png" />
           </a>
-          <a class="nav-link" href="tour.html">Tour</a>
-          <a class="nav-link" href="music.html">Music</a>
-          <a class="nav-link" href="shop.html">Shop</a>
-          <a class="nav-link" href="about.html">About</a>
+          <a class="link-special nav-link" href="tour.html">Tour</a>
+          <a class="link-special nav-link" href="music.html">Music</a>
+          <a class="link-special nav-link" href="shop.html">Shop</a>
+          <a class="link-special nav-link" href="about.html">About</a>
         </div>
 
-        <div class="navbar-icon-container">
-          <a href="checkout.html">
+        <div class="nav-icons">
+          <a class="nav-icon" href="checkout.html">
             <i class="fa-solid fa-cart-shopping"> </i>
           </a>
-          <div class="user-icon">
-            <a class="js-navbar-user">
+          <div class="nav-user-icon-container">
+            <a class="nav-icon user-icon active">
               <i class="fa-solid fa-user"></i>
             </a>
-            <div class="navbar-user-dropdown js-navbar-user-dropdown">
-              <h3 id="js-navbar-dropdown-header">Hi, User</h3>
-              <a href="account.html">Account</a>
-              <a href="orders.html">Orders</a>
-              <a class="js-account-logout-link">Logout</a>
+            <div class="nav-user-dropdown">
+              <h3 class="nav-dropdown-header">Hi, User</h3>
+              <a class="nav-dropdown-link" href="account.html">Account</a>
+              <a class="nav-dropdown-link" href="orders.html">Orders</a>
+              <a class="nav-dropdown-link nav-logout-link">Logout</a>
             </div>
           </div>
         </div>
@@ -82,22 +82,21 @@
       <button class="hamburger">
         <div class="bar"></div>
       </button>
+      <nav class="mobile-nav">
+        <a class="mobile-nav-link" href="index.html#navbar">Home</a>
+        <a class="mobile-nav-link" href="tour.html">Tour</a>
+        <a class="mobile-nav-link" href="music.html">Music</a>
+        <a class="mobile-nav-link" href="shop.html">Shop</a>
+        <a class="mobile-nav-link" href="about.html">About</a>
+
+        <a class="mobile-nav-link" href="checkout.html">
+          <i class="fa-solid fa-cart-shopping"> </i>
+        </a>
+        <a class="mobile-nav-link mobile-nav-user active">
+          <i class="fa-solid fa-user"></i>
+        </a>
+      </nav>
     </header>
-
-    <nav class="mobile-nav">
-      <a href="index.html#navbar">Home</a>
-      <a href="tour.html">Tour</a>
-      <a href="music.html">Music</a>
-      <a href="shop.html">Shop</a>
-      <a href="about.html">About</a>
-
-      <a href="checkout.html">
-        <i class="fa-solid fa-cart-shopping"> </i>
-      </a>
-      <a class="js-navbar-user-mobile active">
-        <i class="fa-solid fa-user"></i>
-      </a>
-    </nav>
     <main>
       <div class="wrapper">
         <section class="settings-section">
@@ -187,20 +186,22 @@
       </a>
     </main>
     <footer>
-      <div>
+      <div class="footer-container">
         <div class="footer-info-container">
           <a
+            class="footer-text link-special"
             href="mailto:info@reachchurch.online?Subject=Hello%20Reach%20Worship"
             target="_blank"
           >
             info@reachchurch.online
           </a>
-          <div></div>
-          <p>(302) 332-0114</p>
-          <div></div>
-          <p>&copy; Reach Worship 2025</p>
-          <div></div>
+          <div class="footer-seperator"></div>
+          <p class="footer-text">(302) 332-0114</p>
+          <div class="footer-seperator"></div>
+          <p class="footer-text">&copy; Reach Worship 2025</p>
+          <div class="footer-seperator"></div>
           <a
+            class="footer-text link-special"
             href="https://www.linkedin.com/in/zachary-betters-916a74116/"
             target="_blank"
           >
@@ -209,16 +210,22 @@
         </div>
 
         <div class="footer-social-container">
-          <a href="https://www.facebook.com/NothingButJesus/" target="_blank">
+          <a
+            class="icon-special footer-icon"
+            href="https://www.facebook.com/NothingButJesus/"
+            target="_blank"
+          >
             <i class="fa-brands fa-facebook"></i>
           </a>
           <a
+            class="icon-special footer-icon"
             href="https://www.instagram.com/_reachchurch/?hl=en"
             target="_blank"
           >
             <i class="fa-brands fa-instagram"></i>
           </a>
           <a
+            class="icon-special footer-icon"
             href="https://open.spotify.com/artist/2tFNCpPM61936Ah9oN406C"
             target="_blank"
           >

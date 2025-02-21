@@ -34,10 +34,10 @@ function renderMusicHTML() {
               </ol>
             </div>
             <div class="album-services">
-              <a>
+              <a class="icon-special">
                 <i class="fa-brands fa-spotify"></i>
               </a>
-              <a>
+              <a class="icon-special">
                 <i class="fa-brands fa-apple"></i>
               </a>
             </div>

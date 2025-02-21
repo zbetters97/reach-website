@@ -91,14 +91,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  i {
-    transition: transform 150ms linear;
-  }
-
-  i:hover {
-    transform: scale(1.2);
-  }
 }
 
 .music-videos-section {
