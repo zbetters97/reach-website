@@ -111,13 +111,14 @@
           <div class="google-map" id="js-google-map">
             <!-- JS INSERTS GOOGLE MAP HERE -->
           </div>
-          <div class="address-form">
-            <div class="map-form-input">
-              <div>
+          <div class="map-form">
+            <div class="map-form-input-container">
+              <div class="map-form-tags">
                 <label for="address">Address</label>
-                <p class="map-alert"></p>
+                <p class="map-alert">alert</p>
               </div>
               <input
+                class="map-form-input"
                 id="js-map-address"
                 type="text"
                 name="address"
@@ -129,8 +130,8 @@
                 <i class="fa-solid fa-circle-exclamation"></i>
                 <p class="js-db-alert-message">error!</p>
               </div>
-              <div class="map-form-btns">
-                <button class="btn-hover" id="js-map-autofill">
+              <div>
+                <button class="map-form-btn btn-hover" id="js-map-autofill">
                   <i
                     class="fa fa-refresh fa-spin"
                     id="js-map-autofill-icon"
@@ -138,7 +139,7 @@
                   ></i>
                   <span id="js-map-autofill-text">Autofill</span>
                 </button>
-                <button class="map-submit-btn btn-hover" id="js-map-submit">
+                <button class="map-form-btn btn-hover" id="js-map-submit">
                   <i
                     class="fa fa-refresh fa-spin"
                     id="js-map-submit-icon"

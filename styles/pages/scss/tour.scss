@@ -14,9 +14,6 @@
 
     .concert-venue {
       border-bottom: 3px solid $basic-white;
-      padding-bottom: 1em;
-      width: 80%;
-      max-width: 500px;
     }
   }
 
@@ -29,9 +26,6 @@
 
     .concert-seperator {
       border-bottom: 3px solid black;
-      padding-bottom: 1em;
-      width: 80%;
-      max-width: 500px;
     }
   }
 }
@@ -39,36 +33,42 @@
 .concert-container {
   @include flexbox(column, space-between, center, 1em);
   text-align: center;
+}
 
-  .concert-title {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: calc(1.3rem + 0.5vw);
-    font-weight: 400;
+.concert-title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 400;
+  font-size: calc(1.3rem + 0.5vw);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.concert-info {
+  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-weight: 200;
+  font-size: calc(1rem + 0.5vw);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  &.link {
+    font-weight: 600;
     letter-spacing: 0.2em;
-    text-transform: uppercase;
+    color: inherit;
   }
+}
 
-  .concert-info {
-    font-family: "Archivo", Arial, Helvetica, sans-serif;
-    font-size: calc(1rem + 0.5vw);
-    font-weight: 200;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-
-    &.link {
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      color: inherit;
-    }
-  }
+.concert-venue {
+  padding-bottom: 1em;
+  width: 80%;
+  max-width: 500px;
 }
 
 .map-title {
   font-family: "Raleway", Arial, sans-serif;
-  font-size: 3rem;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  font-size: 3rem;
   text-transform: capitalize;
+  letter-spacing: 0.15em;
   text-align: center;
   margin: 1em;
 }
@@ -90,89 +90,92 @@
 .maps-info {
   height: 6em;
   @include flexbox(column, space-between, center);
+}
 
-  .maps-info-body {
-    font-size: 1rem;
-  }
+.maps-info-body {
+  font-size: 1rem;
+}
 
-  .maps-info-btn {
-    font-size: 1rem;
-    color: black;
-    background-color: transparent;
-    border: 2px solid $basic-blue;
-    padding: 0.3em 0.7em;
-    transition: all 150ms;
+.maps-info-btn {
+  font-size: 1rem;
+  color: black;
+  background-color: transparent;
+  border: 2px solid $basic-blue;
+  padding: 0.3em 0.7em;
+  transition: all 150ms;
 
-    &:hover {
-      background-color: $basic-blue;
-      color: $basic-white;
-    }
+  &:hover {
+    background-color: $basic-blue;
+    color: $basic-white;
   }
 }
 
-.address-form {
+.map-form {
   width: 60%;
   height: 40%;
   @include flexbox(column, space-evenly);
+}
+
+.map-form-input-container {
+  @include flexbox(column);
+}
+
+.map-form-tags {
+  @include flexbox(row, space-between, center);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   label {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2.2rem;
+    font-size: calc(1.7rem + 0.5vw);
     margin-top: 0.2em;
     margin-bottom: 0.2em;
   }
 
-  input {
-    font-size: 1.6em;
-    border: 2px solid black;
-    padding: 0.2em;
-  }
-
-  button {
-    font-size: 1.7rem;
-    width: 20%;
-    color: black;
-    background-color: transparent;
-    border: 2px solid black;
-    padding: 0.4em 1em;
-    margin-right: 1em;
-    transition: all 200ms;
-  }
-
-  .map-form-input {
-    @include flexbox(column);
-
-    div {
-      @include flexbox(row, space-between, center);
-    }
-
-    .map-alert {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-  }
-
-  .fa-spin {
-    display: none;
+  .map-alert {
+    font-weight: 600;
+    font-size: calc(1rem + 0.5vw);
+    opacity: 0;
+    transition: opacity 200ms;
   }
 }
 
+.map-form-input {
+  font-size: 1.6em;
+  border: 2px solid black;
+  padding: 0.2em;
+  width: 100%;
+}
+
 .map-form-btn-container {
+  margin-top: 1em;
   width: 100%;
   height: 20%;
   @include flexbox(column, space-evenly, $gap: 0.5em);
+}
 
-  .map-form-btns {
-    .btn-hover {
-      cursor: pointer;
+.map-form-btn {
+  font-size: calc(1.2rem + 0.5vw);
+  color: black;
+  background-color: transparent;
+  border: 2px solid black;
+  padding: 0.4em 1em;
+  margin-right: 1em;
+  text-align: center;
+  transition: all 200ms;
+  width: 25%;
+  min-width: 150px;
+}
 
-      &:hover {
-        color: $basic-white;
-        background-color: $basic-blue;
-      }
-    }
+.btn-hover {
+  cursor: pointer;
+
+  &:hover {
+    color: $basic-white;
+    background-color: $basic-blue;
   }
+}
+
+.fa-spin {
+  display: none;
 }
 
 @media (max-width: 1080px) {
@@ -183,12 +186,10 @@
     display: none;
   }
 
-  .concert-container {
-    .concert-info.link {
-      color: black;
-      background-color: $basic-white;
-      border: 2px solid black;
-      padding: 0.7em 1em;
-    }
+  .concert-info.link {
+    color: black;
+    background-color: $basic-white;
+    border: 2px solid black;
+    padding: 0.7em 1em;
   }
 }

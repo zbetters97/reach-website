@@ -1,4 +1,5 @@
 import { formatDateMDShort, formatTime } from "../utils/date.js";
+import { showFormAlert } from "../utils/form.js";
 
 let map;
 let geocoder;
@@ -9,6 +10,8 @@ let mapConcerts;
 let nearbyConcerts = [];
 let activeMarkers = [];
 let activeInfoWindows = [];
+
+let messages = [];
 
 export function initMap(concerts) {
   mapConcerts = concerts;
@@ -79,7 +82,8 @@ function addTourMarkers() {
           activeInfoWindows.push(infoWindow);
         });
       } else {
-        console.log("error");
+        console.log(status);
+        showFormAlert("Something went wrong!");
       }
     });
   });
@@ -120,6 +124,9 @@ function addMarker(location) {
         if (results[1]) {
           $("#js-map-address").val(results[1].formatted_address);
         }
+      } else {
+        console.log(status);
+        showFormAlert("Something went wrong!");
       }
     });
     checkConcerts(latLng);
@@ -145,7 +152,8 @@ export function getCurrentLocation(position) {
       const address = results[0].formatted_address;
       $("#js-map-address").val(address);
     } else {
-      console.log("error");
+      console.log(status);
+      showFormAlert("Something went wrong!");
     }
 
     removeLoading("autofill");
@@ -160,7 +168,8 @@ export function findClosestConcert(address) {
 
       addMarker({ lat, lng });
     } else {
-      console.log("error");
+      console.log(status);
+      showFormAlert("Something went wrong!");
     }
   });
 
@@ -208,7 +217,8 @@ function getDistance(origin, locations, counter) {
 
       return getDistance(origin, locations, counter - 1);
     } else {
-      console.log("error");
+      console.log(status);
+      showFormAlert("Something went wrong!");
     }
   });
 }
@@ -221,11 +231,9 @@ function routeToEvent(origin) {
 
     drawRoute(origin, destination);
 
-    $(".map-alert").css("color", "green");
-    $(".map-alert").html("There is a nearby event!");
+    showMapAlert("There is a nearby event!", "green");
   } else {
-    $(".map-alert").css("color", "red");
-    $(".map-alert").html("There are no nearby events!");
+    showMapAlert("There are no nearby events!", "red");
   }
 
   removeLoading("submit");
@@ -242,7 +250,8 @@ function drawRoute(origin, destination) {
     if (status == "OK") {
       directionsRenderer.setDirections(response);
     } else {
-      console.log("error");
+      console.log(status);
+      showFormAlert("Something went wrong!");
     }
   });
 }
@@ -263,4 +272,21 @@ function clearInfoWindows() {
   for (let i = 0; i < activeInfoWindows.length; i++) {
     activeInfoWindows[i].close();
   }
+}
+
+function showMapAlert($msg, $color) {
+  $(".map-alert").css("color", $color);
+  $(".map-alert").css("opacity", "1");
+  $(".map-alert").html($msg);
+
+  for (let i = 0; i < messages.length; i++) {
+    clearTimeout(messages[i]);
+    messages.pop();
+  }
+
+  messages.push(
+    setTimeout(function () {
+      $(".map-alert").css("opacity", "0");
+    }, 3000)
+  );
 }
