@@ -313,6 +313,20 @@ a {
   transition: opacity 300ms;
 }
 
+.add-cart-alert {
+  font-family: "Archivo", Arial, sans-serif;
+  font-size: calc(1rem + 0.5vw);
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: initial;
+  opacity: 0;
+  transition: all 200ms;
+}
+
 .navbar {
   background-color: rgb(0, 44, 95);
   border-bottom: 3px solid black;
@@ -467,16 +481,19 @@ a {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
-  right: 100%;
+  right: 0;
   width: 100%;
   min-height: 40vh;
-  display: none;
   z-index: 98;
-  transition: all 400ms;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-200px);
+  transition: all 300ms ease-out;
 }
 .mobile-nav.is-active {
-  right: 0;
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mobile-nav-link {
@@ -588,7 +605,7 @@ footer {
   }
 }
 
-.shop-items-grid {
+.shop-items {
   margin: 0 auto 5em auto;
   width: 90%;
   text-align: center;
@@ -599,6 +616,7 @@ footer {
 }
 
 .shop-item {
+  font-family: Verdana, Arial, sans-serif;
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -612,19 +630,20 @@ footer {
 .shop-item:hover {
   transform: scale(1.1);
 }
-.shop-item h3 {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: calc(1rem + 0.5vw);
-  margin-bottom: 0.3em;
-}
-.shop-item p {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: calc(0.8rem + 0.5vw);
-}
-.shop-item img {
+
+.shop-item-img {
   border-radius: 15px;
   margin-bottom: 1em;
   width: 100%;
+}
+
+.shop-item-name {
+  font-size: calc(1rem + 0.5vw);
+  margin-bottom: 0.3em;
+}
+
+.shop-item-price {
+  font-size: calc(0.8rem + 0.5vw);
 }
 
 /** MODAL **/
@@ -654,8 +673,8 @@ footer {
 
 .shop-close-btn {
   color: rgb(250, 250, 250);
-  font-size: calc(1.7rem + 0.5vw);
   font-weight: bold;
+  font-size: calc(1.7rem + 0.5vw);
   background: none;
   border: none;
   outline: none;
@@ -674,12 +693,14 @@ footer {
   gap: 1em;
   flex-wrap: initial;
 }
-.shop-modal-container img {
+
+.shop-modal-img {
   width: 50%;
   height: 50%;
   border-radius: 10px;
 }
-.shop-modal-container > div {
+
+.shop-modal-details {
   font-size: calc(1rem + 0.5vw);
   width: 40%;
   display: flex;
@@ -689,11 +710,13 @@ footer {
   gap: initial;
   flex-wrap: initial;
 }
-.shop-modal-container > div h3 {
+
+.shop-modal-name {
   font-family: "Raleway", Arial, sans-serif;
   font-weight: 600;
 }
-.shop-modal-container > div h4 {
+
+.shop-modal-price {
   font-weight: lighter;
 }
 
@@ -702,21 +725,21 @@ footer {
   flex-direction: column;
   justify-content: initial;
   align-items: initial;
-  gap: initial;
+  gap: 0.3em;
   flex-wrap: initial;
   width: 40%;
 }
-.color-container select {
+
+.color-list {
   font-size: 1em;
   color: rgb(250, 250, 250);
   background-color: transparent;
   border: 3px solid rgb(250, 250, 250);
   padding: 0.2em;
-  margin-top: 0.3em;
   margin-left: 0.3em;
   vertical-align: middle;
 }
-.color-container select option {
+.color-list option {
   color: black;
 }
 
@@ -729,7 +752,8 @@ footer {
   flex-wrap: initial;
   width: 100%;
 }
-.size-container .size-list {
+
+.size-list {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -737,7 +761,8 @@ footer {
   gap: initial;
   flex-wrap: initial;
 }
-.size-container .size-list label {
+
+.size-select {
   text-align: center;
   margin-top: 0.3em;
   margin-left: 0.3em;
@@ -748,30 +773,38 @@ footer {
   align-items: center;
   border: 4px solid transparent;
 }
-.size-container .size-list label:has(input[type=radio]:checked) {
+.size-select:has(input[type=radio]:checked) {
   border: 4px solid rgb(250, 250, 250);
   border-radius: 100%;
 }
-.size-container .size-list input {
+.size-select input {
   position: absolute;
   opacity: 0;
 }
 
-.quantity-container input {
+.quantity-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
+  gap: 0.3em;
+  flex-wrap: initial;
+  width: 30%;
+}
+
+.quantity-list {
   font-size: 1em;
   color: rgb(250, 250, 250);
   background-color: transparent;
   border: none;
   border-bottom: 3px solid rgb(250, 250, 250);
-  margin-top: 0.3em;
   margin-left: 0.3em;
-  width: 30%;
 }
-.quantity-container input:focus {
+.quantity-list:focus {
   outline: none;
 }
 
-.add-cart-container {
+.shop-modal-btn-container {
   align-self: center;
   width: 100%;
   display: flex;
@@ -781,18 +814,8 @@ footer {
   gap: 0.3em;
   flex-wrap: initial;
 }
-.add-cart-container .shop-added-alert {
-  color: green;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3em;
-  flex-wrap: initial;
-  opacity: 0;
-  transition: all 200ms;
-}
-.add-cart-container .shop-add-btn {
+
+.shop-add-btn {
   font-size: calc(1.2rem + 0.5vw);
   color: rgb(250, 250, 250);
   background-color: transparent;
@@ -805,25 +828,11 @@ footer {
   overflow: hidden;
 }
 
-/* MODAL BACKDROP */
-.shop-overlay {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-.shop-overlay.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/** END MODAL **/
 @media (max-width: 1200px) {
-  .shop-items-grid {
+  h1 {
+    margin: 0.5em 0;
+  }
+  .shop-items {
     width: 100%;
     grid-template-columns: repeat(2, 1fr);
   }
@@ -834,10 +843,10 @@ footer {
   .shop-modal-container {
     padding-bottom: 2em;
   }
-  .shop-modal-container img {
+  .shop-modal-img {
     width: 60%;
   }
-  .shop-modal-container > div {
+  .shop-modal-details {
     gap: 0.5em;
     width: 90%;
   }
@@ -854,7 +863,7 @@ footer {
     width: 50%;
     min-width: 300px;
   }
-  .color-container select {
+  .color-list {
     margin-left: 0;
     width: 50%;
   }
@@ -863,34 +872,31 @@ footer {
     max-width: 400px;
     min-width: 200px;
   }
-  .size-container .size-list label {
+  .size-select {
     border-radius: 50%;
     border: 3px solid rgb(250, 250, 250);
   }
-  .size-container .size-list label:has(input[type=radio]:checked) {
+  .size-select:has(input[type=radio]:checked) {
     color: black;
     background-color: rgb(250, 250, 250);
   }
-  .quantity-container {
-    width: 60%;
-    min-width: 300px;
-  }
-  .add-cart-container .shop-add-btn {
-    width: 40%;
-    min-width: 175px;
-  }
 }
+.shop-add-btn {
+  width: 40%;
+  min-width: 175px;
+}
+
 @media (max-width: 600px) {
   h1 {
     display: none;
   }
-  .shop-items-grid {
+  .shop-items {
     margin-top: 2em;
     width: 100%;
     grid-template-columns: repeat(1, 1fr);
   }
-  .shop-items-grid h3,
-  .shop-items-grid p {
+  .shop-item-name,
+  .shop-item-price {
     font-size: 1.3rem;
   }
   .shop-close-btn {
@@ -905,17 +911,10 @@ footer {
     gap: 1em;
     flex-wrap: initial;
   }
-  .shop-modal-container img {
-    width: 50%;
+  .shop-modal-img {
+    width: 40%;
   }
-  .color-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: initial;
-    align-items: center;
-    gap: 0.5em;
-    flex-wrap: initial;
-  }
+  .color-container,
   .quantity-container {
     display: flex;
     flex-direction: row;
@@ -924,7 +923,7 @@ footer {
     gap: 0.5em;
     flex-wrap: initial;
   }
-  .quantity-container input {
+  .quantity-list {
     border: 3px solid rgb(250, 250, 250);
     padding: 0.3em;
   }

@@ -36,7 +36,7 @@
 }
 
 .concert-title {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: $font-banner;
   font-weight: 400;
   font-size: calc(1.3rem + 0.5vw);
   text-transform: uppercase;
@@ -44,7 +44,7 @@
 }
 
 .concert-info {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: $font-basic;
   font-weight: 200;
   font-size: calc(1rem + 0.5vw);
   text-transform: uppercase;
@@ -64,7 +64,7 @@
 }
 
 .map-title {
-  font-family: "Raleway", Arial, sans-serif;
+  font-family: $font-heading;
   font-weight: 500;
   font-size: 3rem;
   text-transform: capitalize;
@@ -111,6 +111,7 @@
 }
 
 .map-form {
+  font-family: $font-basic;
   width: 60%;
   height: 40%;
   @include flexbox(column, space-evenly);
@@ -122,7 +123,6 @@
 
 .map-form-tags {
   @include flexbox(row, space-between, center);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 
   label {
     font-size: calc(1.7rem + 0.5vw);
@@ -180,7 +180,10 @@
 
 @media (max-width: 1080px) {
 
-  h1,
+  h1 {
+    margin: 0.5em 0;
+  }
+
   .map-title,
   .map-container {
     display: none;
@@ -191,5 +194,11 @@
     background-color: $basic-white;
     border: 2px solid black;
     padding: 0.7em 1em;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    display: none;
   }
 }

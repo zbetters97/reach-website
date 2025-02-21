@@ -19,21 +19,21 @@ function renderProductsHTML() {
 
   productData.forEach((product) => {
     productsHTML += `
-      <div class="shop-item js-shop-item" data-product-id=${product.productId}>
-        <img src=${product.image} />
-        <h3>${product.name}</h3>
-        <p>$${product.getPrice()}</p>
+      <div class="shop-item" data-product-id=${product.productId}>
+        <img class="shop-item-img" src=${product.image} />
+        <h3 class="shop-item-name">${product.name}</h3>
+        <p class="shop-item-price">$${product.getPrice()}</p>
       </div>
     `;
   });
 
-  $("#js-shop-items-grid").html(productsHTML);
+  $("#js-shop-items").html(productsHTML);
 
   handleModal();
 }
 
 function handleModal() {
-  $("#js-shop-items-grid")
+  $("#js-shop-items")
     .children()
     .on("click", function () {
       const productId = $(this).data("product-id");
@@ -49,38 +49,46 @@ function renderModalHTML(productId) {
   let modalHTML = `  
     <button class="shop-close-btn" id="js-shop-close-modal-btn">&times;</button>
 
-    <div class="shop-modal-body">
-      <div class="shop-modal-container">
-        <img id="js-shop-modal-img" src="${product.image}" />
-        <div>
-          <div class="title-container">
-            <h3>${product.name}</h3>
-            <h4>$${product.getPrice()}</h4>
-          </div>
+    <div class="shop-modal-container">
+      <img 
+        class="shop-modal-img"
+        id="js-shop-modal-img" 
+        src="${product.image}" 
+      />
 
-          <div class="color-container">
-            <label>Color</label>
-            <select id="js-color-list">
-              ${product.getColorHTML()}
-            </select>
-          </div>
+      <div class="shop-modal-details">
+        <div class="title-container">
+          <h3 class="shop-modal-name">${product.name}</h3>
+          <h4 class="shop-modal-price">$${product.getPrice()}</h4>
+        </div>
 
-          ${product.getExtraHTML()}
+        <div class="color-container">
+          <label>Color</label>
+          <select class="color-list" id="js-color-list">
+            ${product.getColorHTML()}
+          </select>
+        </div>
 
-          <div class="quantity-container">
-            <p>Quantity</p>
-            <input id="js-quantity-container" type="number" value="1" min="1" max="99" />
-          </div>
+        ${product.getExtraHTML()}
 
-          <div class="add-cart-container">
-            <div class="shop-added-alert" id="js-shop-added-alert">
-              <i class="fa-solid fa-check"></i>
-              <p>Added to cart</p>
-            </div>
-            <button class="add-cart-btn shop-add-btn" id="js-add-cart-btn">            
-              Add to Cart
-            </button>
+        <div class="quantity-container">
+          <p>Quantity</p>
+          <input 
+            class="quantity-list"
+            id="js-quantity-list" 
+            type="number" 
+            value="1" min="1" max="99" 
+          />
+        </div>
+
+        <div class="shop-modal-btn-container">
+          <div class="add-cart-alert" id="js-shop-added-alert">
+            <i class="fa-solid fa-check"></i>
+            <p>Added to cart</p>
           </div>
+          <button class="add-cart-btn shop-add-btn" id="js-shop-add-btn">            
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
@@ -94,15 +102,15 @@ function renderModalHTML(productId) {
     $("#js-shop-modal-img").attr("src", product.image);
   });
 
-  $("#js-modal-overlay, #js-shop-close-modal-btn").on("click", () => {
+  $(".modal-overlay, #js-shop-close-modal-btn").on("click", () => {
     closeModal(modal);
   });
 
-  $("#js-add-cart-btn").on("click", () => {
+  $("#js-shop-add-btn").on("click", () => {
     const size = $("input[name='size-radio']:checked").val() || "One Size";
     product.size = size;
 
-    const quantity = $("#js-quantity-container").val();
+    const quantity = $("#js-quantity-list").val();
     if (quantity > 99 || quantity < 1) return;
 
     cart.addToCart(
@@ -129,13 +137,13 @@ function showAddToCartMsg() {
 function openModal(modal) {
   if (modal != null) {
     modal.addClass("active");
-    $("#js-modal-overlay").addClass("active");
+    $(".modal-overlay").addClass("active");
   }
 }
 
 function closeModal(modal) {
   if (modal != null) {
     modal.removeClass("active");
-    $("#js-modal-overlay").removeClass("active");
+    $(".modal-overlay").removeClass("active");
   }
 }

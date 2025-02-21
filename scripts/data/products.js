@@ -88,7 +88,10 @@ class Clothing extends Product {
     return `
       <div class="size-container">
         <p>Size</p>
-        <div class="size-list" data-product-id=${this.productId}>
+        <div 
+          class="size-list" 
+          data-product-id=${this.productId}
+        >
           ${sizeHTML}
         </div>
       </div>

@@ -3,10 +3,10 @@
 @use "../../layout"as *;
 
 .about-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: $font-secondary;
 
   h2 {
-    font-family: "Raleway", Arial, sans-serif;
+    font-family: $font-heading;
     font-size: calc(2.5rem + 0.5vw);
     font-weight: 500;
     text-transform: capitalize;
@@ -102,8 +102,9 @@
 }
 
 .member-name {
+  font-family: $font-heading;
+  font-weight: 500;
   font-size: calc(1rem + 0.5vw);
-  font-weight: 400;
   text-align: center;
   border: 2px solid $basic-white;
   border-radius: 6px;
@@ -121,8 +122,8 @@
 }
 
 .member-title {
-  font-size: calc(0.8rem + 0.5vw);
   font-weight: 700;
+  font-size: calc(0.8rem + 0.5vw);
   text-align: center;
   margin-left: auto;
 }
@@ -155,6 +156,10 @@
 }
 
 @media (max-width: 1250px) {
+  h1 {
+    margin-top: 0;
+    padding-top: 0;
+  }
 
   .about-band-desc {
     font-size: calc(0.8rem + 0.5vw);
@@ -185,12 +190,18 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
-  h1,
   h2,
   .mission-section {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+
+  h1 {
+    margin: 0.5em 0;
   }
 
   .about-members {
@@ -198,7 +209,7 @@
   }
 
   .about-member {
-    margin: 1em 0;
+    margin: 0.5em 0;
     width: 100%;
   }
 

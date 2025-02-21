@@ -29,7 +29,7 @@ main {
 }
 
 h1 {
-  font-family: "Inter", Arial, sans-serif;
+  font-family: $font-banner;
   text-transform: uppercase;
   font-size: calc(2rem + 0.5vw);
   font-weight: 500;
@@ -116,7 +116,7 @@ a {
 }
 
 .db-alert {
-  font-family: $alert-font;
+  font-family: $font-secondary;
   font-size: calc(1rem + 0.5vw);
   font-weight: bold;
   color: $error-text;
@@ -124,4 +124,13 @@ a {
   gap: 0.3em;
   opacity: 0;
   transition: opacity 300ms;
+}
+
+.add-cart-alert {
+  font-family: $font-secondary;
+  font-size: calc(1rem + 0.5vw);
+  color: green;
+  @include flexbox(row, center, center, 0.3em);
+  opacity: 0;
+  transition: all 200ms;
 }

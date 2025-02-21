@@ -313,6 +313,20 @@ a {
   transition: opacity 300ms;
 }
 
+.add-cart-alert {
+  font-family: "Archivo", Arial, sans-serif;
+  font-size: calc(1rem + 0.5vw);
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: initial;
+  opacity: 0;
+  transition: all 200ms;
+}
+
 .navbar {
   background-color: rgb(0, 44, 95);
   border-bottom: 3px solid black;
@@ -467,16 +481,19 @@ a {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
-  right: 100%;
+  right: 0;
   width: 100%;
   min-height: 40vh;
-  display: none;
   z-index: 98;
-  transition: all 400ms;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-200px);
+  transition: all 300ms ease-out;
 }
 .mobile-nav.is-active {
-  right: 0;
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mobile-nav-link {
@@ -621,7 +638,7 @@ footer {
 }
 
 .concert-title {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   font-weight: 400;
   font-size: calc(1.3rem + 0.5vw);
   text-transform: uppercase;
@@ -629,7 +646,7 @@ footer {
 }
 
 .concert-info {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
   font-weight: 200;
   font-size: calc(1rem + 0.5vw);
   text-transform: uppercase;
@@ -704,6 +721,7 @@ footer {
 }
 
 .map-form {
+  font-family: Verdana, Arial, sans-serif;
   width: 60%;
   height: 40%;
   display: flex;
@@ -730,7 +748,6 @@ footer {
   align-items: center;
   gap: initial;
   flex-wrap: initial;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .map-form-tags label {
   font-size: calc(1.7rem + 0.5vw);
@@ -789,7 +806,9 @@ footer {
 }
 
 @media (max-width: 1080px) {
-  h1,
+  h1 {
+    margin: 0.5em 0;
+  }
   .map-title,
   .map-container {
     display: none;
@@ -799,5 +818,10 @@ footer {
     background-color: rgb(250, 250, 250);
     border: 2px solid black;
     padding: 0.7em 1em;
+  }
+}
+@media (max-width: 600px) {
+  h1 {
+    display: none;
   }
 }

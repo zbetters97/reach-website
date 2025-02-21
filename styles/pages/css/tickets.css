@@ -313,6 +313,20 @@ a {
   transition: opacity 300ms;
 }
 
+.add-cart-alert {
+  font-family: "Archivo", Arial, sans-serif;
+  font-size: calc(1rem + 0.5vw);
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  flex-wrap: initial;
+  opacity: 0;
+  transition: all 200ms;
+}
+
 .navbar {
   background-color: rgb(0, 44, 95);
   border-bottom: 3px solid black;
@@ -467,16 +481,19 @@ a {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
-  right: 100%;
+  right: 0;
   width: 100%;
   min-height: 40vh;
-  display: none;
   z-index: 98;
-  transition: all 400ms;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-200px);
+  transition: all 300ms ease-out;
 }
 .mobile-nav.is-active {
-  right: 0;
-  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .mobile-nav-link {
@@ -589,7 +606,7 @@ footer {
 }
 
 .tickets-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
   color: rgb(250, 250, 250);
   background-image: linear-gradient(to left top, #031121, #031930, #001f3f, #00264f, #002c5f);
   border-radius: 10px;
@@ -623,8 +640,9 @@ footer {
 }
 
 .ticket-info-list {
-  font-size: calc(1.3rem + 0.5vw);
+  font-family: "Archivo", Arial, sans-serif;
   font-weight: 600;
+  font-size: calc(1.2rem + 0.5vw);
   color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
   list-style-type: none;
@@ -646,7 +664,8 @@ footer {
   gap: 1em;
   flex-wrap: initial;
 }
-.ticket-input-container .ticket-field {
+
+.ticket-field {
   font-size: calc(1.5rem + 0.5vw);
   margin-left: 1em;
   width: 200px;
@@ -657,8 +676,8 @@ footer {
   gap: initial;
   flex-wrap: initial;
 }
-.ticket-input-container .ticket-field input,
-.ticket-input-container .ticket-field select {
+
+.ticket-input {
   font-size: calc(1rem + 0.5vw);
   color: rgb(250, 250, 250);
   background-color: transparent;
@@ -676,20 +695,8 @@ footer {
   gap: 0.3em;
   flex-wrap: initial;
 }
-.ticket-add-container .ticket-alert {
-  font-family: "Archivo", Arial, sans-serif;
-  font-size: calc(1em + 0.5vw);
-  color: green;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 0.3em;
-  flex-wrap: initial;
-  opacity: 0;
-  transition: all 200ms;
-}
-.ticket-add-container .ticket-add-btn {
+
+.ticket-add-btn {
   font-size: calc(1.3em + 0.5vw);
   color: rgb(250, 250, 250);
   background-color: transparent;
@@ -702,7 +709,7 @@ footer {
 .tickets-back-container {
   background-color: white;
   box-sizing: border-box;
-  border: 4px solid #031121;
+  border: 4px solid black;
   border-top: none;
   border-radius: 0 0 10px 10px;
   padding: 2em 0;
@@ -713,11 +720,6 @@ footer {
   align-items: center;
   gap: initial;
   flex-wrap: initial;
-}
-.tickets-back-container a {
-  color: black;
-  background-color: transparent;
-  border: 3px solid black;
 }
 
 @media (max-width: 500px) {
@@ -732,7 +734,9 @@ footer {
   .tickets-section h2 {
     font-size: 1.5rem;
   }
-  .tickets-section .tickets-back-container {
+  .tickets-back-container {
+    border: none;
+    border-radius: 0px;
     padding: 2em 0;
   }
 }

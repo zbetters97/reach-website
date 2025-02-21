@@ -3,7 +3,6 @@ import { getConcert } from "./data/concerts.js";
 import { formatDateMDYLong, formatTime } from "./utils/date.js";
 import formatCurrency from "./utils/money.js";
 import cart from "./data/cart.js";
-import { showFormAlert } from "./utils/form.js";
 
 let totalPrice = 0;
 
@@ -40,7 +39,11 @@ function renderTicketHTML() {
     <div class="ticket-input-container">
       <div class="ticket-field ticket-type">
         <label for="ticket-type">Type</label>
-        <select id="js-ticket-type" name="ticket-type">
+        <select 
+          class="ticket-input"
+          id="js-ticket-type" 
+          name="ticket-type"
+        >
           <option value="Standard">Standard</option>
           <option value="Deluxe">Deluxe</option>
           <option value="VIP">VIP</option>
@@ -50,6 +53,7 @@ function renderTicketHTML() {
       <div class="ticket-field ticket-quantity">
         <label for="ticket-quantity">Quantity</label>
         <input
+          class="ticket-input"
           id="js-ticket-quantity"          
           name="ticket-quantity"
           type="number"
@@ -62,6 +66,7 @@ function renderTicketHTML() {
       <div class="ticket-field ticket-price">
         <label for="ticket-price">Price</label>
         <input
+          class="ticket-input"
           id="js-ticket-price"
           name="ticket-price"
           readonly
@@ -71,11 +76,14 @@ function renderTicketHTML() {
       </div>
     </div>
     <div class="ticket-add-container">
-      <div class="ticket-alert" id="js-ticket-alert">
+      <div class="add-cart-alert" id="js-ticket-alert">
         <i class="fa-solid fa-check"></i>
         <p>Added to cart</p>
       </div>
-      <button class="add-cart-btn ticket-add-btn" id="js-tickets-add-btn">
+      <button 
+        class="add-cart-btn ticket-add-btn" 
+        id="js-tickets-add-btn"
+      >
         Add to Cart
       </button>
     </div>
