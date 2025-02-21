@@ -780,7 +780,7 @@ footer {
     border: none !important;
   }
   .album-img-services {
-    font-size: calc(2rem + 0.5vw);
+    font-size: calc(2.5rem + 0.5vw);
     z-index: 2;
     background-color: unset;
     position: absolute;
