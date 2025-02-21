@@ -24,42 +24,45 @@ function renderMembersHTML() {
 
     membersHTML += `
       <div class="about-member js-about-member">
-        <img class="about-member-img" src="${image}" />
-        <div class="about-member-info">
-          <div class="about-member-banner">
-            <h3>${name}</h3>
-            <div class="about-member-tag">
-              <h4>${title}</h4>
-              <a href="${social}" target="_blank">
+        <img class="member-img" src="${image}" />
+        <div class="member-info">
+          <div class="member-banner">
+            <h3 class="member-name">${name}</h3>
+            <div class="member-tag">
+              <h4 class="member-title">${title}</h4>
+              <a 
+                class="member-social" 
+                href="${social}" target="_blank"
+              >
                 <i class="fa-brands fa-instagram"></i>
               </a>
             </div>
           </div>
-          <div class="about-member-quote">
-            <p class="about-question">
+          <div class="member-quote">
+            <p class="member-question">
               <strong>Q:</strong>
               <em>${question}</em>
             </p>
-            <p>
+            <p class="member-answer">
               <strong>A:</strong>
               "${answer}"
             </p>
           </div>
 
-          <a class="about-close-btn">
+          <a class="member-close-btn">
             <i class="fa-solid fa-circle-xmark"></i>
           </a>
         </div>
       </div>
     `;
 
-    $("#js-members-container").html(membersHTML);
+    $("#js-about-members").html(membersHTML);
   });
 }
 
 function showMemberText() {
   $(".js-about-member").on("click", "img", function () {
-    const $target = $(this).siblings(".about-member-info");
+    const $target = $(this).siblings(".member-info");
 
     if (!$target.hasClass("active")) {
       $target.addClass("active");
@@ -68,7 +71,7 @@ function showMemberText() {
     }
   });
 
-  $(".about-close-btn")
+  $(".member-close-btn")
     .children()
     .on("click", function () {
       $(this).parent().parent().removeClass("active");

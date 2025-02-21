@@ -608,11 +608,13 @@ footer {
   overflow: auto;
   position: relative;
 }
-.mission-section img {
+
+.about-band-img {
   width: 100%;
   object-fit: cover;
 }
-.mission-section p {
+
+.about-band-desc {
   font-size: calc(1.2rem + 0.5vw);
   color: rgb(250, 250, 250);
   filter: drop-shadow(0px 0px 5px black);
@@ -625,14 +627,14 @@ footer {
   width: 80%;
 }
 
-.about-member-container {
+.about-members-container {
   margin-bottom: 5em;
 }
-.about-member-container h2 {
+.about-members-container h2 {
   margin-top: 1em;
 }
 
-.members-container {
+.about-members {
   margin: 0 auto;
   width: 80%;
   display: flex;
@@ -647,7 +649,8 @@ footer {
   display: flex;
   position: relative;
 }
-.about-member img {
+
+.member-img {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   width: 450px;
   height: 600px;
@@ -656,11 +659,12 @@ footer {
   cursor: pointer;
   transition: all 200ms;
 }
-.about-member img:hover {
+.member-img:hover {
   box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);
   opacity: 0.8;
 }
-.about-member .about-member-info {
+
+.member-info {
   color: rgb(250, 250, 250);
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -678,11 +682,12 @@ footer {
   opacity: 0;
   transition: all 300ms ease-in-out;
 }
-.about-member .about-member-info.active {
+.member-info.active {
   visibility: unset;
   opacity: 1;
 }
-.about-member .about-member-info .about-member-banner {
+
+.member-banner {
   margin-top: 1em;
   width: 100%;
   display: flex;
@@ -692,7 +697,8 @@ footer {
   gap: initial;
   flex-wrap: initial;
 }
-.about-member .about-member-info .about-member-banner h3 {
+
+.member-name {
   font-size: calc(1rem + 0.5vw);
   font-weight: 400;
   text-align: center;
@@ -701,7 +707,8 @@ footer {
   padding: 0.2em 0;
   width: 70%;
 }
-.about-member .about-member-info .about-member-banner .about-member-tag {
+
+.member-tag {
   color: black;
   background-color: rgb(250, 250, 250);
   border-radius: 0 0 10px 10px;
@@ -714,58 +721,59 @@ footer {
   gap: initial;
   flex-wrap: initial;
 }
-.about-member .about-member-info .about-member-banner .about-member-tag h4 {
+
+.member-title {
   font-size: calc(0.8rem + 0.5vw);
   font-weight: 700;
   text-align: center;
   margin-left: auto;
 }
-.about-member .about-member-info .about-member-banner .about-member-tag a {
+
+.member-social {
   font-size: calc(1rem + 0.5vw);
   color: black;
   padding: 0 0.3em;
   margin-left: auto;
 }
-.about-member .about-member-info .about-member-quote {
+
+.member-quote {
   font-size: calc(0.8rem + 0.5vw);
   padding: 1em;
 }
-.about-member .about-member-info .about-member-quote .about-question {
+.member-quote .member-question {
   padding-bottom: 1em;
 }
-.about-member .about-member-info .about-close-btn {
+
+.member-close-btn {
   font-size: calc(2rem + 0.5vw);
   color: rgb(250, 250, 250);
   margin-bottom: 0.5em;
   transition: all 300ms;
 }
-.about-member .about-member-info .about-close-btn:hover {
+.member-close-btn:hover {
   opacity: 0.8;
 }
 
 @media (max-width: 1250px) {
-  .mission-section {
-    width: 100%;
-  }
-  .mission-section p {
-    font-size: calc(1rem + 0.5vw);
+  .about-band-desc {
+    font-size: calc(0.8rem + 0.5vw);
   }
   .members-container {
     width: 98%;
   }
-  .about-member .about-member-info .about-member-banner h3 {
+  .member-name {
     font-size: calc(1.5rem + 0.5vw);
   }
-  .about-member .about-member-info .about-member-banner .about-member-tag h4 {
+  .member-title {
     font-size: calc(1.2rem + 0.5vw);
   }
-  .about-member .about-member-info .about-member-banner .about-member-tag a {
+  .member-social {
     font-size: calc(1.7rem + 0.5vw);
   }
-  .about-member .about-member-info .about-member-quote {
-    font-size: calc(1.2rem + 0.5vw);
+  .member-quote {
+    font-size: calc(1rem + 0.5vw);
   }
-  .about-member .about-member-info .about-close-btn {
+  .member-close-btn {
     font-size: 3rem;
   }
 }
@@ -775,17 +783,17 @@ footer {
   .mission-section {
     display: none;
   }
-  .members-container {
+  .about-members {
     width: 100%;
   }
   .about-member {
     margin: 1em 0;
     width: 100%;
   }
-  .about-member img {
+  .member-img {
     width: 100%;
   }
-  .about-member .about-member-info {
+  .member-info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -795,20 +803,20 @@ footer {
     visibility: visible;
     opacity: 1;
   }
-  .about-member .about-member-info .about-member-banner h3 {
+  .member-name {
     font-size: calc(1.7rem + 0.5vw);
     width: 90%;
   }
-  .about-member .about-member-info .about-member-banner .about-member-tag h4 {
+  .member-title {
     font-size: calc(1.3rem + 0.5vw);
   }
-  .about-member .about-member-info .about-member-banner .about-member-tag a {
+  .member-social {
     font-size: calc(2rem + 0.5vw);
   }
-  .about-member .about-member-info .about-member-quote {
+  .about-member-quote {
     font-size: calc(1.2rem + 0.5vw);
   }
-  .about-member .about-member-info .about-close-btn {
+  .member-close-btn {
     display: none;
   }
 }
