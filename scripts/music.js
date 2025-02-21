@@ -23,29 +23,37 @@ function renderMusicHTML() {
     });
 
     albumHTML += `
-      <section class="album-section">
-        <div class="album-container">
+      <div class="album">
+        <div class="album-img-container">
           <img class="album-img" src="${image}" />
-          <div class="album-content">
-            <div>
-              <h3 class="album-title">${title}</h3>
-              <ol type="1" class="album-songs">
-                ${songsHTML}
-              </ol>
-            </div>
+          <div class="album-img-services">
+            <a class="icon-special" href="#">
+              <i class="fa-brands fa-spotify"></i>
+            </a>
+            <a class="icon-special" href="#">
+              <i class="fa-brands fa-apple"></i>
+            </a>
+          </div>
+        </div>
+        <div class="album-content">     
+          <div class="album-header">              
+            <h3 class="album-title">${title}</h3>    
             <div class="album-services">
-              <a class="icon-special">
+              <a class="icon-special" href="#">
                 <i class="fa-brands fa-spotify"></i>
               </a>
-              <a class="icon-special">
+              <a class="icon-special" href="#">
                 <i class="fa-brands fa-apple"></i>
               </a>
             </div>
-          </div>
-        </div>
-      </section>
+          </div>            
+          <ol class="album-songs" type="1">
+            ${songsHTML}
+          </ol>     
+        </div>          
+      </div>
     `;
   });
 
-  $("#js-albums-container").html(albumHTML);
+  $("#js-albums").html(albumHTML);
 }

@@ -2,140 +2,202 @@
 @use "../../components"as *;
 @use "../../layout"as *;
 
-.album-section {
-  padding: 2.5em;
 
-  &:nth-child(odd) {
+.album-section {
+  width: 100%;
+}
+
+.albums {
+  &> :nth-child(odd) {
     background-image: $bg-blue;
     color: $basic-white;
 
-    .album-img {
-      border: 4px solid $basic-white;
-    }
-
-    .album-title {
-      border-bottom: 2px solid $basic-white;
-    }
-
-    .album-services {
+    .album-img,
+    .album-header {
       border: 2px solid $basic-white;
     }
   }
 
-  &:nth-child(even) {
+  &> :nth-child(even) {
     background-color: $basic-white;
     color: black;
 
-    .album-img {
-      border: 4px solid black;
-    }
-
-    .album-title {
-      border-bottom: 2px solid black;
-    }
-
-    .album-services {
+    .album-img,
+    .album-header {
       border: 2px solid black;
     }
   }
 }
 
-.album-container {
-  align-self: stretch;
-  width: 60%;
+.album {
+  padding: 2em;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  align-self: stretch;
+  @include flexbox(row, center);
 }
 
 .album-img {
-  width: 70%;
+  width: 100%;
+  max-width: 500px;
+}
+
+.album-img-services {
+  display: none;
 }
 
 .album-content {
-  width: 90%;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  width: 40%;
+  @include flexbox(column, $gap: 2em);
+}
+
+.album-header {
+  padding: 0.5em 1em;
+  margin: 0 auto;
+  width: 80%;
+  @include flexbox(row, center, center);
+}
+
+.album-services {
+  font-size: calc(2.5rem + 0.5vw);
+  margin-left: auto;
+  @include flexbox(row, center, center, $gap: 0.5em);
 }
 
 .album-title {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
-  font-size: 2.5em;
+  font-family: $font-heading;
   font-weight: 400;
-  text-align: center;
-  width: 75%;
-  padding: 0.3em 0 0.2em 0;
+  font-size: calc(2rem + 0.5vw);
   margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0.7em;
 }
 
 .album-songs {
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 1.7em;
-  letter-spacing: 2px;
+  font-family: $font-secondary;
+  font-size: calc(1.1rem + 0.5vw);
   text-transform: uppercase;
+  letter-spacing: 0.1em;
   line-height: 1.5em;
   padding-left: 2.7em;
   list-style-position: inside;
 }
 
-.album-services {
-  font-size: 3em;
-  align-self: flex-end;
-  padding: 0.2em 0.5em;
-  width: 120px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.music-videos-section {
-  background-color: $basic-white;
-  margin-bottom: 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.music-video-title {
-  font-family: "Raleway", Arial, sans-serif;
-  text-transform: capitalize;
-  font-size: 3em;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  margin: 1em;
-  text-align: center;
-}
-
-.music-video-grid {
-  width: 60%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-  column-gap: 4em;
-  row-gap: 4em;
-}
-
-.music-video {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: 5px solid black;
-}
-
-@media (max-width: 1080px) {
+@media (max-width: 1200px) {
   h1 {
     margin: 0.5em 0;
   }
+
+  .albums {
+    &>:nth-child(odd) {
+      .album-header {
+        border: none;
+      }
+
+      .album-title {
+        border-bottom: 2px solid $basic-white;
+      }
+    }
+
+    &>:nth-child(even) {
+      .album-header {
+        border: none;
+      }
+
+      .album-title {
+        border-bottom: 2px solid black;
+      }
+    }
+  }
+
+  .album-img-container {
+    @include flexbox(row, center);
+    position: relative;
+  }
+
+  .album-img {
+    width: 100%;
+  }
+
+  .album-img-services {
+    font-size: calc(2.2rem + 0.5vw);
+    color: $basic-white;
+    display: unset;
+    padding: 0.3em 0.5em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    @include flexbox(row, center, center, $gap: 0.5em);
+  }
+
+  .album-content {
+    gap: 1em;
+    width: 50%;
+  }
+
+  .album-header {
+    width: 100%;
+    @include flexbox(column, center, center, 0.3em);
+  }
+
+  .album-title {
+    text-align: center;
+    padding-bottom: 0.2em;
+    margin: 0;
+    width: 80%;
+  }
+
+  .album-services {
+    display: none;
+  }
+
+  .album-songs {
+    font-size: calc(1rem + 0.5vw);
+  }
 }
 
-@media (max-width: 600px) {
-  h1 {
-    display: none;
+@media (max-width: 800px) {
+
+  .album {
+    padding: 0;
+    position: relative;
+  }
+
+  .album-img-container {
+    width: 100%;
+  }
+
+  .album-img {
+    max-width: unset;
+    border: none !important;
+  }
+
+  .album-img-services {
+    font-size: calc(2rem + 0.5vw);
+    z-index: 2;
+    background-color: unset;
+    position: absolute;
+    bottom: 0;
+    left: unset;
+  }
+
+  .album-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $basic-white;
+    background-color: $bg-shadow;
+  }
+
+  .album-title {
+    font-size: calc(2rem + 0.5vw);
+    font-weight: 600;
+    border-color: $basic-white !important;
+  }
+
+  .album-songs {
+    font-size: calc(1rem + 0.5vw);
+    margin-left: 2em;
+    padding: 0;
   }
 }
