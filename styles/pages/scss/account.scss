@@ -3,22 +3,20 @@
 @use "../../layout"as *;
 
 .account-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: $font-basic;
   background-color: white;
-  margin: 2em auto 2em auto;
-  width: 800px;
-  height: 500px;
   border: 3px solid black;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  box-shadow: 0 0 15px $bg-shadow;
+  padding: 1em;
+  margin: 2em auto;
+  width: 90%;
+  max-width: 850px;
+  @include flexbox(column, space-around, center, 1em);
 
   h2 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: 1.5em;
+    font-family: $font-heading;
+    font-size: calc(0.8rem + 0.5vw);
     color: $basic-blue;
     text-align: center;
     margin-top: 1em;
@@ -26,25 +24,19 @@
 }
 
 .account-container {
-  padding: 0.5em;
+  padding: 1em 0;
   margin: 1em;
-  height: 50%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 30px;
-  row-gap: 30px;
+  @include flexbox(row, center, center, 1em, wrap);
 }
 
 .account-card {
   color: $basic-white;
   background-image: $bg-blue;
-  padding: 20px;
-  width: 320px;
-  height: 60px;
   border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  padding: 1em;
+  width: 350px;
+  height: 75px;
+  @include flexbox(column, space-around, initial, 0.5em);
   transition: transform 150ms;
 
   &:hover {
@@ -53,24 +45,62 @@
 }
 
 .account-card-title {
-  font-size: 1.5em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: calc(1rem + 0.5vw);
+  @include flexbox(row, initial, center, 0.5em);
 
-  p {
-    font-size: 1em;
+  h3 {
+    font-size: calc(1rem + 0.5vw);
   }
 }
 
+.account-card-subtitle {
+  font-size: 1em;
+}
+
 .logout-btn {
-  font-size: 1.7em;
-  vertical-align: middle;
-  text-align: center;
+  font-size: calc(1rem + 0.5vw);
+  color: black;
   background-color: transparent;
-  padding: 0.5em 1.5em;
-  border: 2px solid black;
-  display: inline-block;
-  position: relative;
-  transition: all 200ms;
+  border: 3px solid black;
+  padding: 0.5em 1em;
+
+  &:hover {
+    padding-left: 1.5em;
+    padding-right: 0.5em;
+  }
+}
+
+@media (max-width: 800px) {
+
+  .account-section {
+    background-color: $basic-white;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 1em;
+    width: 100%;
+    height: 100%;
+    gap: 2em;
+
+    h2 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+
+  .account-section {
+    margin: 0 auto;
+    gap: 1em;
+  }
+
+  .account-card {
+    width: 100%;
+  }
+
+  .logout-btn {
+    font-size: 1.5em;
+    width: 150px;
+  }
 }
