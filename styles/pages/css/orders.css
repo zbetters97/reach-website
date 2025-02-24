@@ -733,7 +733,12 @@ footer {
 }
 
 .orders-back-btn {
-  margin: 1em;
+  font-size: calc(1rem + 0.5vw);
+  padding: 0.7em 1.2em;
+}
+.orders-back-btn:hover {
+  padding-right: 0.6em;
+  padding-left: 1.8em;
 }
 
 @media (max-width: 800px) {
@@ -785,5 +790,9 @@ footer {
   }
   .order-track-btn {
     display: none;
+  }
+  .orders-back-btn {
+    font-size: 1.1rem;
+    margin: 0 auto;
   }
 }

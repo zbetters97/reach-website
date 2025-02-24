@@ -221,12 +221,14 @@ async function renderModalHTML(addressId) {
       </div>
 
       <div class="address-modal-field">
-        <label for="default">Default</label>
-        <input
-          id="js-address-modal-default"
-          name="default"
-          type="checkbox"
-        />
+        <div>
+          <label for="default">Default</label>
+          <input
+            id="js-address-modal-default"
+            name="default"
+            type="checkbox"
+          />
+        </div>
       </div>
 
       <div class="address-modal-save-container">
