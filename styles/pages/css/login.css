@@ -811,6 +811,8 @@ footer {
     box-shadow: none;
     border: none;
     background-color: rgb(250, 250, 250);
+    margin: 0;
+    margin-bottom: 2em;
     width: 100%;
     max-width: unset;
     height: 100%;
@@ -818,6 +820,7 @@ footer {
   }
   .login-section h2 {
     font-size: 1.3rem;
+    margin: 0.5em 0;
   }
   .login-form {
     width: 100%;

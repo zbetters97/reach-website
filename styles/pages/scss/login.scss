@@ -168,6 +168,8 @@
     box-shadow: none;
     border: none;
     background-color: $basic-white;
+    margin: 0;
+    margin-bottom: 2em;
     width: 100%;
     max-width: unset;
     height: 100%;
@@ -175,6 +177,7 @@
 
     h2 {
       font-size: 1.3rem;
+      margin: 0.5em 0;
     }
   }
 

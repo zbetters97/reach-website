@@ -607,75 +607,96 @@ footer {
 }
 
 .tracking-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: Verdana, Arial, sans-serif;
   background-color: white;
   border: 3px solid black;
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  margin: 2em auto 2em auto;
-  width: 800px;
+  margin: 2em auto;
+  width: 80%;
+  max-width: 800px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 1em;
+  flex-wrap: initial;
 }
 .tracking-section h2 {
   font-family: "Raleway", Arial, sans-serif;
-  font-size: 1.5em;
+  font-size: calc(0.8rem + 0.5vw);
   color: rgb(0, 44, 95);
   text-align: center;
   margin-top: 1em;
 }
 
 .tracking-container {
-  margin: 2em;
+  padding: 1em;
   width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 3em;
+  align-items: initial;
+  gap: 2em;
+  flex-wrap: initial;
 }
 
 .tracking-empty-container {
   margin: 1em;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: initial;
+  flex-wrap: initial;
 }
 .tracking-empty-container h3 {
-  opacity: 0.8;
-  font-size: 1.5em;
+  font-size: calc(1rem + 0.5vw);
   color: rgb(0, 44, 95);
+  opacity: 0.8;
 }
-.tracking-empty-container button {
-  font-size: 1.3em;
+
+.tracking-empty-btn {
+  font-size: calc(1rem + 0.5vw);
   background-color: rgb(0, 44, 95);
   color: rgb(250, 250, 250);
   padding: 0.7em 1.2em;
   margin-top: 1em;
-  width: 25%;
   border: none;
 }
-.tracking-empty-container button:hover {
+.tracking-empty-btn:hover {
   padding-right: 0.4em;
-  padding-left: 2em;
+  padding-left: 1.6em;
 }
 
 .tracking-product-container {
   display: flex;
   flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
   gap: 1em;
+  flex-wrap: initial;
 }
-.tracking-product-container h3 {
-  font-size: 1.7em;
+
+.tracking-date {
+  font-size: calc(1rem + 0.5vw);
 }
 
 .tracking-product {
-  font-size: 1.1em;
+  font-size: calc(0.5rem + 0.5vw);
   display: flex;
   flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
   gap: 0.3em;
+  flex-wrap: initial;
+}
+.tracking-product h4 {
+  font-size: 1em;
+}
+.tracking-product p {
+  font-size: 0.8em;
 }
 
 .tracking-product-img {
@@ -684,31 +705,25 @@ footer {
   object-fit: cover;
 }
 
-.tracking-progress-container {
-  width: 100%;
-  margin: 0 auto;
-}
-
 .tracking-labels-container {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 15px;
+  font-size: calc(0.7rem + 0.5vw);
+  margin-top: 1em;
+  margin-bottom: 0.5em;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: initial;
+  gap: initial;
+  flex-wrap: initial;
 }
 
 .tracking-current-status {
   color: green;
 }
 
-.tracking-label {
-  margin-bottom: 3px;
-}
-
 .tracking-bar-container {
   border: 2px solid black;
-  border-radius: 50px;
-  margin-bottom: 1em;
+  border-radius: 30px;
   width: 100%;
   height: 25px;
   overflow: hidden;
@@ -717,17 +732,47 @@ footer {
 .tracking-bar {
   background-color: green;
   border-radius: 25px;
-  width: 0%;
+  width: 0;
   height: 100%;
   transition: width 1500ms;
 }
 
 .tracking-back-btn {
-  font-size: 1.3em;
+  font-size: calc(0.7rem + 0.5vw);
   padding: 0.7em 1.2em;
   width: auto;
 }
 .tracking-back-btn:hover {
-  padding-right: 0.4em;
-  padding-left: 2em;
+  padding-right: 0.6em;
+  padding-left: 1.8em;
+}
+
+@media (max-width: 800px) {
+  .tracking-section {
+    background-color: rgb(250, 250, 250);
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    margin-bottom: 2em;
+    width: 100%;
+    max-width: unset;
+    height: 100%;
+    gap: 2em;
+  }
+  .tracking-section h2 {
+    font-size: 1.3rem;
+    margin: 0.5em 0;
+  }
+  .tracking-date {
+    font-size: 1.3rem;
+  }
+  .tracking-product {
+    font-size: calc(0.8rem + 0.5vw);
+  }
+  .tracking-labels-container {
+    font-size: calc(1rem + 0.5vw);
+  }
+  .tracking-back-btn {
+    font-size: 1.1rem;
+  }
 }

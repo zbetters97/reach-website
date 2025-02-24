@@ -41,7 +41,7 @@ function renderTrackingPage() {
 
     trackingHTML = `
       <div class="tracking-product-container">
-        <h3>Arriving <span>${date}</span></h3>
+        <h3 class="tracking-date">Arriving <span>${date}</span></h3>
         <div class="tracking-product">
           <h4>${product.name}, ${orderProduct.type}</h4>
           <p>Quantity: <span>${orderProduct.quantity}</span></p>
@@ -93,7 +93,7 @@ function renderEmptyHTML() {
   let trackingHTML = `    
     <div class="tracking-empty-container">
       <h3>No item found for tracking!</h3>
-      <button class="back-btn">Go back</button>
+      <button class="back-btn tracking-empty-btn">Go back</button>
     </div>    
   `;
 

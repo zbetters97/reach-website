@@ -711,12 +711,15 @@ footer {
     background-color: rgb(250, 250, 250);
     border: none;
     box-shadow: none;
+    margin: 0;
+    margin-bottom: 2em;
     width: 100%;
     height: 100%;
     gap: 2em;
   }
   .signup-section h2 {
     font-size: 1.3rem;
+    margin: 0.5em 0;
   }
   .signup-field {
     width: 85%;
