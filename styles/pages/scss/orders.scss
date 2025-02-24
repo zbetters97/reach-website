@@ -3,74 +3,63 @@
 @use "../../layout"as *;
 
 .orders-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: $font-basic;
   background-color: white;
   border: 3px solid black;
   border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  margin: 2em auto 2em auto;
-  width: 800px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 0 0 15px $bg-shadow;
+  padding: 1em;
+  margin: 2em auto;
+  width: 90%;
+  max-width: 800px;
+  @include flexbox(column, space-between, center, 1em);
 
   h2 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: 1.5em;
+    font-family: $font-heading;
+    font-size: calc(0.8rem + 0.5vw);
     color: $basic-blue;
     text-align: center;
     margin-top: 1em;
-    margin-bottom: 1em;
   }
 }
 
 .orders-container {
-  width: 100%;
-  @include flexbox(column, space-between, center);
+  @include flexbox(column, space-between, center, 2em);
 }
 
 .order-container {
-  width: 100%;
-  margin-bottom: 2em;
   border: 2px solid black;
 }
 
 .orders-empty-container {
   margin: 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  @include flexbox(column, space-between, center);
 
   h3 {
-    opacity: 0.8;
-    font-size: 1.5em;
+    font-size: calc(1rem + 0.5vw);
     color: $basic-blue;
+    opacity: 0.8;
   }
+}
 
-  button {
-    font-size: 1.3em;
-    background-color: $basic-blue;
-    color: $basic-white;
-    padding: 0.7em 1.3em;
-    margin-top: 1em;
-    border: none;
-  }
+.orders-empty-btn {
+  font-size: calc(1rem + 0.5vw);
+  background-color: $basic-blue;
+  color: $basic-white;
+  padding: 0.7em 1.2em;
+  margin-top: 1em;
+  border: none;
 
-  button:hover {
-    padding-left: 0.5em;
-    padding-right: 2.1em;
+  &:hover {
+    padding-right: 0.4em;
+    padding-left: 1.6em;
   }
 }
 
 .order-header {
   background-color: var(--basic-gray);
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  gap: 2em;
+  @include flexbox(row, center, center, 1em);
 
   div {
     padding: 1em;
@@ -81,40 +70,32 @@
   margin-left: auto;
 }
 
-.order-products-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
 .order-product-card {
   margin: 0.3em;
-  width: 100%;
   height: 175px;
-  display: flex;
-  align-items: center;
+  @include flexbox(row, center, center, 0.5em);
+  cursor: pointer;
+  transition: all 150ms;
+
+  &:hover {
+    background-color: rgb(172, 171, 171);
+  }
 }
 
 .order-product-img {
-  margin-left: 1em;
   width: 150px;
   height: 150px;
   object-fit: cover;
 }
 
 .order-product-details {
-  font-size: 1.1em;
+  font-size: calc(0.5rem + 0.5vw);
+  line-height: 1.5em;
   margin: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
 }
 
 .order-track-btn {
-  font-size: 1.2em;
+  font-size: calc(0.7rem + 0.5vw);
   color: $basic-white;
   background-color: $basic-blue;
   border: none;
@@ -123,11 +104,73 @@
   margin-left: auto;
 
   &:hover {
-    padding-left: 0.4em;
-    padding-right: 2em;
+    padding-left: 0.6em;
+    padding-right: 1.8em;
   }
 }
 
 .orders-back-btn {
   margin: 1em;
+}
+
+@media (max-width: 800px) {
+
+  .orders-section {
+    background-color: $basic-white;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2em;
+    width: 100%;
+    max-width: unset;
+    height: 100%;
+    align-items: initial;
+    gap: 2em;
+
+    h2 {
+      font-size: 1.3rem;
+      margin: 0.5em 0;
+    }
+  }
+
+  .orders-container {
+    align-items: initial;
+  }
+
+  .order-container {
+    border: none;
+  }
+
+  .order-header {
+    justify-content: initial;
+    gap: 1em;
+
+    div {
+      padding: 0.5em;
+    }
+  }
+
+  .order-header-id {
+    display: none;
+  }
+
+  .order-product-card {
+    color: $basic-white;
+    background-color: $basic-blue;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    width: 100%;
+    justify-content: initial;
+  }
+
+  .order-product-details {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 1em;
+  }
+
+  .order-track-btn {
+    display: none;
+  }
 }

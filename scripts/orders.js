@@ -34,7 +34,7 @@ function renderOrderPage() {
     ordersHTML = `
       <div class="orders-empty-container">
         <h3>You have no submitted orders!</h3>
-        <button class="forward-btn" onclick="window.location.href='shop.html'">
+        <button class="forward-btn orders-empty-btn" onclick="window.location.href='shop.html'">
           Go to shop
         </button>
       </div>
@@ -73,7 +73,8 @@ function renderOrderPage() {
 
         itemsHTML += `    
           <div class="order-products-container">
-            <div class="order-product-card">
+            <div class="order-product-card" 
+              data-order-id=${orderId} data-product-id=${product.productId}>
               <img
                 class="order-product-img"
                 src="${image}"
@@ -84,8 +85,8 @@ function renderOrderPage() {
                 <p>Quantity: <span>${item.quantity}</span></p>
               </div>
               <a 
-              class="forward-btn order-track-btn"
-              href="tracking.html?orderId=${orderId}&productId=${product.productId}"
+                class="forward-btn order-track-btn"
+                href="tracking.html?orderId=${orderId}&productId=${product.productId}"
               >
                 Track package
               </a>
@@ -129,4 +130,17 @@ function renderOrderPage() {
   `;
 
   $("#js-orders-container").html(ordersHTML);
+
+  handleTracking();
+}
+
+function handleTracking() {
+  $(".order-products-container")
+    .children()
+    .on("click", function () {
+      const orderId = $(this).data("order-id");
+      const productId = $(this).data("product-id");
+
+      window.location.href = `tracking.html?orderId=${orderId}&productId=${productId}`;
+    });
 }

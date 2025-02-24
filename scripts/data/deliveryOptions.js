@@ -26,7 +26,7 @@ export function getDeliveryDaysRemaining(deliveryDate) {
   let delivery = dayjs(new Date(deliveryDate));
 
   let hours = delivery.diff(today, "hours");
-  const days = Math.floor(hours / 24);
+  const days = Math.ceil(hours / 24);
 
   return days;
 }

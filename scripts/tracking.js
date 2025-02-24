@@ -39,9 +39,19 @@ function renderTrackingPage() {
     const date = formatDateDMY(orderProduct.deliveryDate);
     const image = product.changeColor(product.color);
 
+    const daysRemaining = getDeliveryDaysRemaining(orderProduct.deliveryDate);
+
     trackingHTML = `
       <div class="tracking-product-container">
-        <h3 class="tracking-date">Arriving <span>${date}</span></h3>
+        <h3 class="tracking-date">
+        
+          ${
+            daysRemaining > 0
+              ? `Arriving <span>${date}</span>`
+              : `Delivered on ${date}`
+          }
+        
+        </h3>
         <div class="tracking-product">
           <h4>${product.name}, ${orderProduct.type}</h4>
           <p>Quantity: <span>${orderProduct.quantity}</span></p>
@@ -108,7 +118,7 @@ function renderProgressBar(deliveryDate) {
   if (daysRemaining > 3) {
     $("#js-tracking-preparing").addClass("tracking-current-status");
     trackingBar.css("width", "10%");
-  } else if (3 > daysRemaining && daysRemaining > 0) {
+  } else if (3 >= daysRemaining && daysRemaining > 0) {
     $("#js-tracking-shipped").addClass("tracking-current-status");
     trackingBar.css("width", "50%");
   } else {
