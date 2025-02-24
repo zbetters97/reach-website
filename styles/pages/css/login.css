@@ -661,15 +661,6 @@ footer {
   transition: all 150ms;
 }
 
-.login-btn-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: initial;
-  flex-wrap: initial;
-}
-
 .forgot-pw {
   font-size: 1.1em;
   color: black;
@@ -679,6 +670,16 @@ footer {
 .forgot-pw-link {
   font-weight: bold;
   color: rgb(0, 44, 95);
+}
+
+.login-btn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
+  text-align: center;
 }
 
 .login-btn {
