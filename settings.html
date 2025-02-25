@@ -102,11 +102,16 @@
         <section class="settings-section">
           <h2>Edit Your Account Information</h2>
           <div class="settings-container">
-            <div class="settings-field">
-              <label for="email">Email Address</label>
-              <input id="js-settings-email" name="email" type="text" disabled />
-            </div>
             <form class="settings-form" id="js-settings-form">
+              <div class="settings-field">
+                <label for="email">Email Address</label>
+                <input
+                  id="js-settings-email"
+                  name="email"
+                  type="text"
+                  disabled
+                />
+              </div>
               <div class="settings-field">
                 <label for="firstname">First Name</label>
                 <input
@@ -147,7 +152,9 @@
             </a>
           </div>
           <div class="settings-back-container">
-            <a class="back-btn" href="account.html">Go back</a>
+            <a class="back-btn settings-back-btn" href="account.html"
+              >Go back</a
+            >
           </div>
 
           <div class="alert-modal" id="js-success-modal">

@@ -655,6 +655,7 @@ footer {
   padding: 1em;
   margin: 0 auto;
   width: 80%;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -743,14 +744,14 @@ footer {
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 }
+.address-modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
 .address-modal h3 {
   font-size: calc(0.7rem + 0.5vw);
   color: rgb(0, 44, 95);
   text-align: center;
   margin: 1em;
-}
-.address-modal.active {
-  transform: translate(-50%, -50%) scale(1);
 }
 
 .address-close-btn {
@@ -863,9 +864,18 @@ footer {
     font-size: 1.3em;
   }
   .address-modal {
+    border-radius: 0;
+    padding: 0;
     width: 90%;
     max-width: unset;
-    padding: 0;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+    align-items: initial;
+    gap: initial;
+    flex-wrap: initial;
+    overflow: auto;
   }
   .address-modal h3 {
     font-size: 1rem;

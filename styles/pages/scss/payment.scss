@@ -3,63 +3,48 @@
 @use "../../layout"as *;
 
 .payment-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: $font-basic;
   background-color: white;
-  margin: 2em auto 2em auto;
-  width: 600px;
   border: 3px solid black;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 0 0 15px $bg-shadow;
+  margin: 2em auto;
+  width: 90%;
+  max-width: 600px;
+  @include flexbox(column, space-between, center, 1em);
 
   h2 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: 1.5em;
+    font-family: $font-heading;
+    font-size: calc(0.8rem + 0.5vw);
     color: $basic-blue;
     text-align: center;
     margin-top: 1em;
-    margin-bottom: 1em;
   }
 }
 
 .payment-container {
   margin-bottom: 1em;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  gap: 2em;
+  @include flexbox(column, space-evenly, initial, 2em);
 }
 
 .payment-empty-text {
-  font-size: 2em;
+  font-size: calc(1.5rem + 0.5vw);
   margin: 1em;
   align-self: center;
 }
 
 .payment-card {
-  font-size: 1.2em;
+  font-size: calc(0.7rem + 0.5vw);
   color: $basic-white;
   background-image: $bg-blue;
-  padding: 15px 30px;
-  margin: 0 auto;
-  width: 70%;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 0.3em;
+  padding: 1em;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 500px;
+  @include flexbox(column, space-between, initial, 0.5em);
   position: relative;
-
-  h3 {
-    font-size: 1.5em;
-    margin-bottom: 0.2em;
-  }
 }
 
 .payment-default-tag {
@@ -71,67 +56,54 @@
 .payment-card-btn-container {
   margin: 0 auto;
   width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  @include flexbox(row, space-evenly, center);
 }
 
 .payment-new-container {
-  align-self: center;
-  padding: 1.2em 1em;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 0.5em;
+  font-size: calc(1rem + 0.5vw);
   border: 2px solid black;
+  padding: 0.7em 1em;
+  align-self: center;
+  @include flexbox(row, space-evenly, center, 0.5em);
   cursor: pointer;
   transition: all 150ms;
 
   &:hover {
     transform: scale(1.1);
   }
-
-  i {
-    font-size: 2em;
-  }
-}
-
-.payment-new-btn {
-  font-size: 1.7em;
-  border: none;
-  background-color: transparent;
 }
 
 .payment-back-container {
   color: $basic-blue;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  border-top: 3px solid black;
+  padding: 2em 0;
   margin-top: 1em;
   width: 100%;
-  height: 20%;
-  border-top: 3px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  @include flexbox(column, space-evenly, center);
+}
+
+.payment-back-btn {
+  font-size: calc(1rem + 0.5vw);
+  padding: 0.7em 1.2em;
+
+  &:hover {
+    padding-right: 0.6em;
+    padding-left: 1.8em;
+  }
 }
 
 /** MODAL **/
 .payment-modal {
   color: $basic-blue;
   background-color: $basic-white;
+  border-radius: 10px;
   position: fixed;
   top: 50%;
   left: 50%;
-  padding: 0.5em;
+  padding: 1em;
   width: 500px;
-  height: 550px;
   max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
+  @include flexbox(column, center, center);
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
@@ -141,14 +113,16 @@
   }
 
   h3 {
-    font-size: 1.3em;
-    padding-bottom: 1em;
+    font-size: calc(0.7rem + 0.5vw);
+    color: $basic-blue;
+    text-align: center;
+    margin: 1em;
   }
 }
 
 .payment-close-btn {
-  font-size: 2rem;
   font-weight: bold;
+  font-size: calc(1.5rem + 0.5vw);
   color: $basic-blue;
   background: none;
   border: none;
@@ -160,25 +134,20 @@
 
 .payment-modal-form {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  gap: 0.5em;
+  @include flexbox(column, space-between, initial, 0.8em);
 }
 
 .payment-modal-field {
-  font-size: 1.3em;
+  font-size: calc(0.7rem + 0.5vw);
   margin-left: 1em;
-  margin-bottom: 0.2em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  width: 80%;
+  @include flexbox(column, initial, flex-start);
 
   input {
     font-size: 1em;
+    border: 2px solid $basic-blue;
     padding: 0.3em;
     margin-top: 0.3em;
-    border: 2px solid $basic-blue;
     outline: none;
     transition: all 150ms;
   }
@@ -188,20 +157,98 @@
   margin-top: 0.5em;
   width: 100%;
   align-self: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flexbox(column, center, center);
 }
 
 .payment-modal-btn {
-  font-size: 1.7em;
+  font-size: calc(1rem + 0.5vw);
   color: $basic-white;
   background-color: $basic-blue;
-  padding: 0.5em;
-  margin: 0 auto;
-  width: 50%;
-  border: 3px solid $basic-white;
+  padding: 0.7em 1.4em;
 }
 
 /** END MODAL **/
+
+@media (max-width: 800px) {
+  .payment-section {
+    background-color: $basic-white;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2em;
+    width: 100%;
+    max-width: unset;
+    height: 100%;
+    align-items: initial;
+    gap: 2em;
+
+    h2 {
+      font-size: 1.3rem;
+      margin: 0.5em 0;
+    }
+  }
+
+  .payment-container {
+    margin: 0;
+  }
+
+  .payment-card {
+    font-size: 1.2em;
+    gap: 0.3em;
+
+    p {
+      font-size: 0.8em;
+    }
+  }
+
+  .payment-default-tag {
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+
+  .set-default-payment-btn {
+    display: none;
+  }
+
+  .edit-payment-btn,
+  .remove-payment-btn {
+    color: black;
+    background-color: $basic-white;
+    border-radius: 6px;
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+  }
+
+  .payment-new-container {
+    font-size: 1.3em;
+  }
+
+  .payment-modal {
+    border-radius: 0;
+    padding: 0;
+    width: 90%;
+    max-width: unset;
+    @include flexbox(column);
+    overflow: auto;
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .payment-modal-field {
+    font-size: 1.2em;
+    width: 80%;
+    align-items: initial;
+  }
+
+  .payment-modal-save-container {
+    margin-bottom: 1em;
+  }
+
+  .payment-modal-btn {
+    font-size: 1.3em;
+    padding: 0.8em 1.5em;
+  }
+}

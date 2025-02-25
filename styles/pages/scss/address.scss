@@ -42,6 +42,7 @@
   padding: 1em;
   margin: 0 auto;
   width: 80%;
+  max-width: 500px;
   @include flexbox(column, space-between, initial, 0.5em);
   position: relative;
 }
@@ -107,15 +108,15 @@
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
 
+  &.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
   h3 {
     font-size: calc(0.7rem + 0.5vw);
     color: $basic-blue;
     text-align: center;
     margin: 1em;
-  }
-
-  &.active {
-    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -225,9 +226,13 @@
   }
 
   .address-modal {
+    border-radius: 0;
+    padding: 0;
     width: 90%;
     max-width: unset;
-    padding: 0;
+    height: 450px;
+    @include flexbox(column);
+    overflow: auto;
 
     h3 {
       font-size: 1rem;

@@ -203,12 +203,14 @@ async function renderModalHTML(paymentId) {
       </div>
 
       <div class="payment-modal-field">
-        <label for="default">Default</label>
-        <input
-          id="js-payment-modal-default"
-          name="default"
-          type="checkbox"
-        />
+        <div>
+          <label for="default">Default</label>
+          <input
+            id="js-payment-modal-default"
+            name="default"
+            type="checkbox"
+          />
+        </div>
       </div>
 
       <div class="payment-modal-save-container">
