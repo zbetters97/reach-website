@@ -37,15 +37,15 @@ export function renderPaymentSummaryHTML() {
     <h3>Order Summary</h3>
 
     <div class="order-pricing">
-      <div>
+      <div class="order-row">
         <p>Items (<span>${cart.calculateCartQuantity()}</span>):</p>
         <p>$${formatCurrency(totalBeforeTaxCents)}</p>
       </div>
-      <div>
+      <div class="order-row">
         <p>Shipping & handling:</p>
         <p>$${formatCurrency(shippingPriceCents)}</p>
       </div>
-      <div>
+      <div class="order-row">
         <p>Estimated tax:</p>
         <p>$${formatCurrency(taxCents)}</p>
       </div>

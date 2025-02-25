@@ -22,7 +22,7 @@ export function renderOrderSummaryHTML() {
     shopItems += `
       <div class="checkout-empty-container">
         <h3>You have no shop items in your cart</h3>
-        <button class="forward-btn" onclick="window.location.href='shop.html'">
+        <button class="forward-btn checkout-btn" onclick="window.location.href='shop.html'">
           Go to shop
         </button>
       </div>
@@ -32,7 +32,7 @@ export function renderOrderSummaryHTML() {
     ticketItems += `
       <div class="checkout-empty-container">
         <h3>You have no ticket items in your cart</h3>
-        <button class="forward-btn" onclick="window.location.href='tour.html'">
+        <button class="forward-btn checkout-btn" onclick="window.location.href='tour.html'">
           Find tour dates
         </button>
       </div>

@@ -69,9 +69,9 @@ button {
 
 .add-cart-btn {
   border-radius: 10px;
-  padding: 0.5em;
   text-align: center;
   vertical-align: middle;
+  padding: 0.5em 1.2em;
   display: inline-block;
   position: relative;
   transition: all 200ms;
@@ -90,8 +90,8 @@ button {
   }
 
   &:hover {
-    padding-left: 1.2em;
-    padding-right: 0;
+    padding-left: 1.8em;
+    padding-right: 0.6em;
   }
 
   &:hover:after {

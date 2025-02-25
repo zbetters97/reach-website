@@ -29,9 +29,10 @@
 }
 
 .payment-empty-text {
-  font-size: calc(1.5rem + 0.5vw);
+  font-size: calc(1.3rem + 0.5vw);
+  text-align: center;
   margin: 1em;
-  align-self: center;
+  opacity: 0.8;
 }
 
 .payment-card {
@@ -191,6 +192,10 @@
 
   .payment-container {
     margin: 0;
+  }
+
+  .payment-empty-text {
+    font-size: 1.3rem;
   }
 
   .payment-card {

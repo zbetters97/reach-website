@@ -26,7 +26,9 @@ async function renderAddressHTML(aId) {
     addressHTML = `  
       <div class="method-header" id="js-method-address" data-address-id=${addressId}>
         <h3>Delivering to <span>${address.fullName}</span></h3>
-        <a id="js-address-change-btn">Change</a>
+        <a class="method-change-btn" id="js-address-change-btn">
+          Change
+        </a>
       </div>
       <p>${address.addressOne}</p>
       <p>${address.addressTwo}</p>
@@ -36,7 +38,7 @@ async function renderAddressHTML(aId) {
     addressHTML = `
     <div class="checkout-empty-container">
       <h3>You have no saved addresses</h3>
-      <button class="forward-btn" onclick="window.location.href='address.html'">
+      <button class="forward-btn checkout-btn" onclick="window.location.href='address.html'">
         Add an address
       </button>
     </div>
@@ -118,7 +120,9 @@ async function renderPaymentHTML(productId) {
     paymentHTML = `  
       <div class="method-header" id="js-method-payment" data-payment-id=${paymentId}>
         <h3>Paying with <span>${payment.type} ${lastFour}</span></h3>
-        <a id="js-payment-change-btn">Change</a>
+        <a class="method-change-btn" id="js-payment-change-btn">
+          Change
+        </a>
       </div>
       <p>${payment.fullName}</p>
     `;
@@ -126,7 +130,7 @@ async function renderPaymentHTML(productId) {
     paymentHTML = `
       <div class="checkout-empty-container">
         <h3>You have no saved payment methods</h3>
-        <button class="forward-btn" onclick="window.location.href='payment.html'">
+        <button class="forward-btn checkout-btn" onclick="window.location.href='payment.html'">
           Add a payment method
         </button>
       </div>

@@ -3,44 +3,40 @@
 @use "../../layout"as *;
 
 .checkout-section {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
+  font-family: $font-basic;
   background-color: white;
-  margin: 2em auto 2em auto;
-  width: 1300px;
-  border: 3px solid black;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 0 0 15px $bg-shadow;
+  padding: 1em;
+  margin: 2em auto;
+  width: 90%;
+  max-width: 1300px;
+  @include flexbox(column, space-around, center, 1em);
 
   h2 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: 1.5em;
-    text-align: center;
+    font-family: $font-heading;
+    font-size: calc(0.8rem + 0.5vw);
     color: $basic-blue;
+    text-align: center;
     margin-top: 1em;
-    margin-bottom: 1em;
   }
 }
 
 .checkout-container {
+  font-size: 1rem;
   padding: 1em;
   width: 90%;
   display: grid;
-  grid-template-columns: 5fr 2fr;
+  grid-template-columns: 3fr 1fr;
   column-gap: 1em;
 
   h3 {
-    font-size: 1.3em;
+    font-size: calc(0.5rem + 0.5vw);
   }
 }
 
 .checkout-items-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  @include flexbox(column, $gap: 1em);
 }
 
 .checkout-item {
@@ -49,76 +45,60 @@
 }
 
 .checkout-method {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
+  line-height: 1.7em;
 }
 
 .method-header {
-  display: flex;
-  justify-content: space-between;
+  @include flexbox(row, space-between, center, 1em);
+}
 
-  a {
-    color: $basic-blue;
-    font-weight: bold;
-  }
+.method-change-btn {
+  font-weight: 700;
+  color: $basic-blue;
 }
 
 .checkout-empty-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox(column, space-between, center);
 
   h3 {
-    opacity: 0.8;
-    font-size: 1.5em;
+    font-size: calc(0.7rem + 0.5vw);
     color: $basic-blue;
-  }
-
-  button {
-    font-size: 1.3em;
-    background-color: $basic-blue;
-    color: $basic-white;
-    padding: 0.7em 1.3em;
-    margin-top: 1em;
-    border: none;
-  }
-
-  button:hover {
-    padding-left: 0.5em;
-    padding-right: 2.1em;
+    opacity: 0.8;
   }
 }
 
-.product-container,
-.ticket-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+.checkout-btn {
+  font-size: calc(0.7rem + 0.5vw);
+  background-color: $basic-blue;
+  color: $basic-white;
+  padding: 0.7em 1.2em;
+  margin-top: 1em;
+  border: none;
+
+  &:hover {
+    padding-left: 0.6em;
+    padding-right: 1.8em;
+  }
 }
 
 .product-details {
-  padding: 1em;
-  margin: 0.5em;
   border: 1px solid black;
-  border-radius: 10px;
+  padding: 0.5em;
+  margin: 0.5em;
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
-  column-gap: 0.3em;
+  grid-template-columns: 1fr 4fr 3fr;
+  column-gap: 0.5em;
 }
 
 .product-image {
+  border-radius: 10px;
   width: 150px;
   height: 150px;
-  border-radius: 10px;
   object-fit: cover;
 }
 
 .product-description {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
+  @include flexbox(column, space-evenly);
 }
 
 .product-price {
@@ -126,19 +106,21 @@
 }
 
 .product-quantity {
-  display: flex;
   height: 20px;
-  align-items: center;
-  gap: 0.7em;
+  @include flexbox(row, initial, center, 0.7em);
 
   a {
     font-weight: bold;
     color: $basic-blue;
   }
+
+  span {
+    font-weight: bold;
+  }
 }
 
 .quantity-input {
-  font-size: 1em;
+  font-size: 1rem;
   vertical-align: middle;
   width: 15%;
   height: 20px;
@@ -159,79 +141,58 @@
 }
 
 .product-delivery {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7em;
+  font-size: 1rem;
+  @include flexbox(column, space-between);
 }
 
 .delivery-option {
-  display: flex;
-  gap: 0.5em;
-}
-
-.delivery-date {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3em;
+  @include flexbox(row, $gap: 0.5em);
 }
 
 .checkout-summary-container {
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  height: 300px;
+  @include flexbox(column, space-around);
 }
 
 .order-pricing {
   border-bottom: 2px solid black;
+}
 
-  div {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5em;
-  }
+.order-row {
+  margin-bottom: 0.7em;
+  @include flexbox(row, space-between);
 }
 
 .order-total {
-  display: flex;
-  justify-content: space-between;
+  @include flexbox(row, space-between);
 }
 
 .checkout-submit-btn-container {
-  width: 100%;
-  height: 25%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flexbox(column, initial, center);
 }
 
 .checkout-submit-btn {
-  font-size: 1.5em;
+  font-size: calc(1rem + 0.5vw);
   background-color: $basic-blue;
   color: $basic-white;
+  border: none;
   padding: 0.5em;
   margin-top: 0.1em;
-  border: none;
   width: 100%;
 }
 
 /** MODAL **/
 .checkout-modal {
-  font-family: "Archivo", Arial, Helvetica, sans-serif;
   color: $basic-blue;
   background-color: $basic-white;
+  border-radius: 10px;
+  padding: 0.5em;
+  width: 500px;
+  max-width: 80%;
+  @include flexbox(column, space-between, center);
   position: fixed;
   top: 50%;
   left: 50%;
-  padding: 0.5em;
-  margin: 2em auto 2em auto;
-  width: 550px;
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 10px;
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
@@ -241,18 +202,17 @@
   }
 
   h2 {
-    font-family: "Raleway", Arial, sans-serif;
-    font-size: 1.5em;
+    font-family: $font-heading;
+    font-size: calc(0.8rem + 0.5vw);
     color: $basic-blue;
     text-align: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin: 1em;
   }
 }
 
 .checkout-modal-close-btn {
-  font-size: 2rem;
   font-weight: bold;
+  font-size: calc(1.5rem + 0.5vw);
   color: $basic-blue;
   background: none;
   border: none;
@@ -265,26 +225,19 @@
 .checkout-modal-container {
   margin-bottom: 1em;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  gap: 2em;
+  @include flexbox(column, space-evenly, $gap: 2em);
 }
 
 .checkout-modal-card {
-  font-size: 1.2em;
+  font-size: calc(0.7rem + 0.5vw);
   color: $basic-white;
-  background-color: $basic-blue;
-  padding: 15px 30px;
-  margin: 0 auto;
-  width: 70%;
+  background-image: $bg-blue;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  gap: 0.3em;
+  padding: 1em;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 500px;
+  @include flexbox(column, space-between, initial, 0.5em);
   position: relative;
   cursor: pointer;
   transition: 150ms;
@@ -294,7 +247,6 @@
   }
 
   h3 {
-    font-size: 1.5em;
     margin-bottom: 0.2em;
   }
 }
@@ -306,3 +258,151 @@
 }
 
 /** END MODAL **/
+
+@media (max-width: 1200px) {
+
+  .checkout-section {
+    background-color: $basic-white;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 2em;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+
+    h2 {
+      font-size: 1.3rem;
+      margin: 0.5em 0;
+    }
+  }
+
+  .checkout-container {
+    font-size: calc(0.5rem + 0.5vw);
+    width: 95%;
+
+    h3 {
+      font-size: calc(0.7rem + 0.5vw);
+    }
+  }
+
+  .product-delivery {
+    font-size: calc(0.5rem + 0.5vw);
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .checkout-container {
+    font-size: 0.8rem;
+    @include flexbox(column, center, center, 1em);
+  }
+
+  .checkout-item.checkout-summary-container {
+    order: 1;
+    border: none;
+    width: 80%;
+    height: 200px;
+  }
+
+  .checkout-submit-btn {
+    width: 50%;
+    min-width: 200px;
+    max-width: 400px;
+  }
+
+  .checkout-container {
+    width: 100%;
+  }
+
+  .checkout-items-container {
+    order: 2;
+    border: none;
+    gap: 0;
+    width: 100%;
+  }
+
+  .checkout-item {
+    border: none;
+    border-top: 2px solid black;
+    padding: 1em;
+    margin: 0;
+    overflow: auto;
+  }
+
+  .checkout-empty-container {
+    padding: 1em;
+    text-align: center;
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
+  .method-change-btn {
+    font-size: 1rem;
+    color: $basic-white;
+    background-color: $basic-blue;
+    padding: 0.5em;
+  }
+
+  .checkout-product-container {
+    @include flexbox(column, $gap: 5em);
+  }
+
+  .product-details {
+    padding: 1em;
+    margin: 1em 0;
+    @include flexbox(row, initial, center, 1em, wrap);
+  }
+
+  .product-delivery {
+    font-size: 1rem;
+    order: 1;
+    flex: 1 1 100%;
+    width: 100%;
+    gap: 1em;
+  }
+
+  .product-image {
+    order: 2;
+    width: 100px;
+    height: 100px;
+  }
+
+  .product-description {
+    order: 3;
+    font-size: 0.8rem;
+  }
+
+  .quantity-input {
+    width: 20%;
+  }
+
+  .checkout-modal {
+    border-radius: 0;
+    width: 80%;
+    max-width: 500px;
+    @include flexbox(column);
+    overflow: auto;
+
+    h2 {
+      font-size: 1rem;
+    }
+  }
+
+  .checkout-modal-card {
+    font-size: 1.2em;
+    gap: 0.3em;
+
+    p {
+      font-size: 0.8em;
+    }
+  }
+
+  .checkout-modal-default-tag {
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+}

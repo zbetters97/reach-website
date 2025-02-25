@@ -179,8 +179,6 @@
   background-color: transparent;
   border: 3px solid $basic-white;
   border-radius: 10px;
-  width: 60%;
-  max-width: 300px;
   align-self: center;
   position: relative;
   overflow: hidden;
@@ -245,11 +243,11 @@
       background-color: $basic-white;
     }
   }
-}
 
-.shop-add-btn {
-  width: 40%;
-  min-width: 175px;
+  .shop-add-btn {
+    width: 40%;
+    min-width: 175px;
+  }
 }
 
 @media (max-width: 600px) {
