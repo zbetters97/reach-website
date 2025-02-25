@@ -3,23 +3,8 @@
 @use "../../layout"as *;
 
 .tracking-section {
-  font-family: $font-basic;
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  margin: 2em auto;
   width: 80%;
   max-width: 800px;
-  @include flexbox(column, space-between, center, 1em);
-
-  h2 {
-    font-family: $font-heading;
-    font-size: calc(0.8rem + 0.5vw);
-    color: $basic-blue;
-    text-align: center;
-    margin-top: 1em;
-  }
 }
 
 .tracking-container {
@@ -119,24 +104,7 @@
   }
 }
 
-@media (max-width: 800px) {
-  .tracking-section {
-    background-color: $basic-white;
-    border: none;
-    box-shadow: none;
-    margin: 0;
-    margin-bottom: 2em;
-    width: 100%;
-    max-width: unset;
-    height: 100%;
-    gap: 2em;
-
-    h2 {
-      font-size: 1.3rem;
-      margin: 0.5em 0;
-    }
-  }
-
+@media (max-width: 900px){
   .tracking-date {
     font-size: 1.3rem;
   }

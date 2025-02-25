@@ -1,0 +1,39 @@
+@use "../abstracts"as *;
+
+h1 {
+  font-family: $font-banner;
+  text-transform: uppercase;
+  font-size: calc(2rem + 0.5vw);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: $basic-blue;
+  text-align: center;
+  margin: 1.5em;
+}
+
+.form-header {
+  font-family: $font-heading;
+  font-size: calc(0.8rem + 0.5vw);
+  color: $basic-blue;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.modal-header {
+  font-family: $font-heading;
+  font-size: calc(0.7rem + 0.5vw);
+  color: $basic-blue;
+  text-align: center;
+  margin: 1em;
+}
+
+@media (max-width: 900px) {
+  .form-header {
+    font-size: 1.3rem;
+    margin: 0.5em 0;
+  }
+
+  .modal-header {
+    font-size: 1.2rem;
+  }
+}

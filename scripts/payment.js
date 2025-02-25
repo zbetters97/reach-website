@@ -54,24 +54,26 @@ async function renderPaymentHTML() {
         const isDefault = payment.productId === defaultPaymentId;
 
         paymentHTML += `  
-          <div class="payment-card">
-            ${isDefault ? `<p class="payment-default-tag">Default</p>` : ``}    
+          <div class="info-card payment-card">
+            ${
+              isDefault ? `<p class="info-card-default-tag">Default</p>` : ``
+            }    
             <h3>${payment.fullName}</h3>
             <p>${payment.type}</p>
             <p>${cardNum}</p>
             <p>${payment.expDate}</p>            
-            <div class="payment-card-btn-container">
+            <div class="info-card-btn-container">
             ${
               isDefault
                 ? ``
                 : `<a class="link set-default-payment-btn" data-payment-id=${payment.productId}>Make Default</a>`
             }              
-              <a class="link edit-payment-btn" data-payment-id=${
+              <a class="link info-edit-btn edit-payment-btn" data-payment-id=${
                 payment.productId
               }>
                 Edit
               </a>
-              <a class="link remove-payment-btn" data-payment-id=${
+              <a class="link info-remove-btn remove-payment-btn" data-payment-id=${
                 payment.productId
               }>
                 Remove
@@ -82,12 +84,12 @@ async function renderPaymentHTML() {
       });
     } else {
       paymentHTML += `    
-        <h3 class="payment-empty-text">You have no saved payments!</h3>
+        <h3 class="info-empty-text">You have no saved payments!</h3>
       `;
     }
 
     paymentHTML += `
-      <div class="payment-new-container" id="js-payment-new-container">
+      <div class="info-add-container" id="js-payment-new-container">
         <i class="fa-solid fa-plus"></i>
         <a class="payment-new-btn">Add Payment</a>
       </div>
@@ -159,7 +161,9 @@ async function renderModalHTML(paymentId) {
       &times;
     </button>
 
-    ${paymentId ? `<h3>Edit Your Payment</h3>` : `<h3>Add New Payment</h3>`}
+    <h3 class="modal-header"> 
+      ${paymentId ? `Edit Your Payment` : `Add New Payment`}
+    </h3>
 
     <form class="payment-modal-form" id="js-payment-modal-form">
       <div class="payment-modal-field">

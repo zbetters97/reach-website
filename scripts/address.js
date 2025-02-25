@@ -52,23 +52,29 @@ async function renderAddressHTML() {
         const isDefault = address.aid === defaultAddressId;
 
         addressHTML += `  
-          <div class="address-card">
-            ${isDefault ? `<p class="address-default-tag">Default</p>` : ``}    
+          <div class="info-card address-card">
+            ${
+              isDefault ? `<p class="info-card-default-tag">Default</p>` : ``
+            }    
             <h3>${address.fullName}</h3>
             <p>${address.addressOne}</p>
             <p>${address.addressTwo}</p>
             <p>${address.city}, ${address.state} ${address.zip}</p>
             <p>Phone number: ${address.phone}</p>
-            <div class="address-card-btn-container">
+            <div class="info-card-btn-container">
              ${
                isDefault
                  ? ``
                  : `<a class="link set-default-address-btn" data-address-id=${address.aid}>Make Default</a>`
              }          
-              <a class="link edit-address-btn" data-address-id=${address.aid}>
+              <a class="link info-edit-btn edit-address-btn" data-address-id=${
+                address.aid
+              }>
                 Edit
               </a>
-              <a class="link remove-address-btn" data-address-id=${address.aid}>
+              <a class="link info-remove-btn remove-address-btn" data-address-id=${
+                address.aid
+              }>
                 Remove
               </a>
             </div>
@@ -77,12 +83,12 @@ async function renderAddressHTML() {
       });
     } else {
       addressHTML += `    
-        <h3 class="address-empty-text">You have no saved addresses!</h3>
+        <h3 class="info-empty-text">You have no saved addresses!</h3>
       `;
     }
 
     addressHTML += `
-      <div class="address-new-container" id="js-address-new-container">
+      <div class="info-add-container" id="js-address-new-container">
         <i class="fa-solid fa-plus"></i>
         <a class="address-new-btn">Add Address</a>
       </div>
@@ -158,7 +164,9 @@ async function renderModalHTML(addressId) {
       &times;
     </button>
 
-    ${addressId ? `<h3>Edit Your Address</h3>` : `<h3>Add New Address</h3>`}
+    <h3 class="modal-header"> 
+      ${addressId ? `Edit Your Address` : `Add New Address`}
+    </h3>
 
     <form class="address-modal-form" id="js-address-modal-form">
       <div class="address-modal-field">

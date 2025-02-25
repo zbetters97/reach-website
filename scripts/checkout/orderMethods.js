@@ -36,7 +36,7 @@ async function renderAddressHTML(aId) {
     `;
   } catch (error) {
     addressHTML = `
-    <div class="checkout-empty-container">
+    <div class="account-empty-container">
       <h3>You have no saved addresses</h3>
       <button class="forward-btn checkout-btn" onclick="window.location.href='address.html'">
         Add an address
@@ -128,7 +128,7 @@ async function renderPaymentHTML(productId) {
     `;
   } catch (error) {
     paymentHTML = `
-      <div class="checkout-empty-container">
+      <div class="account-empty-container">
         <h3>You have no saved payment methods</h3>
         <button class="forward-btn checkout-btn" onclick="window.location.href='payment.html'">
           Add a payment method

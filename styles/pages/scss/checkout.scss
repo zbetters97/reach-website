@@ -3,23 +3,8 @@
 @use "../../layout"as *;
 
 .checkout-section {
-  font-family: $font-basic;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 0 15px $bg-shadow;
-  padding: 1em;
-  margin: 2em auto;
   width: 90%;
   max-width: 1300px;
-  @include flexbox(column, space-around, center, 1em);
-
-  h2 {
-    font-family: $font-heading;
-    font-size: calc(0.8rem + 0.5vw);
-    color: $basic-blue;
-    text-align: center;
-    margin-top: 1em;
-  }
 }
 
 .checkout-container {
@@ -55,16 +40,6 @@
 .method-change-btn {
   font-weight: 700;
   color: $basic-blue;
-}
-
-.checkout-empty-container {
-  @include flexbox(column, space-between, center);
-
-  h3 {
-    font-size: calc(0.7rem + 0.5vw);
-    color: $basic-blue;
-    opacity: 0.8;
-  }
 }
 
 .checkout-btn {
@@ -260,23 +235,6 @@
 /** END MODAL **/
 
 @media (max-width: 1200px) {
-
-  .checkout-section {
-    background-color: $basic-white;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 2em;
-    width: 100%;
-    height: 100%;
-    gap: 1em;
-
-    h2 {
-      font-size: 1.3rem;
-      margin: 0.5em 0;
-    }
-  }
-
   .checkout-container {
     font-size: calc(0.5rem + 0.5vw);
     width: 95%;
@@ -293,7 +251,6 @@
 }
 
 @media (max-width: 900px) {
-
   .checkout-container {
     font-size: 0.8rem;
     @include flexbox(column, center, center, 1em);

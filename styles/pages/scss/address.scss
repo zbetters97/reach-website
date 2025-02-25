@@ -3,75 +3,14 @@
 @use "../../layout"as *;
 
 .address-section {
-  font-family: $font-basic;
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 0 0 15px $bg-shadow;
-  margin: 2em auto;
   width: 90%;
   max-width: 600px;
-  @include flexbox(column, space-between, center, 1em);
-
-  h2 {
-    font-family: $font-heading;
-    font-size: calc(0.8rem + 0.5vw);
-    color: $basic-blue;
-    text-align: center;
-    margin-top: 1em;
-  }
 }
 
 .address-container {
   margin-bottom: 1em;
   width: 100%;
   @include flexbox(column, space-evenly, initial, 2em);
-}
-
-.address-empty-text {
-  font-size: calc(1.3rem + 0.5vw);
-  text-align: center;
-  margin: 1em;
-  opacity: 0.8;
-}
-
-.address-card {
-  font-size: calc(0.7rem + 0.5vw);
-  color: $basic-white;
-  background-image: $bg-blue;
-  border-radius: 8px;
-  padding: 1em;
-  margin: 0 auto;
-  width: 80%;
-  max-width: 500px;
-  @include flexbox(column, space-between, initial, 0.5em);
-  position: relative;
-}
-
-.address-default-tag {
-  position: absolute;
-  top: 4%;
-  right: 2%;
-}
-
-.address-card-btn-container {
-  margin: 0 auto;
-  width: 100%;
-  @include flexbox(row, space-evenly, center);
-}
-
-.address-new-container {
-  font-size: calc(1rem + 0.5vw);
-  border: 2px solid black;
-  padding: 0.7em 1em;
-  align-self: center;
-  @include flexbox(row, space-evenly, center, 0.5em);
-  cursor: pointer;
-  transition: all 150ms;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
 
 .address-back-container {
@@ -111,13 +50,6 @@
 
   &.active {
     transform: translate(-50%, -50%) scale(1);
-  }
-
-  h3 {
-    font-size: calc(0.7rem + 0.5vw);
-    color: $basic-blue;
-    text-align: center;
-    margin: 1em;
   }
 }
 
@@ -171,63 +103,13 @@
 
 /** END MODAL **/
 
-@media (max-width: 800px) {
-  .address-section {
-    background-color: $basic-white;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 2em;
-    width: 100%;
-    max-width: unset;
-    height: 100%;
-    align-items: initial;
-    gap: 2em;
-
-    h2 {
-      font-size: 1.3rem;
-      margin: 0.5em 0;
-    }
-  }
-
+@media (max-width: 900px) {
   .address-container {
     margin: 0;
   }
 
-  .address-empty-text {
-    font-size: 1.3rem;
-  }
-
-  .address-card {
-    font-size: 1.2em;
-    gap: 0.3em;
-
-    p {
-      font-size: 0.8em;
-    }
-  }
-
-  .address-default-tag {
-    font-weight: bold;
-    font-size: 0.8em;
-  }
-
   .set-default-address-btn {
     display: none;
-  }
-
-  .edit-address-btn,
-  .remove-address-btn {
-    color: black;
-    background-color: $basic-white;
-    border-radius: 6px;
-    padding: 0.5em 1em;
-    margin-top: 0.5em;
-  }
-
-  .address-new-container {
-    font-size: 1.3em;
   }
 
   .address-modal {
@@ -238,10 +120,6 @@
     height: 450px;
     @include flexbox(column);
     overflow: auto;
-
-    h3 {
-      font-size: 1rem;
-    }
   }
 
   .address-modal-field {

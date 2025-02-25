@@ -85,25 +85,23 @@
     margin: 0.5em 0;
   }
 
-  .albums {
-    &>:nth-child(odd) {
-      .album-header {
-        border: none;
-      }
-
-      .album-title {
-        border-bottom: 2px solid $basic-white;
-      }
+  .albums>:nth-child(odd) {
+    .album-header {
+      border: none;
     }
 
-    &>:nth-child(even) {
-      .album-header {
-        border: none;
-      }
+    .album-title {
+      border-bottom: 2px solid $basic-white;
+    }
+  }
 
-      .album-title {
-        border-bottom: 2px solid black;
-      }
+  .albums>:nth-child(even) {
+    .album-header {
+      border: none;
+    }
+
+    .album-title {
+      border-bottom: 2px solid black;
     }
   }
 
@@ -153,8 +151,7 @@
   }
 }
 
-@media (max-width: 800px) {
-
+@media (max-width: 900px) {
   .album {
     padding: 0;
     position: relative;

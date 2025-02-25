@@ -3,24 +3,8 @@
 @use "../../layout"as *;
 
 .account-section {
-  font-family: $font-basic;
-  background-color: white;
-  border: 3px solid black;
-  border-radius: 20px;
-  box-shadow: 0 0 15px $bg-shadow;
-  padding: 1em;
-  margin: 2em auto;
   width: 90%;
   max-width: 850px;
-  @include flexbox(column, space-around, center, 1em);
-
-  h2 {
-    font-family: $font-heading;
-    font-size: calc(0.8rem + 0.5vw);
-    color: $basic-blue;
-    text-align: center;
-    margin-top: 1em;
-  }
 }
 
 .account-container {
@@ -70,29 +54,7 @@
   }
 }
 
-@media (max-width: 800px) {
-
-  .account-section {
-    background-color: $basic-white;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    margin-bottom: 2em;
-    width: 100%;
-    height: 100%;
-    gap: 2em;
-
-    h2 {
-      font-size: 1.3rem;
-      margin: 0.5em 0;
-    }
-  }
-
-  .account-section {
-    gap: 1em;
-  }
-
+@media (max-width: 900px) {
   .account-card {
     width: 100%;
   }

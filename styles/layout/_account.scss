@@ -1,0 +1,112 @@
+@use "../abstracts"as *;
+
+.account-form {
+  font-family: $font-basic;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 15px $bg-shadow;
+  padding: 1em;
+  margin: 2em auto;
+  @include flexbox(column, space-between, center, 1em);
+}
+
+.account-empty-container {
+  @include flexbox(column, space-between, center);
+
+  h3 {
+    font-size: calc(0.7rem + 0.5vw);
+    color: $basic-blue;
+    opacity: 0.8;
+  }
+}
+
+.info-empty-text {
+  font-size: calc(1.3rem + 0.5vw);
+  text-align: center;
+  margin: 1em;
+  opacity: 0.8;
+}
+
+.info-card {
+  font-size: calc(0.7rem + 0.5vw);
+  color: $basic-white;
+  background-image: $bg-blue;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 500px;
+  @include flexbox(column, space-between, initial, 0.5em);
+  position: relative;
+}
+
+.info-card-default-tag {
+  position: absolute;
+  top: 4%;
+  right: 2%;
+}
+
+.info-card-btn-container {
+  margin: 0 auto;
+  width: 100%;
+  @include flexbox(row, space-evenly, center);
+}
+
+.info-add-container {
+  font-size: calc(1rem + 0.5vw);
+  border: 2px solid black;
+  padding: 0.7em 1em;
+  align-self: center;
+  @include flexbox(row, space-evenly, center, 0.5em);
+  cursor: pointer;
+  transition: all 150ms;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 900px) {
+  .account-form {
+    background-color: $basic-white;
+    box-shadow: none;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-bottom: 2em !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100% !important;
+    gap: 2em;
+  }
+
+  .info-empty-text {
+    font-size: 1.3rem;
+  }
+
+  .info-card {
+    font-size: 1.2em;
+    gap: 0.3em;
+
+    p {
+      font-size: 0.8em;
+    }
+  }
+
+  .info-card-default-tag {
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+
+  .info-edit-btn,
+  .info-remove-btn {
+    color: black;
+    background-color: $basic-white;
+    border-radius: 6px;
+    padding: 0.5em 1em;
+    margin-top: 0.5em;
+  }
+
+  .info-add-container {
+    font-size: 1.3em;
+  }
+}

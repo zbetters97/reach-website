@@ -103,7 +103,9 @@ function renderEmptyHTML() {
   let trackingHTML = `    
     <div class="tracking-empty-container">
       <h3>No item found for tracking!</h3>
-      <button class="back-btn tracking-empty-btn">Go back</button>
+      <button class="back-btn tracking-empty-btn" onclick="window.location.href='orders.html'">
+        Go back
+      </button>
     </div>    
   `;
 
