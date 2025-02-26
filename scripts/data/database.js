@@ -85,7 +85,6 @@ export async function dbLogin(email, password) {
     const user = userCredential.user;
 
     localStorage.setItem("loggedInUserId", user.uid);
-
     window.location.href = "account.html";
   } catch (error) {
     console.log(error);
@@ -450,3 +449,24 @@ export async function dbRemovePayment(paymentId) {
   }
 }
 /** END PAYMENT **/
+
+/** ORDERS **/
+export async function dbAddOrder(orderInfo) {
+  try {
+    const userId = auth.currentUser.uid;
+    const orderData = {
+      userId: userId,
+      createdAt: serverTimestamp(),
+      ...orderInfo,
+    };
+    const orderRef = collection(db, "orders");
+    await addDoc(orderRef, orderData);
+
+    $("#js-checkout-modal").addClass("active");
+    $("#js-modal-overlay").addClass("active");
+  } catch (error) {
+    console.log(error);
+    showFormAlert("Something went wrong! Please try again.");
+  }
+}
+/** END ORDERS **/

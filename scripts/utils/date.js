@@ -5,19 +5,17 @@ export function getCurrentDate() {
   return date;
 }
 
-export function formatDateDMY(date) {
-  return dayjs(date).format("dddd, MMMM D");
+export function formatTime(time) {
+  /* 8:00 PM */
+  const formattedTime = new Date(`1970-01-01T${time}Z`).toLocaleTimeString(
+    "en-US",
+    { timeZone: "UTC", hour12: true, hour: "numeric", minute: "numeric" }
+  );
+
+  return formattedTime;
 }
 
-export function formatDateMDLong(date) {
-  const formattedDate = new Date(date).toLocaleDateString("en-US", {
-    month: "long",
-    day: "2-digit",
-  });
-
-  return formattedDate;
-}
-
+/* Jan 1 */
 export function formatDateMDShort(date) {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     month: "short",
@@ -27,6 +25,17 @@ export function formatDateMDShort(date) {
   return formattedDate;
 }
 
+/* January 01 */
+export function formatDateMDLong(date) {
+  const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "2-digit",
+  });
+
+  return formattedDate;
+}
+
+/* January 1, 2025 */
 export function formatDateMDYLong(date) {
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     month: "long",
@@ -37,11 +46,7 @@ export function formatDateMDYLong(date) {
   return formattedDate;
 }
 
-export function formatTime(time) {
-  const formattedTime = new Date(`1970-01-01T${time}Z`).toLocaleTimeString(
-    "en-US",
-    { timeZone: "UTC", hour12: true, hour: "numeric", minute: "numeric" }
-  );
-
-  return formattedTime;
+/* Monday, January 1 */
+export function formatDateDMD(date) {
+  return dayjs(date).format("dddd, MMMM D");
 }

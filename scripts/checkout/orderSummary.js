@@ -7,7 +7,7 @@ import {
   deliveryOptions,
 } from "../data/deliveryOptions.js";
 import {
-  formatDateDMY,
+  formatDateDMD,
   formatDateMDYLong,
   formatTime,
   getCurrentDate,
@@ -129,7 +129,6 @@ export function renderOrderSummaryHTML() {
             </div>
           </div>
           
-
           <div class="product-delivery">
             <div class="delivery-option">
               <input type="radio" name="radio-option-${cartId}" checked />
@@ -201,7 +200,7 @@ function deliveryOptionsHTML(item) {
 
     const isChecked = deliveryId == item.deliveryId;
 
-    const date = formatDateDMY(calculateDeliveryDate(deliveryOption));
+    const date = formatDateDMD(calculateDeliveryDate(deliveryOption));
 
     const price =
       deliveryOption.priceCents === 0
