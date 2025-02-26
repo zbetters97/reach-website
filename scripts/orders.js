@@ -1,9 +1,8 @@
-import { dbGetUser } from "./data/database.js";
-import { orders } from "./data/orders.js";
+import { dbGetUser, dbGetUserOrders } from "./data/database.js";
 import { showLoginErrorModal } from "./utils/form.js";
 import { handleWindow } from "./utils/window.js";
 import formatCurrency from "./utils/money.js";
-import { formatDateDMY, formatDateMDYLong, formatTime } from "./utils/date.js";
+import { formatDateMDYLong, formatDateDMD, formatTime } from "./utils/date.js";
 import { getProduct, loadProducts } from "./data/products.js";
 import { getConcert } from "./data/concerts.js";
 
@@ -20,58 +19,61 @@ async function loadUser() {
   try {
     await dbGetUser();
     loadProducts();
-    renderOrderPage();
+    await renderOrderPage();
   } catch (error) {
     console.log(error);
     showLoginErrorModal();
   }
 }
 
-function renderOrderPage() {
+async function renderOrderPage() {
   let ordersHTML = ``;
 
-  if (orders.length <= 0) {
-    ordersHTML = `
-      <div class="orders-empty-container">
-        <h3>You have no submitted orders!</h3>
-        <button class="forward-btn orders-empty-btn" onclick="window.location.href='shop.html'">
-          Go to shop
-        </button>
-      </div>
-    `;
-  }
+  try {
+    const orders = await dbGetUserOrders();
 
-  orders.forEach((order) => {
-    const orderId = order.orderId;
-    const total = formatCurrency(order.totalInCents);
-    const date = formatDateMDYLong(order.orderDate);
-
-    ordersHTML += `
-      <div class="order-container">
-        <div class="order-header">
-          <div class="order-header-date">
-            <h3>Order Placed:</h3>
-            <p>${date}</p>
-          </div>
-          <div class="order-header-total">
-            <h3>Total:</h3>
-            <p>$${total}</p>
-          </div>
-          <div class="order-header-id">
-            <h3>Order ID:</h3>
-            <p>${orderId}</p>
-          </div>
+    if (orders.length <= 0) {
+      ordersHTML = `
+        <div class="orders-empty-container">
+          <h3>You have no submitted orders!</h3>
+          <button class="forward-btn orders-empty-btn" onclick="window.location.href='shop.html'">
+            Go to shop
+          </button>
         </div>
-    `;
+      `;
+    }
 
-    let itemsHTML = ``;
-    order.items.forEach((item) => {
-      if (item.category === "S") {
-        const product = getProduct(item.productId);
-        const image = product.changeColor(item.color);
-        const date = formatDateDMY(item.deliveryDate);
+    orders.forEach((order) => {
+      const orderId = order.orderId;
+      const total = formatCurrency(order.totalInCents);
+      const date = formatDateMDYLong(order.createdAt.toDate());
 
-        itemsHTML += `    
+      ordersHTML += `
+        <div class="order-container">
+          <div class="order-header">
+            <div class="order-header-date">
+              <h3>Order Placed:</h3>
+              <p>${date}</p>
+            </div>
+            <div class="order-header-total">
+              <h3>Total:</h3>
+              <p>$${total}</p>
+            </div>
+            <div class="order-header-id">
+              <h3>Order ID:</h3>
+              <p>${orderId}</p>
+            </div>
+          </div>
+      `;
+
+      let itemsHTML = ``;
+      order.items.forEach((item) => {
+        if (item.category === "S") {
+          const product = getProduct(item.productId);
+          const image = product.changeColor(item.color);
+          const date = formatDateDMD(item.deliveryDate.toDate());
+
+          itemsHTML += `    
           <div class="order-products-container">
             <div class="order-product-card" 
               data-order-id=${orderId} data-product-id=${product.productId}>
@@ -93,13 +95,13 @@ function renderOrderPage() {
             </div>
           </div>
         `;
-      } else if (item.category === "T") {
-        const concert = getConcert(item.productId);
-        const location = `${concert.city}, ${concert.state}`;
-        const date = formatDateMDYLong(concert.date);
-        const time = formatTime(concert.time);
+        } else if (item.category === "T") {
+          const concert = getConcert(item.productId);
+          const location = `${concert.city}, ${concert.state}`;
+          const date = formatDateMDYLong(concert.date);
+          const time = formatTime(concert.time);
 
-        itemsHTML += `    
+          itemsHTML += `    
           <div class="order-products-container">
             <div class="order-product-card">
               <img
@@ -117,21 +119,23 @@ function renderOrderPage() {
             </div>
           </div>
         `;
-      }
+        }
+      });
+
+      ordersHTML += `${itemsHTML} </div>`;
     });
 
-    ordersHTML += `${itemsHTML} </div>`;
-  });
+    ordersHTML += `
+      <button class="back-btn orders-back-btn" onclick="window.location.href='account.html'">
+        Go back
+      </button>
+    `;
 
-  ordersHTML += `
-    <button class="back-btn orders-back-btn" onclick="window.location.href='account.html'">
-      Go back
-    </button>
-  `;
-
-  $("#js-orders-container").html(ordersHTML);
-
-  handleTracking();
+    $("#js-orders-container").html(ordersHTML);
+    handleTracking();
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function handleTracking() {

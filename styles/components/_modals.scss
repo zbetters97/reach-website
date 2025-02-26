@@ -38,7 +38,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  padding: 1em 2em;
+  padding: 2em;
   @include flexbox(column, center, center);
   z-index: 999;
   transform: translate(-50%, -50%) scale(0);

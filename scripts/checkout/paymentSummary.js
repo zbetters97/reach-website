@@ -6,11 +6,8 @@ import {
 } from "../data/deliveryOptions.js";
 import formatCurrency from "../utils/money.js";
 import { showFormAlert } from "../utils/form.js";
-import { addOrder } from "../data/orders.js";
 import { getConcert } from "../data/concerts.js";
-import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
-
-const modal = $("#js-checkout-modal");
+import { dbAddOrder } from "../data/database.js";
 
 export function renderPaymentSummaryHTML() {
   let productPriceCents = 0;
@@ -96,32 +93,21 @@ async function submitOrder() {
       productId: item.productId,
       category: item.category,
       type: item.type,
-      color: item.color,
+      color: item.color || "",
       quantity: item.quantity,
-      deliveryDate: calculateDeliveryDate(getDeliveryOption(item.deliveryId)),
+      deliveryDate: calculateDeliveryDate(
+        getDeliveryOption(item.deliveryId)
+      ).toDate(),
     });
   });
 
-  const orderId =
-    Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
   const orderTotal = $("#js-order-total").data("order-total");
 
-  let order = {
-    orderId: orderId,
-    orderDate: dayjs(),
+  let orderInfo = {
     totalInCents: orderTotal,
     items: orderItems,
   };
 
-  addOrder(order);
+  await dbAddOrder(orderInfo);
   cart.emptyCart();
-
-  openModal(modal);
-}
-
-function openModal(modal) {
-  if (modal != null) {
-    modal.addClass("active");
-    $("#js-modal-overlay").addClass("active");
-  }
 }

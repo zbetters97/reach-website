@@ -1,9 +1,8 @@
-import { dbGetUser } from "./data/database.js";
+import { dbGetOrderById, dbGetUser } from "./data/database.js";
 import { showLoginErrorModal } from "./utils/form.js";
 import { handleWindow } from "./utils/window.js";
 import { getProduct, loadProducts } from "./data/products.js";
-import { getOrder, getOrderProduct } from "./data/orders.js";
-import { formatDateDMY } from "./utils/date.js";
+import { formatDateDMD } from "./utils/date.js";
 import { getDeliveryDaysRemaining } from "./data/deliveryOptions.js";
 
 $(document).ready(function () {
@@ -19,13 +18,13 @@ async function loadUser() {
   try {
     await dbGetUser();
     loadProducts();
-    renderTrackingPage();
+    await renderTrackingPage();
   } catch {
     showLoginErrorModal();
   }
 }
 
-function renderTrackingPage() {
+async function renderTrackingPage() {
   let trackingHTML = ``;
 
   try {
@@ -33,13 +32,16 @@ function renderTrackingPage() {
     const orderId = url.searchParams.get("orderId");
     const productId = url.searchParams.get("productId");
 
-    const order = getOrder(orderId);
-    const orderProduct = getOrderProduct(order, productId);
+    const order = await dbGetOrderById(orderId);
+
     const product = getProduct(productId);
-    const date = formatDateDMY(orderProduct.deliveryDate);
+    const orderProduct = getOrderProduct(order, productId);
+    const date = formatDateDMD(orderProduct.deliveryDate.toDate());
     const image = product.changeColor(product.color);
 
-    const daysRemaining = getDeliveryDaysRemaining(orderProduct.deliveryDate);
+    const daysRemaining = getDeliveryDaysRemaining(
+      orderProduct.deliveryDate.toDate()
+    );
 
     trackingHTML = `
       <div class="tracking-product-container">
@@ -90,7 +92,9 @@ function renderTrackingPage() {
 
     $("#js-tracking-container").html(trackingHTML);
 
-    setTimeout(() => renderProgressBar(orderProduct.deliveryDate), 1000);
+    setTimeout(() => {
+      renderProgressBar(orderProduct.deliveryDate.toDate()), 1000;
+    });
   } catch (error) {
     console.log(error);
     renderEmptyHTML();
@@ -108,6 +112,16 @@ function renderEmptyHTML() {
   `;
 
   $("#js-tracking-container").html(trackingHTML);
+}
+
+function getOrderProduct(order, productId) {
+  const index = order.items.findIndex((item) => {
+    return item.productId == productId;
+  });
+
+  const orderProduct = order.items[index];
+
+  return orderProduct;
 }
 
 function renderProgressBar(deliveryDate) {

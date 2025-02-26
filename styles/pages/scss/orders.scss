@@ -8,11 +8,13 @@
 }
 
 .orders-container {
+  width: 95%;
   @include flexbox(column, space-between, center, 2em);
 }
 
 .order-container {
   border: 2px solid black;
+  width: 100%;
 }
 
 .orders-empty-container {

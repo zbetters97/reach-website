@@ -469,4 +469,34 @@ export async function dbAddOrder(orderInfo) {
     showFormAlert("Something went wrong! Please try again.");
   }
 }
+export async function dbGetUserOrders() {
+  const orderRef = collection(db, "orders");
+  const userId = auth.currentUser.uid;
+  const q = query(
+    orderRef,
+    where("userId", "==", userId),
+    orderBy("createdAt", "desc")
+  );
+  const querySnapshot = await getDocs(q);
+
+  const orders = [];
+  querySnapshot.forEach((order) => {
+    orders.push({
+      orderId: order.id,
+      ...order.data(),
+    });
+  });
+
+  return orders;
+}
+export async function dbGetOrderById(orderId) {
+  const orderRef = doc(db, "orders", orderId);
+  const orderDoc = await getDoc(orderRef);
+
+  if (orderDoc.exists()) {
+    return orderDoc.data();
+  } else {
+    throw new Error("reference to order was not established");
+  }
+}
 /** END ORDERS **/
