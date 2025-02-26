@@ -69,7 +69,7 @@ export default concerts;
 
 export function getConcert(ticketId) {
   const concert =
-    concerts[concerts.findIndex((c) => c.ticketId == ticketId)] || concerts[0];
+    concerts[concerts.findIndex((c) => c.ticketId == ticketId)] || null;
 
   return concert;
 }

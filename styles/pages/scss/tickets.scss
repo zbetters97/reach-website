@@ -3,22 +3,15 @@
 @use "../../layout"as *;
 
 .tickets-section {
-  font-family: $font-basic;
   color: $basic-white;
   background-image: $bg-blue;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-  margin: 2em auto 2em auto;
+  padding: 0;
   width: 80%;
   max-width: 600px;
-  @include flexbox(column, space-evenly, center, 1em);
+}
 
-  h2 {
-    font-family: $font-heading;
-    font-size: calc(0.8rem + 0.5vw);
-    text-align: center;
-    margin-top: 1em;
-  }
+.tickets-header {
+  color: $basic-white;
 }
 
 .tickets-container {
@@ -58,6 +51,10 @@
   padding: 0.3em;
   margin-top: 0.3em;
   outline: none;
+
+  option {
+    color: black;
+  }
 }
 
 .ticket-add-container {

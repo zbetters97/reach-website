@@ -99,10 +99,61 @@
     </header>
     <main>
       <div class="wrapper">
-        <section class="tickets-section">
-          <h2>Tickets Checkout</h2>
+        <section class="account-form tickets-section">
+          <h2 class="form-header tickets-header">Tickets Checkout</h2>
           <div class="tickets-container" id="js-tickets-container">
-            <!-- JS INSERTS DATA HERE -->
+            <ul class="ticket-info-list" id="js-ticket-info-list"></ul>
+
+            <div class="ticket-input-container">
+              <div class="ticket-field ticket-type">
+                <label for="ticket-type">Type</label>
+                <select
+                  class="ticket-input"
+                  id="js-ticket-type"
+                  name="ticket-type"
+                >
+                  <option value="Standard">Standard</option>
+                  <option value="Deluxe">Deluxe</option>
+                  <option value="VIP">VIP</option>
+                </select>
+              </div>
+
+              <div class="ticket-field ticket-quantity">
+                <label for="ticket-quantity">Quantity</label>
+                <input
+                  class="ticket-input"
+                  id="js-ticket-quantity"
+                  name="ticket-quantity"
+                  type="number"
+                  value="1"
+                  min="1"
+                  max="10"
+                />
+              </div>
+
+              <div class="ticket-field ticket-price">
+                <label for="ticket-price">Price</label>
+                <input
+                  class="ticket-input"
+                  id="js-ticket-price"
+                  name="ticket-price"
+                  readonly
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="ticket-add-container">
+              <div class="add-cart-alert" id="js-ticket-alert">
+                <i class="fa-solid fa-check"></i>
+                <p>Added to cart</p>
+              </div>
+              <button
+                class="add-cart-btn ticket-add-btn"
+                id="js-tickets-add-btn"
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
           <div class="tickets-back-container">
             <a class="back-btn" href="tour.html"> Go back </a>

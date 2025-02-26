@@ -12,8 +12,7 @@
     background-image: $bg-blue;
     color: $basic-white;
 
-    .album-img,
-    .album-header {
+    .album-title {
       border: 2px solid $basic-white;
     }
   }
@@ -22,8 +21,7 @@
     background-color: $basic-white;
     color: black;
 
-    .album-img,
-    .album-header {
+    .album-title {
       border: 2px solid black;
     }
   }
@@ -36,13 +34,25 @@
   @include flexbox(row, center);
 }
 
+.album-img-container {
+  @include flexbox(row, center);
+  position: relative;
+}
+
 .album-img {
   width: 100%;
   max-width: 500px;
 }
 
-.album-img-services {
-  display: none;
+.album-services {
+  font-size: calc(2.2rem + 0.5vw);
+  color: $basic-white;
+  background-color: $bg-shadow;
+  padding: 0.3em 0.5em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  @include flexbox(row, center, center, $gap: 0.5em);
 }
 
 .album-content {
@@ -50,24 +60,14 @@
   @include flexbox(column, $gap: 2em);
 }
 
-.album-header {
-  padding: 0.5em 1em;
-  margin: 0 auto;
-  width: 80%;
-  @include flexbox(row, center, center);
-}
-
-.album-services {
-  font-size: calc(2.5rem + 0.5vw);
-  margin-left: auto;
-  @include flexbox(row, center, center, $gap: 0.5em);
-}
-
 .album-title {
   font-family: $font-heading;
   font-weight: 400;
   font-size: calc(2rem + 0.5vw);
-  margin-left: auto;
+  text-align: center;
+  padding: 0.5em 1em;
+  margin: 0 auto;
+  width: 80%;
 }
 
 .album-songs {
@@ -105,45 +105,17 @@
     }
   }
 
-  .album-img-container {
-    @include flexbox(row, center);
-    position: relative;
-  }
-
-  .album-img {
-    width: 100%;
-  }
-
-  .album-img-services {
-    font-size: calc(2.2rem + 0.5vw);
-    color: $basic-white;
-    display: unset;
-    padding: 0.3em 0.5em;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    @include flexbox(row, center, center, $gap: 0.5em);
-  }
-
   .album-content {
     gap: 1em;
     width: 50%;
   }
 
-  .album-header {
-    width: 100%;
-    @include flexbox(column, center, center, 0.3em);
-  }
-
   .album-title {
-    text-align: center;
+    font-size: calc(1.5rem + 0.5vw);
     padding-bottom: 0.2em;
     margin: 0;
     width: 80%;
-  }
-
-  .album-services {
-    display: none;
+    box-sizing: border-box;
   }
 
   .album-songs {
@@ -157,39 +129,30 @@
     position: relative;
   }
 
-  .album-img-container {
-    width: 100%;
-  }
-
   .album-img {
     max-width: unset;
-    border: none !important;
   }
 
-  .album-img-services {
-    font-size: calc(2.5rem + 0.5vw);
-    z-index: 2;
+  .album-services {
     background-color: unset;
-    position: absolute;
-    bottom: 0;
-    left: unset;
+    z-index: 1;
   }
 
   .album-content {
+    color: $basic-white;
+    background-color: $bg-shadow;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $basic-white;
-    background-color: $bg-shadow;
   }
 
   .album-title {
-    font-size: calc(2rem + 0.5vw);
     font-weight: 600;
     border-color: $basic-white !important;
+    width: 100%;
   }
 
   .album-songs {

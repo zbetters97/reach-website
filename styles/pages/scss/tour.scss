@@ -12,7 +12,7 @@
       color: $basic-white;
     }
 
-    .concert-venue {
+    .concert-seperator {
       border-bottom: 3px solid $basic-white;
     }
   }
@@ -61,6 +61,10 @@
   padding-bottom: 1em;
   width: 80%;
   max-width: 500px;
+}
+
+.concert-seperator {
+  width: 40%;
 }
 
 .map-title {
@@ -183,15 +187,19 @@
     margin: 0.5em 0;
   }
 
-  .map-title,
-  .map-container {
-    display: none;
-  }
-
   .concert-info.link {
     color: black;
     background-color: $basic-white;
     border: 2px solid black;
     padding: 0.7em 1em;
+  }
+
+  .concert-seperator {
+    display: none;
+  }
+
+  .map-title,
+  .map-container {
+    display: none;
   }
 }

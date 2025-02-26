@@ -12,13 +12,18 @@ $(document).ready(function () {
 });
 
 function loadPage() {
-  renderTicketHTML();
+  renderTicketInfoHTML();
 }
 
-function renderTicketHTML() {
+function renderTicketInfoHTML() {
   const url = new URL(window.location.href);
   const ticketId = url.searchParams.get("eventId");
   const concert = getConcert(ticketId);
+
+  if (!concert) {
+    window.location.href = "tour.html";
+    return;
+  }
 
   const date = formatDateMDYLong(concert.date);
   const time = formatTime(concert.time);
@@ -26,110 +31,53 @@ function renderTicketHTML() {
   const location = `${concert.city}, ${concert.state}`;
   const venue = concert.venue;
 
-  totalPrice = formatCurrency(concert.ticketPrice["Standard"]);
+  $("#js-ticket-info-list").html(
+    `<li>${date}</li>
+    <li>${time} (EST)</li>
+    <li>${location}, USA</li>
+    <li>${venue}</li>`
+  );
 
-  let ticketHTML = `
-    <ul class="ticket-info-list">
-      <li>${date}</li>
-      <li>${time} (EST)</li>
-      <li>${location}, USA</li>
-      <li>${venue}</li>
-    </ul>
+  const type = $("#js-ticket-type");
+  const basePrice = concert.ticketPrice[type.val()];
+  const quantity = $("#js-ticket-quantity");
 
-    <div class="ticket-input-container">
-      <div class="ticket-field ticket-type">
-        <label for="ticket-type">Type</label>
-        <select 
-          class="ticket-input"
-          id="js-ticket-type" 
-          name="ticket-type"
-        >
-          <option value="Standard">Standard</option>
-          <option value="Deluxe">Deluxe</option>
-          <option value="VIP">VIP</option>
-        </select>
-      </div>
+  totalPrice = formatCurrency(basePrice * parseInt(quantity.val()));
 
-      <div class="ticket-field ticket-quantity">
-        <label for="ticket-quantity">Quantity</label>
-        <input
-          class="ticket-input"
-          id="js-ticket-quantity"          
-          name="ticket-quantity"
-          type="number"
-          value="1"
-          min="1"
-          max="10"
-        />
-      </div>
+  $("#js-ticket-price").val(`$${totalPrice}`);
 
-      <div class="ticket-field ticket-price">
-        <label for="ticket-price">Price</label>
-        <input
-          class="ticket-input"
-          id="js-ticket-price"
-          name="ticket-price"
-          readonly
-          type="text"
-          value="$${totalPrice}"
-        />
-      </div>
-    </div>
-    <div class="ticket-add-container">
-      <div class="add-cart-alert" id="js-ticket-alert">
-        <i class="fa-solid fa-check"></i>
-        <p>Added to cart</p>
-      </div>
-      <button 
-        class="add-cart-btn ticket-add-btn" 
-        id="js-tickets-add-btn"
-      >
-        Add to Cart
-      </button>
-    </div>
-  `;
+  quantity.keypress((event) => event.preventDefault());
+  quantity.change(() => updateTotal(concert));
 
-  $("#js-tickets-container").html(ticketHTML);
+  type.change(() => updateTotal(concert));
 
-  const ticketQuantity = $("#js-ticket-quantity");
-  const ticketType = $("#js-ticket-type");
+  $("#js-tickets-add-btn").on("click", () =>
+    addTicket(ticketId, type.val(), parseInt(quantity.val()))
+  );
+}
 
-  ticketQuantity.keypress(function (event) {
-    event.preventDefault();
-  });
+function addTicket(id, type, quantity) {
+  const ticketAlert = $("#js-ticket-alert");
 
-  ticketQuantity.change(function () {
-    updateTotal(concert);
-  });
-
-  ticketType.change(function () {
-    updateTotal(concert);
-  });
-
-  $("#js-tickets-add-btn").on("click", () => {
-    const quantity = parseInt(ticketQuantity.val());
-    const ticketAlert = $("#js-ticket-alert");
-
-    if (isNaN(quantity) || quantity > 10 || quantity < 1) {
-      ticketAlert.html(
-        `<i class="fa-solid fa-circle-exclamation"></i>
-        <p class="js-db-alert-message">Please provide a valid quantity!</p>`
-      );
-      ticketAlert.css("color", "red");
-
-      showAddToCartMsg();
-      return;
-    }
-
+  if (isNaN(quantity) || quantity > 10 || quantity < 1) {
     ticketAlert.html(
-      `<i class="fa-solid fa-check"></i>
-        <p>Added to cart</p>`
+      `<i class="fa-solid fa-circle-exclamation"></i>
+      <p class="js-db-alert-message">Please provide a valid quantity!</p>`
     );
-    ticketAlert.css("color", "green");
+    ticketAlert.css("color", "red");
 
     showAddToCartMsg();
-    cart.addToCart(ticketId, parseInt(quantity), "T", ticketType.val());
-  });
+    return;
+  }
+
+  ticketAlert.html(
+    `<i class="fa-solid fa-check"></i>
+      <p>Added to cart</p>`
+  );
+  ticketAlert.css("color", "green");
+
+  cart.addToCart(id, quantity, "T", type);
+  showAddToCartMsg();
 }
 
 function updateTotal(concert) {
@@ -145,7 +93,5 @@ function showAddToCartMsg() {
   const addedMessage = $("#js-ticket-alert");
   addedMessage.css("opacity", "1");
 
-  setTimeout(() => {
-    addedMessage.css("opacity", "0");
-  }, 2000);
+  setTimeout(() => addedMessage.css("opacity", "0"), 2000);
 }
