@@ -1,7 +1,36 @@
 @use "../abstracts"as *;
 
+.basic-modal {
+  color: $basic-blue;
+  background-color: $basic-white;
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 1em;
+  @include flexbox(column, center, center);
+  z-index: 999;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+
+  &.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.modal-close-btn {
+  font-weight: bold;
+  font-size: 2rem;
+  color: $basic-blue;
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  right: 2%;
+}
+
 .alert-modal {
-  font-size: calc(1.7rem + 0.5vw);
   font-family: $font-secondary;
   color: $basic-blue;
   background-color: $basic-white;
@@ -27,19 +56,22 @@
 }
 
 .alert-modal-msg {
+  font-size: 1rem;
   text-align: center;
   margin-bottom: 1.3em;
   gap: 0.3em;
 }
 
 .success-modal-msg {
+  font-size: 1.5rem;
   color: green;
+  text-align: center;
   margin-bottom: 1.3em;
   @include flexbox(row, center, center, 0.3em);
 }
 
 .alert-modal-btn {
-  font-size: calc(1.3rem + 0.5vw);
+  font-size: calc(1rem + 0.5vw);
   color: black;
   background-color: transparent;
   padding: 0.7em 1.2em;
@@ -66,5 +98,41 @@
   &.active {
     opacity: 1;
     pointer-events: all;
+  }
+}
+
+@media (max-width: 900px) {
+  .basic-modal {
+    border-radius: 0;
+    padding: 0;
+    @include flexbox(column);
+  }
+
+  .modal-close-btn {
+    font-weight: bold;
+    font-size: calc(1.7rem + 0.5vw);
+    color: $basic-blue;
+    background: none;
+    border: none;
+    outline: none;
+    position: fixed;
+    top: 0;
+    right: 2%;
+  }
+
+  .alert-modal {}
+
+  .alert-modal-container {}
+
+  .alert-modal-msg {
+    font-size: calc(0.8rem + 0.5vw);
+  }
+
+  .success-modal-msg {
+    font-size: calc(1rem + 0.5vw);
+  }
+
+  .alert-modal-btn {
+    font-size: calc(1rem + 0.5vw);
   }
 }

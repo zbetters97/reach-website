@@ -158,43 +158,8 @@
 
 /** MODAL **/
 .checkout-modal {
-  color: $basic-blue;
-  background-color: $basic-white;
-  border-radius: 10px;
-  padding: 0.5em;
   width: 500px;
   max-width: 80%;
-  @include flexbox(column, space-between, center);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 999;
-  transform: translate(-50%, -50%) scale(0);
-  transition: 200ms ease-in-out;
-
-  &.active {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  h2 {
-    font-family: $font-heading;
-    font-size: calc(0.8rem + 0.5vw);
-    color: $basic-blue;
-    text-align: center;
-    margin: 1em;
-  }
-}
-
-.checkout-modal-close-btn {
-  font-weight: bold;
-  font-size: calc(1.5rem + 0.5vw);
-  color: $basic-blue;
-  background: none;
-  border: none;
-  outline: none;
-  position: absolute;
-  top: 0;
-  right: 2%;
 }
 
 .checkout-modal-container {
@@ -259,7 +224,8 @@
   .checkout-item.checkout-summary-container {
     order: 1;
     border: none;
-    width: 80%;
+    width: 90%;
+    max-width: 400px;
     height: 200px;
   }
 

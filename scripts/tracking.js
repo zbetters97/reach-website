@@ -90,9 +90,7 @@ function renderTrackingPage() {
 
     $("#js-tracking-container").html(trackingHTML);
 
-    setTimeout(function () {
-      renderProgressBar(orderProduct.deliveryDate);
-    }, 1000);
+    setTimeout(() => renderProgressBar(orderProduct.deliveryDate), 1000);
   } catch (error) {
     console.log(error);
     renderEmptyHTML();

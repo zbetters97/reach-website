@@ -18,9 +18,7 @@ function renderMusicHTML() {
     const title = album.title;
 
     let songsHTML = ``;
-    album.songs.forEach((song) => {
-      songsHTML += `<li>${song}</li>`;
-    });
+    album.songs.forEach((song) => (songsHTML += `<li>${song}</li>`));
 
     albumHTML += `
       <div class="album">

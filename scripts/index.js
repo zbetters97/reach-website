@@ -34,9 +34,7 @@ function renderAlbumHTML() {
   const title = album.title;
 
   let songsHTML = ``;
-  album.songs.forEach((song) => {
-    songsHTML += `<li>${song}</li>`;
-  });
+  album.songs.forEach((song) => (songsHTML += `<li>${song}</li>`));
 
   let albumHTML = `
     <img class="home-album-img" src="${image}" />

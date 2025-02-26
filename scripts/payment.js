@@ -157,7 +157,7 @@ async function renderModalHTML(paymentId) {
   }
 
   let modalHTML = `
-    <button class="payment-close-btn" id="js-payment-close-modal-btn">
+    <button class="modal-close-btn" id="js-payment-close-modal-btn">
       &times;
     </button>
 
@@ -232,9 +232,9 @@ async function renderModalHTML(paymentId) {
   $("#js-payment-modal").html(modalHTML);
   $("#js-payment-modal-default").prop("checked", isDefault);
 
-  $("#js-modal-overlay, #js-payment-close-modal-btn").on("click", () => {
-    closeModal(modal);
-  });
+  $("#js-modal-overlay, #js-payment-close-modal-btn").on("click", () =>
+    closeModal(modal)
+  );
 
   $("#js-payment-success-btn").on("click", () => {
     closeModal($("#js-success-modal"));

@@ -69,9 +69,7 @@ export function renderPaymentSummaryHTML() {
 
   $("#js-order-summary").html(orderSummaryHTML);
 
-  $("#js-checkout-submit-btn").on("click", () => {
-    submitOrder();
-  });
+  $("#js-checkout-submit-btn").on("click", () => submitOrder());
 }
 
 async function submitOrder() {

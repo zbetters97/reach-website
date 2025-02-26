@@ -93,11 +93,7 @@ export function showFormAlert(message) {
     timeouts.pop();
   }
 
-  timeouts.push(
-    setTimeout(function () {
-      $(".js-db-alert").css("opacity", 0);
-    }, 3000)
-  );
+  timeouts.push(setTimeout(() => $(".js-db-alert").css("opacity", 0), 3000));
 }
 export function hideFormAlert() {
   $(".js-db-alert").css("opacity", 0);

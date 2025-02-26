@@ -68,7 +68,5 @@ function handleAccountPage() {
     }
   });
 
-  $(".nav-logout-link").on("click", () => {
-    dbLogout();
-  });
+  $(".nav-logout-link").on("click", () => dbLogout());
 }

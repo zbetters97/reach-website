@@ -36,27 +36,25 @@ async function renderAddressHTML(aId) {
     `;
   } catch (error) {
     addressHTML = `
-    <div class="account-empty-container">
-      <h3>You have no saved addresses</h3>
-      <button class="forward-btn checkout-btn" onclick="window.location.href='address.html'">
-        Add an address
-      </button>
-    </div>
+      <div class="account-empty-container">
+        <h3>You have no saved addresses</h3>
+        <button class="forward-btn checkout-btn" onclick="window.location.href='address.html'">
+          Add an address
+        </button>
+      </div>
     `;
   }
 
   $("#js-checkout-address").html(addressHTML);
 
-  $("#js-address-change-btn").on("click", () => {
-    renderAddressModal();
-  });
+  $("#js-address-change-btn").on("click", () => renderAddressModal());
 }
 
 async function renderAddressModal() {
   try {
     let addressModalHTML = `
-      <h2>Your Addresses</h2>
-      <button class="checkout-modal-close-btn" id="js-checkout-address-close-btn">
+      <h2 class="modal-header">Your Addresses</h2>
+      <button class="modal-close-btn" id="js-checkout-address-close-btn">
         &times;
       </button>
       <div class="checkout-modal-container">
@@ -139,16 +137,14 @@ async function renderPaymentHTML(productId) {
 
   $("#js-checkout-payment").html(paymentHTML);
 
-  $("#js-payment-change-btn").on("click", () => {
-    renderPaymentModal();
-  });
+  $("#js-payment-change-btn").on("click", () => renderPaymentModal());
 }
 
 async function renderPaymentModal() {
   try {
     let paymentModalHTML = `
-      <h2>Your Payments</h2>
-      <button class="checkout-modal-close-btn" id="js-checkout-payment-close-btn">
+      <h2 class="modal-header">Your Payments</h2>
+      <button class="modal-close-btn" id="js-checkout-payment-close-btn">
         &times;
       </button>
       <div class="checkout-modal-container">

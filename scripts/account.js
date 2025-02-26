@@ -24,7 +24,5 @@ function renderAccountHTML(user) {
   $("#js-account-name").html(`Welcome back, ${user.firstName}!`);
   $("#js-account-name").css("opacity", 1);
 
-  $("#js-logout-btn").on("click", () => {
-    dbLogout();
-  });
+  $("#js-logout-btn").on("click", () => dbLogout());
 }

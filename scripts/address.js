@@ -160,7 +160,7 @@ async function renderModalHTML(addressId) {
   }
 
   let modalHTML = `
-    <button class="address-close-btn" id="js-address-close-modal-btn">
+    <button class="modal-close-btn" id="js-address-close-modal-btn">
       &times;
     </button>
 
@@ -255,9 +255,9 @@ async function renderModalHTML(addressId) {
   $("#js-address-modal-state").val(`${state}`);
   $("#js-address-modal-default").prop("checked", isDefault);
 
-  $("#js-modal-overlay, #js-address-close-modal-btn").on("click", () => {
-    closeModal(modal);
-  });
+  $("#js-modal-overlay, #js-address-close-modal-btn").on("click", () =>
+    closeModal(modal)
+  );
 
   $("#js-address-success-btn").on("click", () => {
     closeModal($("#js-success-modal"));

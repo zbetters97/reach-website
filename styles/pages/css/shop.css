@@ -143,8 +143,41 @@ h1 {
     font-size: 1.2rem;
   }
 }
+.basic-modal {
+  color: rgb(0, 44, 95);
+  background-color: rgb(250, 250, 250);
+  border-radius: 10px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
+  z-index: 999;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+}
+.basic-modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-close-btn {
+  font-weight: bold;
+  font-size: 2rem;
+  color: rgb(0, 44, 95);
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 0;
+  right: 2%;
+}
+
 .alert-modal {
-  font-size: calc(1.7rem + 0.5vw);
   font-family: "Archivo", Arial, sans-serif;
   color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
@@ -179,13 +212,16 @@ h1 {
 }
 
 .alert-modal-msg {
+  font-size: 1rem;
   text-align: center;
   margin-bottom: 1.3em;
   gap: 0.3em;
 }
 
 .success-modal-msg {
+  font-size: 1.5rem;
   color: green;
+  text-align: center;
   margin-bottom: 1.3em;
   display: flex;
   flex-direction: row;
@@ -196,7 +232,7 @@ h1 {
 }
 
 .alert-modal-btn {
-  font-size: calc(1.3rem + 0.5vw);
+  font-size: calc(1rem + 0.5vw);
   color: black;
   background-color: transparent;
   padding: 0.7em 1.2em;
@@ -225,6 +261,38 @@ h1 {
   pointer-events: all;
 }
 
+@media (max-width: 900px) {
+  .basic-modal {
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+    align-items: initial;
+    gap: initial;
+    flex-wrap: initial;
+  }
+  .modal-close-btn {
+    font-weight: bold;
+    font-size: calc(1.7rem + 0.5vw);
+    color: rgb(0, 44, 95);
+    background: none;
+    border: none;
+    outline: none;
+    position: fixed;
+    top: 0;
+    right: 2%;
+  }
+  .alert-modal-msg {
+    font-size: calc(0.8rem + 0.5vw);
+  }
+  .success-modal-msg {
+    font-size: calc(1rem + 0.5vw);
+  }
+  .alert-modal-btn {
+    font-size: calc(1rem + 0.5vw);
+  }
+}
 @font-face {
   font-family: "ostrich_sansmedium";
   src: url("/fonts/ostrich-regular-webfont.woff2") format("woff2"), url("/fonts/ostrich-regular-webfont.woff") format("woff");
@@ -649,6 +717,7 @@ footer {
 }
 
 .account-empty-container {
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -732,7 +801,7 @@ footer {
     width: 100% !important;
     max-width: none !important;
     height: 100% !important;
-    gap: 2em;
+    gap: 0em;
   }
   .info-empty-text {
     font-size: 1.3rem;
@@ -976,9 +1045,6 @@ footer {
   background-color: transparent;
   border: 3px solid rgb(250, 250, 250);
   border-radius: 10px;
-  align-self: center;
-  position: relative;
-  overflow: hidden;
 }
 
 @media (max-width: 1200px) {

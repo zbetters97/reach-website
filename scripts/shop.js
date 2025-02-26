@@ -102,9 +102,9 @@ function renderModalHTML(productId) {
     $("#js-shop-modal-img").attr("src", product.image);
   });
 
-  $(".modal-overlay, #js-shop-close-modal-btn").on("click", () => {
-    closeModal(modal);
-  });
+  $(".modal-overlay, #js-shop-close-modal-btn").on("click", () =>
+    closeModal(modal)
+  );
 
   $("#js-shop-add-btn").on("click", () => {
     const size = $("input[name='size-radio']:checked").val() || "One Size";
@@ -129,9 +129,7 @@ function showAddToCartMsg() {
   const addedMessage = $("#js-shop-added-alert");
   addedMessage.css("opacity", "1");
 
-  setTimeout(() => {
-    addedMessage.css("opacity", "0");
-  }, 2000);
+  setTimeout(() => addedMessage.css("opacity", "0"), 2000);
 }
 
 function openModal(modal) {
