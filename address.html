@@ -56,8 +56,8 @@
           <a href="index.html#navbar">
             <img class="nav-logo" src="images/icons/main-logo.png" />
           </a>
-          <a class="link-special nav-link" href="tour.html">Tour</a>
           <a class="link-special nav-link" href="music.html">Music</a>
+          <a class="link-special nav-link" href="tour.html">Tour</a>
           <a class="link-special nav-link" href="shop.html">Shop</a>
           <a class="link-special nav-link" href="about.html">About</a>
         </div>
@@ -84,8 +84,8 @@
       </button>
       <nav class="mobile-nav">
         <a class="mobile-nav-link" href="index.html#navbar">Home</a>
-        <a class="mobile-nav-link" href="tour.html">Tour</a>
         <a class="mobile-nav-link" href="music.html">Music</a>
+        <a class="mobile-nav-link" href="tour.html">Tour</a>
         <a class="mobile-nav-link" href="shop.html">Shop</a>
         <a class="mobile-nav-link" href="about.html">About</a>
 
@@ -100,15 +100,18 @@
     <main>
       <div class="wrapper">
         <section class="account-form address-section">
-          <h2 class="form-header">Your Addresses</h2>
-          <div class="address-container" id="js-address-container">
-            <!-- JS INSERTS DATA HERE -->
+          <div class="account-nav">
+            <a href="account.html">Account</a>
+            <span>&rsaquo;</span>
+            <a class="active" href="address.html">Addresses</a>
           </div>
 
-          <div class="address-back-container">
-            <a class="back-btn address-back-btn" href="account.html">
-              Go back
-            </a>
+          <h2 class="form-header">Your Addresses</h2>
+          <div class="address-container" id="js-address-container">
+            <div class="loading-container">
+              <i class="fas fa-circle-notch fa-spin"></i>
+            </div>
+            <!-- JS INSERTS DATA HERE -->
           </div>
 
           <div class="basic-modal address-modal" id="js-address-modal">

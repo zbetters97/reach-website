@@ -7,7 +7,32 @@
   box-shadow: 0 0 15px $bg-shadow;
   padding: 1em;
   margin: 2em auto;
+  width: 90%;
+  max-width: 850px;
+  min-height: 450px;
   @include flexbox(column, space-between, center, 1em);
+  position: relative;
+}
+
+.account-nav {
+  font-weight: 500;
+  font-size: calc(0.5rem + 0.5vw);
+  color: black;
+  margin-right: auto;
+  margin-bottom: -1em;
+
+  .active {
+    color: $basic-blue;
+  }
+}
+
+.loading-container {
+  font-size: calc(3rem + 0.5vw);
+  color: $basic-blue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .account-empty-container {
@@ -55,9 +80,11 @@
 
 .info-add-container {
   font-size: calc(1rem + 0.5vw);
+  color: black;
+  background-color: transparent;
   border: 2px solid black;
-  padding: 0.7em 1em;
   align-self: center;
+  padding: 0.7em 1em;
   @include flexbox(row, space-evenly, center, 0.5em);
   cursor: pointer;
   transition: all 150ms;
@@ -68,6 +95,19 @@
 }
 
 @media (max-width: 900px) {
+  .account-nav {
+    font-weight: 900;
+    font-size: calc(0.8rem + 0.5vw);
+    border: 2px solid black;
+    border-left: none;
+    padding: 0.5em;
+    margin: -0.5em auto 0.3em -0.1em;
+
+    .active {
+      color: $basic-blue;
+    }
+  }
+
   .account-form {
     background-color: $basic-white;
     box-shadow: none;

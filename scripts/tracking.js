@@ -32,6 +32,10 @@ async function renderTrackingPage() {
     const orderId = url.searchParams.get("orderId");
     const productId = url.searchParams.get("productId");
 
+    $("#js-account-nav-tracking").on("click", () => {
+      window.location.href = `tracking.html?orderId=${orderId}&productId=${productId}`;
+    });
+
     const order = await dbGetOrderById(orderId);
 
     const product = getProduct(productId);
@@ -81,13 +85,6 @@ async function renderTrackingPage() {
           <div class="tracking-bar" id="js-tracking-bar"></div>
         </div>
       </div>
-
-      <button
-        class="back-btn tracking-back-btn"
-        onclick="window.location.href='orders.html'"
-      >
-        View all orders
-      </button>
     `;
 
     $("#js-tracking-container").html(trackingHTML);

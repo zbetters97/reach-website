@@ -14,7 +14,7 @@ import {
 } from "../utils/date.js";
 import { renderPaymentSummaryHTML } from "./paymentSummary.js";
 
-export function renderOrderSummaryHTML() {
+export function renderOrderItemsHTML() {
   let shopItems = ``;
   let ticketItems = ``;
 
@@ -59,16 +59,21 @@ export function renderOrderSummaryHTML() {
             <p>Size: <span>${item.type}</span></p>
             <p>Color: <span>${item.color}</span></p>
 
-            <div class="product-quantity" id="product-quantity-${cartId}">
-              <p>Quantity: <span id="js-checkout-item-quantity-${cartId}">${quantity}</span></p>
-              <a class="checkout-update-btn" data-cart-id=${cartId}>
+            <div class="product-quantity" id="js-checkout-quantity-container-${cartId}">
+              <p>
+                Quantity: 
+                <span id="js-checkout-quantity-${cartId}">
+                  ${quantity}
+                </span>
+              </p>
+              <a class="checkout-update-btn" data-cart-id=${cartId} data-quantity=${quantity}>
                 Update
               </a>
               <input 
-              class="quantity-input" 
-              id="checkout-quantity-${cartId}" 
-              data-cart-id=${cartId}
-              type="number" min="0" max="99" 
+                class="quantity-input" 
+                id="js-checkout-quantity-input-${cartId}" 
+                data-cart-id=${cartId}
+                type="number" min="0" max="99" 
               />
               <a class="checkout-save-btn" data-cart-id=${cartId} >
                 Save
@@ -107,18 +112,21 @@ export function renderOrderSummaryHTML() {
             <p class="product-price">$${price}</p>
             <p>Type: <span>${item.type}</span></p>
 
-            <div class="product-quantity" id="product-quantity-${cartId}">
-              <p>Quantity: <span id="js-checkout-item-quantity-${cartId}">
-                ${item.quantity}
-              </span></p>
-              <a class="checkout-update-btn" data-cart-id=${cartId}>
+            <div class="product-quantity" id="js-checkout-quantity-container-${cartId}">
+              <p>
+                Quantity: 
+                <span id="js-checkout-quantity-${cartId}">
+                  ${item.quantity}
+                </span>
+              </p>
+              <a class="checkout-update-btn" data-cart-id=${cartId} data-quantity=${quantity}>
                 Update
               </a>
               <input 
-              class="quantity-input" 
-              id="checkout-quantity-${cartId}" 
-              data-cart-id=${cartId}
-              type="number" min="0" max="10" 
+                class="quantity-input" 
+                id="js-checkout-quantity-input-${cartId}" 
+                data-cart-id=${cartId}
+                type="number" min="0" max="10" 
               />
               <a class="checkout-save-btn" data-cart-id=${cartId} >
                 Save
@@ -149,7 +157,12 @@ export function renderOrderSummaryHTML() {
   $(".checkout-update-btn").each(function () {
     $(this).on("click", function () {
       const cartId = $(this).data("cart-id");
-      $(`#product-quantity-${cartId}`).addClass("editing-quantity");
+      const quantity = $(this).data("quantity");
+      $(`#js-checkout-quantity-container-${cartId}`).addClass(
+        "editing-quantity"
+      );
+
+      $(`#js-checkout-quantity-input-${cartId}`).val(quantity);
     });
   });
 
@@ -174,7 +187,7 @@ export function renderOrderSummaryHTML() {
       const cartId = $(this).data("cart-id");
       cart.removeFromCart(cartId);
 
-      renderOrderSummaryHTML();
+      renderOrderItemsHTML();
       renderPaymentSummaryHTML();
     });
   });
@@ -184,7 +197,7 @@ export function renderOrderSummaryHTML() {
       const { cartId, deliveryId } = $(this).data();
       cart.updateDeliveryOption(cartId, deliveryId);
 
-      renderOrderSummaryHTML();
+      renderOrderItemsHTML();
       renderPaymentSummaryHTML();
     });
   });
@@ -229,15 +242,15 @@ function deliveryOptionsHTML(item) {
 }
 
 function updateItemQuantity(cartId) {
-  const newQuantity = $(`#checkout-quantity-${cartId}`) || null;
+  const newQuantity = $(`#js-checkout-quantity-input-${cartId}`) || null;
 
   if (cart.updateQuantity(cartId, parseInt(newQuantity.val()))) {
-    $(`#js-item-quantity-${cartId}`).html(newQuantity.val());
-    $(`#product-quantity-${cartId}`).removeClass("editing-quantity");
+    $(`#js-checkout-quantity-${cartId}`).html(newQuantity.val());
+    $(`#js-quantity-container-${cartId}`).removeClass("editing-quantity");
 
     newQuantity.val("");
 
-    renderOrderSummaryHTML();
+    renderOrderItemsHTML();
     renderPaymentSummaryHTML();
   }
 }

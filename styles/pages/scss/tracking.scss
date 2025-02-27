@@ -2,15 +2,11 @@
 @use "../../components"as *;
 @use "../../layout"as *;
 
-.tracking-section {
-  width: 80%;
-  max-width: 800px;
-}
-
 .tracking-container {
-  padding: 1em;
-  width: 90%;
-  @include flexbox(column, space-between, $gap: 2em);
+  padding: 1em 0;
+  margin-bottom: 1em;
+  width: 95%;
+  @include flexbox(column, space-evenly, initial, 2em);
 }
 
 .tracking-empty-container {
@@ -104,7 +100,7 @@
   }
 }
 
-@media (max-width: 900px){
+@media (max-width: 900px) {
   .tracking-date {
     font-size: 1.3rem;
   }

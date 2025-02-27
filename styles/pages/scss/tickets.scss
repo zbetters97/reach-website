@@ -5,9 +5,13 @@
 .tickets-section {
   color: $basic-white;
   background-image: $bg-blue;
-  padding: 0;
+  padding: 1em;
   width: 80%;
   max-width: 600px;
+}
+
+.account-nav {
+  color: $basic-white;
 }
 
 .tickets-header {
@@ -71,17 +75,6 @@
   min-width: 175px;
 }
 
-.tickets-back-container {
-  background-color: white;
-  box-sizing: border-box;
-  border: 4px solid black;
-  border-top: none;
-  border-radius: 0 0 10px 10px;
-  padding: 2em 0;
-  width: 100%;
-  @include flexbox(row, center, center);
-}
-
 
 @media (max-width: 600px) {
   .tickets-section {
@@ -95,11 +88,5 @@
     h2 {
       font-size: 1.5rem;
     }
-  }
-
-  .tickets-back-container {
-    border: none;
-    border-radius: 0px;
-    padding: 2em 0;
   }
 }

@@ -2,19 +2,16 @@
 @use "../../components"as *;
 @use "../../layout"as *;
 
-.settings-section {
-  width: 90%;
-  max-width: 600px;
-}
-
 .settings-container {
-  padding: 1em;
+  margin-bottom: 1em;
   width: 100%;
-  @include flexbox(column, space-between, $gap: 1em);
+  @include flexbox(column, space-evenly, initial, 2em);
 }
 
 .settings-form {
-  @include flexbox(column, space-evenly, $gap: 1em);
+  margin: 0 auto;
+  width: 80%;
+  @include flexbox(column, space-evenly, center, 1em);
 }
 
 .settings-field {
@@ -54,28 +51,11 @@
   width: 300px;
 }
 
-.settings-back-container {
-  font-size: calc(0.8rem + 0.5vw);
+.settings-password-link {
+  font-weight: bold;
+  font-size: 1.3rem;
   color: $basic-blue;
-  border-top: 2px solid black;
-  padding: 1em;
-  width: 100%;
-  box-sizing: border-box;
-  @include flexbox(column, space-evenly, center, 1em);
-}
-
-.settings-back-btn {
-  font-size: calc(1rem + 0.5vw);
-  color: black;
-  background-color: transparent;
-  border: 3px solid black;
-  padding: 0.5em 1em;
-  max-width: 100px;
-
-  &:hover {
-    padding-left: 1.5em;
-    padding-right: 0.5em;
-  }
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {

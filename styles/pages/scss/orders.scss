@@ -2,14 +2,10 @@
 @use "../../components"as *;
 @use "../../layout"as *;
 
-.orders-section {
-  width: 90%;
-  max-width: 800px;
-}
-
 .orders-container {
-  width: 95%;
-  @include flexbox(column, space-between, center, 2em);
+  margin-bottom: 1em;
+  width: 100%;
+  @include flexbox(column, space-evenly, center, 2em);
 }
 
 .order-container {
@@ -61,6 +57,7 @@
   margin: 0.3em;
   height: 175px;
   @include flexbox(row, center, center, 0.5em);
+  overflow: auto;
   cursor: pointer;
   transition: all 150ms;
 
@@ -93,16 +90,6 @@
   &:hover {
     padding-left: 0.6em;
     padding-right: 1.8em;
-  }
-}
-
-.orders-back-btn {
-  font-size: calc(1rem + 0.5vw);
-  padding: 0.7em 1.2em;
-
-  &:hover {
-    padding-right: 0.6em;
-    padding-left: 1.8em;
   }
 }
 
@@ -149,10 +136,5 @@
 
   .order-track-btn {
     display: none;
-  }
-
-  .orders-back-btn {
-    font-size: 1.1rem;
-    margin: 0 auto;
   }
 }
