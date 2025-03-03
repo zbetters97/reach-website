@@ -33,6 +33,17 @@
 .concert-container {
   @include flexbox(column, space-between, center, 1em);
   text-align: center;
+  animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .concert-title {

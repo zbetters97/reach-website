@@ -1,6 +1,8 @@
 import { handleWindow } from "./utils/window.js";
 import members from "./data/members.js";
 
+const memberSection = $(".about-members");
+
 $(document).ready(function () {
   handleWindow();
   loadPage();
@@ -8,7 +10,31 @@ $(document).ready(function () {
 });
 
 function loadPage() {
+  handleScroll();
   renderMembersHTML();
+}
+
+function handleScroll() {
+  $(window).scroll(() => {
+    fadeUp();
+  });
+}
+
+function fadeUp() {
+  memberSection.children().each(function () {
+    const member = $(this);
+
+    const memberTop = member.offset().top;
+    const viewportBottom = $(window).scrollTop() + $(window).height();
+
+    const distInView = memberTop < viewportBottom - 200;
+
+    if (distInView) {
+      member.addClass("slide-up");
+    } else {
+      member.removeClass("slide-up");
+    }
+  });
 }
 
 function renderMembersHTML() {

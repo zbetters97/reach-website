@@ -39,9 +39,35 @@
 .home-section {
   font-family: $font-basic;
   color: $basic-white;
-  padding-bottom: 30vh;
+  padding-bottom: 20vh;
   margin: 0 auto;
   width: 100%;
+  opacity: 0;
+  transform: translateX(-10%);
+  animation: slide-out 1s forwards;
+  transition: 1s;
+  transition-delay: 200ms;
+}
+
+.slide-in {
+  opacity: 1;
+  animation: slide-in 1s forwards;
+}
+
+@keyframes slide-in {
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-10%);
+  }
 }
 
 .home-header {

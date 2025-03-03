@@ -3,12 +3,7 @@ import concerts from "./data/concerts.js";
 import albums from "./data/albums.js";
 import { formatDateMDShort, formatTime } from "./utils/date.js";
 
-const darkenHero = () => {
-  $(".hero-overlay").css(
-    "background",
-    `rgba(0, 45, 95, ${(window.scrollY * 1) / window.innerHeight})`
-  );
-};
+const homeSection = $(".home-section");
 
 $(document).ready(function () {
   handleWindow();
@@ -17,15 +12,41 @@ $(document).ready(function () {
 
 function loadPage() {
   darkenHero();
-  handleHeroScroll();
+  fadeIn();
+  handleScroll();
   renderAlbumHTML();
   renderTourHTML();
 }
 
-function handleHeroScroll() {
+function handleScroll() {
   $(window).scroll(() => {
     darkenHero();
+    fadeIn();
   });
+}
+
+const darkenHero = () => {
+  $(".hero-overlay").css(
+    "background",
+    `rgba(0, 45, 95, ${(window.scrollY * 1) / window.innerHeight})`
+  );
+};
+
+function fadeIn() {
+  for (let i = 0; i < homeSection.length; i++) {
+    const section = $(homeSection[i]);
+
+    const sectionTop = section.offset().top;
+    const viewportBottom = $(window).scrollTop() + $(window).height();
+
+    const distInView = sectionTop < viewportBottom - $(window).height() / 2;
+
+    if (distInView) {
+      section.addClass("slide-in");
+    } else {
+      section.removeClass("slide-in");
+    }
+  }
 }
 
 function renderAlbumHTML() {

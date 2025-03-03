@@ -142,6 +142,76 @@ h1 {
     font-size: 1.2rem;
   }
 }
+a {
+  cursor: pointer;
+  color: inherit;
+}
+
+.to-top {
+  font-size: calc(2rem + 0.5vw);
+  color: rgb(250, 250, 250);
+  background: rgb(0, 44, 95);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+  border-radius: 100%;
+  padding: 0.3em;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  flex-wrap: initial;
+  position: fixed;
+  right: 3%;
+  bottom: 2%;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+.to-top:hover {
+  transform: scale(1.2);
+}
+
+.link {
+  background: linear-gradient(currentColor 0 0) bottom left/var(--underline-width, 0%) 0.12em no-repeat;
+  display: inline-block;
+  padding-bottom: 0.2em;
+  text-decoration: none;
+  transition: background-size 300ms;
+}
+.link:hover {
+  --underline-width: 100%;
+}
+
+.link-special {
+  position: relative;
+}
+.link-special.active {
+  border-bottom: 2px solid rgb(250, 250, 250);
+}
+.link-special:not(.active)::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(250, 250, 250);
+  width: 100%;
+  height: 2px;
+  display: block;
+  bottom: -2px;
+  left: 0;
+  transform: scaleX(0);
+  transition: transform 300ms ease;
+}
+.link-special:not(.active):hover::before {
+  transform: scaleX(1);
+}
+
+.icon-special {
+  transition: transform 150ms linear;
+}
+.icon-special:hover {
+  transform: scale(1.2);
+}
+
 .basic-modal {
   color: rgb(0, 44, 95);
   background-color: rgb(250, 250, 250);
@@ -314,83 +384,13 @@ body {
   flex-wrap: initial;
 }
 
-.lock-scroll {
-  position: fixed;
-  width: 100%;
-}
-
 main {
   flex: 1;
 }
 
-a {
-  cursor: pointer;
-  color: inherit;
-}
-
-.to-top {
-  font-size: calc(2rem + 0.5vw);
-  color: rgb(250, 250, 250);
-  background: rgb(0, 44, 95);
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-  border-radius: 100%;
-  padding: 0.3em;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: initial;
-  flex-wrap: initial;
+.lock-scroll {
   position: fixed;
-  right: 3%;
-  bottom: 2%;
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-}
-.to-top:hover {
-  transform: scale(1.2);
-}
-
-.link {
-  background: linear-gradient(currentColor 0 0) bottom left/var(--underline-width, 0%) 0.12em no-repeat;
-  display: inline-block;
-  padding-bottom: 0.2em;
-  text-decoration: none;
-  transition: background-size 300ms;
-}
-.link:hover {
-  --underline-width: 100%;
-}
-
-.link-special {
-  position: relative;
-}
-.link-special.active {
-  border-bottom: 2px solid rgb(250, 250, 250);
-}
-.link-special:not(.active)::before {
-  content: "";
-  position: absolute;
-  background-color: rgb(250, 250, 250);
   width: 100%;
-  height: 2px;
-  display: block;
-  bottom: -2px;
-  left: 0;
-  transform: scaleX(0);
-  transition: transform 300ms ease;
-}
-.link-special:not(.active):hover::before {
-  transform: scaleX(1);
-}
-
-.icon-special {
-  transition: transform 150ms linear;
-}
-.icon-special:hover {
-  transform: scale(1.2);
 }
 
 .invalid-field {
@@ -451,8 +451,25 @@ a {
   font-weight: 400;
   text-transform: uppercase;
   color: rgb(250, 250, 250);
-  border-bottom: 2px solid transparent;
   margin: 0 0.3em;
+  position: relative;
+}
+.nav-link::before {
+  content: "";
+  position: absolute;
+  background-color: rgb(250, 250, 250);
+  width: 100%;
+  height: 2px;
+  display: block;
+  bottom: -2px;
+  left: 0;
+}
+.nav-link:not(.active)::before {
+  transform: scaleX(0);
+  transition: transform 300ms ease;
+}
+.nav-link:not(.active):hover::before {
+  transform: scaleX(1);
 }
 
 .nav-logo {
@@ -926,15 +943,40 @@ footer {
 .about-member {
   display: flex;
   position: relative;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10%);
+  animation: slide-down 1s forwards;
+  transition: 1s;
+  transition-delay: 200ms;
 }
 
+.slide-up {
+  cursor: pointer;
+  pointer-events: unset;
+  opacity: 1;
+  animation: slide-up 1s forwards;
+}
+
+@keyframes slide-up {
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-down {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}
 .member-img {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
   width: 450px;
   height: 600px;
   aspect-ratio: 3/4;
   object-fit: cover;
-  cursor: pointer;
   transition: all 200ms;
 }
 .member-img:hover {

@@ -19,8 +19,32 @@
   font-weight: 400;
   text-transform: uppercase;
   color: $basic-white;
-  border-bottom: 2px solid transparent;
   margin: 0 0.3em;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: $basic-white;
+    width: 100%;
+    height: 2px;
+    display: block;
+    bottom: -2px;
+    left: 0;
+  }
+
+  &:not(.active) {
+    &::before {
+      transform: scaleX(0);
+      transition: transform 300ms ease;
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+    }
+  }
+
+
 }
 
 .nav-logo {

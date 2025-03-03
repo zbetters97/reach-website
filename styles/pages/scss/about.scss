@@ -59,6 +59,35 @@
 .about-member {
   display: flex;
   position: relative;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10%);
+  animation: slide-down 1s forwards;
+  transition: 1s;
+  transition-delay: 200ms;
+}
+
+.slide-up {
+  cursor: pointer;
+  pointer-events: unset;
+  opacity: 1;
+  animation: slide-up 1s forwards;
+}
+
+@keyframes slide-up {
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(10%);
+  }
 }
 
 .member-img {
@@ -67,7 +96,6 @@
   height: 600px;
   aspect-ratio: 3/4;
   object-fit: cover;
-  cursor: pointer;
   transition: all 200ms;
 
   &:hover {
