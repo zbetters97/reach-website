@@ -912,29 +912,15 @@ footer {
   align-items: initial;
   gap: initial;
   flex-wrap: initial;
-  opacity: 0;
-  transform: translateY(10%);
-  animation: slide-down 1s forwards;
-  transition: 1s;
-  transition-delay: 200ms;
+  animation: fadein 1s;
 }
 
-.slide-in {
-  opacity: 1;
-  animation: slide-up 1s forwards;
-}
-
-@keyframes slide-up {
-  100% {
-    transform: translateY(0%);
+@keyframes fadein {
+  from {
+    opacity: 0;
   }
-}
-@keyframes slide-down {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(10%);
+  to {
+    opacity: 1;
   }
 }
 .album-img-container {

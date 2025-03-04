@@ -9,32 +9,7 @@ $(document).ready(function () {
 });
 
 function loadPage() {
-  fadeIn();
-  handleScroll();
   renderMusicHTML();
-}
-
-function handleScroll() {
-  $(window).scroll(() => {
-    fadeIn();
-  });
-}
-
-function fadeIn() {
-  albumSection.children().each(function () {
-    const album = $(this);
-
-    const albumTop = album.offset().top;
-    const viewportBottom = $(window).scrollTop() + $(window).height();
-
-    const distInView = albumTop < viewportBottom - $(window).height() / 4;
-
-    if (distInView) {
-      album.addClass("slide-in");
-    } else {
-      album.removeClass("slide-in");
-    }
-  });
 }
 
 function renderMusicHTML() {
